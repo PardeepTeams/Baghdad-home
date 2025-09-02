@@ -19,7 +19,7 @@ data class ProjectData(
     val thumbnail: String? = null,
 
     @SerializedName("is_fav")
-    val isFav: Boolean? = null,
+    var isFav: Boolean? = null,
 
     @SerializedName("property_address")
     val propertyAddress: ProjectPropertyAddress? = null,

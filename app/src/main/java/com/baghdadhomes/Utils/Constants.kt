@@ -121,11 +121,14 @@ class Constants {
         const val FOLLOW_UNFOLLOW_AGENCY = "FOLLOW_UNFOLLOW_AGENCY"
         const val FOLLOW_UNFOLLOW_AGENCY_API = "wp/v2/agency-follow"
 
-     const val GET_HOME = "HOME_API"
-     const val GET_HOME_API = "houzez-mobile-api/v1/get-home"
+        const val GET_HOME = "HOME_API"
+        const val GET_HOME_API = "houzez-mobile-api/v1/get-home"
 
         const val GET_Project_Main = "Project_main_API"
         const val GET_Project_Main_API = "houzez-mobile-api/v1/get-projects"
+
+        const val GET_Project_CITY = "Project_city_API"
+        const val GET_Project_City_API = "houzez-mobile-api/v1/get-projects-by-city"
 
         var reelsModel: ReelResult? = null
     }
