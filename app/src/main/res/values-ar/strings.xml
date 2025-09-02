@@ -95,7 +95,7 @@
     <string name="call">اتصال</string>
     <string name="recommended">عقارات مشابهة</string>
     <string name="view_more">view more property like this</string>
-    <string name="najaf_homes">نجف هوم</string>
+    <string name="najaf_homes">بغداد البيت</string>
     <string name="real_estate_service">للخدمات العقارية</string>
     <string name="email_id">email@gmail.com</string>
     <string name="sign_up">انشاء حساب</string>
@@ -228,15 +228,9 @@
     <string name="report_scceccfully">تم ارسال الإبلاغ بنجاح</string>
     <string name="profile_updated">تم تحديث الملف الشخصي بنجاح</string>
     <string name="ok">موافق</string>
-    <string name="about_text_1">يوفر لكم تطبيق نجف هـوم خدمات عقارية مميزة سـواء كان هدفــك
-سكني ،تجاري او مشروع استثماري فسوف نلبي احتياجك من الاستشارة
-العقارية مرورا بالوسـاطة العقـارية و انتهاءاً بالمشورة القــانونية كل
- هذه الخدمات غي محــطة وتطـبيق واحد ليكون مدخــلك الخـــاص الى
-بوابة النجف العقارية  </string>
+    <string name="about_text_1">توفر لكم شركة بغداد هوم فرصًا عقارية مميزة، سواءً كان هدفكم سكنيًا أو تجاريًا، فشركة بغداد هوم ستلبي احتياجاتكم لأي متطلبات عقارية. بدءًا من الاستشارات والوساطة العقارية بالإضافة إلى الاستشارات القانونية، فإن شركة بغداد هوم هي دليلكم وبوابتكم إلى عالم العقارات في مدينة بغداد.</string>
 
-    <string name="about_text_2">عند رغبتك في انشاء اعلان في موقع او تطبيق نجف هوم فستكون
-المسؤول الأول و الوحيد عن جميع محتويات اعلانك وتخلي تطبيق
-نجف هوم عن جميع الالتزامات المتعلقة بإعلانك</string>
+    <string name="about_text_2">عندما ترغب في إنشاء أو نشر إعلان عقاري، ستكون مسؤولاً عن محتوى إعلاناتك. أنت تقر بإعفاء بغداد هوم من أي موقف ينشأ عن إعلاناتك أو بعض إعلاناتك بما في ذلك القانونية على سبيل المثال لا الحصر. تحتفظ بغداد هوم بالحق في حظر وحذف أي إعلانات لا تلبي متطلباتها دون أي تحذير أو إشعار آخر.</string>
 
     <string name="camera_name">الكامرة</string>
     <string name="gallery_name">معرض الصور</string>
@@ -315,4 +309,5 @@
     <string name="see_all">رؤية الكل</string>
     <string name="project">مشروع</string>
     <string name="project_proties">Project Properties</string>
+    <string name="project_found">تم العثور على المشروع</string>
 </resources>

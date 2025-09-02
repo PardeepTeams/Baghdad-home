@@ -15,17 +15,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baghdadhomes.Activities.CityDetailActivity
 import com.baghdadhomes.Activities.ProjectDetailActivity
 import com.baghdadhomes.Adapters.ProjectsNameAdapter
+import com.baghdadhomes.Models.ProjectData
 import com.baghdadhomes.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.textfield.TextInputEditText
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
 
 class SelectProjectBottomSheet : BottomSheetDialogFragment() {
 
     private lateinit var adapter: ProjectsNameAdapter
-    private val allItems = mutableListOf<String>()
+    private var projectList: List<ProjectData>? = null
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+
+        // Retrieve list from arguments
+        arguments?.getString(ARG_PROJECT_LIST)?.let { json ->
+            projectList = Gson().fromJson(json, object : TypeToken<List<ProjectData>>() {}.type)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?
@@ -46,24 +58,26 @@ class SelectProjectBottomSheet : BottomSheetDialogFragment() {
         rv.adapter = adapter
 
         // data (normally from VM/Repo/args)
-        allItems.clear()
-        allItems.addAll(
-            listOf(
-                "Al-Qudat 2", "Aram Village2", "Al-Jawahiri City", "Emerald City",
-                "Lou Loua Residential Compound", "Baghdad View", "Alaska Towers",
-                "English Tower", "Kurdistan City", "Buruj Residential Compound",
-                "Al-Qudat 2", "Aram Village2", "Al-Jawahiri City", "Emerald City",
-                "Lou Loua Residential Compound", "Baghdad View", "Alaska Towers",
-                "English Tower", "Kurdistan City", "Buruj Residential Compound"
-            )
-        )
-        adapter.submit(allItems)
 
-        et_search.addTextChangedListener {
-            val q = it?.toString().orEmpty().trim()
-            val filtered = if (q.isEmpty()) allItems
-            else allItems.filter { name -> name.contains(q, ignoreCase = true) }
-            adapter.submit(filtered)
+        projectList?.let { adapter.submit(it) }
+
+        et_search.addTextChangedListener {text ->
+            val query = text?.toString().orEmpty().trim()
+
+            val filteredList = if (query.isEmpty()) {
+                projectList
+            } else {
+                projectList!!.filter { project ->
+                    // Use the property you want to filter by (example: postTitle or property_type)
+                    project.postTitle?.contains(query, ignoreCase = true) == true ||
+                            project.propertyType?.contains(query, ignoreCase = true) == true
+                }
+            }
+
+            if (filteredList != null) {
+                adapter.submit(filteredList)
+            }
+
         }
 
         close.setOnClickListener { dismiss() }
@@ -71,7 +85,18 @@ class SelectProjectBottomSheet : BottomSheetDialogFragment() {
     }
 
     companion object {
-        fun show(fm: FragmentManager) =
-            SelectProjectBottomSheet().show(fm, "SelectProjectBottomSheet")
+        private const val ARG_PROJECT_LIST = "project_list"
+
+        fun show(
+            fragmentManager: FragmentManager,
+            list: List<ProjectData>
+        ) {
+            val bottomSheet = SelectProjectBottomSheet()
+            val args = Bundle().apply {
+                putString(ARG_PROJECT_LIST, Gson().toJson(list)) // Serialize list to JSON
+            }
+            bottomSheet.arguments = args
+            bottomSheet.show(fragmentManager, "SelectProjectBottomSheet")
+        }
     }
 }

@@ -123,6 +123,10 @@ class Constants {
 
      const val GET_HOME = "HOME_API"
      const val GET_HOME_API = "houzez-mobile-api/v1/get-home"
+
+        const val GET_Project_Main = "Project_main_API"
+        const val GET_Project_Main_API = "houzez-mobile-api/v1/get-projects"
+
         var reelsModel: ReelResult? = null
     }
 }

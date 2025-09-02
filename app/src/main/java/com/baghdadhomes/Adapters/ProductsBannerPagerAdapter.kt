@@ -6,13 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import androidx.annotation.NonNull
 import androidx.recyclerview.widget.RecyclerView
+import com.baghdadhomes.Models.ProjectSlider
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 
-class ProductsBannerPagerAdapter(var bannerList:ArrayList<String>) :
+class ProductsBannerPagerAdapter(var bannerList:ArrayList<ProjectSlider>) :
     RecyclerView.Adapter<ProductsBannerPagerAdapter.ProductsBannerViewHolder>() {
 
 
@@ -31,7 +32,7 @@ class ProductsBannerPagerAdapter(var bannerList:ArrayList<String>) :
     }
 
     override fun onBindViewHolder(holder: ProductsBannerViewHolder, position: Int) {
-        Glide.with(holder.imageView.context).load(bannerList[position]).placeholder(R.drawable.img_placeholder)
+        Glide.with(holder.imageView.context).load(bannerList[position].sliderImage).placeholder(R.drawable.img_placeholder)
             .apply(
                 RequestOptions()
                     .override(600, 600)

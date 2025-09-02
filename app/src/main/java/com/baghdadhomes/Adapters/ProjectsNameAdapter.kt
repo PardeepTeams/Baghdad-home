@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.baghdadhomes.Models.ProjectData
 import com.baghdadhomes.R
 
 
@@ -11,9 +12,9 @@ class ProjectsNameAdapter(
         private val onClick: (String) -> Unit
     ) : RecyclerView.Adapter<ProjectsNameAdapter.VH>() {
 
-        private val items = mutableListOf<String>()
+        private val items = mutableListOf<ProjectData>()
 
-        fun submit(data: List<String>) {
+        fun submit(data: List<ProjectData>) {
             items.clear()
             items.addAll(data)
             notifyDataSetChanged()
@@ -25,7 +26,7 @@ class ProjectsNameAdapter(
             return VH(tv, onClick)
         }
 
-        override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(items[position])
+        override fun onBindViewHolder(holder: VH, position: Int) = holder.bind(items[position].postTitle.toString())
         override fun getItemCount(): Int = items.size
 
         class VH(private val tv: TextView, val cb: (String) -> Unit) :

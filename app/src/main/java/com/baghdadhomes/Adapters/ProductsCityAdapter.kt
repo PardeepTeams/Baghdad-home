@@ -9,6 +9,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.baghdadhomes.Activities.CityProductActivity
+import com.baghdadhomes.Models.ProjectCity
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
 import com.bumptech.glide.Priority
@@ -16,7 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 
-class ProductsCityAdapter(var context:Context,var imageList:ArrayList<String>): RecyclerView.Adapter<ProductsCityAdapter.CityViewHolder>() {
+class ProductsCityAdapter(var context:Context,var imageList:ArrayList<ProjectCity>): RecyclerView.Adapter<ProductsCityAdapter.CityViewHolder>() {
 
     class CityViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val cityImage: ImageView = itemView.findViewById(R.id.cityImage)
@@ -37,16 +38,29 @@ class ProductsCityAdapter(var context:Context,var imageList:ArrayList<String>): 
         val width: Int = holder.cityImage.getWidth()
         val height: Int = holder.cityImage.getHeight()
 
+        holder.cityName.text = imageList.get(position).name
+
         holder.itemView.setOnClickListener {
             context.startActivity(Intent(context,CityProductActivity::class.java))
         }
-        Glide.with(context).load(imageList.get(position)).placeholder(R.drawable.img_placeholder)
-            .apply(
-                RequestOptions().override(300, 300)
-                    .priority(Priority.HIGH)
-                    .centerCrop().diskCacheStrategy
-                        (DiskCacheStrategy.ALL)
-            ).thumbnail(Glide.with(context).load(imageList.get(position)).override(width, height)).
-        into(holder.cityImage)
+
+
+        if(imageList.get(position).image!=null){
+            Glide.with(holder.cityImage.context).load(imageList.get(position).image)
+                .placeholder(R.drawable.img_placeholder).apply(
+                    RequestOptions()
+                        .override(width, height) // Resize image (width x height)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache the image for future use
+                )
+                .into(holder.cityImage)
+        }else{
+            Glide.with(context).load(R.drawable.img_placeholder). apply(
+                RequestOptions()
+                    .override(width, height) // Resize image (width x height)
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .priority(Priority.HIGH)// Cache the image for future use
+            )
+                .placeholder(R.drawable.img_placeholder).into(holder.cityImage)
+        }
     }
 }

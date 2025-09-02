@@ -96,7 +96,7 @@
     <string name="call">Call</string>
     <string name="recommended">Recommended properties</string>
     <string name="view_more">view more property like this</string>
-    <string name="najaf_homes">Najaf Home</string>
+    <string name="najaf_homes">Baghdad Home</string>
     <string name="real_estate_service">real estate services</string>
     <string name="email_id">email@gmail.com</string>
     <string name="sign_up">Sign Up</string>
@@ -229,8 +229,8 @@
     <string name="report_scceccfully">Report sent successfully.</string>
     <string name="profile_updated">Profile Updated Successfully</string>
     <string name="ok">Done</string>
-    <string name="about_text_1"><![CDATA[Najaf home provides you with distinctive real estate opportunities , whether your goal is residential or commercial , Najaf home will satisfy your needs for any real estate requirement . Beginning with real estate consultation and brokerage as well as Legal advice , Najaf home is your guide and gate to the real estate world in Najaf city.]]></string>
-    <string name="about_text_2"><![CDATA[When and If you wish to create or post a real estate ad , you will be responsible and liable for the content of your ads. You acknowledge to free Najaf home from any situation arising from your ads or some of your ads including legal but not limited to that. Najaf Home reserves the right to block and delete any ads that don\'t meet their requirements without any warning or further notice .]]></string>
+    <string name="about_text_1"><![CDATA[Baghdad home provides you with distinctive real estate opportunities , whether your goal is residential or commercial , Baghdad home will satisfy your needs for any real estate requirement . Beginning with real estate consultation and brokerage as well as Legal advice , Baghdad home is your guide and gate to the real estate world in Baghdad city.]]></string>
+    <string name="about_text_2"><![CDATA[When and If you wish to create or post a real estate ad , you will be responsible and liable for the content of your ads. You acknowledge to free Baghdad home from any situation arising from your ads or some of your ads including legal but not limited to that. Baghdad Home reserves the right to block and delete any ads that don\'t meet their requirements without any warning or further notice .]]></string>
 
     <string name="camera_name">Camera</string>
     <string name="gallery_name">Gallery</string>
@@ -309,4 +309,5 @@
     <string name="see_all">See All</string>
     <string name="project">Project</string>
     <string name="project_proties">Project Properties</string>
+    <string name="project_found">Project found</string>
 </resources>

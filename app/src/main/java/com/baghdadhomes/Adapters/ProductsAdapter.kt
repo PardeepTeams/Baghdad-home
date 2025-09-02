@@ -12,21 +12,19 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager2.widget.ViewPager2
 import com.baghdadhomes.Activities.CityDetailActivity
 import com.baghdadhomes.Activities.ProjectDetailActivity
+import com.baghdadhomes.Models.ProjectData
+import com.baghdadhomes.PreferencesService.Companion.instance
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Priority
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import de.hdodenhof.circleimageview.CircleImageView
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.launch
 
-class ProductsAdapter(var context:Context,var imageList:ArrayList<String>):
+class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>):
     RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() {
     private val sliderHandler = Handler(Looper.getMainLooper())
     private var sliderRunnable: Runnable? = null
@@ -52,24 +50,66 @@ class ProductsAdapter(var context:Context,var imageList:ArrayList<String>):
     }
 
     override fun getItemCount(): Int {
-        return imageList.size
+        return projectList.size
     }
 
     override fun onBindViewHolder(holder: ProductsViewHolder, position: Int) {
-       /* val bannerList:ArrayList<String> = ArrayList()
-        bannerList.add(imageList.get(position))*/
-
-        Glide.with(holder.imageItem.context).load(imageList.get(position))
-            .placeholder(R.drawable.img_placeholder).apply(
+        if(projectList.get(position).thumbnail!=null){
+            Glide.with(holder.imageItem.context).load(projectList.get(position).thumbnail)
+                .placeholder(R.drawable.img_placeholder).apply(
+                    RequestOptions()
+                        .override(600, 600) // Resize image (width x height)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache the image for future use
+                )
+                .into(holder.imageItem)
+        }else{
+            Glide.with(context).load(R.drawable.img_placeholder). apply(
                 RequestOptions()
                     .override(600, 600) // Resize image (width x height)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache the image for future use
+                    .diskCacheStrategy(DiskCacheStrategy.ALL)
+                    .priority(Priority.HIGH)// Cache the image for future use
             )
-            .into(holder.imageItem)
+                .placeholder(R.drawable.img_placeholder).into(holder.imageItem)
+        }
 
-      /*  val imageAdapter = ImagePagerAdapter(bannerList)
-        holder.viewPager.adapter = imageAdapter*/
 
+        holder.title.text = projectList.get(position).postTitle
+
+        if(projectList.get(position).propertyAddress!=null){
+            if(projectList.get(position).propertyAddress!!.propertyArea!=null && projectList.get(position).propertyAddress!!.propertyCity!=null){
+              holder.location.text =   projectList.get(position).propertyAddress!!.propertyArea!! + " , " + projectList.get(position).propertyAddress!!.propertyCity!!
+            }else if(projectList.get(position).propertyAddress!!.propertyArea!=null && projectList.get(position).propertyAddress!!.propertyCity==null){
+                holder.location.text =   projectList.get(position).propertyAddress!!.propertyArea!!
+            }else if(projectList.get(position).propertyAddress!!.propertyArea==null && projectList.get(position).propertyAddress!!.propertyCity!=null){
+                holder.location.text =   projectList.get(position).propertyAddress!!.propertyCity!!
+            }else{
+                holder.location.text = ""
+            }
+        }else{
+            holder.location.text = ""
+        }
+
+        if(projectList.get(position).price!=null){
+            holder.price.text =    projectList.get(position).price  + context.resources.getString(R.string.currency_code)
+        }else{
+            holder.price.text = "(0) " + context.resources.getString(R.string.currency_code)
+        }
+
+        if (projectList.get(position).isFav != null && projectList.get(position).isFav == true) {
+            holder.img_bookmark.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_heart
+                )
+            )
+        } else {
+            holder.img_bookmark.setImageDrawable(
+                ContextCompat.getDrawable(
+                    context,
+                    R.drawable.ic_heart_outline
+                )
+            )
+        }
         holder.city_image.setOnClickListener {
             context.startActivity(Intent(context, CityDetailActivity::class.java))
 
@@ -80,74 +120,34 @@ class ProductsAdapter(var context:Context,var imageList:ArrayList<String>):
         }
 
         holder.img_bookmark.setOnClickListener {
-            val currentDrawable = holder.img_bookmark.drawable
-            val heart = ContextCompat.getDrawable(context, R.drawable.ic_heart)?.constantState
-            val heartOutline = ContextCompat.getDrawable(context, R.drawable.ic_heart_outline)?.constantState
-
-            if (currentDrawable?.constantState == heart) {
-                // It is filled heart, switch to outline
-                holder.img_bookmark.setImageResource(R.drawable.ic_heart_outline)
-            } else {
-                // It is outline or something else, switch to filled
-                holder.img_bookmark.setImageResource(R.drawable.ic_heart)
-            }
 
 
-
-        }
-
-   /*     holder.viewPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
-            override fun onPageSelected(position: Int) {
-                super.onPageSelected(position)
-                currentIndex = position;
-                val childCount = holder.indicatorLayout.childCount
-                for (i in 0 until childCount) {
-                    val child = holder.indicatorLayout.getChildAt(i)
-                    if (i == position) {
-                        child.setBackgroundResource(R.drawable.indicator_active_white)
-                    } else {
-                        child.setBackgroundResource(R.drawable.indicator_inactive_grey)
-                    }
-                }
-            }
-        })*/
-
-
-      /*  holder.indicatorLayout.removeAllViews()
-        for (i in 0 until 3) {
-            val indicator = ImageView(context)
-            indicator.setLayoutParams(
-                LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                )
-            )
-            (indicator.layoutParams as LinearLayout.LayoutParams).setMargins(8, 0, 8, 0)
-            indicator.setBackgroundResource(R.drawable.indicator_inactive_grey)
-            holder. indicatorLayout.addView(indicator)
-        }*/
-
-     /*   currentIndex = position;
-        val childCount = holder.indicatorLayout.childCount
-        for (i in 0 until childCount) {
-            val child = holder.indicatorLayout.getChildAt(i)
-            if (i == position) {
-                child.setBackgroundResource(R.drawable.indicator_active_white)
-            } else {
-                child.setBackgroundResource(R.drawable.indicator_inactive_grey)
-            }
-        }
-        job = CoroutineScope(Dispatchers.Main).launch {
-            while (true) {
-                delay(4000)
-                if (currentIndex == 2){
-                    currentIndex = 0
+            //holder.img_bookmark.setColorFilter(holder.img_bookmark.getContext().getResources().getColor(R.color.light_red), PorterDuff.Mode.SRC_ATOP);
+            val isLooged = instance.userLoginStatus
+            if (isLooged!!) {
+                if (projectList.get(position).isFav != null && projectList.get(position).isFav == true) {
+                    holder.img_bookmark.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            context,
+                            R.drawable.ic_heart_outline
+                        )
+                    )
                 } else {
-                    currentIndex +=1
+                    holder.img_bookmark.setImageDrawable(
+                        ContextCompat.getDrawable(
+                            context,
+                            R.drawable.ic_heart
+                        )
+                    )
                 }
-               holder. viewPager.setCurrentItem(currentIndex, true)
+               // detailPage.addRemoveFav(propertiesList.get(position), position)
+            } else {
+             //   detailPage.openLoginActivity()
+
             }
-        }*/
+
+
+        }
 
     }
 

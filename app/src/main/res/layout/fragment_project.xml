@@ -139,10 +139,10 @@
 
                 <TextView
                     android:id="@+id/tv_search_count"
-                    android:visibility="visible"
+                    android:visibility="gone"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/property_found"
+                    android:text="@string/project_found"
                     android:layout_marginTop="12dp"
                     android:gravity="center_horizontal"
                     android:textSize="16sp"

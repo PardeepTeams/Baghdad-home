@@ -35,8 +35,8 @@ class CityProductActivity : BaseActivity() {
         cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
         cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
         rv_products_items.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-        productsAdapter = ProductsAdapter(this,cityList)
-        rv_products_items.adapter = productsAdapter
+      //  productsAdapter = ProductsAdapter(this,cityList)
+      //  rv_products_items.adapter = productsAdapter
 
         img_back.setOnClickListener {
             finish()

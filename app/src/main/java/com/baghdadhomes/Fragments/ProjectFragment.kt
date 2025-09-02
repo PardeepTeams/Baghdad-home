@@ -10,6 +10,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
@@ -19,7 +20,16 @@ import androidx.viewpager2.widget.ViewPager2
 import com.baghdadhomes.Adapters.ProductsAdapter
 import com.baghdadhomes.Adapters.ProductsBannerPagerAdapter
 import com.baghdadhomes.Adapters.ProductsCityAdapter
+import com.baghdadhomes.Models.HomeModel
+import com.baghdadhomes.Models.ProjectCity
+import com.baghdadhomes.Models.ProjectData
+import com.baghdadhomes.Models.ProjectListModel
+import com.baghdadhomes.Models.ProjectSlider
+import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
+import com.baghdadhomes.Utils.Utility
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,8 +47,9 @@ class ProjectFragment : BaseFragment() {
     private var param1: String? = null
     private var param2: String? = null
     lateinit var bannerAdapter: ProductsBannerPagerAdapter
-    var bannerList:ArrayList<String> = ArrayList()
-    var cityList:ArrayList<String> = ArrayList()
+    var bannerList:ArrayList<ProjectSlider> = ArrayList()
+    var cityList:ArrayList<ProjectCity> = ArrayList()
+    var projectList:ArrayList<ProjectData> = ArrayList()
     lateinit var bannerPager:ViewPager2
     lateinit var rv_city:RecyclerView
     lateinit var rv_products:RecyclerView
@@ -51,6 +62,7 @@ class ProjectFragment : BaseFragment() {
     var currentIndex = 0
     private var job: Job? = null
     lateinit var et_search_property:EditText
+    lateinit var tv_search_count:TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -72,15 +84,21 @@ class ProjectFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initView(view);
-        bannerList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        bannerList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        bannerList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        bannerAdapter = ProductsBannerPagerAdapter(bannerList);
-        bannerPager.adapter = bannerAdapter
-        setupIndicators(bannerList.size)
-        setCurrentIndicator(0)
-        startAutoSlide()
-        bannerPager.addCarouselEffect(enableZoom = false)
+
+
+
+        val map : HashMap<Any,Any> = HashMap()
+        if (PreferencesService.instance.userLoginStatus == true){
+            map["user_id"] = PreferencesService.instance.getUserData?.ID!!
+        } else{
+            map["device_id"] = Utility.getDeviceId(requireContext())
+        }
+        map["featured"] ="1"
+        if (isNetworkAvailable()){
+            hitPostApiWithoutTokenParams(Constants.GET_Project_Main,true, Constants.GET_Project_Main_API,map)
+        } else{
+            showToast(requireContext(), getString(R.string.intenet_error))
+        }
 
         bannerPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -96,23 +114,11 @@ class ProjectFragment : BaseFragment() {
         bannerPager.offscreenPageLimit = 3
 
 
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
         productsCirtAdapter = ProductsCityAdapter(requireActivity(),cityList)
 
         rv_city.adapter = productsCirtAdapter;
 
-        productsAdapter = ProductsAdapter(requireActivity(),cityList)
+        productsAdapter = ProductsAdapter(requireActivity(),projectList)
         rv_products.adapter = productsAdapter
         rv_products.setHasFixedSize(true)
         rv_products.setItemViewCacheSize(10)
@@ -121,7 +127,46 @@ class ProjectFragment : BaseFragment() {
     }
 
     override fun getResponse(apiType: String, respopnse: JsonObject) {
+        Thread {
+            val model = Gson().fromJson(respopnse, ProjectListModel::class.java)
+            saveHomeData(model)
+        }.start()
 
+
+    }
+
+
+    fun saveHomeData(model:ProjectListModel){
+      if(model.success!!){
+          if(model.data!=null){
+              activity?.runOnUiThread {
+                  projectList.clear()
+                  cityList.clear()
+                  bannerList.clear()
+
+                  if(model.data.allProjectSliders!=null){
+                      bannerList.addAll(model.data.allProjectSliders)
+                      bannerAdapter = ProductsBannerPagerAdapter(bannerList);
+                      bannerPager.adapter = bannerAdapter
+                      setupIndicators(bannerList.size)
+                      setCurrentIndicator(0)
+                      startAutoSlide()
+                      bannerPager.addCarouselEffect(enableZoom = false)
+                  }
+                  if(model.data.allProjectCities!=null){
+                      cityList.addAll(model.data.allProjectCities)
+                      productsCirtAdapter.notifyDataSetChanged()
+                  }
+
+                  tv_search_count.visibility = View.VISIBLE
+                  if(model.data.projectsListing!=null){
+                      projectList.addAll(model.data.projectsListing)
+                      productsAdapter.notifyDataSetChanged()
+                  }
+                  tv_search_count.text = projectList.size.toString() + " "+ getString(R.string.project_found)
+              }
+          }
+      }
     }
 
     private fun setCurrentIndicator(position: Int) {
@@ -173,9 +218,18 @@ class ProjectFragment : BaseFragment() {
         rv_products = view.findViewById(R.id.rv_products)
         indicatorLayout = view.findViewById(R.id.indicatorLayout)
         et_search_property = view.findViewById(R.id.et_search_property)
+        tv_search_count = view.findViewById(R.id.tv_search_count)
 
         et_search_property.setOnClickListener {
-            SelectProjectBottomSheet.show(parentFragmentManager)
+            if(projectList.isEmpty()){
+                showToast(requireActivity(),"No Project found ")
+            }else{
+                SelectProjectBottomSheet.show(
+                    parentFragmentManager,
+                    projectList ?: emptyList()
+                )
+            }
+
         }
 
     }
