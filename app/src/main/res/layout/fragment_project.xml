@@ -62,7 +62,7 @@
                 android:layout_toEndOf="@+id/img_search"
                 android:background="@null"
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
-                android:hint="@string/property_search"
+                android:hint="@string/search"
                 android:imeOptions="actionSearch"
                 android:maxLines="1"
                 android:focusable="false"
