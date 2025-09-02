@@ -3,6 +3,7 @@ package com.baghdadhomes.fcm
 import com.google.gson.JsonObject
 import com.baghdadhomes.Models.AdsDetailModel
 import com.baghdadhomes.Models.NewFeatureModel
+import com.baghdadhomes.Models.ProjectDetailResponse
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import okhttp3.ResponseBody
@@ -65,4 +66,7 @@ interface ApiService {
 
     @GET
     suspend fun getView(@Url url: String, @QueryMap parameters: HashMap<String, String>): Response<AdsDetailModel>
+
+    @POST
+    suspend fun getPropertyDetails(@Url url: String, @QueryMap parameters: HashMap<String, String>): Response<ProjectDetailResponse>
 }

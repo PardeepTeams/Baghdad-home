@@ -117,7 +117,7 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
 
         holder.itemView.setOnClickListener {
             val intent:Intent = Intent(context, ProjectDetailActivity::class.java)
-             intent.putExtra("propertyId",projectList.get(position).id.toString())
+             intent.putExtra("propertyId", projectList[position].id.toString())
             context.startActivity(intent)
         }
 
