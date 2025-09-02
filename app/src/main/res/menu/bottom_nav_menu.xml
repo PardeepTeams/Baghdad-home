@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/home"
+        android:icon="@drawable/ic_home"
+        app:showAsAction="ifRoom"
+        android:title="@string/home"/>
+
+    <item
+        android:id="@+id/commercial"
+        android:icon="@drawable/ic_community"
+        app:showAsAction="ifRoom"
+        android:title="@string/commercial"/>
+
+    <item
+        android:id="@+id/add"
+        app:showAsAction="ifRoom"
+        android:title="@string/add_new"/>
+
+
+    <item
+        android:id="@+id/area"
+        android:icon="@drawable/ic_area"
+        app:showAsAction="ifRoom"
+        android:title="@string/area"/>
+
+
+    <item
+        android:id="@+id/properties"
+        android:icon="@drawable/ic_properties"
+        app:showAsAction="ifRoom"
+        android:title="@string/properties"/>
+
+
+</menu>

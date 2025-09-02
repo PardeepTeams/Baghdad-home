@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.WhatsappLoginActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:layout_marginEnd="15dp"
+        android:layout_marginBottom="15dp"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/back_arrow_iv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back_arrow" />
+
+        <TextView
+            android:id="@+id/title_whatsapp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:text="@string/whatsapp_login"
+            android:textColor="@android:color/black"
+            android:textSize="25sp" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linear_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_top"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="15dp"
+        android:orientation="vertical">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.hbb20.CountryCodePicker
+                android:id="@+id/country_code"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/bg_edit_text"
+                android:gravity="center"
+                android:padding="1dp"
+                app:ccp_arrowSize="7dp"
+                app:ccp_autoDetectLanguage="true"
+                app:ccp_defaultPhoneCode="964"
+                app:ccp_showFlag="false"
+                app:ccp_textSize="13sp"
+                app:ccpDialog_showPhoneCode="true"
+                app:ccp_showArrow="false"
+                app:ccp_showNameCode="false"
+                app:ccp_textGravity="CENTER"
+                app:ccp_clickable="false"/>
+
+            <EditText
+                android:id="@+id/et_whatsapp_no"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_toEndOf="@+id/country_code"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_whatsapp_number_without_zero"
+                android:inputType="number"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15dp" />
+        </RelativeLayout>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/btn_continue"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/bg_button"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:gravity="center"
+            android:text="@string/text_continue"
+            android:textColor="@color/whiteNew"
+            android:textSize="20sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/llSocial">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/sign_in_with"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <com.facebook.login.widget.LoginButton
+                android:id="@+id/fb_loginBtn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1" />
+
+            <RelativeLayout
+                android:id="@+id/rl_fb_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_round"
+                android:backgroundTint="@color/skyBlue"
+                android:padding="7dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/img_fb"
+                    android:layout_width="wrap_content"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_facebook" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/facebook"
+                    android:layout_centerHorizontal="true"
+                    android:textColor="@color/whiteNew"
+                    android:textSize="17dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_google_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_round"
+                android:padding="7dp">
+
+                <ImageView
+                    android:id="@+id/img_google"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/img_google" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:textAllCaps="true"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/google"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="17dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:id="@+id/rl_wp_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/bg_outline_round"
+                android:backgroundTint="@color/green"
+                android:padding="7dp"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/img_whatsapp"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:src="@drawable/ic_whatsapp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="5dp"
+                    android:layout_centerHorizontal="true"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/whatsapp"
+                    android:textColor="@color/whiteNew"
+                    android:textSize="17dp" />
+            </RelativeLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/rl_otp_detext"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:id="@+id/rl_otp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/enterotp"
+                    android:textColor="@color/blackNew"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="Signing up or login to see our top picks for you."
+                    android:textColor="@color/blackNew"
+                    android:textSize="14sp"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_margin="20dp"
+                android:orientation="vertical"
+                android:paddingBottom="40dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/enter_digit_otp"
+                    android:textColor="@color/blackNew"
+                    android:textSize="14sp" />
+
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/otp_text"
+                    android:textColor="@color/blackNew"
+                    android:textSize="14sp" />
+
+                <in.aabhasjindal.otptextview.OtpTextView
+                    android:id="@+id/et_otp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:textColor="@color/blackNew"
+                    app:bar_enabled="false"
+                    app:bar_height="2dp"
+                    app:height="45dp"
+                    app:length="6"
+                    app:otp_box_background="@drawable/bg_edit_text"
+                    app:otp_text_size="24dp"
+                    app:width="46dp" />
+                <TextView
+                    android:id="@+id/resend_otp"
+                    android:text="@string/resend_otp"
+                    android:textColor="@color/blackNew"
+                    android:layout_gravity="end"
+                    android:gravity="end"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:id="@+id/btn_otp_continue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="20dp"
+                    android:gravity="center"
+                    android:background="@drawable/bg_button"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="30dp"
+                    android:text="@string/verify_otp"
+                    android:textAllCaps="false"
+                    android:textColor="@color/whiteNew"
+                    android:textSize="15dp" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imageView_progress"
+        android:layout_width="150dp"
+        android:layout_centerInParent="true"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        android:src="@drawable/splash_screen_drawable"
+        />
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.Wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone"
+        android:layout_centerInParent="true"
+        app:SpinKit_Color="@color/skyBlue" />
+</RelativeLayout>

@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:background="@color/whiteNew"
+        android:outlineAmbientShadowColor="@color/grey"
+        android:outlineSpotShadowColor="@color/grey"
+        android:elevation="4dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginVertical="5dp"
+        android:clipToPadding="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginVertical="5dp"
+                android:id="@+id/ll_top"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:weightSum="2">
+
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="140dp">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/imv_property"
+                        app:shapeAppearance="@style/shapeImage"
+                        android:layout_width="match_parent"
+                        android:layout_height="140dp"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/img_placeholder" />
+
+                    <TextView
+                        android:id="@+id/tv_sell"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_outline"
+                        android:backgroundTint="@color/darkGrey"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="4dp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="@string/for_sell"
+                        android:textColor="@color/whiteNew"
+                        android:textSize="10dp" />
+
+                    <ImageView
+                        android:id="@+id/img_premimum"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:padding="4dp"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginBottom="10dp"
+                        android:layout_alignParentBottom="true"
+                        android:background="@drawable/transpart_bg"
+                        android:layout_alignParentEnd="true"
+                        android:src="@drawable/premium_svgrepo_com"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <ImageView
+                        android:id="@+id/img_bookmark"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/transpart_bg"
+                        android:padding="4dp"
+                        android:src="@drawable/ic_heart_outline" />
+
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+
+                    <TextView
+                        android:id="@+id/tv_title"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/ad_title"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="20sp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_area_property"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center_vertical"
+                        android:gravity="center_vertical"
+                        android:drawableStart="@drawable/ic_nbhd_2"
+                        android:drawablePadding="7dp"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:text="@string/ad_type"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp" />
+
+
+                    <TextView
+                        android:id="@+id/tv_width"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+
+                        android:drawableStart="@drawable/img_locations"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:maxLines="1"
+                        android:drawablePadding="7dp"
+                        android:singleLine="true"
+                        android:text="@string/street_width"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_items"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/rl_street"
+                        android:layout_marginTop="4dp"
+                        android:weightSum="3">
+
+                        <TextView
+                            android:id="@+id/tv_number_area"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_toEndOf="@+id/img_area"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:maxLines="1"
+                            android:drawablePadding="7dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:drawableStart="@drawable/ic_compass_grey"
+                            android:singleLine="true"
+                            android:text="0 m"
+                            android:textColor="@color/darkGrey"
+                            android:textSize="12sp" />
+
+
+                        <TextView
+                            android:id="@+id/tv_bedroom"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:drawablePadding="7dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:drawableStart="@drawable/ic_bed_2"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:text="@string/bed_count"
+                            android:textColor="@color/darkGrey"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/tv_batroom"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:text="1"
+                            android:singleLine="true"
+                            android:maxLines="1"
+                            android:drawablePadding="7dp"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:drawableStart="@drawable/ic_bath_2"
+                            android:textColor="@color/darkGrey"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tv_details"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_items"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:maxLines="2"
+                        android:text="@string/ad_details"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_price"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/tv_details"
+                        android:layout_marginTop="4dp"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:layout_alignParentEnd="true"
+                        android:text=""
+                        android:textColor="@color/grey"
+                        android:textSize="12sp" />
+
+                </LinearLayout>
+            </LinearLayout>
+             <LinearLayout
+                 android:id="@+id/ll_edit"
+                 android:layout_below="@+id/ll_top"
+                 android:layout_marginTop="5dp"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:baselineAligned="false">
+
+                 <LinearLayout
+                     android:id="@+id/rl_edit"
+                     android:layout_weight="1"
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:background="@drawable/bg_outline_solid"
+                     android:backgroundTint="@color/skyBlue"
+                     android:gravity="center"
+                     android:paddingVertical="8dp">
+
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_centerVertical="true"
+                         android:drawablePadding="7dp"
+                         android:fontFamily="@font/hacen_tunisia_bold_regular"
+                         android:singleLine="true"
+                         android:drawableStart="@drawable/ic_edit_white"
+                         android:text="@string/edit"
+                         android:textColor="@color/whiteNew"
+                         android:textSize="15dp"
+                         android:layout_marginStart="5dp"/>
+
+                 </LinearLayout>
+
+                 <LinearLayout
+                     android:id="@+id/rl_delete"
+                     android:layout_weight="1"
+                     android:layout_width="0dp"
+                     android:layout_height="wrap_content"
+                     android:background="@drawable/bg_outline_solid"
+                     android:layout_marginStart="5dp"
+                     android:backgroundTint="@color/light_red"
+                     android:gravity="center"
+                     android:paddingVertical="8dp">
+                     <TextView
+                         android:layout_width="wrap_content"
+                         android:layout_height="wrap_content"
+                         android:layout_centerVertical="true"
+                         android:fontFamily="@font/hacen_tunisia_bold_regular"
+                         android:singleLine="true"
+                         android:text="@string/delete"
+                         android:drawablePadding="7dp"
+                         android:drawableStart="@drawable/ic_delete_white"
+                         android:textColor="@color/whiteNew"
+                         android:textSize="15dp"
+                         android:layout_marginStart="5dp"/>
+
+                 </LinearLayout>
+             </LinearLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</LinearLayout>

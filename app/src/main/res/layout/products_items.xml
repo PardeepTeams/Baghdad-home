@@ -1,0 +1,138 @@
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Banner with ViewPager + dots + arrows -->
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+
+           <!-- <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/imageViewPager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clipChildren="false"
+                android:visibility="gone"
+                android:clipToPadding="false" />-->
+
+            <ImageView
+                android:id="@+id/imageItem"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <ImageView
+                android:id="@+id/img_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:background="@drawable/transpart_bg"
+                android:padding="4dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_heart_outline" />
+
+            <LinearLayout
+                android:id="@+id/indicatorLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginVertical="10dp"
+                android:layout_marginBottom="5dp"
+                android:visibility="gone"
+                android:layout_gravity="bottom|center_horizontal"
+                android:gravity="center" />
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+               android:id="@+id/city_image"
+                android:src="@drawable/img_placeholder"
+                android:layout_width="40dp"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="10dp"
+                android:visibility="gone"
+                android:layout_gravity="end|bottom"
+                android:layout_height="40dp"/>
+        </FrameLayout>
+
+        <!-- Text Info -->
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="12dp">
+
+                <TextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Al-Qudat 2"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/blackNew"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tvLocation"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_location_grey"
+                    android:drawablePadding="4dp"
+                    android:text="Kirkuk, Al-Qudat 2"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:maxLines="1"
+                    android:layout_gravity="center_vertical"
+                    android:gravity="center_vertical"
+                    android:textSize="14sp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey" />
+
+                <TextView
+                    android:id="@+id/tvPrice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="IQD 219,000,000 - IQD 360,000,000"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:textColor="@color/blackNew"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_time"
+                android:drawablePadding="4dp"
+                android:text="Completed"
+                android:layout_marginEnd="12dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:maxLines="1"
+                android:gravity="center_vertical"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true"
+                android:textSize="14sp"
+                android:singleLine="true"
+                android:textColor="@color/grey" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+</com.google.android.material.card.MaterialCardView>

@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.ServiceCompanyViewActivity">
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nestedScrollView"
+        android:layout_above="@+id/rl_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="20dp">
+
+
+                <!--<com.smarteist.autoimageslider.SliderView
+                    android:id="@+id/img_auto_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="235dp"
+                    app:sliderAnimationDuration="600"
+                    app:sliderAutoCycleDirection="back_and_forth"
+                    app:sliderAutoCycleEnabled="true"
+                    app:sliderIndicatorAnimationDuration="300"
+                    app:sliderIndicatorGravity="center_horizontal|bottom"
+                    app:sliderIndicatorMargin="15dp"
+                    app:sliderIndicatorOrientation="horizontal"
+                    app:sliderIndicatorPadding="3dp"
+                    app:sliderIndicatorRadius="2dp"
+                    app:sliderIndicatorSelectedColor="@color/skyBlue"
+                    app:sliderIndicatorUnselectedColor="@color/lightBlue"
+                    app:sliderScrollTimeInSec="1"
+                    app:sliderStartAutoCycle="true" />-->
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/img_auto_scroll"
+                    android:layout_width="match_parent"
+                    android:layout_height="210dp"/>
+
+                <LinearLayout
+                    android:id="@+id/indicatorLayout"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginVertical="10dp"
+                    android:layout_gravity="center_horizontal"
+                    android:gravity="center" />
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <LinearLayout
+                        android:layout_marginStart="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_company_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:text="@string/company_title"
+                            android:textColor="@color/darkGrey"
+                            android:textSize="20dp" />
+
+
+
+                        <RelativeLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_comp_service"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="@string/services_type"
+                                android:textColor="@color/new_details_color"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/tv_service_name"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/tv_comp_service"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="@string/service_name"
+                                android:textColor="@color/darkGrey"
+                                android:textSize="16dp" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:id="@+id/tv_address"
+                                android:textSize="16dp"
+                                android:text="@string/address"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:textColor="@color/new_details_color"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                            <TextView
+                                android:id="@+id/tv_company_address"
+                                android:textSize="16dp"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/tv_address"
+                                android:text="kufa - al moalmen "
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:textColor="@color/darkGrey"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_timing"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="@string/working_hours"
+                                android:textColor="@color/new_details_color"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/tv_time_from"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/tv_timing"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="time"
+                                android:textColor="@color/darkGrey"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/tv_to"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/tv_time_from"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="@string/to"
+                                android:textColor="@color/grey"
+                                android:textSize="16dp" />
+
+                            <TextView
+                                android:id="@+id/tv_time_to"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="5dp"
+                                android:layout_toEndOf="@+id/tv_to"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="@string/to"
+                                android:textColor="@color/darkGrey"
+                                android:textSize="16dp" />
+                        </RelativeLayout>
+
+
+                        <TextView
+                            android:textSize="16dp"
+                            android:layout_marginTop="5dp"
+                            android:text="@string/overview"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:textColor="@color/grey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                        <androidx.core.widget.NestedScrollView
+                            android:background="@drawable/bg_edit_text"
+                            android:padding="7dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="200dp">
+                            <TextView
+                                android:id="@+id/tv_company_details"
+                                android:padding="10dp"
+                                android:textSize="16dp"
+                                android:text="@string/company_detail_full"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:textColor="@color/darkGrey"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"/>
+
+                        </androidx.core.widget.NestedScrollView>
+
+
+                        <TextView
+                            android:layout_marginTop="20dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:text="@string/social_media"
+                            android:textColor="@color/darkGrey"
+                            android:textSize="20dp" />
+
+                        <RelativeLayout
+                            android:layout_marginTop="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:id="@+id/social_fb"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/img_social_fb"
+                                android:visibility="gone"/>
+                            <ImageView
+                                android:id="@+id/social_insta"
+                                android:layout_toEndOf="@+id/social_fb"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:src="@drawable/img_social_insta"
+                                android:layout_marginStart="20dp"
+                                android:visibility="gone"/>
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <View
+                        android:layout_marginTop="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/darkGrey"
+                        android:layout_marginBottom="10dp"/>
+
+                </LinearLayout>
+
+
+
+            </LinearLayout>
+
+            <!--<ImageView
+                android:id="@+id/img_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:padding="10dp"
+                android:src="@drawable/ic_back_arrow" />-->
+
+        </RelativeLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:id="@+id/rl_bottom"
+        android:visibility="visible"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginHorizontal="10dp"
+        android:layout_alignParentBottom="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@+id/contact_whatsapp"
+                android:visibility="visible"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_outline_round"
+                android:backgroundTint="@color/green"
+                android:padding="7dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/img_whatsapp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_whatsapp"
+                    android:layout_marginStart="10dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/img_whatsapp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/whatsapp"
+                    android:textColor="@color/whiteNew"
+                    android:textSize="20dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/contact_call"
+                android:visibility="visible"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_outline_round"
+                android:backgroundTint="@color/skyBlue"
+                android:padding="7dp"
+                android:gravity="center">
+                <ImageView
+                    android:id="@+id/img_call"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_call_new"
+                    android:layout_marginStart="10dp"/>
+
+                <TextView
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/img_call"
+                    android:textSize="20dp"
+                    android:text="@string/call"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textColor="@color/whiteNew"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+            </RelativeLayout>
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/img_backNew"
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:padding="10dp"
+            android:background="@color/whiteNew"/>
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:src="@drawable/ic_back_arrow" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

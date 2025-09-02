@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9FBFC"
+    tools:context=".Activities.LoginActivity">
+
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_back_arrow" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_top"
+        android:layout_marginHorizontal="30dp"
+        android:layout_marginTop="50dp">
+
+        <LinearLayout
+            android:id="@+id/ll_nested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/email"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/et_email_login"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_email"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15dp" />
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end">
+
+                <TextView
+                    android:id="@+id/sihnup_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/didnt_have_account"
+                    android:textAllCaps="false"
+                    android:textColor="@color/grey"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:id="@+id/tv_sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/sihnup_head"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/sign_up"
+                    android:textAllCaps="false"
+                    android:textColor="@color/skyBlue"
+                    android:textSize="15sp" />
+            </RelativeLayout>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/password"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/et_login_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_password"
+                android:inputType="textPassword"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15sp" />
+
+            <TextView
+                android:id="@+id/btn_login"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:paddingVertical="8dp"
+                android:paddingHorizontal="30dp"
+                android:text="@string/log_in"
+                android:textAllCaps="false"
+                android:textColor="@color/whiteNew"
+                android:textSize="15sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/log_in_with"
+                android:textColor="@color/darkGrey"
+                android:textSize="18sp"
+                android:layout_gravity="center_horizontal"/>
+
+
+
+                <com.facebook.login.widget.LoginButton
+                    android:id="@+id/fb_loginBtn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_weight="1"
+                    android:visibility="gone" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_fb_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_outline_round"
+                    android:backgroundTint="@color/skyBlue"
+                    android:padding="7dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:id="@+id/img_fb"
+                        android:layout_width="wrap_content"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/ic_facebook" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:text="@string/facebook"
+                        android:textColor="@color/whiteNew"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_google_login"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_outline_round"
+                    android:padding="7dp">
+
+                    <ImageView
+                        android:id="@+id/img_google"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/img_google" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_marginStart="5dp"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:text="@string/google"
+                        android:textAllCaps="true"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="17sp" />
+                </RelativeLayout>
+
+
+             <RelativeLayout
+                 android:id="@+id/rl_wp_login"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_gravity="center_horizontal"
+                 android:layout_marginTop="10dp"
+                 android:layout_marginBottom="20dp"
+                 android:background="@drawable/bg_outline_round"
+                 android:backgroundTint="@color/green"
+                 android:padding="7dp">
+
+                 <ImageView
+                     android:id="@+id/img_whatsapp"
+                     android:layout_width="20dp"
+                     android:layout_height="20dp"
+                     android:layout_centerVertical="true"
+                     android:layout_marginStart="10dp"
+                     android:src="@drawable/ic_whatsapp" />
+
+                 <TextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_centerVertical="true"
+                     android:layout_marginStart="5dp"
+                     android:layout_centerHorizontal="true"
+                     android:fontFamily="@font/hacen_tunisia_bold_regular"
+                     android:text="@string/whatsapp"
+                     android:textColor="@color/whiteNew"
+                     android:textSize="17dp" />
+             </RelativeLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

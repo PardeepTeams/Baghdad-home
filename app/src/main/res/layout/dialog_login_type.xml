@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80000000"
+    android:id="@+id/rlMainDialog">
+
+    <LinearLayout
+        android:id="@+id/llOptions"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/bg_button"
+        android:backgroundTint="@color/whiteNew"
+        android:layout_centerInParent="true"
+        android:padding="15dp"
+        android:layout_margin="20dp">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up"
+            android:textSize="16sp"
+            android:textAlignment="center"
+            android:textColor="@color/blackNew"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:id="@+id/tvHeader"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/sign_up_as"
+            android:textSize="14sp"
+            android:textAlignment="center"
+            android:textColor="@color/grey"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:id="@+id/tvMsg"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text"
+            android:backgroundTint="@color/grey_ul"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/rlCustomer">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/customer"
+                android:textSize="16sp"
+                android:textColor="@color/blackNew"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/blackNew"
+                android:layout_centerHorizontal="true"
+                app:drawableStartCompat="@drawable/ic_user" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text"
+            android:backgroundTint="@color/grey_ul"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/rlCompany">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/real_estate_co"
+                android:textSize="16sp"
+                android:textColor="@color/blackNew"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:drawablePadding="10dp"
+                android:drawableTint="@color/blackNew"
+                android:layout_centerHorizontal="true"
+                app:drawableStartCompat="@drawable/ic_companies" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_edit_text"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:id="@+id/rlCancel">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_cancel"
+                android:textSize="16sp"
+                android:textColor="@color/blackNew"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:layout_centerHorizontal="true"/>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

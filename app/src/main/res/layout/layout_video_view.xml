@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/blackNew">
+
+    <VideoView
+        android:id="@+id/videoView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <ImageView
+        android:background="@drawable/shadow_image_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ProgressBar
+        android:id="@+id/simpleProgressBar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/blackNew"
+        android:indeterminate="false"
+        android:progressBackgroundTint="@color/grey"
+        android:progressTint="@color/whiteNew"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="10dp"
+        android:visibility="visible"/>
+
+    <ImageView
+        android:id="@+id/imgBack"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_cancel_cross"
+        android:layout_marginTop="30dp"
+        android:padding="7dp"
+        android:layout_marginStart="10dp"/>
+
+    <LinearLayout
+        android:id="@+id/linearOptions"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="15dp">
+
+        <TextView
+            android:id="@+id/tvViewCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="@color/whiteNew"
+            android:textSize="12sp"
+            android:textAlignment="center"
+            android:drawablePadding="-7dp"
+            android:layout_gravity="center_horizontal"
+            app:drawableTopCompat="@drawable/ic_video_views" />
+
+        <ImageView
+            android:id="@+id/imgCall"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_call"
+            app:tint="@color/whiteNew"
+            android:visibility="gone"/>
+        <ImageView
+            android:id="@+id/imgMsg"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_message" />
+        <ImageView
+            android:id="@+id/imgFav"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_heart_outline" />
+
+        <ImageView
+            android:id="@+id/imgShare"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginTop="20dp"
+            android:padding="5dp"
+            android:src="@drawable/ic_share_video"
+            android:visibility="gone"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="60dp"
+        android:layout_marginHorizontal="20dp"
+        android:fontFamily="@font/hacen_tunisia_bold_regular"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@id/linearOptions"
+        android:maxLines="3"
+        android:text="@string/ad_title"
+        android:textColor="@color/whiteNew"
+        android:textSize="20sp"
+        android:gravity="end"/>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/progressView"
+        android:layout_width="150dp"
+        android:layout_centerInParent="true"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        android:src="@drawable/splash_screen_drawable"
+        />
+
+</RelativeLayout>

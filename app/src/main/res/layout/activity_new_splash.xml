@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.NewSplashActivity">
+
+        <VideoView
+            android:id="@+id/videoview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_centerInParent="true"/>
+
+        <RelativeLayout
+            android:visibility="gone"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+                <TextView
+                    android:id="@+id/tv_splash"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="@string/najaf_portal"
+                    android:textColor="@color/whiteNew"
+                    android:textSize="23dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:layout_centerVertical="true"/>
+
+                <pl.droidsonroids.gif.GifImageView
+                    android:layout_width="165dp"
+                    android:layout_height="124dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_above="@+id/tv_splash"
+                    android:src="@drawable/splash_screen_drawable" />
+
+        </RelativeLayout>
+</RelativeLayout>

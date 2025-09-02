@@ -1,0 +1,2 @@
+include ':app',':video_trimmer_library'
+rootProject.name = "NajafHomes"

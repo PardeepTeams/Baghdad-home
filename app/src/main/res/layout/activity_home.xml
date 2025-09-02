@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9FBFC"
+    tools:context=".Activities.HomeActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <RelativeLayout
+        android:id="@+id/rl_add"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/ic_blue_circle"
+        android:backgroundTint="@color/home_circle_icon"
+        >
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerInParent="true"
+            android:src="@drawable/ic_home_add" />
+    </RelativeLayout>
+
+
+    <LinearLayout
+        android:layoutDirection="ltr"
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginBottom="10dp"
+        android:layout_alignParentBottom="true"
+        android:layout_marginHorizontal="14dp"
+        android:background="@drawable/ic_bottom_bg"
+        android:paddingVertical="10dp"
+        android:visibility="visible"
+        android:weightSum="5">
+
+        <RelativeLayout
+            android:id="@+id/rl_more"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom">
+
+            <ImageView
+                android:id="@+id/img_more"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_more" />
+
+            <TextView
+                android:id="@+id/tv_more"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_more"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_horizontal"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/more"
+                android:textAllCaps="true"
+                android:textColor="@color/grey"
+                android:textSize="12dp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_relators"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom">
+
+            <ImageView
+                android:id="@+id/img_services"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_projects" />
+
+            <TextView
+                android:id="@+id/tv_relators"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_services"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/project"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textSize="12dp"
+                android:textColor="@color/grey" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_add_ads"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical|bottom"
+            android:layout_weight="1">
+
+            <TextView
+                android:id="@+id/tv_add_ads"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_horizontal|bottom"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@string/add_ads"
+                android:textAllCaps="true"
+                android:textColor="@color/grey"
+                android:textSize="12dp" />
+
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_nbhd"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom">
+
+            <ImageView
+                android:id="@+id/img_nbhd"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_nbhd" />
+
+            <TextView
+                android:id="@+id/tv_nbhd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/img_nbhd"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/nbhd"
+                android:textSize="12dp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:textColor="@color/grey" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_menu"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:gravity="bottom">
+
+            <ImageView
+                android:id="@+id/img_menu"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_centerHorizontal="true"
+                android:src="@drawable/ic_menu_blue" />
+
+            <TextView
+                android:id="@+id/tv_menu"
+                android:layout_below="@+id/img_menu"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_horizontal"
+                android:text="@string/menu"
+                android:textSize="12dp"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:textAllCaps="true"
+                android:textColor="@color/skyBlue" />
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <!--<com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        app:backgroundTint="@color/skyBlue"
+        android:src="@drawable/ic_home_add"
+        android:tint="@color/whiteNew"/>-->
+
+</RelativeLayout>

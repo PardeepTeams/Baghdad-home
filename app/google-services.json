@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "128895926326",
+    "firebase_url": "https://najafhomes.firebaseio.com",
+    "project_id": "najafhomes",
+    "storage_bucket": "najafhomes.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128895926326:android:c6bb1198e641d5fc6bd897",
+        "android_client_info": {
+          "package_name": "com.baghdadhomes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128895926326-7p66blg8uecn04hk17so27p4ntrv2klo.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.baghdadhomes",
+            "certificate_hash": "14e517e648f000b999f2641e8d4f44cfa46936af"
+          }
+        },
+        {
+          "client_id": "128895926326-1h73clo97ccgeu7jq57lrtncablhcbv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrbhE661rxpUzfetgmUd3uD_1o6iZgp7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128895926326-1h73clo97ccgeu7jq57lrtncablhcbv2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "128895926326-d58a6pk5v7io21p4ir4qdhu6uslt282c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.najafhome"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128895926326:android:d42f84515694aedd6bd897",
+        "android_client_info": {
+          "package_name": "com.najafhomes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "128895926326-7ic58udc15jrkbtaasdpenv4d5dnrgq6.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "f6a5f6e38fac07fbddf177959d6ada6faca812ca"
+          }
+        },
+        {
+          "client_id": "128895926326-85leb62048bqnirloltdpmiohkp9eafp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "5f30938ba1ade44ec75e1bb816647b437a52f933"
+          }
+        },
+        {
+          "client_id": "128895926326-ei4ks9ktu9nqqgl9kh7eqvhak254bd84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "8ecaa88f6ae2549bf434a2b01b0b582e5f1f597a"
+          }
+        },
+        {
+          "client_id": "128895926326-ldqb6fb8lgqoollqg3c6t62tcicev1cr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "79f11cb604d57826bd009ea08c8c626a69c17d3b"
+          }
+        },
+        {
+          "client_id": "128895926326-ls6u2if1vfl1i677m6tehjt3jqfkauik.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "7ba5ae4183058fa5a1cfcb3ae14fea6346a0f973"
+          }
+        },
+        {
+          "client_id": "128895926326-ntrudt74b14pjdpch998fvjk0gjr7eb5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "bd123c7987db91b9f8f03d430446833a9beddce4"
+          }
+        },
+        {
+          "client_id": "128895926326-ooeagf8o8rdbbuuk1okvr9fscj9gem80.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "f548d2a08b60bf195de1c45452d1bcd3c8098c1d"
+          }
+        },
+        {
+          "client_id": "128895926326-oqd87cnimrdgcp8tks2ddl69s8ju1i3c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.najafhomes",
+            "certificate_hash": "b2a2793c623a7fa90194777a9890b2d69852e758"
+          }
+        },
+        {
+          "client_id": "128895926326-1h73clo97ccgeu7jq57lrtncablhcbv2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDrbhE661rxpUzfetgmUd3uD_1o6iZgp7Y"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "128895926326-1h73clo97ccgeu7jq57lrtncablhcbv2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "128895926326-d58a6pk5v7io21p4ir4qdhu6uslt282c.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.najafhome"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

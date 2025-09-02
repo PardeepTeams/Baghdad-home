@@ -1,0 +1,2016 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F9FBFC"
+    tools:context=".Activities.PostAdActivity"
+    android:id="@+id/rl_main">
+
+
+
+    <RelativeLayout
+        android:id="@+id/rl_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
+        android:layout_marginEnd="10dp">
+
+        <TextView
+            android:id="@+id/tv_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:gravity="center_vertical"
+            android:layout_centerVertical="true"
+            android:text="@string/post_an_ad"
+            android:textAllCaps="true"
+            android:textColor="@color/darkGrey"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:src="@drawable/ic_back_arrow" />
+    </RelativeLayout>
+
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/nested_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_header">
+
+        <LinearLayout
+            android:id="@+id/ll_nested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:weightSum="2">
+
+                <TextView
+                    android:id="@+id/tv_for_rent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_outline_solid"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="10dp"
+                    android:text="@string/for_rent"
+                    android:textColor="@color/grey"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_for_sale"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_outline_blue_new"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="10dp"
+                    android:text="@string/for_sale"
+                    android:textColor="@color/whiteNew"
+                    android:textSize="16dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_location"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_location" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_location"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/address"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+
+            <androidx.appcompat.widget.AppCompatSpinner
+                android:id="@+id/spinner_jurisdriction"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_spinner"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15sp" />
+
+            <!-- <androidx.appcompat.widget.AppCompatSpinner
+                 android:id="@+id/spinner_neighborhood"
+                 android:layout_width="match_parent"
+                 android:layout_height="50dp"
+                 android:layout_marginTop="10dp"
+                 android:background="@drawable/bg_spinner"
+                 android:focusable="false"
+                 android:focusableInTouchMode="false"
+                 android:fontFamily="@font/hacen_tunisia_bold_regular"
+                 android:singleLine="true"
+                 android:textColor="@android:color/black"
+                 android:textSize="15sp" />-->
+
+            <TextView
+                android:id="@+id/spinner_neighborhood"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_spinner"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="@string/choose_the_neighborhood"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:singleLine="true"
+                android:textColor="@color/darkGrey"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:paddingStart="30dp"
+                android:paddingEnd="50dp"/>
+
+            <TextView
+                android:id="@+id/tvLocationOnMap"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_et_location"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="@string/location_on_map"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:singleLine="true"
+                android:textColor="@color/darkGrey"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:paddingStart="30dp"
+                android:paddingEnd="50dp"/>
+
+            <!-- <EditText
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:background="@drawable/bg_outline_solid"
+                 android:fontFamily="@font/hacen_tunisia_bold_regular"
+                 android:hint="@string/state"
+                 android:maxLines="1"
+                 android:padding="15sp"
+                 android:singleLine="true"
+                 android:textColor="@color/grey"
+                 android:textSize="14dp" />
+
+             <EditText
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:layout_marginTop="10dp"
+                 android:background="@drawable/bg_outline_solid"
+                 android:fontFamily="@font/hacen_tunisia_bold_regular"
+                 android:hint="@string/city"
+                 android:maxLines="1"
+                 android:padding="15sp"
+                 android:singleLine="true"
+                 android:textColor="@color/grey"
+                 android:textSize="16dp" />-->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_property"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_home_ad_activity" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_property"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/property_type"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/property_residence"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_outline_blue_new"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:paddingVertical="5dp"
+                        android:text="@string/residence"
+                        android:textColor="@color/whiteNew"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/property_commercial"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_outline_solid"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:paddingVertical="5dp"
+                        android:text="@string/commericail"
+                        android:textColor="@color/grey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/property_land"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_outline_solid"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:paddingVertical="5dp"
+                        android:text="@string/land"
+                        android:textColor="@color/grey"
+                        android:textSize="16dp" />
+                </LinearLayout>
+
+                <HorizontalScrollView
+                    android:id="@+id/resindential_type"
+                    android:layout_marginTop="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:visibility="gone">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_house_out"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_house"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_home_ad_activity"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_house"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:text="@string/house"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_apart_outter"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_apart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_apart_house"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_apart"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/apart_house"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+                        <RelativeLayout
+                            android:id="@+id/rl_apartment"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_apartment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_apartment"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_apartment"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/apartment"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_villa"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_villa"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_villa"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_villa"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/villa"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_residence_other"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_residence_other"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_other"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_residence_other"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/other"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:id="@+id/commercial_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_office_out"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_office"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_office"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_office"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:text="@string/office"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_shop"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_shop"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_shop"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_shop"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/shop"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_store"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_store"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_store"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_store"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/store"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_building"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_building"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_building"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_building"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/building"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_factory"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_factory"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_factory"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_factory"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/factory"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_showroom_outter"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_showroom"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_showroom"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_showroom"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/showroom"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_comm_other"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_comm_other"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_other"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_comm_other"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/other"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <HorizontalScrollView
+                    android:id="@+id/land_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scrollbars="none"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone">
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RelativeLayout
+                            android:id="@+id/rl_agriculture_out"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_agriculture"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_agriculture"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_agriculture"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:text="@string/agriculture"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_commercail_outter"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_commercail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_commercial_new"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_commercail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/commericail"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_residnce_land"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:layout_marginEnd="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_residnce_land"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_residential_land"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_residnce_land"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/residence"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_industrial"
+                            android:layout_width="90dp"
+                            android:layout_height="70dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:paddingVertical="11dp">
+
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_centerInParent="true"
+                                android:gravity="center"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:id="@+id/img_industrial"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:src="@drawable/ic_industry"
+                                    app:tint="@color/grey" />
+
+                                <TextView
+                                    android:id="@+id/tv_industrial"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:singleLine="true"
+                                    android:text="@string/industrial"
+                                    android:textColor="@color/grey"
+                                    android:textSize="12sp" />
+                            </LinearLayout>
+
+                        </RelativeLayout>
+
+                    </LinearLayout>
+
+                </HorizontalScrollView>
+
+                <!--<HorizontalScrollView
+                    android:id="@+id/commercial_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:scrollbars="none"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/comm_shop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_blue_new"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/shop"
+                            android:textColor="@color/whiteNew"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/comm_office"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/office"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/comm_store"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/store"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/comm_building"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/building"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/comm_factory"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/factory"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/comm_showroom"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/showroom"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/comm_other"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_solid"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center_horizontal"
+                            android:maxLines="1"
+                            android:paddingHorizontal="15dp"
+                            android:paddingVertical="5dp"
+                            android:text="@string/other"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+
+                </HorizontalScrollView>-->
+
+                <!--<LinearLayout
+                    android:id="@+id/ll_land_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone"
+                    android:weightSum="3">
+
+                    <TextView
+                        android:id="@+id/land_residence"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_outline_blue_new"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:paddingVertical="5dp"
+                        android:text="@string/residence"
+                        android:textColor="@color/whiteNew"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/land_commercial"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="5dp"
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_outline_solid"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:paddingVertical="5dp"
+                        android:text="@string/commericail"
+                        android:textColor="@color/grey"
+                        android:textSize="16dp" />
+
+                    <TextView
+                        android:id="@+id/land_industry"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/bg_outline_solid"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_horizontal"
+                        android:maxLines="1"
+                        android:paddingVertical="5dp"
+                        android:text="@string/industrial"
+                        android:textColor="@color/grey"
+                        android:textSize="16dp" />
+                </LinearLayout>-->
+
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_property_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_property_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_property_details" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_property_detail"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/property_detail"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_addTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/ad_title"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="17dp" />
+
+            <EditText
+                android:id="@+id/et_postDetail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="start"
+                android:hint="@string/details"
+                android:minLines="5"
+                android:padding="15sp"
+                android:textColor="@color/grey"
+                android:textSize="17dp" />
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_compass"
+                    app:tint="@color/skyBlue" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_area"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/area_tv"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_postArea"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="start"
+                android:hint="@string/enter_area"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp"
+                android:inputType="number"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_area123"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_additonal_details" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_area123"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/additional_details"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <ImageView
+                    android:id="@+id/img_street"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_street_width"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/img_street"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/street_width_"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <EditText
+                    android:id="@+id/et_width"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_outline_solid"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:hint="@string/width"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:paddingHorizontal="30dp"
+                    android:paddingVertical="12dp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey"
+                    android:textSize="14dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/et_width"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/m"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="14dp" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_counts"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/img_floors"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_floors"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_floors"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/floors"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/floor_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/floor_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="2"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/floor_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="3"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/floor_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="4"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/floor_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="5+"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/img_rooms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_rooms"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_rooms"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/rooms"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/rooms_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/rooms_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="2"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/rooms_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="3"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/rooms_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="4"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/rooms_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="5+"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/img_bathrooms"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_bath"
+                        android:visibility="gone"
+                        app:tint="@color/skyBlue" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_bathrooms"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/bathrooms"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/bathroom_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/bathroom_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="2"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/bathroom_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="3"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/bathroom_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="4"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/bathroom_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:singleLine="true"
+                            android:text="5+"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+            </LinearLayout>
+
+            <!-- <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/additional_details"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp" />-->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_price"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_price" />
+
+                <TextView
+                    android:id="@+id/tv_price_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_price"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/selling_price"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_postPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_price"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp"
+                android:inputType="number"/>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_upload_image" />
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_photo"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/upload_photo"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+
+
+            </RelativeLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/max_size"
+                android:visibility="gone"
+                android:textColor="@color/new_details_color"
+                android:textSize="16dp" />
+
+            <!--<androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_photo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" />-->
+
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_photo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/el_main" />
+
+                    <RelativeLayout
+                        android:id="@+id/el_main"
+                        android:layout_width="120dp"
+                        android:layout_height="90dp"
+                        android:layout_marginEnd="10dp"
+                        android:background="@drawable/dotted_border_bg">
+
+                        <ImageView
+                            android:id="@+id/image_property"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:scaleType="fitXY"
+                            android:src="@drawable/ic_upload_images" />
+                    </RelativeLayout>
+                </RelativeLayout>
+            </HorizontalScrollView>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/imgVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_video" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/imgVideo"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/upload_video"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:textSize="16dp"
+                android:text="@string/add_30_seconds_video"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:textColor="@color/new_details_color"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+            <RelativeLayout
+                android:id="@+id/rlVideo"
+                android:layout_width="120dp"
+                android:layout_height="90dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/dotted_border_bg">
+
+                <ImageView
+                    android:id="@+id/imgAddVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_upload_images" />
+                <ImageView
+                    android:id="@+id/imgPreviewVideo"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentEnd="true"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/img_placeholder"
+                    android:visibility="gone"/>
+                <ImageView
+                    android:id="@+id/imgRemoveVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/com_facebook_close"
+                    android:visibility="gone"/>
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp">
+
+                <ImageView
+                    android:id="@+id/img_deatils"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_call" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp"
+                    android:layout_toEndOf="@+id/img_deatils"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/contact_deatils"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+            </RelativeLayout>
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/name"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp" />
+
+            <RelativeLayout
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/call_country_code"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_outline_solid"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    app:ccp_arrowSize="7dp"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_defaultPhoneCode="964"
+                    app:ccp_showFlag="false"
+                    app:ccp_textSize="13sp"
+                    app:ccpDialog_showPhoneCode="true"
+                    app:ccp_showArrow="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textGravity="CENTER"
+                    app:ccp_clickable="false"/>
+
+                <EditText
+                    android:id="@+id/et_callNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/call_country_code"
+                    android:background="@drawable/bg_outline_solid"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:hint="@string/enter_call_number_without_zero"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+
+            <!--<EditText
+                android:id="@+id/et_callNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/call_number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp" />-->
+
+            <RelativeLayout
+                android:id="@+id/rl_whatsapp_No"
+                android:layout_marginTop="10dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/wp_country_code"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_outline_solid"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    app:ccpDialog_showPhoneCode="true"
+                    app:ccp_arrowSize="7dp"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_defaultPhoneCode="964"
+                    app:ccp_showArrow="false"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textGravity="CENTER"
+                    app:ccp_textSize="13sp"
+                    app:ccp_clickable="false"/>
+
+                <EditText
+                    android:id="@+id/et_wpNo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/wp_country_code"
+                    android:background="@drawable/bg_outline_solid"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:hint="@string/enter_whatsapp_number_without_zero"
+                    android:inputType="number"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey"
+                    android:textSize="15dp"
+                    android:maxLength="10"/>
+            </RelativeLayout>
+
+            <!--<EditText
+                android:id="@+id/et_wpNo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/whatsapp_number"
+                android:inputType="number"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp" />-->
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/button_addPost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="30dp"
+                android:background="@drawable/bg_outline"
+                android:backgroundTint="@color/skyBlue"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/post_the_ad"
+                android:textAllCaps="true"
+                android:textColor="@color/whiteNew"
+                android:textSize="16dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/imageView_progress"
+        android:layout_width="150dp"
+        android:layout_centerInParent="true"
+        android:layout_height="150dp"
+        android:visibility="gone"
+        android:src="@drawable/splash_screen_drawable"
+        />
+    <com.github.ybq.android.spinkit.SpinKitView
+        android:id="@+id/spin_kit"
+        style="@style/SpinKitView.Large.Wave"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_centerInParent="true"
+        android:visibility="gone"
+        app:SpinKit_Color="@color/skyBlue" />
+
+</RelativeLayout>

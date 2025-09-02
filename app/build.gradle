@@ -1,0 +1,203 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    // id 'kotlin-kapt'
+}
+
+android {
+    signingConfigs {
+        release {
+            keyAlias 'baghdadhomes'
+            keyPassword 'baghdadhomes'
+            storeFile file('/Users/soma ict/AndroidStudioProjects/NajafHomes/home.jks')
+            storePassword 'baghdadhomes'
+        }
+    }
+    compileSdk 36
+    //compileSdkVersion 33
+    //buildToolsVersion "30.0.2"
+    ndkVersion "23.1.7779620"
+    namespace "com.baghdadhomes"
+
+    defaultConfig {
+        applicationId "com.baghdadhomes"
+        minSdkVersion 23
+        targetSdkVersion 36
+        versionCode 47
+        versionName "3.2.6"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        resConfigs("ar", "en")
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/NOTICE'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/INDEX.LIST'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+    kotlinOptions {
+        jvmTarget = "17"
+    }
+
+    buildFeatures {
+        viewBinding true
+        buildConfig = true
+    }
+
+    bundle {
+        language {
+            // Specifies that the app bundle should not support
+            // configuration APKs for language resources. These
+            // resources are instead packaged with each base and
+            // dynamic feature APK.
+            enableSplit = false
+        }
+    }
+
+   /* androidResources {
+        generateLocaleConfig = false
+    }*/
+}
+
+dependencies {
+    implementation 'androidx.core:core-ktx:1.16.0'
+    //implementation "androidx.core:core-ktx:1.6.0"
+
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation 'com.github.ybq:Android-SpinKit:1.4.0'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'com.google.firebase:firebase-core:21.1.1'
+    implementation 'com.google.firebase:firebase-database-ktx'
+    implementation 'com.google.firebase:firebase-messaging:24.1.2'
+    implementation platform('com.google.firebase:firebase-bom:33.16.0')
+    implementation 'com.google.firebase:firebase-dynamic-links-ktx'
+    implementation 'com.google.firebase:firebase-dynamic-links'
+   // implementation 'com.google.android.material:material:1.3.0-alpha03'
+
+    // Declare the dependencies for the Crashlytics and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-crashlytics:19.4.4'
+    implementation 'com.google.firebase:firebase-analytics'
+    implementation 'androidx.constraintlayout:constraintlayout:2.2.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation ('com.google.android.gms:play-services-auth:21.3.0'){
+        exclude module: 'play-services-safetynet'
+    }
+    implementation 'androidx.activity:activity-ktx:1.10.1'
+    implementation 'androidx.activity:activity:1.10.1'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.2.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.6.1'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
+
+    //auto image silder
+    //implementation 'com.github.smarteist:autoimageslider:1.4.0'
+
+    //sticky Sroll View
+    implementation 'com.github.amarjain07:StickyScrollView:1.0.3'
+
+    //circleImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
+    
+    //retrofit http dependencies
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation("com.squareup.okhttp3:logging-interceptor:4.9.3")
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.11.0'
+    implementation 'com.google.code.gson:gson:2.12.0'
+    implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+
+
+    //implementation("com.squareup.okhttp3:logging-interceptor:4.9.1")
+
+    //implementation 'com.github.minibugdev:sheetselection:0.0.3'
+    //implementation 'org.sufficientlysecure:html-textview:2.0'
+    //implementation 'com.github.mreram:showcaseview:1.1'
+    //implementation 'androidx.preference:preference:1.1.1'
+
+    implementation 'com.facebook.android:facebook-android-sdk:18.0.3'
+
+    implementation ('com.google.firebase:firebase-auth-ktx'){
+        exclude module: "play-services-safetynet"
+    }
+
+    //image picker
+    //implementation 'com.github.dhaval2404:imagepicker-support:1.7.1'
+    implementation 'com.github.dhaval2404:imagepicker:2.1'
+    implementation 'io.github.sangcomz:fishbun:1.1.0'
+    implementation 'io.coil-kt:coil:2.2.2'
+
+    implementation 'com.hbb20:ccp:2.7.0'
+    //implementation 'com.github.joielechong:countrycodepicker:2.4.2'
+    implementation 'com.github.aabhasr1:OtpView:v1.1.2-ktx'
+
+    implementation "pl.droidsonroids.gif:android-gif-drawable:1.2.25"
+
+    /*implementation 'com.github.bumptech.glide:glide:4.15.1'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.15.1'
+    kapt 'com.github.bumptech.glide:compiler:4.15.1'
+    implementation("com.github.bumptech.glide:okhttp3-integration:4.15.1") {
+        exclude group: 'glide-parent'
+    }
+
+    implementation 'com.github.bumptech.glide:avif-integration:4.14.2'*/
+
+    //video trimmer
+    implementation project(path: ':video_trimmer_library')
+
+    /*// dependency for exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer:r2.4.0'
+    // for core support in exoplayer.
+    implementation 'com.google.android.exoplayer:exoplayer-core:r2.4.0'
+    // for adding dash support in our exoplayer.
+    implementation 'com.google.android.exoplayer:exoplayer-dash:r2.4.0'
+    // for adding hls support in exoplayer.
+    implementation 'com.google.android.exoplayer:exoplayer-hls:r2.4.0'
+    // for smooth streaming of video in our exoplayer.
+    implementation 'com.google.android.exoplayer:exoplayer-smoothstreaming:r2.4.0'
+    // for generating default ui of exoplayer
+    implementation 'com.google.android.exoplayer:exoplayer-ui:r2.4.0'*/
+
+    implementation 'com.github.AbedElazizShe:LightCompressor:1.2.3'
+
+    /*implementation(platform("org.jetbrains.kotlin:kotlin-bom:1.8.0"))
+    implementation 'com.google.android.libraries.places:places:3.4.0'*/
+    implementation 'com.google.android.libraries.places:places:4.3.1'
+    implementation 'com.google.android.gms:play-services-maps:19.2.0'
+    implementation 'com.google.maps.android:android-maps-utils:3.6.0'
+
+    implementation 'com.google.auth:google-auth-library-oauth2-http:1.24.1'
+
+    //Qr Generator
+    //implementation 'androidmads.library.qrgenearator:QRGenearator:1.0.3'
+    implementation 'com.github.androidmads:QRGenerator:1.0.5'
+    implementation 'com.google.http-client:google-http-client-gson:1.44.2'
+
+    /*def room_version = "2.6.1"
+    implementation "androidx.room:room-ktx:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-runtime:$room_version"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.10"
+    implementation 'androidx.recyclerview:recyclerview:1.3.2'
+    implementation "com.mikepenz:fastadapter:5.7.0"
+    implementation 'com.google.android.material:material:1.12.0'
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.6.0"*/
+}
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.firebase.crashlytics'

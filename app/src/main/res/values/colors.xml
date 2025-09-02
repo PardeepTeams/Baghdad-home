@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<color name="purple_200">#0A3D62</color>-->
+    <!--<color name="purple_200">#3f51b5</color>-->
+    <color name="purple_200">#1A237E</color>
+ <!--   <color name="purple_500">#0A3D62</color>-->
+  <!--  <color name="purple_500">#3f51b5</color>-->
+    <color name="purple_500">#1A237E</color>
+    <!--<color name="purple_700">#0A3D62</color>-->
+  <!--  <color name="purple_700">#3f51b5</color>-->
+    <color name="purple_700">#1A237E</color>
+   <!-- <color name="teal_200">#0A3D62</color>-->
+  <!--  <color name="teal_200">#3f51b5</color>-->
+    <color name="teal_200">#1A237E</color>
+  <!--  <color name="teal_700">#0A3D62</color>-->
+   <!-- <color name="teal_700">#3f51b5</color>-->
+    <color name="teal_700">#1A237E</color>
+    <color name="black">#CE1126</color>
+    <color name="white">#CE1126</color>
+
+    <color name="grey_ul">#407F7F7F</color>
+    <color name="grey">#7A7A7A</color>
+    <color name="greybg">#707070</color>
+    <color name="greybg2">#80FFFFFF</color>
+    <color name="darkGrey">#363636</color>
+    <color name="whiteNew">#ffffff</color>
+    <color name="blackNew">#000000</color>
+  <!--  <color name="skyBlue">#0A3D62</color>-->
+    <!--<color name="skyBlue">#3f51b5</color>-->
+    <color name="skyBlue">#1A237E</color>
+ <!--   <color name="skyBlueLight">#330A3D62</color>-->
+ <!--   <color name="skyBlueLight">#333f51b5</color>-->
+    <color name="skyBlueLight">#331A237E</color>
+   <!-- <color name="blue">#0A3D62</color>-->
+  <!--  <color name="blue">#3f51b5</color>-->
+    <color name="blue">#1A237E</color>
+  <!--  <color name="lightBlue">#800A3D62</color>-->
+   <!-- <color name="lightBlue">#803f51b5</color>-->
+    <color name="lightBlue">#801A237E</color>
+    <color name="new_details_color">#80000000</color>
+    <color name="green">#1FDF61</color>
+    <color name="red">#F82020</color>
+    <color name="light_red">#F24E59</color>
+    <color name="maroon_red">#db241c</color>
+  <!--  <color name="home_circle_icon">#CE1126</color>-->
+    <color name="home_circle_icon">#E67E22</color>
+    <color name="grey_light">#CCCCCC</color>
+
+</resources>

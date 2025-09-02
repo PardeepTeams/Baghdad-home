@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Activities.UpdateProfileActivity">
+    <RelativeLayout
+        android:id="@+id/rl_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="10dp">
+
+        <ImageView
+            android:id="@+id/img_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ic_back_arrow" />
+    </RelativeLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rl_top"
+        android:layout_marginHorizontal="30dp">
+
+        <LinearLayout
+            android:id="@+id/ll_nested"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvPhotoHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/office_photo_logo"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <RelativeLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/ic_image_outline">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_resgister"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop" />
+
+                <RelativeLayout
+                    android:id="@+id/rl_upload_image"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentBottom="true"
+                    android:background="@drawable/ic_blue_circle">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:src="@drawable/ic_arrow_up" />
+                </RelativeLayout>
+            </RelativeLayout>
+
+
+            <TextView
+                android:id="@+id/tvNameHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/name_comp"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_name"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15dp" />
+
+            <TextView
+                android:visibility="gone"
+                android:id="@+id/tv_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/email_comp"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <EditText
+                android:visibility="gone"
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_email"
+                android:inputType="textEmailAddress"
+                android:padding="15dp"
+                android:focusableInTouchMode="false"
+                android:focusable="false"
+                android:editable="false"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15dp" />
+
+            <TextView
+                android:id="@+id/tvManagerHeader"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/name_of_manager"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <EditText
+                android:id="@+id/etManager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/name_of_manager"
+                android:inputType="textCapSentences"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/call_number"
+                android:textColor="@color/darkGrey"
+                android:textSize="18dp" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/call_country_code"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_edit_text"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    app:ccpDialog_showPhoneCode="true"
+                    app:ccp_arrowSize="7dp"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_defaultPhoneCode="964"
+                    app:ccp_showArrow="false"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textGravity="CENTER"
+                    app:ccp_textSize="13sp"
+                    app:ccp_clickable="false"/>
+
+                <EditText
+                    android:id="@+id/et_call_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/call_country_code"
+                    android:background="@drawable/bg_edit_text"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:hint="@string/enter_call_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <!--<EditText
+                android:id="@+id/et_call_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/bg_edit_text"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_call_number"
+                android:inputType="phone"
+                android:padding="15dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="15dp"
+                android:maxLength="10"/>-->
+
+            <RelativeLayout
+                android:id="@+id/rl_wp_head"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:id="@+id/tv_wp_head"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_toStartOf="@+id/tv_check_box"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:singleLine="true"
+                    android:text="@string/whatsapp_number"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="18dp" />
+
+                <CheckBox
+                    android:id="@+id/tv_check_box"
+                    android:layout_width="wrap_content"
+                    android:layout_height="25dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginStart="10dp"
+                    android:textSize="13dp"
+                    android:textColor="@color/grey"
+                    android:text="@string/same_as_whatsapp" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_wp_number"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.hbb20.CountryCodePicker
+                    android:id="@+id/wp_country_code"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_edit_text"
+                    android:gravity="center"
+                    android:padding="1dp"
+                    app:ccpDialog_showPhoneCode="true"
+                    app:ccp_arrowSize="7dp"
+                    app:ccp_autoDetectLanguage="true"
+                    app:ccp_defaultPhoneCode="964"
+                    app:ccp_showArrow="false"
+                    app:ccp_showFlag="false"
+                    app:ccp_showNameCode="false"
+                    app:ccp_textGravity="CENTER"
+                    app:ccp_textSize="13sp"
+                    app:ccp_clickable="false"/>
+
+                <EditText
+                    android:id="@+id/et_whatsapp_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_toEndOf="@+id/wp_country_code"
+                    android:background="@drawable/bg_edit_text"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:hint="@string/enter_whatsapp_number"
+                    android:inputType="number"
+                    android:maxLength="10"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey"
+                    android:textSize="15dp" />
+            </RelativeLayout>
+
+            <!--
+                        <EditText
+                            android:id="@+id/et_whatsapp_number"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="5dp"
+                            android:background="@drawable/bg_edit_text"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:hint="@string/enter_whatsapp_number"
+                            android:inputType="phone"
+                            android:padding="15dp"
+                            android:singleLine="true"
+                            android:textColor="@color/grey"
+                            android:textSize="15dp"
+                            android:maxLength="10"/>
+            -->
+
+            <LinearLayout
+                android:id="@+id/llAddress"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/select_jurisdiction_comp"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="18dp" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinnerCity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:dropDownVerticalOffset="60dp"
+                    android:background="@drawable/bg_spinner_light" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/select_neighborhood"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="18dp" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinnerNbhd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="50dp"
+                    android:layout_marginTop="10dp"
+                    android:dropDownVerticalOffset="60dp"
+                    android:background="@drawable/bg_spinner_light"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/company_address_comp"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="18dp" />
+
+                <EditText
+                    android:id="@+id/etAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:background="@drawable/bg_edit_text"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:hint="@string/enter_company_address"
+                    android:padding="15dp"
+                    android:singleLine="true"
+                    android:textColor="@color/grey"
+                    android:textSize="15dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:text="@string/location_on_map"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="18dp" />
+
+                <TextView
+                    android:id="@+id/tvLocationOnMap"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/bg_et_location_light"
+                    android:focusable="false"
+                    android:focusableInTouchMode="false"
+                    android:text="@string/location_on_map"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:singleLine="true"
+                    android:textColor="@color/darkGrey"
+                    android:padding="10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="15sp"
+                    android:paddingStart="30dp"
+                    android:paddingEnd="50dp"/>
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAllowedAds"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/allowed_ads_msg"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:textColor="@color/darkGrey"
+                android:includeFontPadding="false"
+                android:textSize="14sp"
+                android:layout_marginTop="20dp"
+                android:visibility="gone"/>
+
+            <TextView
+                android:id="@+id/btn_register"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_button"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="8dp"
+                android:text="@string/update"
+                android:textAllCaps="false"
+                android:layout_marginBottom="20dp"
+                android:textColor="@color/whiteNew"
+                android:textSize="15dp" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</RelativeLayout>

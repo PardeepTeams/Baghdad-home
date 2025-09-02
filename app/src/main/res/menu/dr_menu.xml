@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item android:id="@+id/prop"
+            android:title="العقارات"
+            android:icon="@drawable/ic_home_pro">
+
+        </item>
+
+
+        <item android:id="@+id/area"
+            android:title="المناطق"
+            android:icon="@drawable/ic_homeloc2">
+            <menu>
+                <item android:id="@+id/loc1"
+                    android:title="المجمعات السكنية"
+                    >
+                    <menu>
+                        <item android:id="@+id/loc11"
+                            android:title="قرية الغدير 1"
+                            />
+                        <item android:id="@+id/loc12"
+                            android:title="قرية الغدير 2"
+                            />
+                        <item android:id="@+id/loc13"
+                            android:title="مجمع الاميرات 1"
+                            />
+                        <item android:id="@+id/loc14"
+                            android:title="مجمع الاميرات 2"
+                            />
+                    </menu>
+                </item>
+                <item android:id="@+id/loc2"
+                    android:title="الاحياء الشمالية"
+                    />
+                <item android:id="@+id/loc3"
+                    android:title="الاحياء الجنوبية"
+                    />
+                <item android:id="@+id/loc4"
+                    android:title="الكوفة"
+                    />
+            </menu>
+        </item>
+
+        <item android:id="@+id/res"
+            android:title="سكني"
+            android:icon="@drawable/ic_hus_home_1"
+            />
+        <item android:id="@+id/buld"
+            android:title="تجاري"
+            android:icon="@drawable/ic_building"
+            />
+    </group>
+
+</menu>

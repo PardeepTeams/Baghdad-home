@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:background="@color/whiteNew"
+        android:outlineAmbientShadowColor="@color/grey"
+        android:outlineSpotShadowColor="@color/grey"
+        android:elevation="4dp"
+        android:layout_marginVertical="5dp"
+        android:clipToPadding="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginVertical="5dp"
+            android:background="@color/whiteNew"
+            android:layout_height="wrap_content"
+            android:weightSum="2">
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/bg_outline">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="10dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <ImageView
+                            android:id="@+id/img_company"
+                            android:layout_width="match_parent"
+                            android:layout_height="140dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_image_detail_list" />
+
+                        <ImageView
+                            android:visibility="gone"
+                            android:id="@+id/img_bookmark"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_heart_outline" />
+                        <ImageView
+                            android:id="@+id/img_bookmarked"
+                            android:visibility="gone"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_heart"
+                            android:layout_alignParentEnd="true"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"/>
+                    </RelativeLayout>
+
+                </androidx.cardview.widget.CardView>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:padding="5dp">
+
+                <TextView
+                    android:id="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="20sp"
+                    android:singleLine="true"/>
+                <RelativeLayout
+                    android:id="@+id/rl_street"
+                    android:layout_below="@+id/tv_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_street"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/img_location" />
+
+                    <TextView
+                        android:id="@+id/tv_width"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/img_street"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="12sp" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:id="@+id/rl_timing"
+                    android:layout_below="@+id/rl_street"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_timing"
+                        android:layout_width="12dp"
+                        android:layout_height="12dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/img_clock" />
+
+                    <TextView
+                        android:id="@+id/tv_time_from"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/img_timing"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp" />
+                    <TextView
+                        android:id="@+id/tv_to"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/tv_time_from"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:text="@string/to"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/tv_time_to"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="5dp"
+                        android:layout_toEndOf="@+id/tv_to"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:textColor="@color/grey"
+                        android:textSize="12sp" />
+
+                </RelativeLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_timing"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:maxLines="2"
+                    android:textColor="@color/grey"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_below="@+id/tv_details"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <!--<TextView
+                        android:layout_marginRight="5dp"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:background="@drawable/bg_outline_round"
+                        android:backgroundTint="@color/green"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/ic_whatsapp_small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:text="@string/whatsapp"
+                        android:textColor="@color/whiteNew"
+                        android:textSize="12dp"
+                        android:singleLine="true"/>
+
+                    <TextView
+                        android:layout_marginLeft="5dp"
+                        android:layout_weight="1"
+                        android:paddingHorizontal="10dp"
+                        android:paddingVertical="5dp"
+                        android:background="@drawable/bg_outline_round"
+                        android:backgroundTint="@color/skyBlue"
+                        android:gravity="center"
+                        android:drawableLeft="@drawable/ic_call_new_small"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:text="@string/call"
+                        android:textColor="@color/whiteNew"
+                        android:textSize="12dp"
+                        android:singleLine="true"/>-->
+
+                    <RelativeLayout
+                        android:id="@+id/rl_whatsapp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_outline_round"
+                        android:layout_marginEnd="2.5dp"
+                        android:backgroundTint="@color/green"
+                        android:gravity="center"
+                        android:padding="5dp">
+
+                        <ImageView
+                            android:id="@+id/img_whatsapp"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/ic_whatsapp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="5dp"
+                            android:layout_toEndOf="@+id/img_whatsapp"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:singleLine="true"
+                            android:text="@string/whatsapp"
+                            android:textColor="@color/whiteNew"
+                            android:textSize="12dp" />
+
+                    </RelativeLayout>
+
+                    <RelativeLayout
+                        android:id="@+id/rl_call"
+                        android:layout_marginStart="2.5dp"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_outline_round"
+                        android:backgroundTint="@color/skyBlue"
+                        android:gravity="center"
+                        android:padding="5dp">
+                        <ImageView
+                            android:id="@+id/img_call"
+                            android:layout_width="12dp"
+                            android:layout_height="12dp"
+                            android:src="@drawable/ic_call_new"
+                            android:layout_centerVertical="true"/>
+
+                        <TextView
+                            android:layout_toEndOf="@+id/img_call"
+                            android:textSize="12dp"
+                            android:text="@string/call"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:textColor="@color/whiteNew"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:singleLine="true"
+                            android:layout_marginStart="5dp"/>
+                    </RelativeLayout>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_marginTop="10dp"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/rd_circle_item"
+        android:background="@drawable/circle_border"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
+        android:padding="5dp"/>
+
+    <TextView
+        android:id="@+id/tv_title_text"
+        android:layout_marginStart="10dp"
+        android:layout_centerVertical="true"
+        android:fontFamily="@font/hacen_tunisia_bold_regular"
+        android:textColor="@color/darkGrey"
+        android:textSize="16sp"
+        android:gravity="center_vertical"
+        android:text="Ad. at wrong type"
+        android:layout_toEndOf="@+id/rd_circle_item"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
