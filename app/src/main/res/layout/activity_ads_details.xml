@@ -550,7 +550,7 @@
                                         android:id="@+id/imgAppLogo"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
-                                        android:src="@mipmap/img_new_icon"
+                                        android:src="@mipmap/ic_launcher"
                                         android:layout_centerVertical="true"
                                         android:layout_alignParentEnd="true"/>
 
@@ -830,7 +830,7 @@
                                         android:id="@+id/imgAppLogo2"
                                         android:layout_width="45dp"
                                         android:layout_height="45dp"
-                                        android:src="@mipmap/img_new_icon"
+                                        android:src="@mipmap/ic_launcher"
                                         android:layout_centerVertical="true"
                                         android:layout_alignParentEnd="true"/>
 

@@ -154,102 +154,102 @@ class HomeActivity : BaseActivity() {
 
     fun setHomeFragment(){
         setFragment(MenuFragment())
-        img_menu.setImageDrawable(getDrawable(R.drawable.ic_menu_blue))
-        img_nbhd.setImageDrawable(getDrawable(R.drawable.ic_nbhd))
-        img_services.setImageDrawable(getDrawable(R.drawable.ic_projects))
-        img_more.setImageDrawable(getDrawable(R.drawable.ic_more))
-        tv_menu.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
-        tv_nbhd.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_add_ads.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_relators.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_more.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu_blue))
+        img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd))
+        img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects))
+        img_more.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_more))
+        tv_menu.setTextColor(ContextCompat.getColor(this, R.color.skyBlue))
+        tv_nbhd.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_add_ads.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_relators.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_more.setTextColor(ContextCompat.getColor(this, R.color.grey))
     }
 
     override fun getResponse(apiType: String, respopnse: JsonObject) {
-        if (apiType.equals(Constants.SEND_TOKEN)){
-
+        if (apiType == Constants.SEND_TOKEN){
+            println("Response : $respopnse")
         }
     }
 
     fun setChatFragment(){
         setFragment(ChatHistoryActivity())
-        img_menu.setImageDrawable(getDrawable(R.drawable.ic_menu))
-        img_nbhd.setImageDrawable(getDrawable(R.drawable.ic_nbhd))
-        img_services.setImageDrawable(getDrawable(R.drawable.ic_projects))
-        img_more.setImageDrawable(getDrawable(R.drawable.ic_more))
-        tv_menu.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_nbhd.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_add_ads.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_relators.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_more.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu))
+        img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd))
+        img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects))
+        img_more.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_more))
+        tv_menu.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_nbhd.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_add_ads.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_relators.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_more.setTextColor(ContextCompat.getColor(this, R.color.grey))
     }
 
     fun setRealEstateFragment(){
         setFragment(RealEstateFragment())
-        img_menu.setImageDrawable(getDrawable(R.drawable.ic_menu))
-        img_nbhd.setImageDrawable(getDrawable(R.drawable.ic_nbhd))
-        img_services.setImageDrawable(getDrawable(R.drawable.ic_projects))
-        img_more.setImageDrawable(getDrawable(R.drawable.ic_more))
-        tv_menu.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_nbhd.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_add_ads.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_relators.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-        tv_more.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu))
+        img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd))
+        img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects))
+        img_more.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_more))
+        tv_menu.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_nbhd.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_add_ads.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_relators.setTextColor(ContextCompat.getColor(this, R.color.grey))
+        tv_more.setTextColor(ContextCompat.getColor(this, R.color.grey))
     }
 
     private fun clickListeners() {
         rl_menu.setOnClickListener {
             setFragment(MenuFragment())
-            img_menu.setImageDrawable(getDrawable(R.drawable.ic_menu_blue))
-            img_nbhd.setImageDrawable(getDrawable(R.drawable.ic_nbhd))
-            img_services.setImageDrawable(getDrawable(R.drawable.ic_projects))
-            img_more.setImageDrawable(getDrawable(R.drawable.ic_more))
-            tv_menu.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
-            tv_nbhd.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_add_ads.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_relators.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_more.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu_blue))
+            img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd))
+            img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects))
+            img_more.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_more))
+            tv_menu.setTextColor(ContextCompat.getColor(this, R.color.skyBlue))
+            tv_nbhd.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_add_ads.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_relators.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_more.setTextColor(ContextCompat.getColor(this, R.color.grey))
         }
         rl_nbhd.setOnClickListener { //setFragment(new MenuFragment());
             //setFragment(NeighborhoodFragment())
             setFragment(NBHDFragment())
-            img_menu.setImageDrawable(getDrawable(R.drawable.ic_menu))
-            img_nbhd.setImageDrawable(getDrawable(R.drawable.ic_nbhd_blue))
-            img_services.setImageDrawable(getDrawable(R.drawable.ic_projects))
-            img_more.setImageDrawable(getDrawable(R.drawable.ic_more))
-            tv_menu.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_nbhd.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
-            tv_add_ads.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_relators.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_more.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu))
+            img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd_blue))
+            img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects))
+            img_more.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_more))
+            tv_menu.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_nbhd.setTextColor(ContextCompat.getColor(this, R.color.skyBlue))
+            tv_add_ads.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_relators.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_more.setTextColor(ContextCompat.getColor(this, R.color.grey))
         }
         rl_relators.setOnClickListener {
             /*val token = "cAtzUqSOTY6-VHNMwqGals:APA91bGyMuTLd-qBEoPmLa2hAJq5RH0xR4AxUBDlMYBriWqhGfXhiDF2MHfyQddrpbXROj_iryU6uvWoNgUSb12hFt3ryY7dy80CKWGTazsPcL29zDHy66y6HHBJXit7wyVdot3WFSYA"
             sendNotificationToUser(token, "Najaf", "Najaf Notification")*/
           //  setFragment(RealEstateFragment());
             setFragment(ProjectFragment());
-            img_menu.setImageDrawable(getDrawable(R.drawable.ic_menu))
-            img_nbhd.setImageDrawable(getDrawable(R.drawable.ic_nbhd))
-            img_services.setImageDrawable(getDrawable(R.drawable.ic_projects_blue))
-            img_more.setImageDrawable(getDrawable(R.drawable.ic_more))
-            tv_menu.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_nbhd.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_add_ads.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_relators.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
-            tv_more.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu))
+            img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd))
+            img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects_blue))
+            img_more.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_more))
+            tv_menu.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_nbhd.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_add_ads.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_relators.setTextColor(ContextCompat.getColor(this, R.color.skyBlue))
+            tv_more.setTextColor(ContextCompat.getColor(this, R.color.grey))
         }
         rl_more.setOnClickListener { //setFragment(new MenuFragment());
             //throw new RuntimeException("This is a crash");
             setFragment(MoreFragment())
-            img_menu.setImageDrawable(getDrawable(R.drawable.ic_menu))
-            img_nbhd.setImageDrawable(getDrawable(R.drawable.ic_nbhd))
-            img_services.setImageDrawable(getDrawable(R.drawable.ic_projects))
-            img_more.setImageDrawable(getDrawable(R.drawable.ic_more_blue))
-            tv_menu.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_nbhd.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_add_ads.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_relators.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
-            tv_more.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu))
+            img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd))
+            img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects))
+            img_more.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_more_blue))
+            tv_menu.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_nbhd.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_add_ads.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_relators.setTextColor(ContextCompat.getColor(this, R.color.grey))
+            tv_more.setTextColor(ContextCompat.getColor(this, R.color.skyBlue))
         }
 
         rl_add_ads.setOnClickListener { //setFragment(new MenuFragment());
@@ -287,6 +287,7 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
+        super.onBackPressed()
         val manager = supportFragmentManager.findFragmentById(R.id.fl_container)
         if (manager is MenuFragment) {
             finishAffinity()

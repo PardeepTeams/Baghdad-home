@@ -85,9 +85,9 @@ public class Service extends FirebaseMessagingService {
                 PendingIntent.FLAG_IMMUTABLE);*/
         Uri sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         String channelId = getPackageName();
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.img_new_icon);
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.mipmap.ic_launcher);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, channelId)
-                .setSmallIcon(R.mipmap.img_new_icon)
+                .setSmallIcon(R.mipmap.ic_launcher)
                 .setContentTitle(title)
                 .setContentText(messageBody)
                 .setTicker(title)

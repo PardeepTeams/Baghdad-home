@@ -109,7 +109,7 @@ abstract class BaseActivity : AppCompatActivity() {
     }
     fun updateMyOnlineStatus(status: String,senderId: String) {
         // check online status
-        val refUsers = FirebaseDatabase.getInstance().getReference("UsersStatus")
+        val refUsers = FirebaseDatabase.getInstance().getReference("UsersStatusBaghdad")
         val hashMap: HashMap<String, Any> = HashMap()
         hashMap["onlineStatus"] = status
         refUsers.child(senderId).updateChildren(hashMap)

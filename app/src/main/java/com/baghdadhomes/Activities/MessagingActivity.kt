@@ -59,9 +59,9 @@ class MessagingActivity : BaseActivity() {
     private var receiverChatListRef : String ?= null
     private var receiverUnreadCount = 0
 
-    private var refUsers = FirebaseDatabase.getInstance().getReference("UsersStatus")
-    private var refChatList = FirebaseDatabase.getInstance().getReference("ChatList")
-    private var refChats = FirebaseDatabase.getInstance().getReference("Messages")
+    private var refUsers = FirebaseDatabase.getInstance().getReference("UsersStatusBaghdad")
+    private var refChatList = FirebaseDatabase.getInstance().getReference("ChatListBaghdad")
+    private var refChats = FirebaseDatabase.getInstance().getReference("MessagesBaghdad")
 
     private var getReceiverStatusListener: ValueEventListener?= null
     private var updateUnreadCountListener: ValueEventListener ?= null
