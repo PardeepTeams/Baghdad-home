@@ -116,7 +116,9 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
         }
 
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context, ProjectDetailActivity::class.java))
+            val intent:Intent = Intent(context, ProjectDetailActivity::class.java)
+             intent.putExtra("propertyId",projectList.get(position).id.toString())
+            context.startActivity(intent)
         }
 
         holder.img_bookmark.setOnClickListener {

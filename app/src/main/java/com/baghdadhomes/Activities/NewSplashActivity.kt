@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.VideoView
 import com.facebook.login.LoginManager
@@ -35,6 +37,17 @@ class NewSplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_splash)
+
+        val logo: ImageView = findViewById(R.id.logoImage)
+        val text: TextView = findViewById(R.id.appText)
+
+        // Load animations
+        val topToCenter = AnimationUtils.loadAnimation(this, R.anim.top_to_center)
+        val bottomToCenter = AnimationUtils.loadAnimation(this, R.anim.bottom_to_center)
+
+        // Start animations
+        logo.startAnimation(topToCenter)
+        text.startAnimation(bottomToCenter)
 
         PreferencesService.init(this)
         PreferencesService.instance.getLanguage()

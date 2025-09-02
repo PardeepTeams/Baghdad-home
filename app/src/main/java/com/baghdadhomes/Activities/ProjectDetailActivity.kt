@@ -126,7 +126,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
     lateinit var rvFloorPlans: RecyclerView
 
     var isLogged: Boolean = true
-    var prop_id: String = "54454"
+    var prop_id: String = ""
     var prop_type: String? = null
     var prop_sub_type: String? = null
     var address: String? = null
@@ -167,7 +167,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
 
         if (!prop_id.isNullOrEmpty()) {
             val map: HashMap<String, String> = HashMap()
-            map["property_id"] = prop_id.toString()
+            map["project_id"] = prop_id.toString()
             if (isLogged) {
                 map["user_id"] = PreferencesService.instance.getUserData!!.ID.toString()
             }
@@ -334,16 +334,20 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
 
         isLogged = PreferencesService.instance.userLoginStatus!!
 
-     /*   if(intent.getStringExtra("type")!=null){
+       /* if(intent.getStringExtra("type")!=null){
             type = intent.getStringExtra("type")!!
             // modelIntent = Gson().fromJson(intent.getStringExtra("model"),Result::class.java)
-         //   prop_id = intent.getStringExtra("propertyId")
+            prop_id = intent.getStringExtra("propertyId")
         } else if (intent.getStringExtra("propertyId")!=null){
             //  modelIntent = Gson().fromJson(intent.getStringExtra("model"), Result::class.java)
           //  prop_id = intent.getStringExtra("propertyId")
         } else if (intent.getStringExtra("propertyId")!=null){
           //  prop_id = intent.getStringExtra("propertyId")
         }*/
+
+        if(intent.getStringExtra("propertyId")!=null){
+            prop_id = intent.getStringExtra("propertyId")!!
+        }
         relative_main.visibility = View.GONE
 
         img_auto_scroll.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
