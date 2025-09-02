@@ -52,7 +52,9 @@ class SelectProjectBottomSheet : BottomSheetDialogFragment() {
 
         adapter = ProjectsNameAdapter { selected ->
             dismiss()
-            startActivity(Intent(context, ProjectDetailActivity::class.java))
+            val intent:Intent = Intent(requireContext(), ProjectDetailActivity::class.java)
+            intent.putExtra("propertyId",selected.id.toString())
+            startActivity(intent)
         }
         rv.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         rv.adapter = adapter
