@@ -3,6 +3,7 @@ package com.baghdadhomes.Utils
 import android.app.Dialog
 import android.content.Context
 import android.view.Gravity
+import androidx.core.content.ContextCompat
 import com.baghdadhomes.R
 import pl.droidsonroids.gif.GifImageView
 
@@ -18,6 +19,8 @@ class ProgressHud : Dialog {
             dialog.setTitle("")
             dialog.setContentView(R.layout.progress_hud)
             var imageView_progress: GifImageView = dialog.findViewById(R.id.imageView_progress)
+            imageView_progress.setColorFilter(ContextCompat.getColor(context, R.color.blue), android.graphics.PorterDuff.Mode.SRC_ATOP)
+
             // Glide.with(context).load(R.drawable.splash_screen_drawable).gif;
             dialog.setCancelable(cancelable)
             dialog.setCanceledOnTouchOutside(cancelable)

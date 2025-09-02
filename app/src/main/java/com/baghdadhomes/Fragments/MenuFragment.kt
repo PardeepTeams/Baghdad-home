@@ -3,6 +3,7 @@ package com.baghdadhomes.Fragments
 //import com.baghdadhomes.Adapters.AdapterAutoSlider
 import android.Manifest
 import android.content.Intent
+import android.content.res.Resources
 import android.os.Build
 import android.os.Bundle
 import android.text.Editable
@@ -20,6 +21,8 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+import androidx.viewpager2.widget.CompositePageTransformer
+import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.amar.library.ui.StickyScrollView
 import com.amar.library.ui.interfaces.IScrollViewListener
@@ -45,6 +48,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import org.json.JSONObject
+import kotlin.math.abs
 
 /*import com.smarteist.autoimageslider.IndicatorView.animation.type.IndicatorAnimationType
 import com.smarteist.autoimageslider.SliderAnimations
@@ -223,6 +227,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                 setupIndicators(arrayList.size)
                 setCurrentIndicator(0)
                 startAutoSlide()
+                img_auto_scroll.addCarouselEffect(enableZoom = false)
                 /*img_auto_scroll.setSliderAdapter(AdapterAutoSlider(requireActivity(), arrayList))
                 img_auto_scroll.setIndicatorAnimation(IndicatorAnimationType.WORM) //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
                 img_auto_scroll.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
@@ -1041,6 +1046,23 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
     fun capitalizeFirstLetter(input: String): String {
         return input.replaceFirstChar { it.uppercase() }
+    }
+
+    fun ViewPager2.addCarouselEffect(enableZoom: Boolean = true) {
+        clipChildren = false    // No clipping the left and right items
+        clipToPadding = false   // Show the viewpager in full width without clipping the padding
+        offscreenPageLimit = 3  // Render the left and right items
+        (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER // Remove the scroll effect
+
+        val compositePageTransformer = CompositePageTransformer()
+        compositePageTransformer.addTransformer(MarginPageTransformer((5 * Resources.getSystem().displayMetrics.density).toInt()))
+        if (enableZoom) {
+            compositePageTransformer.addTransformer { page, position ->
+                val r = 1 - abs(position)
+                page.scaleY = (0.80f + r * 0.20f)
+            }
+        }
+        setPageTransformer(compositePageTransformer)
     }
 }
 
