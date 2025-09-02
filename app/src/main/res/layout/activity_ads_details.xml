@@ -546,13 +546,23 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content">
 
-                                    <ImageView
+                                    <androidx.cardview.widget.CardView
                                         android:id="@+id/imgAppLogo"
                                         android:layout_width="50dp"
                                         android:layout_height="50dp"
-                                        android:src="@mipmap/ic_launcher"
                                         android:layout_centerVertical="true"
-                                        android:layout_alignParentEnd="true"/>
+                                        android:layout_alignParentEnd="true"
+                                        app:cardElevation="2dp"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardUseCompatPadding="true">
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="centerCrop"
+                                            android:src="@mipmap/ic_launcher" />
+
+                                    </androidx.cardview.widget.CardView>
 
                                     <androidx.cardview.widget.CardView
                                         android:layout_width="match_parent"
@@ -826,13 +836,24 @@
                                     android:layout_marginTop="5dp"
                                     android:layout_marginStart="3dp">
 
-                                    <ImageView
+                                    <androidx.cardview.widget.CardView
                                         android:id="@+id/imgAppLogo2"
-                                        android:layout_width="45dp"
-                                        android:layout_height="45dp"
-                                        android:src="@mipmap/ic_launcher"
+                                        android:layout_width="49dp"
+                                        android:layout_height="49dp"
                                         android:layout_centerVertical="true"
-                                        android:layout_alignParentEnd="true"/>
+                                        android:layout_alignParentEnd="true"
+                                        app:cardElevation="2dp"
+                                        app:cardCornerRadius="5dp"
+                                        app:cardUseCompatPadding="true">
+
+                                        <ImageView
+                                            android:layout_width="match_parent"
+                                            android:layout_height="match_parent"
+                                            android:scaleType="centerCrop"
+                                            android:src="@mipmap/ic_launcher" />
+
+                                    </androidx.cardview.widget.CardView>
+
 
                                     <RelativeLayout
                                         android:layout_width="match_parent"
