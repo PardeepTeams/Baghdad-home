@@ -4,6 +4,7 @@ package com.baghdadhomes.Fragments
 
 import android.content.res.Resources
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.baghdadhomes.Activities.BaseActivity
 import com.baghdadhomes.Adapters.ProductsAdapter
 import com.baghdadhomes.Adapters.ProductsBannerPagerAdapter
 import com.baghdadhomes.Adapters.ProductsCityAdapter
@@ -42,8 +44,8 @@ import kotlin.math.abs
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
 
-class ProjectFragment : BaseFragment() {
-    // TODO: Rename and change types of parameters
+class ProjectFragment : BaseFragment(),ProductsAdapter.openDetailPage {
+
     private var param1: String? = null
     private var param2: String? = null
     lateinit var bannerAdapter: ProductsBannerPagerAdapter
@@ -93,7 +95,7 @@ class ProjectFragment : BaseFragment() {
         } else{
             map["device_id"] = Utility.getDeviceId(requireContext())
         }
-        map["featured"] ="1"
+         Log.d("NewMap",map.toString());
         if (isNetworkAvailable()){
             hitPostApiWithoutTokenParams(Constants.GET_Project_Main,true, Constants.GET_Project_Main_API,map)
         } else{
@@ -118,7 +120,7 @@ class ProjectFragment : BaseFragment() {
 
         rv_city.adapter = productsCirtAdapter;
 
-        productsAdapter = ProductsAdapter(requireActivity(),projectList)
+        productsAdapter = ProductsAdapter(requireActivity(),projectList,this)
         rv_products.adapter = productsAdapter
         rv_products.setHasFixedSize(true)
         rv_products.setItemViewCacheSize(10)
@@ -260,5 +262,25 @@ class ProjectFragment : BaseFragment() {
             }
         }
         setPageTransformer(compositePageTransformer)
+    }
+
+    override fun addRemoveFav(model: ProjectData?, position: Int) {
+        if(isNetworkAvailable()){
+            val propId = model!!.id
+            val userData = PreferencesService.instance.getUserData
+
+            val map: HashMap<String, String> = HashMap()
+            map.put("user_id", userData!!.ID!!)
+            map.put("listing_id", propId.toString())
+            //map.put("", favStatus)
+            projectList.get(position).isFav = projectList.get(position).isFav != true
+            productsAdapter.notifyDataSetChanged()
+            hitPostApi(Constants.ADD_REMOVE_FAV, false, Constants.ADD_REMOVE_FAV_API, map)
+
+        }
+    }
+
+    override fun openLoginActivity() {
+        ((context) as BaseActivity).loginTypeDialog(false)
     }
 }

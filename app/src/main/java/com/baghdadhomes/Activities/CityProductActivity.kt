@@ -2,41 +2,62 @@ package com.baghdadhomes.Activities
 
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.baghdadhomes.Adapters.ProductsAdapter
+import com.baghdadhomes.Models.ProjectCityWiseResponse
+import com.baghdadhomes.Models.ProjectData
+import com.baghdadhomes.PreferencesService
+import com.baghdadhomes.PreferencesService.Companion.instance
 import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
+import com.baghdadhomes.Utils.Utility
+import com.google.gson.Gson
 import com.google.gson.JsonObject
 
-class CityProductActivity : BaseActivity() {
+ class CityProductActivity : BaseActivity(),ProductsAdapter.openDetailPage{
     lateinit var rv_products_items:RecyclerView
     lateinit var productsAdapter: ProductsAdapter
     lateinit var img_back:ImageView
-    var cityList:ArrayList<String> = ArrayList()
+    var cityID:String? = null
+    var cityName:String? = null
+    var projectList:ArrayList<ProjectData> = ArrayList()
+    lateinit var tv_heading:TextView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_city_product)
+        if(intent.getStringExtra("city_id")!=null){
+            cityID =   intent.getStringExtra("city_id")
+            cityName =   intent.getStringExtra("city_name")
+        }
         rv_products_items = findViewById(R.id.rv_products_items)
         img_back = findViewById(R.id.img_back)
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        cityList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        cityList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
+        tv_heading = findViewById(R.id.tv_heading)
+
+        if(cityName!=null){
+            tv_heading.text = cityName
+        }
+
         rv_products_items.layoutManager = LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false)
-      //  productsAdapter = ProductsAdapter(this,cityList)
-      //  rv_products_items.adapter = productsAdapter
+        productsAdapter = ProductsAdapter(this,projectList,this)
+        rv_products_items.adapter = productsAdapter
+
+        val isLooged = instance.userLoginStatus
+        val map : HashMap<String,String> = HashMap()
+        if (PreferencesService.instance.userLoginStatus == true){
+            map["user_id"] = PreferencesService.instance.getUserData?.ID!!
+        } else{
+            map["device_id"] = Utility.getDeviceId(this)
+        }
+        map["city_id"] = cityID!!
+
+        if (isNetworkAvailable()){
+            hitPostApi(Constants.GET_Project_CITY,true, Constants.GET_Project_City_API,map)
+        } else{
+            showToast(this, getString(R.string.intenet_error))
+        }
+
 
         img_back.setOnClickListener {
             finish()
@@ -45,6 +66,35 @@ class CityProductActivity : BaseActivity() {
     }
 
     override fun getResponse(apiType: String, respopnse: JsonObject) {
+        val model = Gson().fromJson(respopnse, ProjectCityWiseResponse::class.java)
+
+        if(model.success!!){
+            if(model.data!=null){
+                projectList.clear()
+                projectList.addAll(model.data)
+                productsAdapter.notifyDataSetChanged()
+            }
+        }
 
     }
-}
+
+     override fun addRemoveFav(model: ProjectData?, position: Int) {
+         if(isNetworkAvailable()){
+             val propId = model!!.id
+             val userData = PreferencesService.instance.getUserData
+
+             val map: HashMap<String, String> = HashMap()
+             map.put("user_id", userData!!.ID!!)
+             map.put("listing_id", propId.toString())
+             //map.put("", favStatus)
+             projectList.get(position).isFav = projectList.get(position).isFav != true
+             productsAdapter.notifyDataSetChanged()
+             hitPostApi(Constants.ADD_REMOVE_FAV, false, Constants.ADD_REMOVE_FAV_API, map)
+
+         }
+     }
+
+     override fun openLoginActivity() {
+         this.loginTypeDialog(false)
+     }
+ }

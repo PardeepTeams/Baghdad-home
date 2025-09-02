@@ -17,7 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 
 
-class ProductsCityAdapter(var context:Context,var imageList:ArrayList<ProjectCity>): RecyclerView.Adapter<ProductsCityAdapter.CityViewHolder>() {
+class ProductsCityAdapter(var context:Context,var cityList:ArrayList<ProjectCity>): RecyclerView.Adapter<ProductsCityAdapter.CityViewHolder>() {
 
     class CityViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val cityImage: ImageView = itemView.findViewById(R.id.cityImage)
@@ -31,22 +31,25 @@ class ProductsCityAdapter(var context:Context,var imageList:ArrayList<ProjectCit
     }
 
     override fun getItemCount(): Int {
-       return imageList.size
+       return cityList.size
     }
 
     override fun onBindViewHolder(holder: CityViewHolder, position: Int) {
         val width: Int = holder.cityImage.getWidth()
         val height: Int = holder.cityImage.getHeight()
 
-        holder.cityName.text = imageList.get(position).name
+        holder.cityName.text = cityList.get(position).name
 
         holder.itemView.setOnClickListener {
-            context.startActivity(Intent(context,CityProductActivity::class.java))
+            val intent:Intent = Intent(context,CityProductActivity::class.java)
+            intent.putExtra("city_id",cityList.get(position).termId.toString())
+            intent.putExtra("city_name",cityList.get(position).name.toString())
+            context.startActivity(intent)
         }
 
 
-        if(imageList.get(position).image!=null){
-            Glide.with(holder.cityImage.context).load(imageList.get(position).image)
+        if(cityList.get(position).image!=null){
+            Glide.with(holder.cityImage.context).load(cityList.get(position).image)
                 .placeholder(R.drawable.img_placeholder).apply(
                     RequestOptions()
                         .override(width, height) // Resize image (width x height)

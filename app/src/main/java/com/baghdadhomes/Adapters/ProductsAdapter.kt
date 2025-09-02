@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baghdadhomes.Activities.CityDetailActivity
 import com.baghdadhomes.Activities.ProjectDetailActivity
 import com.baghdadhomes.Models.ProjectData
+import com.baghdadhomes.Models.Result
 import com.baghdadhomes.PreferencesService.Companion.instance
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
@@ -24,7 +25,8 @@ import com.bumptech.glide.request.RequestOptions
 import de.hdodenhof.circleimageview.CircleImageView
 import kotlinx.coroutines.Job
 
-class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>):
+class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>,
+    var openPage:openDetailPage):
     RecyclerView.Adapter<ProductsAdapter.ProductsViewHolder>() {
     private val sliderHandler = Handler(Looper.getMainLooper())
     private var sliderRunnable: Runnable? = null
@@ -142,9 +144,9 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
                         )
                     )
                 }
-               // detailPage.addRemoveFav(propertiesList.get(position), position)
+                openPage.addRemoveFav(projectList.get(position), position)
             } else {
-             //   detailPage.openLoginActivity()
+                openPage.openLoginActivity()
 
             }
 
@@ -153,4 +155,9 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
 
     }
 
+
+    interface openDetailPage {
+        fun addRemoveFav(model: ProjectData?, position: Int)
+        fun openLoginActivity()
+    }
 }
