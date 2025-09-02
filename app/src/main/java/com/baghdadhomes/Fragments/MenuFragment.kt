@@ -792,6 +792,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                     setupIndicators(arrayList.size)
                     setCurrentIndicator(0)
                     startAutoSlide()
+                    img_auto_scroll.addCarouselEffect(enableZoom = false)
 
                     feautredList.clear()
                     scrollView.visibility = View.VISIBLE
