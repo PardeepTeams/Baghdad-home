@@ -84,7 +84,7 @@ class NewSplashActivity : BaseActivity() {
             }
         }
 
-        videoview.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.new_splash))
+        videoview.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.splash_data_new_video))
         videoview.setZOrderOnTop(true)
 
         videoview.setOnPreparedListener {

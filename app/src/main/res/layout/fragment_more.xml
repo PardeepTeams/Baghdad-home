@@ -341,7 +341,8 @@
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_centerVertical="true"
-                        android:src="@drawable/ic_companies" />
+                        android:src="@drawable/ic_companies"
+                        app:tint="@color/grey"/>
 
                     <TextView
                         android:layout_width="match_parent"
