@@ -28,7 +28,7 @@
             android:src="@mipmap/ic_launcher_round"
             android:layout_centerHorizontal="true" />
 
-        <!-- App Name Text -->
+
         <TextView
             android:id="@+id/appText"
             android:layout_width="wrap_content"

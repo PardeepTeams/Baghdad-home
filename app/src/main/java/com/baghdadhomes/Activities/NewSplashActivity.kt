@@ -45,7 +45,6 @@ class NewSplashActivity : BaseActivity() {
         val topToCenter = AnimationUtils.loadAnimation(this, R.anim.top_to_center)
         val bottomToCenter = AnimationUtils.loadAnimation(this, R.anim.bottom_to_center)
 
-        // Start animations
         logo.startAnimation(topToCenter)
         text.startAnimation(bottomToCenter)
 
