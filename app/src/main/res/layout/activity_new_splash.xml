@@ -3,15 +3,47 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/splashBlue"
+    android:background="@color/whiteNew"
     tools:context=".Activities.NewSplashActivity">
 
         <VideoView
             android:id="@+id/videoview"
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
             android:background="@color/splashBlue"/>
+
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_centerInParent="true"
+    android:gravity="center"
+
+    android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/logoImage"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:src="@mipmap/ic_launcher_round"
+            android:layout_centerHorizontal="true" />
+
+        <!-- App Name Text -->
+        <TextView
+            android:id="@+id/appText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textSize="24sp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/blue"
+            android:textStyle="bold"
+            android:fontFamily="@font/gmp_ref_typeface_brand_bold"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+</LinearLayout>
+
+
 
         <RelativeLayout
             android:visibility="gone"
