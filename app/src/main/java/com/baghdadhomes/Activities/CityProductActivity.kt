@@ -43,7 +43,7 @@ import com.google.gson.JsonObject
         productsAdapter = ProductsAdapter(this,projectList,this)
         rv_products_items.adapter = productsAdapter
 
-        val isLooged = instance.userLoginStatus
+
         val map : HashMap<String,String> = HashMap()
         if (PreferencesService.instance.userLoginStatus == true){
             map["user_id"] = PreferencesService.instance.getUserData?.ID!!
@@ -65,16 +65,19 @@ import com.google.gson.JsonObject
 
     }
 
-    override fun getResponse(apiType: String, respopnse: JsonObject) {
-        val model = Gson().fromJson(respopnse, ProjectCityWiseResponse::class.java)
 
-        if(model.success!!){
-            if(model.data!=null){
-                projectList.clear()
-                projectList.addAll(model.data)
-                productsAdapter.notifyDataSetChanged()
+    override fun getResponse(apiType: String, respopnse: JsonObject) {
+        if(apiType.equals(Constants.GET_Project_CITY)){
+            val model = Gson().fromJson(respopnse, ProjectCityWiseResponse::class.java)
+            if(model.success!!){
+                if(model.data!=null){
+                    projectList.clear()
+                    projectList.addAll(model.data)
+                    productsAdapter.notifyDataSetChanged()
+                }
             }
         }
+
 
     }
 

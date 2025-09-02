@@ -82,25 +82,28 @@ class ProjectFragment : BaseFragment(),ProductsAdapter.openDetailPage {
     }
 
 
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        initView(view);
-
-
-
+    override fun onResume() {
+        super.onResume()
         val map : HashMap<Any,Any> = HashMap()
         if (PreferencesService.instance.userLoginStatus == true){
             map["user_id"] = PreferencesService.instance.getUserData?.ID!!
         } else{
             map["device_id"] = Utility.getDeviceId(requireContext())
         }
-         Log.d("NewMap",map.toString());
+        Log.d("NewMap",map.toString());
         if (isNetworkAvailable()){
             hitPostApiWithoutTokenParams(Constants.GET_Project_Main,true, Constants.GET_Project_Main_API,map)
         } else{
             showToast(requireContext(), getString(R.string.intenet_error))
         }
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initView(view);
+
+
+
+
 
         bannerPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             override fun onPageSelected(position: Int) {
@@ -203,7 +206,7 @@ class ProjectFragment : BaseFragment(),ProductsAdapter.openDetailPage {
     private fun startAutoSlide() {
         job = CoroutineScope(Dispatchers.Main).launch {
             while (true) {
-                delay(4000)
+                delay(8000)
                 if (currentIndex == (bannerList.size - 1)){
                     currentIndex = 0
                 } else {

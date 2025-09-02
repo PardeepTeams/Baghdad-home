@@ -133,7 +133,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     private fun startAutoSlide() {
         job = CoroutineScope(Dispatchers.Main).launch {
             while (true) {
-                delay(4000)
+                delay(8000)
                 if (currentIndex == (arrayList.size - 1)){
                     currentIndex = 0
                 } else {
