@@ -304,6 +304,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         nested_scroll = findViewById(R.id.nested_scroll)
         spin_kit = findViewById(R.id.spin_kit)
         imageView_progress = findViewById(R.id.imageView_progress)
+        imageView_progress.setColorFilter(ContextCompat.getColor(this, R.color.blue), android.graphics.PorterDuff.Mode.SRC_ATOP)
         tv_heading = findViewById(R.id.tv_heading)
         tv_commercail = findViewById(R.id.tv_commercail)
         img_commercail = findViewById(R.id.img_commercail)
