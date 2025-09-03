@@ -34,7 +34,7 @@
     <string name="menu">menu</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="property_search">Ai Search</string>
+    <string name="property_search">AI Search</string>
     <string name="featured_ads">Featured Ads</string>
     <string name="ad_type">Alamir NBHD.</string>
     <string name="all">All</string>
@@ -307,9 +307,10 @@
     <string name="share_the_office_page">Share the office page</string>
     <string name="take_look_at_real_estate">ألق نظرة على هذه الشركة العقارية</string>
     <string name="see_all">See All</string>
-    <string name="project">Project</string>
+    <string name="project">Projects</string>
     <string name="project_proties">Project Properties</string>
-    <string name="project_found">Project found</string>
+    <string name="project_found">Projects found</string>
     <string name="bedroom">Bedroom</string>
     <string name="bagdad">Baghdad</string>
+    <string name="select_project">Select Project</string>
 </resources>

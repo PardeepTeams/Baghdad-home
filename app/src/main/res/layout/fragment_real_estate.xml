@@ -125,11 +125,15 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cv_cardView"
             android:layout_toStartOf="@id/imgFilter"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             app:cardCornerRadius="30dp"
-            android:clipToPadding="true"
-            app:cardElevation="5dp"
-            app:cardUseCompatPadding="true"
+            android:clipToPadding="false"
+            app:cardElevation="4dp"
+            android:layout_centerVertical="true"
+            android:layout_toEndOf="@+id/rl_icon"
+            app:contentPadding="3dp"
+            app:cardUseCompatPadding="false"
+            android:clipChildren="false"
             android:outlineAmbientShadowColor="@color/grey"
             android:outlineSpotShadowColor="@color/grey"
             android:layout_height="wrap_content">
@@ -162,7 +166,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textAllCaps="true"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:visibility="gone"

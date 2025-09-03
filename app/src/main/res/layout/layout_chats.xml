@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginHorizontal="5dp"
-    app:cardCornerRadius="10dp"
+    app:cardCornerRadius="12dp"
     app:cardElevation="4dp"
     app:cardUseCompatPadding="true">
 
@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:paddingHorizontal="10dp"
-        android:paddingVertical="7dp">
+        android:paddingVertical="5dp">
 
         <RelativeLayout
             android:id="@+id/rlTop"
@@ -45,7 +45,7 @@
                 android:id="@+id/tvName"
                 android:layout_toEndOf="@+id/rlImage"
                 android:textColor="@color/blackNew"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -69,7 +69,7 @@
                 android:layout_toEndOf="@+id/rlImage"
                 android:layout_marginTop="2dp"
                 android:textColor="@color/grey"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:singleLine="true"
@@ -82,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:background="@color/grey_ul"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="5dp"
             android:visibility="gone"/>
 
         <RelativeLayout

@@ -312,4 +312,5 @@
     <string name="project_found">تم العثور على المشروع</string>
     <string name="bagdad">بغداد</string>
     <string name="bedroom">غرفة نوم</string>
+    <string name="select_project">حدد المشروع</string>
 </resources>
