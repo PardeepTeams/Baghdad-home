@@ -10,8 +10,7 @@
         android:id="@+id/rlTop"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
-        android:layout_marginTop="20dp">
+        android:layout_marginTop="10dp">
 
         <ImageView
             android:id="@+id/imgBack"
@@ -22,34 +21,23 @@
 
         <TextView
             android:id="@+id/tvHeading"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/imgBack"
-            android:layout_marginHorizontal="10dp"
             android:fontFamily="@font/hacen_tunisia_bold_regular"
             android:text="@string/services"
-            android:layout_centerVertical="true"
+            android:layout_centerInParent="true"
             android:textColor="@color/darkGrey"
             android:textSize="20dp" />
 
     </RelativeLayout>
 
-    <View
-        android:id="@+id/view"
-        android:layout_below="@+id/rlTop"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey_ul"
-        android:layout_marginTop="5dp"
-        android:layout_marginHorizontal="10dp"/>
-
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_below="@+id/view"
+        android:layout_below="@+id/rlTop"
         android:layout_width="match_parent"
         app:cardCornerRadius="30dp"
         android:clipToPadding="true"
-        app:cardElevation="5dp"
+        app:cardElevation="2dp"
         app:cardUseCompatPadding="true"
         android:outlineAmbientShadowColor="@color/grey"
         android:outlineSpotShadowColor="@color/grey"

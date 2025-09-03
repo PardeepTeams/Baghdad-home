@@ -42,6 +42,9 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".Fragments.RealEstateFragment"
+            android:exported="false" />
+        <activity
             android:name=".Activities.CityProductActivity"
             android:exported="false" />
         <activity

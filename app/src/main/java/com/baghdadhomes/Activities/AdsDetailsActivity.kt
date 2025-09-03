@@ -888,7 +888,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
             )
-            (indicator.layoutParams as LinearLayout.LayoutParams).setMargins(8, 0, 8, 0)
+            (indicator.layoutParams as LinearLayout.LayoutParams).setMargins(5, 0, 5, 0)
             indicator.setBackgroundResource(R.drawable.indicator_inactive)
             indicatorLayout.addView(indicator)
         }

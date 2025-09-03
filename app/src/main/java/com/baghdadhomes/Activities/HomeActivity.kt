@@ -185,7 +185,7 @@ class HomeActivity : BaseActivity() {
     }
 
     fun setRealEstateFragment(){
-        setFragment(RealEstateFragment())
+        // setFragment(RealEstateFragment())
         img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu))
         img_nbhd.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_nbhd))
         img_services.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_projects))

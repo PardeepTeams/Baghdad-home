@@ -180,7 +180,9 @@ class MoreFragment : BaseFragment() {
         }
 
         rl_realtors.setOnClickListener {
-            ((context) as HomeActivity).setRealEstateFragment()
+            // ((context) as HomeActivity).setRealEstateFragment()
+            startActivity(Intent(context, RealEstateFragment::class.java))
+            requireActivity().overridePendingTransition(0,0)
         }
 
         card_view.setOnClickListener {

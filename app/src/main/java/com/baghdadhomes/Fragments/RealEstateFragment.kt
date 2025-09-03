@@ -1,5 +1,6 @@
 package com.baghdadhomes.Fragments
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
@@ -17,6 +18,7 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.baghdadhomes.Activities.BaseActivity
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -38,6 +40,7 @@ import com.baghdadhomes.Models.NBHDModel
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.Utility
+import com.google.firebase.FirebaseApp
 import de.hdodenhof.circleimageview.CircleImageView
 import org.json.JSONObject
 import org.xmlpull.v1.XmlPullParserException
@@ -46,7 +49,8 @@ import java.io.InputStream
 import java.nio.charset.StandardCharsets
 
 
-class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
+class RealEstateFragment : BaseActivity(), OnMapReadyCallback {
+    private lateinit var img_back: ImageView
     private lateinit var imgFilter: ImageView
     private lateinit var imgClearSearch: ImageView
     private lateinit var etSerach: EditText
@@ -80,15 +84,12 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
     private var city : String ?= "all"
     private var nbhd : String ?= "all"
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?,
-    ): View? {
-        return inflater.inflate(R.layout.fragment_real_estate, container, false)
-    }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.fragment_real_estate)
+        adjustFontScale(resources.configuration)
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        inits(view)
+        inits()
         clickListeners()
 
         mapView.onCreate(savedInstanceState)
@@ -100,43 +101,46 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
             hitGetApiWithoutToken(Constants.AGENCIES, true, Constants.AGENCIES_API)
             hitGetApiWithoutToken(Constants.NEIGHBORHOOD, false, Constants.NEIGHBORHOOD_API)
         } else{
-            showToast(requireContext(), resources.getString(R.string.intenet_error))
+            showToast(this, resources.getString(R.string.intenet_error))
         }
-
     }
 
-    private fun inits(view: View){
-        imgFilter = view.findViewById(R.id.imgFilter)
-        imgClearSearch = view.findViewById(R.id.img_clear_search)
-        etSerach = view.findViewById(R.id.et_serach)
-        rvServices = view.findViewById(R.id.rv_services)
-        rlList = view.findViewById(R.id.rlList)
-        rlMap = view.findViewById(R.id.rlMap)
-        imgList = view.findViewById(R.id.imgList)
-        imgMap = view.findViewById(R.id.imgMap)
-        tvList = view.findViewById(R.id.tvList)
-        tvMap = view.findViewById(R.id.tvMap)
-        viewList = view.findViewById(R.id.viewList)
-        viewMap = view.findViewById(R.id.viewMap)
-        llListing = view.findViewById(R.id.llListing)
-        llMapView = view.findViewById(R.id.llMapView)
-        rlCompanyDetails = view.findViewById(R.id.rlCompanyDetails)
-        mapView = view.findViewById(R.id.mapView)
-        imgBig = view.findViewById(R.id.imgBig)
-        imgCircle = view.findViewById(R.id.imgCircle)
-        tvName = view.findViewById(R.id.tvName)
-        tvAddress = view.findViewById(R.id.tvAddress)
-        tvAdsCount = view.findViewById(R.id.tvAdsCount)
+    private fun inits(){
+        img_back = findViewById(R.id.img_back)
+        imgFilter = findViewById(R.id.imgFilter)
+        imgClearSearch = findViewById(R.id.img_clear_search)
+        etSerach = findViewById(R.id.et_serach)
+        rvServices = findViewById(R.id.rv_services)
+        rlList = findViewById(R.id.rlList)
+        rlMap = findViewById(R.id.rlMap)
+        imgList = findViewById(R.id.imgList)
+        imgMap = findViewById(R.id.imgMap)
+        tvList = findViewById(R.id.tvList)
+        tvMap = findViewById(R.id.tvMap)
+        viewList = findViewById(R.id.viewList)
+        viewMap = findViewById(R.id.viewMap)
+        llListing = findViewById(R.id.llListing)
+        llMapView = findViewById(R.id.llMapView)
+        rlCompanyDetails = findViewById(R.id.rlCompanyDetails)
+        mapView = findViewById(R.id.mapView)
+        imgBig = findViewById(R.id.imgBig)
+        imgCircle = findViewById(R.id.imgCircle)
+        tvName = findViewById(R.id.tvName)
+        tvAddress = findViewById(R.id.tvAddress)
+        tvAdsCount = findViewById(R.id.tvAdsCount)
 
-        rvServices.layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        adapterServices = AdapterAllCompanies(requireContext(), agenciesList)
+        rvServices.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
+        adapterServices = AdapterAllCompanies(this, agenciesList)
         rvServices.adapter = adapterServices
     }
 
     private fun clickListeners(){
+        img_back.setOnClickListener {
+            finish()
+        }
 
         imgFilter.setOnClickListener {
-            val intent = Intent(requireActivity(), FilterAgenciesActivity::class.java)
+            val intent = Intent(this, FilterAgenciesActivity::class.java)
             intent.putExtra("nbhdModel", Gson().toJson(nbhdModel))
             intent.putExtra("city", city.orEmpty())
             intent.putExtra("nbhd", nbhd.orEmpty())
@@ -144,45 +148,45 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
         }
 
         rlList.setOnClickListener {
-            imgList.drawable.setTint(ContextCompat.getColor(requireContext(), R.color.skyBlue))
-            tvList.setTextColor(ContextCompat.getColor(requireContext(), R.color.skyBlue))
+            imgList.drawable.setTint(ContextCompat.getColor(this, R.color.skyBlue))
+            tvList.setTextColor(ContextCompat.getColor(this, R.color.skyBlue))
             viewList.visibility = View.VISIBLE
             llListing.visibility = View.VISIBLE
 
-            imgMap.drawable.setTint(ContextCompat.getColor(requireContext(), R.color.grey))
-            tvMap.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey))
+            imgMap.drawable.setTint(ContextCompat.getColor(this, R.color.grey))
+            tvMap.setTextColor(ContextCompat.getColor(this, R.color.grey))
             viewMap.visibility = View.GONE
             llMapView.visibility = View.GONE
         }
 
         rlMap.setOnClickListener {
-            imgMap.drawable.setTint(ContextCompat.getColor(requireContext(), R.color.skyBlue))
-            tvMap.setTextColor(ContextCompat.getColor(requireContext(), R.color.skyBlue))
+            imgMap.drawable.setTint(ContextCompat.getColor(this, R.color.skyBlue))
+            tvMap.setTextColor(ContextCompat.getColor(this, R.color.skyBlue))
             viewMap.visibility = View.VISIBLE
             llMapView.visibility = View.VISIBLE
 
-            imgList.drawable.setTint(ContextCompat.getColor(requireContext(), R.color.grey))
-            tvList.setTextColor(ContextCompat.getColor(requireContext(), R.color.grey))
+            imgList.drawable.setTint(ContextCompat.getColor(this, R.color.grey))
+            tvList.setTextColor(ContextCompat.getColor(this, R.color.grey))
             viewList.visibility = View.GONE
             llListing.visibility = View.GONE
         }
 
         rvServices.setOnTouchListener(object : View.OnTouchListener{
             override fun onTouch(v: View?, event: MotionEvent?): Boolean {
-                context!!.dismissKeyboard(v)
+                dismissKeyboard(v)
                 return false
             }
         })
 
         imgClearSearch.setOnClickListener {
             etSerach.setText("")
-            requireContext().dismissKeyboard(etSerach)
+            dismissKeyboard(etSerach)
             updateMarkersOnMap(agenciesList)
         }
 
         etSerach.setOnEditorActionListener { _, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH){
-                requireActivity().dismissKeyboard(etSerach)
+                dismissKeyboard(etSerach)
                 filter(etSerach.text.toString(), true)
                 true
             }else{
@@ -251,7 +255,7 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
     private fun updateMarkersOnMap(list: ArrayList<AgenciesData>) {
         map?.clear()
         addBoundryToMap()
-        activity?.runOnUiThread {
+        runOnUiThread {
             try {
                 for (i in list){
                     if (!i.lat.isNullOrEmpty() && !i.lng.isNullOrEmpty()) {
@@ -262,7 +266,7 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
                             val markerOptions = MarkerOptions().position(pos)
                                 .snippet(i.ID.orEmpty())
                                 .title(i.display_name.orEmpty())
-                                .icon(Utility.getBitmapDescriptorFromDrawable(requireContext(),R.drawable.ic_location_red))
+                                .icon(Utility.getBitmapDescriptorFromDrawable(this,R.drawable.ic_location_red))
                             map?.addMarker(markerOptions)
                             map?.animateCamera(CameraUpdateFactory.newLatLngZoom(pos, 10f))
                         }
@@ -284,10 +288,10 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
                 // Deselect previous marker
                 if (lastClickedMarker != null) {
                     // Reset previous marker appearance
-                    lastClickedMarker!!.setIcon(Utility.getBitmapDescriptorFromDrawable(requireContext(),R.drawable.ic_location_red))
+                    lastClickedMarker!!.setIcon(Utility.getBitmapDescriptorFromDrawable(this@RealEstateFragment,R.drawable.ic_location_red))
                 }
                 // Highlight clicked marker
-                marker.setIcon(Utility.getBitmapDescriptorFromDrawable(requireContext(),R.drawable.ic_location_large))
+                marker.setIcon(Utility.getBitmapDescriptorFromDrawable(this@RealEstateFragment,R.drawable.ic_location_large))
                 // Store the clicked marker
                 lastClickedMarker = marker
 
@@ -329,10 +333,10 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
     private fun showBottomDialog(agenciesData: AgenciesData){
         rlCompanyDetails.visibility = View.VISIBLE
 
-        Glide.with(requireContext()).load(agenciesData.user_image.orEmpty())
+        Glide.with(this).load(agenciesData.user_image.orEmpty())
             .placeholder(R.drawable.img_placeholder).into(imgBig)
 
-        Glide.with(requireContext()).load(agenciesData.user_image.orEmpty())
+        Glide.with(this).load(agenciesData.user_image.orEmpty())
             .placeholder(R.drawable.img_placeholder).into(imgCircle)
 
         tvName.text = agenciesData.display_name.orEmpty()
@@ -340,7 +344,7 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
         tvAdsCount.text = "${getString(R.string.ads)}:(${agenciesData.total_posts ?: "0"} ${getString(R.string.real_estate)})"
 
         rlCompanyDetails.setOnClickListener {
-            val intent = Intent(context, CompanyAdsActivity::class.java)
+            val intent = Intent(this, CompanyAdsActivity::class.java)
             intent.putExtra("agencyData", Gson().toJson(agenciesData))
             startActivity(intent)
         }
@@ -372,8 +376,8 @@ class RealEstateFragment : BaseFragment(), OnMapReadyCallback {
             val polygonOptions = PolygonOptions()
                 .addAll(latLngs)
                 .strokeWidth(2f)
-                .strokeColor(ContextCompat.getColor(requireContext(), R.color.skyBlue))
-                .fillColor(ContextCompat.getColor(requireContext(), R.color.skyBlueLight))
+                .strokeColor(ContextCompat.getColor(this, R.color.skyBlue))
+                .fillColor(ContextCompat.getColor(this, R.color.skyBlueLight))
             map!!.addPolygon(polygonOptions)
 
             // Zoom to the boundary
