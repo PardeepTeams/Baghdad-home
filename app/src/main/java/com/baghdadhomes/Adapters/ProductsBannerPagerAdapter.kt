@@ -32,14 +32,19 @@ class ProductsBannerPagerAdapter(var bannerList:ArrayList<ProjectSlider>) :
     }
 
     override fun onBindViewHolder(holder: ProductsBannerViewHolder, position: Int) {
-        Glide.with(holder.imageView.context).load(bannerList[position].sliderImage).placeholder(R.drawable.img_placeholder)
+        Glide.with(holder.imageView.context)
+            .load(bannerList[position].sliderImage)
+            .placeholder(R.drawable.img_placeholder)
             .apply(
                 RequestOptions()
                     .override(600, 600)
                     .diskCacheStrategy(DiskCacheStrategy.ALL)
-            ). thumbnail(
-                Glide.with(holder.imageView.context).load(bannerList[position]).
-            override(600, 600))
+            )
+            .thumbnail(
+                Glide.with(holder.imageView.context)
+                    .load(bannerList[position].sliderImage) // ✅ Use URL
+                    .override(600, 600)
+            )
             .into(holder.imageView)
     }
 }

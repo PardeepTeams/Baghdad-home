@@ -4,8 +4,10 @@ import android.app.Dialog
 import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
@@ -98,6 +100,10 @@ class NewSplashActivity : BaseActivity() {
 
         videoview.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.splash_data_new_video))
         videoview.setZOrderOnTop(true)
+
+        val retriever = MediaMetadataRetriever()
+        retriever.setDataSource(this, Uri.parse("android.resource://" + packageName + "/" + R.raw.splash_data_new_video))
+
 
         videoview.setOnPreparedListener {
             videoview.start()
