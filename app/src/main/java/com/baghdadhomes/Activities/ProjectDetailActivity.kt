@@ -133,7 +133,7 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
     lateinit var rvFloorPlans: RecyclerView
 
     var isLogged: Boolean = true
-    var prop_id: String = "54454"
+    var prop_id: String = ""
     var prop_type: String? = null
     var prop_sub_type: String? = null
     var address: String? = null
@@ -174,6 +174,10 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
         inits()
         mapView.onCreate(savedInstanceState)
         mapView.getMapAsync(this)
+
+        if(intent.getStringExtra("propertyId")!=null){
+            prop_id = intent.getStringExtra("propertyId")!!;
+        }
 
         if (!prop_id.isNullOrEmpty()) {
             val map: HashMap<String, String> = HashMap()
@@ -337,20 +341,6 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
 
         isLogged = PreferencesService.instance.userLoginStatus!!
 
-        /* if(intent.getStringExtra("type")!=null){
-             type = intent.getStringExtra("type")!!
-             // modelIntent = Gson().fromJson(intent.getStringExtra("model"),Result::class.java)
-             prop_id = intent.getStringExtra("propertyId")
-         } else if (intent.getStringExtra("propertyId")!=null){
-             //  modelIntent = Gson().fromJson(intent.getStringExtra("model"), Result::class.java)
-           //  prop_id = intent.getStringExtra("propertyId")
-         } else if (intent.getStringExtra("propertyId")!=null){
-           //  prop_id = intent.getStringExtra("propertyId")
-         }*/
-
-       /* if(intent.getStringExtra("propertyId")!=null){
-            prop_id = intent.getStringExtra("propertyId")!!
-        }*/
         relative_main.visibility = View.GONE
 
         img_auto_scroll.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
@@ -437,9 +427,6 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
             val model: NewFeatureModel = Gson().fromJson(respopnse,
                 NewFeatureModel::class.java)
             isFav = !isFav
-            /*if (model.success && adsDetailModel != null){
-                PreferencesService.instance.saveChangedPropertyDataId(adsDetailModel!!.result!!.iD,adsDetailModel!!.result!!.is_fav)
-            }*/
 
         }
     }
@@ -463,10 +450,6 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
             tv_view_count.text = newViewCount
             isFav = model.data.isFav?:false
 
-            /*  if (modelIntent != null){
-                  modelIntent?.totalViews = newViewCount
-                  PreferencesService.instance.saveChangedPropertyData(modelIntent!!)
-              }*/
 
             img_bookmark.visibility = View.VISIBLE
             img_bookmarked.visibility = View.GONE
@@ -482,7 +465,6 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
                     val lat = model.data.houzezGeoLocationLat.toDouble()
                     val lng = model.data.houzezGeoLocationLong.toDouble()
                     if (lat != 0.0 && lng != 0.0){
-                        println("Latitude:$lat && Longitude:$lng")
                         llLocation.visibility = View.VISIBLE
                         val propertyLatLng = LatLng(lat, lng)
 
@@ -687,7 +669,7 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
             imv_share.setOnClickListener {
                 val sharingIntent = Intent(Intent.ACTION_SEND)
                 sharingIntent.type = "text/plain"
-                sharingIntent.putExtra(Intent.EXTRA_TEXT, "${getString(R.string.take_look_at_property)}\n\n${model.data.link}")
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, "${getString(R.string.take_look_at_property)}\n\n${model.data!!.link}")
                 startActivity(Intent.createChooser(sharingIntent, ""))
             }
         } else {
@@ -695,13 +677,13 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
         }
 
         if (!model.data?.galleryImages.isNullOrEmpty()) {
-            for (i in model.data.galleryImages) {
+            for (i in model.data!!.galleryImages!!) {
                 if (!i.url.isNullOrEmpty()) {
                     imageList.add(i.url)
                 }
             }
         } else if (!model.data?.thumbnail.isNullOrEmpty()){
-            imageList.add(model.data.thumbnail)
+            imageList.add(model.data!!.thumbnail!!)
         }
         tv_image_count.text = imageList.size.toString()
 
@@ -715,7 +697,7 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
             bedroomsList.clear()
             areaList.clear()
 
-            for (i in model.data.floorPlans) {
+            for (i in model.data!!.floorPlans!!) {
                 var isBedroomAdded = bedroomsList.any {
                     it.bedrooms == i.favePlanRooms
                 }
@@ -750,7 +732,7 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
 
         if (!model.data?.childProperties.isNullOrEmpty()) {
             propertiesList.clear()
-            propertiesList.addAll(model.data.childProperties)
+            propertiesList.addAll(model.data!!.childProperties!!)
             adapterProjectProperties.notifyDataSetChanged()
         }
     }
