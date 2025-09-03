@@ -215,12 +215,13 @@
 
                     <TextView
                         android:id="@+id/tv_details"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/ll_items"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
-                        android:maxLines="2"
+                        android:maxLines="1"
+                        android:singleLine="true"
                         android:text="@string/ad_details"
                         android:textColor="@color/grey"
                         android:textSize="12sp" />

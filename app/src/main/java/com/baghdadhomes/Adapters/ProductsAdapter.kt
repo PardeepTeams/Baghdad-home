@@ -1,5 +1,6 @@
 package com.baghdadhomes.Adapters
 
+import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Handler
@@ -119,7 +120,7 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
 
         holder.itemView.setOnClickListener {
             val intent:Intent = Intent(context, ProjectDetailActivity::class.java)
-             intent.putExtra("propertyId", projectList[position].id.toString())
+            intent.putExtra("propertyId", projectList[position].id.toString())
             context.startActivity(intent)
         }
 

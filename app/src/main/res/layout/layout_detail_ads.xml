@@ -104,9 +104,10 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:maxLines="1"
                         android:singleLine="true"
+                        android:includeFontPadding="false"
                         android:text="@string/ad_title"
                         android:textColor="@color/darkGrey"
-                        android:textSize="20sp" />
+                        android:textSize="16sp" />
 
 
                     <TextView
@@ -120,6 +121,8 @@
                         android:drawablePadding="7dp"
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:maxLines="1"
+                        android:layout_marginTop="4dp"
+                        android:includeFontPadding="false"
                         android:singleLine="true"
                         android:text="@string/ad_type"
                         android:textColor="@color/grey"
@@ -131,10 +134,11 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_centerVertical="true"
-
+                        android:includeFontPadding="false"
                         android:drawableStart="@drawable/img_locations"
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:maxLines="1"
+                        android:layout_marginTop="4dp"
                         android:drawablePadding="7dp"
                         android:singleLine="true"
                         android:text="@string/street_width"
@@ -213,7 +217,8 @@
                         android:layout_below="@+id/ll_items"
                         android:layout_marginTop="4dp"
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
-                        android:maxLines="2"
+                        android:maxLines="1"
+                        android:includeFontPadding="false"
                         android:text="@string/ad_details"
                         android:textColor="@color/grey"
                         android:textSize="12sp" />
@@ -224,6 +229,7 @@
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/tv_details"
                         android:layout_marginTop="4dp"
+                        android:includeFontPadding="false"
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:layout_alignParentEnd="true"
                         android:text=""
