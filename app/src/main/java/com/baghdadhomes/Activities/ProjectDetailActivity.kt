@@ -337,7 +337,6 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
         rvFloorPlans = findViewById(R.id.rvFloorPlans)
 
         tv_additional_ads.paint.isUnderlineText = true
-        tv_recommended.paint.isUnderlineText = true
 
         isLogged = PreferencesService.instance.userLoginStatus!!
 
