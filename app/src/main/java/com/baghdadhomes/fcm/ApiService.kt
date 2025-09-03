@@ -15,7 +15,7 @@ interface ApiService {
     @Headers(
         "Content-Type:application/json"
     )
-    @POST("v1/projects/baghdadhomes/messages:send")
+    @POST("v1/projects/najafhomes/messages:send")
     fun sendNotification(@Header ("Authorization") token : String, @Body root: RootModel?): Call<ResponseBody?>?
 
 
