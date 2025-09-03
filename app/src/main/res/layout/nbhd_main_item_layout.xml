@@ -2,15 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:paddingVertical="5dp"
     android:layout_height="wrap_content">
 
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         app:cardCornerRadius="12dp"
-        android:clipToPadding="true"
-        app:cardElevation="4dp"
-        app:cardUseCompatPadding="true"
+        android:clipToPadding="false"
+        app:cardElevation="3dp"
+        android:layout_marginHorizontal="12dp"
+        app:cardUseCompatPadding="false"
         android:outlineAmbientShadowColor="@color/grey"
         android:outlineSpotShadowColor="@color/grey"
         android:layout_alignParentStart="true"
