@@ -17,14 +17,14 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleType="centerCrop"
-            android:src="@drawable/img" />
+            android:src="@drawable/img_placeholder" />
 
         <TextView
             android:id="@+id/cityName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
-            android:background="#66000000"
+            android:background="#77000000"
             android:padding="7dp"
             android:text="City Name"
             android:fontFamily="@font/gmp_ref_typeface_plain_medium"

@@ -60,7 +60,7 @@
 
                 <TextView
                     android:id="@+id/tv_city_name"
-                    android:text="Baghdad"
+                    android:text="@string/bagdad"
                     android:paddingVertical="3dp"
                     android:paddingHorizontal="2dp"
                     android:drawableStart="@drawable/ic_location_new"

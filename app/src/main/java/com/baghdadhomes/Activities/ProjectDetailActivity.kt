@@ -133,7 +133,7 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
     lateinit var rvFloorPlans: RecyclerView
 
     var isLogged: Boolean = true
-    var prop_id: String = ""
+    var prop_id: String = "54454"
     var prop_type: String? = null
     var prop_sub_type: String? = null
     var address: String? = null
@@ -348,9 +348,9 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
            //  prop_id = intent.getStringExtra("propertyId")
          }*/
 
-        if(intent.getStringExtra("propertyId")!=null){
+       /* if(intent.getStringExtra("propertyId")!=null){
             prop_id = intent.getStringExtra("propertyId")!!
-        }
+        }*/
         relative_main.visibility = View.GONE
 
         img_auto_scroll.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {

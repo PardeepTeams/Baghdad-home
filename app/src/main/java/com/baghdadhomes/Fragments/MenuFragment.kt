@@ -131,9 +131,20 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     }
 
     private fun startAutoSlide() {
+        job?.cancel()
+        job?.cancel() // cancel previous if any
         job = CoroutineScope(Dispatchers.Main).launch {
+            while (job?.isActive == true) {
+                delay(8000) // wait before moving
+                if (arrayList.isNotEmpty()) {
+                    currentIndex = (currentIndex + 1) % arrayList.size
+                    img_auto_scroll.setCurrentItem(currentIndex, true)
+                }
+            }
+        }
+     /*   job = CoroutineScope(Dispatchers.Main).launch {
             while (true) {
-                delay(4000)
+                delay(8000)
                 if (currentIndex == (arrayList.size - 1)){
                     currentIndex = 0
                 } else {
@@ -141,12 +152,18 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                 }
                 img_auto_scroll.setCurrentItem(currentIndex, true)
             }
-        }
+        }*/
     }
 
     override fun onDestroy() {
         super.onDestroy()
         job?.cancel()
+        job = null
+    }
+    override fun onPause() {
+        super.onPause()
+        job?.cancel()
+        job = null
     }
 
     fun saveFeaturedData(model: NewFeatureModel){
