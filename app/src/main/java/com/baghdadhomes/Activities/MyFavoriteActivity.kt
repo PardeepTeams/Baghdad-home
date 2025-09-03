@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -45,14 +46,37 @@ class MyFavoriteActivity : BaseActivity(), AdapterDetailAds.openDetailPage {
         rv_my_fav = findViewById(R.id.rv_my_fav)
 
         img_back.setOnClickListener { onBackPressed() }
+        clickListeners()
+        tvProperties.performClick()
 
         rv_my_fav.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
         adapterDetailAds = AdapterDetailAds(this, this, favList, /*false, false*/)
         //rv_my_fav.adapter = favAdapter
+
+    }
+
+    fun clickListeners() {
+        tvProperties.setOnClickListener {
+            tvProperties.background = ContextCompat.getDrawable(this,R.drawable.bg_outline_blue_new)
+            tvProperties.setTextColor(ContextCompat.getColor(this,R.color.whiteNew))
+
+            tvProject.background = ContextCompat.getDrawable(this,R.drawable.bg_outline_solid)
+            tvProject.setTextColor(ContextCompat.getColor(this,R.color.grey))
+
+        }
+
+        tvProject.setOnClickListener {
+            tvProperties.background = ContextCompat.getDrawable(this,R.drawable.bg_outline_solid)
+            tvProperties.setTextColor(ContextCompat.getColor(this,R.color.grey))
+
+            tvProject.background = ContextCompat.getDrawable(this,R.drawable.bg_outline_blue_new)
+            tvProject.setTextColor(ContextCompat.getColor(this,R.color.whiteNew))
+        }
+
     }
 
     override fun getResponse(apiType: String, respopnse: JsonObject) {
-        if (apiType.equals(Constants.GET_FAVORITE)){
+        if (apiType == Constants.GET_FAVORITE){
             val model = Gson().fromJson(respopnse, NewFeatureModel::class.java)
             favList.clear()
             if (model.success){
