@@ -130,6 +130,10 @@ class Constants {
         const val GET_Project_CITY = "Project_city_API"
         const val GET_Project_City_API = "houzez-mobile-api/v1/get-projects-by-city"
 
+
+        const val GET_FAV_Project = "Project_FAV_API"
+        const val GET_FAV_Project_API = "houzez-mobile-api/v1/favorite-projects"
+
         const val GET_PROJECT_DETAILS = "houzez-mobile-api/v1/get-project-detail"
 
         var reelsModel: ReelResult? = null

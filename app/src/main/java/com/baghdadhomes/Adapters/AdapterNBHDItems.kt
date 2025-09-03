@@ -78,12 +78,12 @@ class AdapterNBHDItems(private val context: Context,
         var ivExpand : ImageView = convertView.findViewById(R.id.ivExpand)
 
         if(PreferencesService.instance.getLanguage().equals("ar")){
-            tvName.text = categoryList[groupPosition].name
+            tvName.text = categoryList[groupPosition].name.toSentenceCase()
         }else{
             if(categoryList[groupPosition].description!=null && categoryList[groupPosition].description.isNotEmpty()) {
-                tvName.text = categoryList[groupPosition].description
+                tvName.text = categoryList[groupPosition].description.toSentenceCase()
             } else {
-                tvName.text = categoryList[groupPosition].name
+                tvName.text = categoryList[groupPosition].name.toSentenceCase()
             }
         }
 
@@ -110,12 +110,12 @@ class AdapterNBHDItems(private val context: Context,
         var tvName : TextView = convertView.findViewById(R.id.tvName)
 
         if(PreferencesService.instance.getLanguage().equals("ar")){
-            tvName.text = categoryList[groupPosition].area[childPosition].name
+            tvName.text = categoryList[groupPosition].area[childPosition].name.toSentenceCase()
         }else{
             if(categoryList[groupPosition].area[childPosition].description!=null && categoryList[groupPosition].area[childPosition].description.isNotEmpty()) {
-                tvName.text = categoryList[groupPosition].area[childPosition].description
+                tvName.text = categoryList[groupPosition].area[childPosition].description.toSentenceCase()
             } else {
-                tvName.text = categoryList[groupPosition].area[childPosition].name
+                tvName.text = categoryList[groupPosition].area[childPosition].name.toSentenceCase()
             }
         }
 
@@ -160,6 +160,12 @@ class AdapterNBHDItems(private val context: Context,
             valueFilter = ValueFilter()
         }
         return valueFilter as ValueFilter
+    }
+
+    fun String.toSentenceCase(): String {
+        return this.lowercase().replaceFirstChar {
+            if (it.isLowerCase()) it.titlecase() else it.toString()
+        }
     }
 
     inner class ValueFilter : Filter() {
@@ -222,6 +228,8 @@ class AdapterNBHDItems(private val context: Context,
 
             notifyDataSetChanged()
         }
+
+
 
     }
 }
