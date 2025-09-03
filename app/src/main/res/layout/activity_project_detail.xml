@@ -938,6 +938,7 @@
                     android:layout_toStartOf="@+id/imv_premium"
                     android:background="@drawable/transpart_bg"
                     android:paddingVertical="2dp"
+                    android:visibility="gone"
                     android:paddingHorizontal="5dp">
 
                     <ImageView
