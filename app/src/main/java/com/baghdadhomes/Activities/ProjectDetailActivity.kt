@@ -67,12 +67,19 @@ import com.baghdadhomes.Adapters.AdapterAreaItem
 import com.baghdadhomes.Adapters.AdapterFloorBedrooms
 import com.baghdadhomes.Adapters.AdapterFloorPlans
 import com.baghdadhomes.Adapters.AdapterPriceItems
+import com.baghdadhomes.Adapters.AdapterProjectProperties
+import com.baghdadhomes.Adapters.AdapterProjectProperties.ProjectPropertyActions
+import com.baghdadhomes.Models.ChildProperty
+import com.baghdadhomes.Models.ModelPropertyBedrooms
+import com.baghdadhomes.Models.ModelPropertyPriceTable
+import com.baghdadhomes.Models.ProjectDetailResponse
+import com.baghdadhomes.Models.ProjectFloorPlan
 
-class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
+class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReadyCallback {
     lateinit var img_auto_scroll: ViewPager2
     lateinit var indicatorLayout: LinearLayout
     lateinit var rv_recommended: RecyclerView
-    lateinit var adapterDetailAds: AdapterDetailAds
+    lateinit var adapterProjectProperties : AdapterProjectProperties
     lateinit var img_back: ImageView
     lateinit var tv_report: TextView
     lateinit var tv_viewMore: TextView
@@ -80,7 +87,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
     var type:String = "all"
     var loading: Boolean = true
     var totalCount:Int = 0
-    var propertiesList:ArrayList<Result> = ArrayList()
+    var propertiesList:ArrayList<ChildProperty> = ArrayList()
     lateinit var nestedScrollView:NestedScrollView
     lateinit var tv_ads_title_name: TextView
     lateinit var dt_address: TextView
@@ -133,13 +140,16 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
     var map: GoogleMap? = null
     var imageList:ArrayList<String> = ArrayList()
 
-    var areaList : ArrayList<Boolean> = ArrayList()
-    lateinit var areaItemsAdapter : AdapterAreaItem
+    var areaList : ArrayList<ModelPropertyBedrooms> = ArrayList()
+    lateinit var adapterAreaItem : AdapterAreaItem
 
-    var bedroomsList : ArrayList<Boolean> = ArrayList()
-    lateinit var areaFloorBedrooms : AdapterFloorBedrooms
-
+    var priceTableList : ArrayList<ModelPropertyPriceTable> = ArrayList()
     lateinit var priceItemsAdapter : AdapterPriceItems
+
+    var bedroomsList : ArrayList<ModelPropertyBedrooms> = ArrayList()
+    lateinit var adapterFloorBedrooms : AdapterFloorBedrooms
+
+    var floorPlansList : ArrayList<ProjectFloorPlan> = ArrayList()
     lateinit var adapterFloorPlans: AdapterFloorPlans
 
 
@@ -147,7 +157,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
     private var job: Job? = null
     lateinit var tv_see_all:TextView
     var isFav = false;
-    var adsDetailModel: AdsDetailModel? = null
+    var adsDetailModel: ProjectDetailResponse? = null
 
     override fun onMapReady(p0: GoogleMap) {
         map = p0
@@ -170,13 +180,6 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
             map["project_id"] = prop_id.toString()
             if (isLogged) {
                 map["user_id"] = PreferencesService.instance.getUserData!!.ID.toString()
-            }
-            if (intent.getStringExtra("view_count") != null) {
-                val count =intent.getStringExtra("view_count")
-                map["total_view"] = count.toString()
-            }else{
-                val count ="0"
-                map["total_view"] = count.toString()
             }
             if (isNetworkAvailable()) {
                 fetchViewCount(true,map)
@@ -215,11 +218,11 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
         }
 
 
-        adapterDetailAds = AdapterDetailAds(this, this, propertiesList/* false, false*/)
+        adapterProjectProperties = AdapterProjectProperties(this, this, propertiesList)
         rv_recommended.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false))
-        //rv_recommended.setAdapter(adapterDetailAds)
         rv_recommended.isNestedScrollingEnabled = false
         nestedScrollView.isSmoothScrollingEnabled = true
+        rv_recommended.setAdapter(adapterProjectProperties)
 
         img_back.setOnClickListener(View.OnClickListener {
             finish()
@@ -247,24 +250,24 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
         })
 
         nestedScrollView.getViewTreeObserver().addOnScrollChangedListener {
-                try {
-                    if(loading){
-                        val view = nestedScrollView.getChildAt(nestedScrollView.size - 1) as View
-                        val diff: Int = view.bottom - (nestedScrollView.getHeight() + nestedScrollView.getScrollY())
-                        if (diff == 0) {
-                            if (propertiesList.size > 0) {
-                                if (isNetworkAvailable()){
-                                    loading = false
-                                    getProperties(true)
-                                } else{
-                                    showToast(this, resources.getString(R.string.intenet_error))
-                                }
+            try {
+                if(loading){
+                    val view = nestedScrollView.getChildAt(nestedScrollView.size - 1) as View
+                    val diff: Int = view.bottom - (nestedScrollView.getHeight() + nestedScrollView.getScrollY())
+                    if (diff == 0) {
+                        if (propertiesList.size > 0) {
+                            if (isNetworkAvailable()){
+                                loading = false
+                                // getProperties(true)
+                            } else{
+                                showToast(this, resources.getString(R.string.intenet_error))
                             }
                         }
                     }
-                } catch (e: Exception) {
-                    e.message
                 }
+            } catch (e: Exception) {
+                e.message
+            }
 
         }
 
@@ -334,16 +337,16 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
 
         isLogged = PreferencesService.instance.userLoginStatus!!
 
-       /* if(intent.getStringExtra("type")!=null){
-            type = intent.getStringExtra("type")!!
-            // modelIntent = Gson().fromJson(intent.getStringExtra("model"),Result::class.java)
-            prop_id = intent.getStringExtra("propertyId")
-        } else if (intent.getStringExtra("propertyId")!=null){
-            //  modelIntent = Gson().fromJson(intent.getStringExtra("model"), Result::class.java)
-          //  prop_id = intent.getStringExtra("propertyId")
-        } else if (intent.getStringExtra("propertyId")!=null){
-          //  prop_id = intent.getStringExtra("propertyId")
-        }*/
+        /* if(intent.getStringExtra("type")!=null){
+             type = intent.getStringExtra("type")!!
+             // modelIntent = Gson().fromJson(intent.getStringExtra("model"),Result::class.java)
+             prop_id = intent.getStringExtra("propertyId")
+         } else if (intent.getStringExtra("propertyId")!=null){
+             //  modelIntent = Gson().fromJson(intent.getStringExtra("model"), Result::class.java)
+           //  prop_id = intent.getStringExtra("propertyId")
+         } else if (intent.getStringExtra("propertyId")!=null){
+           //  prop_id = intent.getStringExtra("propertyId")
+         }*/
 
         if(intent.getStringExtra("propertyId")!=null){
             prop_id = intent.getStringExtra("propertyId")!!
@@ -358,50 +361,41 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
         })
 
         rvAreas.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        areaList.add(true)
-        areaList.add(false)
-        areaList.add(false)
-        areaList.add(false)
-        areaList.add(false)
-        areaItemsAdapter = AdapterAreaItem(this, areaList, onAreaItemClickInterface = object  : AdapterAreaItem.AreaItemClickInterface{
-                override fun onAreaItemClick(position: Int) {
-                    for (i in areaList.indices) {
-                        areaList[i] = false
-                    }
-                    areaList[position] = true
-                    areaItemsAdapter.notifyDataSetChanged()
+        adapterAreaItem = AdapterAreaItem(this, areaList, onAreaItemClickInterface = object  : AdapterAreaItem.AreaItemClickInterface{
+            override fun onAreaItemClick(position: Int) {
+                for (i in areaList) {
+                    i.isSelected = false
                 }
-        })
+                areaList[position].isSelected = true
+                adapterAreaItem.notifyDataSetChanged()
 
-        rvAreas.adapter = areaItemsAdapter
+                updatePriceTable(position)
+            }
+        })
+        rvAreas.adapter = adapterAreaItem
 
 
         rvAreaPrices.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
-        priceItemsAdapter = AdapterPriceItems(this,7)
+        priceItemsAdapter = AdapterPriceItems(this,priceTableList)
         rvAreaPrices.adapter = priceItemsAdapter
 
         rvBedrooms.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
-        bedroomsList.add(true)
-        bedroomsList.add(false)
-        areaFloorBedrooms = AdapterFloorBedrooms(this, bedroomsList, onAreaItemClickInterface = object  : AdapterFloorBedrooms.AreaItemClickInterface{
+        adapterFloorBedrooms = AdapterFloorBedrooms(this, bedroomsList, onAreaItemClickInterface = object  : AdapterFloorBedrooms.AreaItemClickInterface{
             override fun onAreaItemClick(position: Int) {
-                for (i in areaList.indices) {
-                    bedroomsList[i] = false
+                for (i in bedroomsList) {
+                    i.isSelected = false
                 }
-                bedroomsList[position] = true
-                areaFloorBedrooms.notifyDataSetChanged()
+                bedroomsList[position].isSelected = true
+                adapterFloorBedrooms.notifyDataSetChanged()
+
+                updateFloorPlansList(position)
             }
         })
 
-        rvBedrooms.adapter = areaFloorBedrooms
+        rvBedrooms.adapter = adapterFloorBedrooms
 
         rvFloorPlans.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
-        var bannerList = ArrayList<String>()
-        bannerList.add("https://najafhome.com/baghdad/wp-content/uploads/2022/11/pexels-pixabay-534151-scaled1-1024x683.jpg")
-        bannerList.add("https://najafhome.com//baghdad//wp-content//uploads//2025//01//438231037_957479906380327_2283534599770344636_n-1024x683.jpg")
-        bannerList.add("https://najafhome.com//baghdad//wp-content//uploads//2022//11//main-ads4-1024x683.jpg")
-        adapterFloorPlans = AdapterFloorPlans(this, bannerList)
-        rvFloorPlans.adapter = adapterFloorPlans
+        adapterFloorPlans = AdapterFloorPlans(this, floorPlansList)
         rvFloorPlans.adapter = adapterFloorPlans
     }
 
@@ -422,7 +416,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
             map.put("user_id", userData!!.ID!!)
             map.put("listing_id", prop_id.toString())
             if (adsDetailModel != null) {
-                adsDetailModel?.result?.is_fav = adsDetailModel?.result?.is_fav != true
+                adsDetailModel?.data?.isFav = adsDetailModel?.data?.isFav != true
             }
             if (img_bookmark.isVisible){
                 img_bookmark.visibility = View.GONE
@@ -443,41 +437,14 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
             val model: NewFeatureModel = Gson().fromJson(respopnse,
                 NewFeatureModel::class.java)
             isFav = !isFav
-            if (model.success && adsDetailModel != null){
+            /*if (model.success && adsDetailModel != null){
                 PreferencesService.instance.saveChangedPropertyDataId(adsDetailModel!!.result!!.iD,adsDetailModel!!.result!!.is_fav)
-            }
+            }*/
 
-        } else if(apiType == Constants.GET_PROPERTIES_DETAIL){
-                val model: NewFeatureModel = Gson().fromJson(respopnse,
-                    NewFeatureModel::class.java)
-                if(model.success){
-                    if(model.count!=null){
-                        totalCount = model.count
-                    }
-                    if(page == 1){
-                        propertiesList.clear()
-                    }
-                    loading = true
-                    for (i in model.result){
-                        if (i.iD!= prop_id){
-                            propertiesList.add(i)
-                        }
-                    }
-                    //propertiesList.addAll(model.result)
-                    //  val fastAdapter = FastAdapter.with(adapterDetailAds)
-                    rv_recommended.setAdapter(adapterDetailAds)
-                    adapterDetailAds.notifyDataSetChanged()
-                }
-            } else if (apiType == Constants.VIEW_COUNT){
-                val model:AdsDetailModel = Gson().fromJson(respopnse, AdsDetailModel::class.java)
-                updateUI(model)
-
-
-
-            }
+        }
     }
 
-    private fun updateUI(model:AdsDetailModel){
+    private fun updateUI(model:ProjectDetailResponse){
         try {
             if (progressHUD != null && progressHUD!!.isShowing()) {
                 Handler(Looper.getMainLooper()).postDelayed(Runnable {
@@ -489,44 +456,31 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
             e.message
         }
         relative_main.visibility = View.VISIBLE
-        if (model.success && model.result != null){
+        if (model.data != null){
             // responseList.add(model.result)
 
-            val newViewCount = model?.result?.property_meta?.houzez_total_property_views?.get(0) ?: "0"
+            val newViewCount = model.data?.totalViews ?: "0"
             tv_view_count.text = newViewCount
-            isFav = model.result.is_fav
+            isFav = model.data.isFav?:false
 
             /*  if (modelIntent != null){
                   modelIntent?.totalViews = newViewCount
                   PreferencesService.instance.saveChangedPropertyData(modelIntent!!)
               }*/
 
-            if (intent.getBooleanExtra("myAd", false)){
+            img_bookmark.visibility = View.VISIBLE
+            img_bookmarked.visibility = View.GONE
+            rl_bottom.visibility = View.VISIBLE
+            if (model.data.isFav == true){
                 img_bookmark.visibility = View.GONE
-                img_bookmarked.visibility = View.GONE
-                rl_bottom.visibility = View.GONE
-            } else{
-                img_bookmark.visibility = View.VISIBLE
-                img_bookmarked.visibility = View.GONE
-                rl_bottom.visibility = View.VISIBLE
-                if (model.result?.is_fav != null){
-                    if (model.result?.is_fav == true){
-                        img_bookmark.visibility = View.GONE
-                        img_bookmarked.visibility = View.VISIBLE
-                    } else{
-                        img_bookmark.visibility = View.VISIBLE
-                        img_bookmarked.visibility = View.GONE
-                    }
-                }
+                img_bookmarked.visibility = View.VISIBLE
             }
 
             try {
-                if (!model.result.property_meta?.houzez_geolocation_lat.isNullOrEmpty()
-                    &&!model.result.property_meta?.houzez_geolocation_long.isNullOrEmpty()
-                    && !model.result.property_meta?.houzez_geolocation_lat?.get(0).isNullOrEmpty()
-                    && !model.result.property_meta?.houzez_geolocation_long?.get(0).isNullOrEmpty()){
-                    val lat = (model.result.property_meta?.houzez_geolocation_lat?.get(0) ?: "0.0").toDouble()
-                    val lng = (model.result.property_meta?.houzez_geolocation_long?.get(0) ?: "0.0").toDouble()
+                if (!model.data.houzezGeoLocationLat.isNullOrEmpty()
+                    &&!model.data.houzezGeoLocationLong.isNullOrEmpty()){
+                    val lat = model.data.houzezGeoLocationLat.toDouble()
+                    val lng = model.data.houzezGeoLocationLong.toDouble()
                     if (lat != 0.0 && lng != 0.0){
                         println("Latitude:$lat && Longitude:$lng")
                         llLocation.visibility = View.VISIBLE
@@ -550,80 +504,54 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
             }
 
 
-            if (intent.getBooleanExtra("myAd", false)){
-                rlOwner.visibility = View.GONE
-            } else {
-                if (model?.result?.agent_agency_info != null){
-                    rlOwner.visibility = View.VISIBLE
+            rlOwner.visibility = View.GONE
+            /*if (model?.result?.agent_agency_info != null){
+                rlOwner.visibility = View.VISIBLE
 
-                    Glide.with(this).load(model?.result?.agent_agency_info?.user_image.orEmpty())
-                        .placeholder(R.drawable.img_placeholder).
-                        apply( RequestOptions().override(300, 300).diskCacheStrategy(
-                            DiskCacheStrategy.ALL)).into(imgCircle)
-                    tvOwnerName.text = model?.result?.agent_agency_info?.display_name.orEmpty()
+                Glide.with(this).load(model?.result?.agent_agency_info?.user_image.orEmpty())
+                    .placeholder(R.drawable.img_placeholder).
+                    apply( RequestOptions().override(300, 300).diskCacheStrategy(
+                        DiskCacheStrategy.ALL)).into(imgCircle)
+                tvOwnerName.text = model?.result?.agent_agency_info?.display_name.orEmpty()
 
-                    rlOwner.setOnClickListener {
-                        val intent = Intent(this, CompanyAdsActivity::class.java)
-                        intent.putExtra("agencyData", Gson().toJson(model.result.agent_agency_info))
-                        startActivity(intent)
-                    }
-                } else {
-                    rlOwner.visibility = View.GONE
+                rlOwner.setOnClickListener {
+                    val intent = Intent(this, CompanyAdsActivity::class.java)
+                    intent.putExtra("agencyData", Gson().toJson(model.result.agent_agency_info))
+                    startActivity(intent)
                 }
-            }
+            } else {
+                rlOwner.visibility = View.GONE
+            }*/
 
-            if (model.result != null && model.result?.property_meta != null
-                && !model.result.property_meta?.video.isNullOrEmpty()
-                && !model.result.property_meta?.video?.get(0).isNullOrEmpty()){
-                rlVideoView.visibility = View.VISIBLE
+            rlVideoView.visibility = View.GONE
+//            if (model.result != null && model.result?.property_meta != null
+//                && !model.result.property_meta?.video.isNullOrEmpty()
+//                && !model.result.property_meta?.video?.get(0).isNullOrEmpty()){
+//                rlVideoView.visibility = View.VISIBLE
+//            } else{
+//                rlVideoView.visibility = View.GONE
+//            }
 
-            } else{
-                rlVideoView.visibility = View.GONE
-            }
-
-            if (!model.result.post_modified.isNullOrEmpty()){
-                dt_date.text = Utility.getDateInFormat(model.result.post_modified)
-            }
+            dt_date.text = Utility.getDateInFormat(model.data?.postDate ?:"")
 
             val land = "شقة"
-            if (model.result.property_type.contains(land)){
+            if (model.data?.propertyType?.contains(land) == true){
                 ll_additional_details.visibility = View.GONE
             } else{
                 ll_additional_details.visibility = View.VISIBLE
             }
 
-            if (model.result.post_title != null){
-                tv_ads_title_name.setText(model.result.post_title)
-            }
+            tv_ads_title_name.text = model.data?.postTitle ?: ""
 
-            if (model.result.iD != null){
-                property_id.setText(model.result.iD)
-            }
+            property_id.text = (model.data?.id?:0).toString()
 
-            if (model.result.property_address!= null){
-                if(model.result.property_address.property_area!=null){
-                    address =  model.result.property_address.property_area
-                }
-                if(model.result.property_address.property_city!=null){
-                    address =  address + " "+model.result.property_address.property_city
-                }
-                if(model.result.property_address.property_state!=null){
-                    address =  address + " "+model.result.property_address.property_state
-                }
+            address =  "${model.data.propertyAddress?.propertyArea?:""} ${model.data.propertyAddress?.propertyCity?:""}"
+            dt_address.setText(address)
 
-                if(model.result.property_address.property_country!=null){
-                    address =  address + " "+model.result.property_address.property_country
-                }
-                dt_address.setText(address)
-            }
+            prop_type = model.data.propertyType ?:""
 
-            if (model.result.property_type != null && !model.result.property_type.equals("null")){
-                prop_type = model.result.property_type
-            } else{
-                prop_type = ""
-            }
-
-            if (model.result.property_meta != null){
+            prop_sub_type = ""
+            /*if (model.result.property_meta != null){
                 if (model.result.property_meta.fave_property_garage_size != null){
                     prop_sub_type = model.result.property_meta.fave_property_garage_size.get(0)
                 } else{
@@ -631,7 +559,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
                 }
             } else{
                 prop_sub_type = ""
-            }
+            }*/
 
             val language = PreferencesService.instance.getLanguage()
             if (language == "ar"){
@@ -686,86 +614,36 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
                 else{
                     prop_sub_type = resources.getString(R.string.other)
                 }
-                dt_type.setText(prop_sub_type + " - " + prop_type)
-
-            } else{
-                dt_type.setText(prop_sub_type + " - " + prop_type)
-
             }
-            //dt_type.setText(prop_sub_type + " " + prop_type)
+            dt_type.setText(prop_sub_type + " - " + prop_type)
 
-            if(model.result.price!=null && !model.result.price.equals("null")){
-                dt_price.setText("("+model.result.price+")"+ resources.getString(R.string.currency_code))
-            } else{
-                dt_price.setText("(0)"+ resources.getString(R.string.currency_code))
-            }
+            dt_price.text = "(${model.data.price?:"0"})${resources.getString(R.string.currency_code)}"
 
-            if (model.result.property_meta.fave_property_size != null){
-                dt_area.setText(model.result.property_meta.fave_property_size.get(0) + " "+ resources.getString(R.string.m))
-            } else{
-                dt_area.setText("00 "+ resources.getString(R.string.m))
-            }
+            dt_area.setText("${model.data.size?:"00"} ${resources.getString(R.string.m)}")
 
-            if (model.result.post_content != null) {
-                val html = model.result.post_content
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                    dt_details.setText(Html.fromHtml(html, 0))
-                } else {
-                    dt_details.setText(Html.fromHtml(html))
-                }
-            }else{
-                dt_details.setText("")
+            val html = model.data.postContent ?:""
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                dt_details.setText(Html.fromHtml(html, 0))
+            } else {
+                dt_details.setText(Html.fromHtml(html))
             }
 
 
-            if (model.result.property_meta != null){
-                if (model.result.property_meta.fave_property_land != null){
-                    dt_width.setText(model.result.property_meta.fave_property_land.get(0) + resources.getString(R.string.m))
-                } else{
-                    dt_width.setText("0" + resources.getString(R.string.m))
-
-                }
-            } else{
-                dt_width.setText("0" + resources.getString(R.string.m))
-            }
+            dt_width.setText("${model.data.land ?: "0"} ${resources.getString(R.string.m)}")
 
 
-            if(model.result.property_meta.fave_property_bedrooms!=null){
-                dt_rooms.setText(model.result.property_meta.fave_property_bedrooms.get(0))
+            dt_rooms.setText(model.data.bedrooms?:"0")
+            dt_floors.setText(model.data.floors?:"0")
+            dt_bathroom.setText(model.data.bathrooms?:"0")
 
-            }else{
-                dt_rooms.setText("0")
-            }
-
-            if (model.result.property_meta != null){
-                if (model.result.property_meta.fave_property_garage != null){
-                    dt_floors.setText(model.result.property_meta.fave_property_garage.get(0))
-
-                }
-            } else{
-                dt_floors.setText("0")
-            }
-
-
-
-            if(model.result.property_meta.fave_property_bathrooms!=null){
-                dt_bathroom.setText(model.result.property_meta.fave_property_bathrooms.get(0))
-            }else{
-                dt_bathroom.setText("0")
-            }
-
-            if (model.result.property_attr != null) {
-                if (model.result.property_attr!!.property_status != null) {
-                    tv_status.setVisibility(View.VISIBLE)
-                    tv_status.setText(model.result.property_attr.property_status)
-                } else {
-                    tv_status.setVisibility(View.GONE)
-                }
+            if (!model.data.propertyAttr?.propertyStatus.isNullOrEmpty()) {
+                tv_status.setText(model.data.propertyAttr?.propertyStatus ?:"")
             } else {
                 tv_status.setVisibility(View.GONE)
             }
 
-            if(model.result.agent_agency_info !=null && !model.result.agent_agency_info.equals("null")){
+            contact_whatsapp.visibility = View.GONE
+            /*if(model.result.agent_agency_info !=null && !model.result.agent_agency_info.equals("null")){
                 if (!model.result.agent_agency_info.whatsapp_number.isNullOrEmpty()){
                     contact_whatsapp.visibility = View.VISIBLE
                     contact_whatsapp.setOnClickListener {
@@ -778,76 +656,131 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
                     }
                 } else{
                     contact_whatsapp.visibility = View.GONE
-                }
+                }*/
 
-                if (!model.result.agent_agency_info.call_number.isNullOrEmpty() &&
-                    !model.result.agent_agency_info.call_number.equals("null") ){
-                    contact_call.visibility = View.VISIBLE
-                    contact_call.setOnClickListener {
-                        val intent = Intent(Intent.ACTION_DIAL)
-                        intent.data = Uri.parse("tel:" + model.result.agent_agency_info.call_number)
-                        startActivity(intent)
-                    }
-                } else{
-                    contact_call.visibility = View.GONE
-                }
-            }else{
-                rl_bottom.visibility = View.GONE
-                contact_whatsapp.visibility = View.GONE
-                contact_call.visibility = View.GONE
-            }
-
-            if(model.result.is_premium){
-                imv_premium.visibility = View.VISIBLE
-            }else{
-                imv_premium.visibility = View.GONE
-            }
-
-            if (model.result.link != null){
-                imv_share.setOnClickListener {
-                    val sharingIntent = Intent(Intent.ACTION_SEND)
-                    sharingIntent.type = "text/plain"
-                    sharingIntent.putExtra(Intent.EXTRA_TEXT, "${getString(R.string.take_look_at_property)}\n\n${model.result.link}")
-                    startActivity(Intent.createChooser(sharingIntent, ""))
+            contact_call.visibility = View.GONE
+            /*if (!model.result.agent_agency_info.call_number.isNullOrEmpty() &&
+                !model.result.agent_agency_info.call_number.equals("null") ){
+                contact_call.visibility = View.VISIBLE
+                contact_call.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_DIAL)
+                    intent.data = Uri.parse("tel:" + model.result.agent_agency_info.call_number)
+                    startActivity(intent)
                 }
             } else{
-                imv_share.visibility = View.GONE
+                contact_call.visibility = View.GONE
+            }*/
+        }else{
+            rl_bottom.visibility = View.GONE
+            contact_whatsapp.visibility = View.GONE
+            contact_call.visibility = View.GONE
+        }
+
+        if(model.data?.isPremium == true){
+            imv_premium.visibility = View.VISIBLE
+        }else{
+            imv_premium.visibility = View.GONE
+        }
+
+        if (!model.data?.link.isNullOrEmpty()) {
+            imv_share.visibility = View.VISIBLE
+            imv_share.setOnClickListener {
+                val sharingIntent = Intent(Intent.ACTION_SEND)
+                sharingIntent.type = "text/plain"
+                sharingIntent.putExtra(Intent.EXTRA_TEXT, "${getString(R.string.take_look_at_property)}\n\n${model.data.link}")
+                startActivity(Intent.createChooser(sharingIntent, ""))
+            }
+        } else {
+            imv_share.visibility = View.INVISIBLE
+        }
+
+        if (!model.data?.galleryImages.isNullOrEmpty()) {
+            for (i in model.data.galleryImages) {
+                if (!i.url.isNullOrEmpty()) {
+                    imageList.add(i.url)
+                }
+            }
+        } else if (!model.data?.thumbnail.isNullOrEmpty()){
+            imageList.add(model.data.thumbnail)
+        }
+        tv_image_count.text = imageList.size.toString()
+
+        img_auto_scroll.adapter = AdapterAutoSliderDetailPage(this, imageList)
+        setupIndicators(imageList.size)
+        setCurrentIndicator(0)
+        startAutoSlide()
+        page = 0
+
+        if (!model.data?.floorPlans.isNullOrEmpty()) {
+            bedroomsList.clear()
+            areaList.clear()
+
+            for (i in model.data.floorPlans) {
+                var isBedroomAdded = bedroomsList.any {
+                    it.bedrooms == i.favePlanRooms
+                }
+                if (!isBedroomAdded) {
+                    bedroomsList.add(ModelPropertyBedrooms(false,i.favePlanRooms))
+                }
+
+                var isAreaAdded = areaList.any {
+                    it.bedrooms == i.favePlanSize
+                }
+                if (!isAreaAdded) {
+                    areaList.add(ModelPropertyBedrooms(false,i.favePlanSize))
+                }
             }
 
-
-            if (!model.result.property_images.isNullOrEmpty()){
-                for (i in model.result.property_images){
-                    if (i != "false"){
-                        imageList.add(i)
-                        //tv_image_count.setText(imageList.size.toString())
-                    }
-                }
-                if (imageList.isNotEmpty()){
-                    tv_image_count.setText(imageList.size.toString())
-                } else{
-                    tv_image_count.setText("0")
-                }
-            }else{
-                if(!model.result.thumbnail.isNullOrEmpty()){
-                    imageList.add(model.result.thumbnail)
-                    if (imageList.isNotEmpty()){
-                        tv_image_count.setText(imageList.size.toString())
-                    } else{
-                        tv_image_count.setText("0")
-                    }
-                }
-
+            if (bedroomsList.isNotEmpty()) {
+                bedroomsList[0].isSelected = true
+                adapterFloorBedrooms.notifyDataSetChanged()
+                updateFloorPlansList(0)
             }
+            if (areaList.isNotEmpty()) {
+                areaList.sortBy { item ->
+                    (item.bedrooms?:"").replace("[^0-9]".toRegex(), "").toInt()
+                }
+                areaList[0].isSelected = true
+                adapterAreaItem.notifyDataSetChanged()
+                updatePriceTable(0)
+            }
+        } else {
+            rvFloorPlans.visibility = View.GONE
+        }
 
-            img_auto_scroll.adapter = AdapterAutoSliderDetailPage(this, imageList)
-            setupIndicators(imageList.size)
-            setCurrentIndicator(0)
-            startAutoSlide()
-            page = 0
-            fetchProperties(true)
-
+        if (!model.data?.childProperties.isNullOrEmpty()) {
+            propertiesList.clear()
+            propertiesList.addAll(model.data.childProperties)
+            adapterProjectProperties.notifyDataSetChanged()
         }
     }
+
+    private fun updateFloorPlansList(position : Int) {
+        floorPlansList.clear()
+        if (!adsDetailModel?.data?.floorPlans.isNullOrEmpty()) {
+            var filteredPlanList = adsDetailModel?.data?.floorPlans?.filter {
+                it.favePlanRooms == bedroomsList[position].bedrooms
+            }.orEmpty()
+
+            floorPlansList.addAll(filteredPlanList as ArrayList<ProjectFloorPlan>)
+        }
+        adapterFloorPlans.notifyDataSetChanged()
+    }
+
+    private fun updatePriceTable(position : Int) {
+        priceTableList.clear()
+        if (!adsDetailModel?.data?.floorPlans.isNullOrEmpty()) {
+            var filteredPlanList = adsDetailModel?.data?.floorPlans?.filter {
+                it.favePlanSize == areaList[position].bedrooms
+            }.orEmpty()
+
+            for (i in filteredPlanList) {
+                priceTableList.add(ModelPropertyPriceTable(i.favePlanPrice,"Down Payment"))
+            }
+        }
+        priceItemsAdapter.notifyDataSetChanged()
+    }
+
 
     private fun setCurrentIndicator(position: Int) {
         currentIndex = position;
@@ -897,54 +830,30 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
         job?.cancel()
     }
 
-    fun getProperties(show:Boolean){
-        if (isNetworkAvailable()){
-            if(propertiesList.size<totalCount){
-                fetchProperties(true)
-                // hitGetApiWithoutTokenWithParams(Constants.GET_PROPERTIES_DETAIL,show, Constants.GETFEATUREDPROPERTIESNEW, pagemap)
-            }
-        } else{
-            showToast(this, resources.getString(R.string.intenet_error))
-        }
-    }
-
-    override fun openNextActivity(model: Result?, position: Int) {
-        val intent = Intent(this,ProjectDetailActivity::class.java)
-        intent.putExtra("type",type)
-        intent.putExtra("propertyId",model!!.iD)
-        intent.putExtra("view_count",model!!.totalViews)
+    override fun openNextActivity(model: ChildProperty?, position: Int) {
+        val intent = Intent(this, AdsDetailsActivity::class.java)
+        intent.putExtra("propertyId",(model?.id ?: 0).toString())
+        intent.putExtra("view_count", model?.totalViews ?: "0")
         intent.putExtra("myAd",false)
         startActivity(intent)
-        finish()
         overridePendingTransition(0, 0)
     }
 
-    override fun editAd(model: Result?) {
-
-    }
-
-    override fun deleteAd(model: Result?, position: Int) {
-
-    }
-
-    override fun addRemoveFav(model: Result?, position: Int) {
+    override fun addRemoveFav(model: ChildProperty?, position: Int) {
         if(isNetworkAvailable()){
-            val propId = model!!.iD
+            val propId = model?.id ?: 0
             val userData = PreferencesService.instance.getUserData
             val map: HashMap<String, String> = HashMap()
             map.put("user_id", userData!!.ID!!)
-            map.put("listing_id", propId)
-            //map.put("", favStatus)
-            if(propertiesList.get(position).is_fav == true){
-                propertiesList.get(position).is_fav =false
+            map.put("listing_id", propId.toString())
+            if(propertiesList[position].isFav == true){
+                propertiesList[position].isFav = false
             }else{
-                propertiesList.get(position).is_fav =true
+                propertiesList[position].isFav =true
             }
-            adapterDetailAds.notifyDataSetChanged()
+            adapterProjectProperties.notifyDataSetChanged()
             hitPostApi(Constants.ADD_REMOVE_FAV, false, Constants.ADD_REMOVE_FAV_API, map)
-
         }
-
     }
 
     override fun openLoginActivity() {
@@ -953,80 +862,8 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
         //overridePendingTransition(0,0)
     }
 
-
-    fun fetchProperties(showLoader: Boolean) {
-        page += 1
-        val params = hashMapOf(
-            "page" to page.toString(),
-            "per_page" to "10"
-        ).apply {
-            if (type != "all") put("type", type)
-            if (PreferencesService.instance.userLoginStatus == true) {
-                put("user_id", PreferencesService.instance.getUserData!!.ID.toString())
-            }
-        }
-
-        lifecycleScope.launch(Dispatchers.IO) {
-            if (showLoader) {
-                withContext(Dispatchers.Main) {
-                    progressHUD?.dismiss()
-                    progressHUD = ProgressHud.show(this@ProjectDetailActivity, false, false)
-                }
-            }
-
-            try {
-                val response = ApiClient.api?.getProperties(
-                    ApiClient.baseUrl + Constants.GETFEATUREDPROPERTIESNEW,
-                    params
-                )
-
-                if (response == null) {
-                    showError(showLoader)
-                    return@launch
-                }
-
-                if (response.isSuccessful && response.code() == 200) {
-                    val model = response.body()
-                    model?.takeIf { it.success }?.let { updateProperties(it, showLoader) }
-                        ?: showError(showLoader)
-                } else {
-                    val errorMsg = try {
-                        JSONObject(response.errorBody()?.string() ?: "")
-                            .getString(Constants.MESSAGE)
-                    } catch (_: Exception) {
-                        null
-                    }
-                    showError(showLoader, errorMsg)
-                }
-            } catch (e: Exception) {
-                Log.e("fetchProperties", e.message.toString())
-                showError(showLoader)
-            } finally {
-                if (showLoader) withContext(Dispatchers.Main) { progressHUD?.dismiss() }
-            }
-        }
-    }
-
-    @SuppressLint("NotifyDataSetChanged")
-    private suspend fun updateProperties(model: NewFeatureModel, showLoader: Boolean) {
-        withContext(Dispatchers.Main) {
-            model.count?.let { totalCount = it }
-            if (page == 1) propertiesList.clear()
-
-            loading = true
-            model.result.forEach { if (it.iD != prop_id) propertiesList.add(it) }
-
-            rv_recommended.adapter = adapterDetailAds
-            adapterDetailAds.notifyDataSetChanged()
-
-            if (showLoader) {
-                delay(100) // smooth dismissal
-                progressHUD?.dismiss()
-            }
-        }
-    }
-
     fun fetchViewCount(showLoader: Boolean, params: HashMap<String, String>) {
+        println("Params : $params")
         lifecycleScope.launch {
             if (showLoader) {
                 progressHUD?.dismiss()
@@ -1034,7 +871,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
             }
 
             try {
-                val response = ApiClient.api?.getView(ApiClient.baseUrl + Constants.VIEW_COUNT_API_NEW, params)
+                val response = ApiClient.api?.getPropertyDetails(ApiClient.baseUrl + Constants.GET_PROJECT_DETAILS, params)
 
                 if (response == null) {
                     showError(showLoader)
@@ -1043,7 +880,7 @@ class ProjectDetailActivity : BaseActivity(), openDetailPage, OnMapReadyCallback
 
                 if (response.isSuccessful && response.code() == 200) {
                     adsDetailModel = response.body()
-                    adsDetailModel?.takeIf { it.success }?.let { model ->
+                    adsDetailModel?.takeIf { it.success == "true"}?.let { model ->
                         runOnUiThread { updateUI(model) }
                     } ?: showError(showLoader)
                 } else {

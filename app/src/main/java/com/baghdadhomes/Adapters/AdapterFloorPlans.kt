@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.baghdadhomes.Models.ProjectFloorPlan
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
 
-class AdapterFloorPlans(var context : Context,var list : ArrayList<String>) : RecyclerView.Adapter<AdapterFloorPlans.ViewHolder>(){
+class AdapterFloorPlans(var context : Context,var list : ArrayList<ProjectFloorPlan>) : RecyclerView.Adapter<AdapterFloorPlans.ViewHolder>(){
 
     class  ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var imgPlan : ImageView = itemView.findViewById(R.id.imgPlan)
+        var tvArea : TextView = itemView.findViewById(R.id.tvArea)
+        var tvBedroom : TextView = itemView.findViewById(R.id.tvBedroom)
+        var tvBathroom : TextView = itemView.findViewById(R.id.tvBathroom)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -36,7 +41,13 @@ class AdapterFloorPlans(var context : Context,var list : ArrayList<String>) : Re
         holder: ViewHolder,
         position: Int
     ) {
-        Glide.with(context).load(list[position]).placeholder(R.drawable.img_placeholder).into(holder.imgPlan)
+        Glide.with(context).load(list[position].favePlanImage?:"")
+            .placeholder(R.drawable.img_placeholder)
+            .into(holder.imgPlan)
+
+        holder.tvArea.text = list[position].favePlanSize ?:"0m2"
+        holder.tvBedroom.text = list[position].favePlanRooms ?:"0"
+        holder.tvBathroom.text = list[position].favePlanBathrooms ?:"0"
     }
 
     override fun getItemCount(): Int {

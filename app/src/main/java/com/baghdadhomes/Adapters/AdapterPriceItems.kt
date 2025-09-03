@@ -6,9 +6,10 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.baghdadhomes.Models.ModelPropertyPriceTable
 import com.baghdadhomes.R
 
-class AdapterPriceItems(var context : Context, var list : Int) : RecyclerView.Adapter<AdapterPriceItems.ViewHolder>() {
+class AdapterPriceItems(var context : Context, var list : ArrayList<ModelPropertyPriceTable>) : RecyclerView.Adapter<AdapterPriceItems.ViewHolder>() {
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var tvPrice : TextView = itemView.findViewById(R.id.tvPrice)
         var tvText : TextView = itemView.findViewById(R.id.tvText)
@@ -26,7 +27,9 @@ class AdapterPriceItems(var context : Context, var list : Int) : RecyclerView.Ad
         holder: ViewHolder,
         position: Int
     ) {
-        if (position == (list-1)) {
+        holder.tvPrice.text = list[position].price ?: "0"
+        holder.tvText.text = list[position].text ?: ""
+        if (position == (list.size-1)) {
             holder.view.visibility = View.GONE
         } else {
             holder.view.visibility = View.VISIBLE
@@ -34,6 +37,6 @@ class AdapterPriceItems(var context : Context, var list : Int) : RecyclerView.Ad
     }
 
     override fun getItemCount(): Int {
-        return  list
+        return list.size
     }
 }

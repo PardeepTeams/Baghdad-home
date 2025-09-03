@@ -7,10 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.baghdadhomes.Models.ModelPropertyBedrooms
 import com.baghdadhomes.R
 
 
-class AdapterFloorBedrooms (var context: Context, var list : ArrayList<Boolean>, var onAreaItemClickInterface: AreaItemClickInterface)
+class AdapterFloorBedrooms (var context: Context, var list : ArrayList<ModelPropertyBedrooms>, var onAreaItemClickInterface: AreaItemClickInterface)
     : RecyclerView.Adapter<AdapterFloorBedrooms.ViewHolder>(){
     class  ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var tvArea : TextView = itemView.findViewById(R.id.tvArea)
@@ -27,9 +28,8 @@ class AdapterFloorBedrooms (var context: Context, var list : ArrayList<Boolean>,
         holder: ViewHolder,
         position: Int
     ) {
-        var bedroom = (position+3)
-        holder.tvArea.text = "${bedroom} Bedrooms"
-        if (list[position] == true) {
+        holder.tvArea.text = "${list[position].bedrooms ?: "0"} ${context.getString(R.string.bedroom)}"
+        if (list[position].isSelected == true) {
             holder.tvArea.background = ContextCompat.getDrawable(context, R.drawable.bg_area_selected)
             holder.tvArea.setTextColor( ContextCompat.getColor(context, R.color.blue))
         } else {

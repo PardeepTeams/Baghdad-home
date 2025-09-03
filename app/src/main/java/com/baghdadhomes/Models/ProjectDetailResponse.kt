@@ -32,8 +32,14 @@ data class PropertyDetailData(
     @SerializedName("houzez_geolocation_long") val houzezGeoLocationLong: String? = null,
     @SerializedName("link") val link: String? = null,
     @SerializedName("is_premium") val isPremium: Boolean? = null,
+    @SerializedName("gallery_images") val galleryImages: ArrayList<GalleryImages>? = null,
     @SerializedName("floor_plans") val floorPlans: ArrayList<ProjectFloorPlan>? = null,
-    @SerializedName("child_properties") val childProperties: java.util.ArrayList<ChildProperty>? = null
+    @SerializedName("child_properties") val childProperties: ArrayList<ChildProperty>? = null
+)
+
+data class GalleryImages(
+    @SerializedName("id") val id: String? = null,
+    @SerializedName("url") val url: String? = null,
 )
 
 data class ChildProperty(
@@ -42,7 +48,7 @@ data class ChildProperty(
     @SerializedName("post_content") val postContent: String? = null,
     @SerializedName("post_date") val postDate: String? = null,
     @SerializedName("thumbnail") val thumbnail: String? = null,
-    @SerializedName("is_fav") val isFav: Boolean? = null,
+    @SerializedName("is_fav") var isFav: Boolean? = null,
     @SerializedName("property_address") val propertyAddress: ProjectPropertyAddress? = null,
     @SerializedName("property_type") val propertyType: String? = null,
     @SerializedName("property_attr") val propertyAttr: ProjectPropertyAttr? = null,
