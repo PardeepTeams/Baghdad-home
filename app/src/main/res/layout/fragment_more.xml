@@ -22,7 +22,7 @@
                 android:id="@+id/rl_top"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp">
+                android:layout_marginTop="10dp">
                 <RelativeLayout
                     android:id="@+id/rl_icon"
                     android:layout_width="wrap_content"
@@ -49,7 +49,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/najaf_homes"
                         android:textColor="@color/darkGrey"
-                        android:textSize="20sp" />
+                        android:textSize="18sp" />
 
                     <TextView
                         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/real_estate_service"
                         android:textColor="@color/grey"
-                        android:textSize="17dp" />
+                        android:textSize="14sp" />
 
 
                 </RelativeLayout>
@@ -82,8 +82,8 @@
 
                     <RelativeLayout
                         android:id="@+id/rl_image"
-                        android:layout_width="60dp"
-                        android:layout_height="60dp"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
                         android:layout_marginStart="10dp"
                         android:layout_marginTop="10dp"
                         android:layout_marginBottom="10dp"
@@ -113,7 +113,7 @@
                             android:fontFamily="@font/hacen_tunisia_bold_regular"
                             android:text="@string/name"
                             android:textColor="@color/darkGrey"
-                            android:textSize="17sp" />
+                            android:textSize="16sp" />
 
                         <TextView
                             android:id="@+id/user_email"
@@ -124,7 +124,7 @@
                             android:fontFamily="@font/hacen_tunisia_bold_regular"
                             android:text="@string/email_id"
                             android:textColor="@color/grey"
-                            android:textSize="15dp" />
+                            android:textSize="14sp" />
 
                         <TextView
                             android:id="@+id/tv_logout"
@@ -136,7 +136,7 @@
                             android:fontFamily="@font/hacen_tunisia_bold_regular"
                             android:text="@string/logout"
                             android:textColor="@color/skyBlue"
-                            android:textSize="17dp" />
+                            android:textSize="16sp" />
 
                     </RelativeLayout>
 
@@ -146,7 +146,7 @@
             <LinearLayout
                 android:id="@+id/ll_login_signup"
                 android:visibility="gone"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="20dp">
@@ -163,7 +163,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/sign_up"
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
-                        android:textSize="17dp"
+                        android:textSize="16sp"
                         android:textColor="@color/skyBlue"
                         android:gravity="end"
                         android:includeFontPadding="false"/>
@@ -182,7 +182,7 @@
                         android:layout_height="wrap_content"
                         android:text="@string/log_in"
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
-                        android:textSize="17dp"
+                        android:textSize="16sp"
                         android:textColor="@color/skyBlue"
                         android:gravity="start"
                         android:includeFontPadding="false"/>
@@ -221,7 +221,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/notifications"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -233,7 +233,7 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_my_fav"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -253,7 +253,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/favorite"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -266,7 +266,7 @@
                     android:layout_marginTop="5dp" />
                 <RelativeLayout
                     android:id="@+id/rl_my_ads"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -286,7 +286,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/my_ads"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -298,7 +298,7 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_my_chats"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -318,7 +318,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/chat_history"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -332,7 +332,7 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_realtors"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -353,7 +353,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/realtors"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -404,7 +404,7 @@
 
                 <RelativeLayout
                     android:id="@+id/rlServices"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -425,7 +425,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/services"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -438,7 +438,7 @@
 
                 <RelativeLayout
                     android:id="@+id/rl_language"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -458,7 +458,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/language"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -469,7 +469,7 @@
                     android:layout_marginTop="5dp" />
                 <RelativeLayout
                     android:id="@+id/rl_about_us"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="5dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
 
@@ -489,7 +489,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="@string/about"
                         android:textColor="@color/darkGrey"
-                        android:textSize="17dp" />
+                        android:textSize="16sp" />
 
                 </RelativeLayout>
 
@@ -541,7 +541,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
                 <View
-                    android:layout_marginTop="50dp"
+                    android:layout_marginTop="20dp"
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
                     android:background="@color/grey_ul"
@@ -633,7 +633,7 @@
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:text="@string/version"
                     android:textColor="@color/grey"
-                    android:textSize="17dp"/>
+                    android:textSize="16dp"/>
             </LinearLayout>
 
 

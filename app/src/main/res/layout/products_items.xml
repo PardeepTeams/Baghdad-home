@@ -14,7 +14,7 @@
         <!-- Banner with ViewPager + dots + arrows -->
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="200dp">
+            android:layout_height="150dp">
 
            <!-- <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/imageViewPager"
@@ -74,7 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                android:padding="12dp">
+                android:paddingHorizontal="10dp"
+                android:paddingVertical="6dp">
 
                 <TextView
                     android:id="@+id/tvTitle"
@@ -85,7 +86,7 @@
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/blackNew"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
 
                 <TextView
                     android:id="@+id/tvLocation"
@@ -96,9 +97,10 @@
                     android:text="Kirkuk, Al-Qudat 2"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:maxLines="1"
+                    android:layout_marginTop="2dp"
                     android:layout_gravity="center_vertical"
                     android:gravity="center_vertical"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:singleLine="true"
                     android:textColor="@color/grey" />
 
@@ -106,13 +108,13 @@
                     android:id="@+id/tvPrice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
+                    android:layout_marginTop="2dp"
                     android:text="IQD 219,000,000 - IQD 360,000,000"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/blackNew"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
             </LinearLayout>
 
             <TextView
@@ -128,7 +130,7 @@
                 android:gravity="center_vertical"
                 android:layout_centerVertical="true"
                 android:layout_alignParentEnd="true"
-                android:textSize="14sp"
+                android:textSize="12sp"
                 android:singleLine="true"
                 android:textColor="@color/grey" />
         </RelativeLayout>
