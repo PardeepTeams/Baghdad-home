@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:textAppearance="?android:attr/textAppearanceListItemSmall"
     android:gravity="center_vertical"
-    android:fontFamily="@font/google_sans_bold_compat"
+    android:fontFamily="@font/hacen_tunisia_bold_regular"
     android:textColor="@color/blackNew"
-    android:textSize="16sp"
+    android:textSize="14sp"
     android:minHeight="35dp" />

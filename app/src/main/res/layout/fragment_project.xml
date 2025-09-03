@@ -93,7 +93,7 @@
 
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp">
+                android:layout_height="160dp">
                 <androidx.viewpager2.widget.ViewPager2
                     android:id="@+id/bannerPager"
                     android:paddingHorizontal="20dp"
@@ -135,7 +135,7 @@
                     android:layout_marginTop="7dp"
                     android:gravity="center_horizontal"
                     android:includeFontPadding="false"
-                    android:textSize="14sp"
+                    android:textSize="12sp"
                     android:textColor="@color/blackNew"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"/>
 

@@ -14,9 +14,11 @@
             android:id="@+id/tvTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Select Project"
-            android:textSize="20sp"
-            android:fontFamily="@font/google_sans_bold_compat"
+            android:text="@string/select_project"
+            android:textSize="18sp"
+            android:singleLine="true"
+            android:maxLines="1"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -38,7 +40,7 @@
         android:drawableStart="@drawable/ic_search_new"
         android:singleLine="true"
         android:textColor="@color/grey"
-        android:textSize="17dp" />
+        android:textSize="14sp" />
       <!--  <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tilSearch"
             style="@style/Widget.Material3.TextInputLayout.OutlinedBox"
