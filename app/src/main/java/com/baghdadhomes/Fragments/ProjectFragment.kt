@@ -83,7 +83,7 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
 
     override fun onResume() {
         super.onResume()
-        val map: HashMap<Any, Any> = HashMap()
+        val map: HashMap<String, String> = HashMap()
         if (PreferencesService.instance.userLoginStatus == true) {
             map["user_id"] = PreferencesService.instance.getUserData?.ID!!
         } else {
@@ -91,7 +91,7 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
         }
         Log.d("NewMap", map.toString());
         if (isNetworkAvailable()) {
-            hitPostApiWithoutTokenParams(
+            hitPostApi(
                 Constants.GET_Project_Main,
                 true,
                 Constants.GET_Project_Main_API,

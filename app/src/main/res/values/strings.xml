@@ -312,6 +312,7 @@
     <string name="take_look_at_real_estate">ألق نظرة على هذه الشركة العقارية</string>
     <string name="see_all">رؤية الكل</string>
     <string name="project">مشروع</string>
-    <string name="project_proties">Project Properties</string>
+    <string name="project_proties">خصائص المشروع</string>
     <string name="project_found">تم العثور على المشروع</string>
+    <string name="bagdad">بغداد</string>
 </resources>
