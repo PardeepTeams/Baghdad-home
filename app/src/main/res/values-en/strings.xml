@@ -313,4 +313,5 @@
     <string name="bedroom">Bedroom</string>
     <string name="bagdad">Baghdad</string>
     <string name="select_project">Select Project</string>
+    <string name="completed">Completed</string>
 </resources>
