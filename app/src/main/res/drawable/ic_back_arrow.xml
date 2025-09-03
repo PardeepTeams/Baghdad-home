@@ -8,9 +8,9 @@
         android:strokeWidth="1"
         android:pathData="M308.2,335.5l-42.7,42.7L132.3,245 265.5,111.8l42.7,42.7 -90.4,90.5 90.4,90.5Z"
         android:fillColor="#fff"
-        android:strokeColor="#1A237E"/>
+        android:strokeColor="#009DD8"/>
     <path
-        android:fillColor="#1A237E"
+        android:fillColor="#009DD8"
         android:pathData="M245,0C109.7,0 0,109.7 0,245s109.7,245 245,245 245,-109.7 245,-245S380.3,0 245,0ZM308.2,335.5l-42.7,42.7L132.3,245 265.5,111.8l42.7,42.7 -90.4,90.5 90.4,90.5Z"/>
     <path
         android:pathData="M217.8,245l90.4,90.5l-42.7,42.7l-133.2,-133.2l133.2,-133.2l42.7,42.7l-90.4,90.5z"

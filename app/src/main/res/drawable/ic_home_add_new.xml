@@ -12,7 +12,7 @@
         android:pathData="M11,14h2v6h-2z"/>
     <path
         android:pathData="M0,0h24v24h-24z"
-        android:fillColor="#E67E22"
+        android:fillColor="#7F6F6C"
         android:fillType="evenOdd"/>
   </group>
   <path

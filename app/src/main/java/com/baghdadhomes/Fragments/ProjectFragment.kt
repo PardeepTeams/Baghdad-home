@@ -1,6 +1,7 @@
 package com.baghdadhomes.Fragments
 
 
+import android.content.Intent
 import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
@@ -17,7 +18,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.CompositePageTransformer
 import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
+import com.baghdadhomes.Activities.AdsDetailsActivity
 import com.baghdadhomes.Activities.BaseActivity
+import com.baghdadhomes.Activities.ProjectDetailActivity
 import com.baghdadhomes.Adapters.ProductsAdapter
 import com.baghdadhomes.Adapters.ProductsBannerPagerAdapter
 import com.baghdadhomes.Adapters.ProductsCityAdapter
@@ -305,4 +308,13 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
     override fun openLoginActivity() {
         ((context) as BaseActivity).loginTypeDialog(false)
     }
+
+    override fun openNextActivity(model: ProjectData?, position: Int) {
+        val intent = Intent(requireActivity(), ProjectDetailActivity::class.java)
+        intent.putExtra("propertyId",model!!.id.toString())
+        startActivity(intent)
+        requireActivity().overridePendingTransition(0, 0)
+    }
 }
+
+

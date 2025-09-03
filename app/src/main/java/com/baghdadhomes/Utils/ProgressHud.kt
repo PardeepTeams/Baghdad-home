@@ -5,6 +5,7 @@ import android.content.Context
 import android.view.Gravity
 import androidx.core.content.ContextCompat
 import com.baghdadhomes.R
+import com.bumptech.glide.Glide
 import pl.droidsonroids.gif.GifImageView
 
 class ProgressHud : Dialog {
@@ -18,8 +19,9 @@ class ProgressHud : Dialog {
             val dialog = ProgressHud(context, R.style.ProgressHUD)
             dialog.setTitle("")
             dialog.setContentView(R.layout.progress_hud)
-            // var imageView_progress: GifImageView = dialog.findViewById(R.id.imageView_progress)
-            // imageView_progress.setColorFilter(ContextCompat.getColor(context, R.color.blue), android.graphics.PorterDuff.Mode.SRC_ATOP)
+             var imageView_progress: GifImageView = dialog.findViewById(R.id.imageView_progress)
+          //   imageView_progress.setColorFilter(ContextCompat.getColor(context, R.color.blue), android.graphics.PorterDuff.Mode.SRC_ATOP)
+
 
             // Glide.with(context).load(R.drawable.splash_screen_drawable).gif;
             dialog.setCancelable(cancelable)

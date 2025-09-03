@@ -194,4 +194,11 @@ class MyFavoriteActivity : BaseActivity(), AdapterDetailAds.openDetailPage,Produ
         //overridePendingTransition(0,0)
     }
 
+    override fun openNextActivity(model: ProjectData?, position: Int) {
+        val intent = Intent(this, ProjectDetailActivity::class.java)
+        intent.putExtra("propertyId",model!!.id.toString())
+        startActivity(intent)
+        overridePendingTransition(0, 0)
+    }
+
 }

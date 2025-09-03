@@ -18,7 +18,8 @@ object ApiClient {
     //
     private const val BASE_URL_NOTIFICATION = "https://fcm.googleapis.com/"
    // const val baseUrl = "https://najafhome.com/wp-json/"
-    const val baseUrl = "https://najafhome.com/baghdad/wp-json/"
+  //  const val baseUrl = "https://najafhome.com/baghdad/wp-json/"
+    const val baseUrl = "https://baghdadhome.com/wp-json/"
     const val baseUrlSmsApi = "https://gateway.standingtech.com/"
 
     private var retrofit: Retrofit? = null

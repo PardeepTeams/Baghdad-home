@@ -98,16 +98,22 @@ class NewSplashActivity : BaseActivity() {
             }
         }
 
-        videoview.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.splash_data_new_video))
+      //  videoview.setVideoURI(Uri.parse("android.resource://" + packageName + "/" + R.raw.new_splash_video))
+
+
+
+
+        val uri = Uri.parse("android.resource://${packageName}/${R.raw.new_splash_video_1}")
+
+        videoview.setVideoURI(uri)
         videoview.setZOrderOnTop(true)
 
-        val retriever = MediaMetadataRetriever()
-        retriever.setDataSource(this, Uri.parse("android.resource://" + packageName + "/" + R.raw.splash_data_new_video))
 
-
-        videoview.setOnPreparedListener {
+        videoview.setOnPreparedListener { mp ->
+            mp.isLooping = false  // if you don’t want loop, keep false
             videoview.start()
         }
+
 
         videoview.setOnCompletionListener {
             if (intent.getBooleanExtra("languageChange", false)){

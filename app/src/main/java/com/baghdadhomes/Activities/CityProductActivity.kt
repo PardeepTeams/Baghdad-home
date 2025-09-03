@@ -1,5 +1,6 @@
 package com.baghdadhomes.Activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.TextView
@@ -100,4 +101,12 @@ import com.google.gson.JsonObject
      override fun openLoginActivity() {
          this.loginTypeDialog(false)
      }
+
+     override fun openNextActivity(model: ProjectData?, position: Int) {
+         val intent = Intent(this, ProjectDetailActivity::class.java)
+         intent.putExtra("propertyId",model!!.id.toString())
+         startActivity(intent)
+         overridePendingTransition(0, 0)
+     }
+
  }
