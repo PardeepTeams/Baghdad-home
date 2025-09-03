@@ -3,6 +3,7 @@ package com.baghdadhomes.Activities
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.gson.Gson
@@ -16,6 +17,8 @@ import com.baghdadhomes.Utils.Constants
 
 class MyFavoriteActivity : BaseActivity(), AdapterDetailAds.openDetailPage {
     lateinit var img_back: ImageView
+    lateinit var tvProperties: TextView
+    lateinit var tvProject: TextView
     lateinit var rv_my_fav: RecyclerView
     lateinit var adapterDetailAds: AdapterDetailAds
     var favList: ArrayList<Result> = ArrayList()
@@ -37,6 +40,8 @@ class MyFavoriteActivity : BaseActivity(), AdapterDetailAds.openDetailPage {
         setContentView(R.layout.activity_my_favorite)
 
         img_back = findViewById(R.id.img_back)
+        tvProperties = findViewById(R.id.tvProperties)
+        tvProject = findViewById(R.id.tvProject)
         rv_my_fav = findViewById(R.id.rv_my_fav)
 
         img_back.setOnClickListener { onBackPressed() }
