@@ -8,7 +8,7 @@
 
 
     <androidx.cardview.widget.CardView
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="12dp"
         app:cardPreventCornerOverlap="false"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -25,11 +25,14 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|center"
             android:background="#77000000"
-            android:padding="7dp"
-            android:text="City Name"
-            android:fontFamily="@font/gmp_ref_typeface_plain_medium"
+            android:paddingHorizontal="10dp"
+            android:paddingVertical="4dp"
+            android:text=""
+            android:singleLine="true"
+            android:maxLines="1"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
             android:textColor="@color/whiteNew"
-            android:textSize="14sp" />
+            android:textSize="12sp" />
     </androidx.cardview.widget.CardView>
 
 

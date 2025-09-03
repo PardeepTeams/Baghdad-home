@@ -103,23 +103,12 @@
                 <LinearLayout
                     android:id="@+id/indicatorLayout"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="100dp"
                     android:orientation="horizontal"
-                    android:layout_marginVertical="10dp"
                     android:layout_marginBottom="5dp"
                     android:layout_gravity="bottom|center_horizontal"
                     android:gravity="center" />
             </FrameLayout>
-
-
-         <!--   <LinearLayout
-                android:id="@+id/indicatorLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_marginVertical="10dp"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center" />-->
 
 
             <LinearLayout
@@ -143,10 +132,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/project_found"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="7dp"
                     android:gravity="center_horizontal"
-                    android:textSize="16sp"
-                    android:textColor="@color/grey"
+                    android:includeFontPadding="false"
+                    android:textSize="14sp"
+                    android:textColor="@color/blackNew"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"/>
 
 
@@ -154,7 +144,7 @@
                     android:id="@+id/rv_products"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="7dp"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"

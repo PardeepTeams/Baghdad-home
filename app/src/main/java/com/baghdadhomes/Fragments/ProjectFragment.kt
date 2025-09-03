@@ -186,9 +186,9 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
         for (i in 0 until childCount) {
             val child = indicatorLayout.getChildAt(i)
             if (i == position) {
-                child.setBackgroundResource(R.drawable.indicator_active_white)
+                child.setBackgroundResource(R.drawable.indicator_active)
             } else {
-                child.setBackgroundResource(R.drawable.indicator_inactive_grey)
+                child.setBackgroundResource(R.drawable.indicator_inactive)
             }
         }
     }
@@ -203,8 +203,8 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
                     LinearLayout.LayoutParams.WRAP_CONTENT
                 )
             )
-            (indicator.layoutParams as LinearLayout.LayoutParams).setMargins(8, 0, 8, 0)
-            indicator.setBackgroundResource(R.drawable.indicator_inactive_grey)
+            (indicator.layoutParams as LinearLayout.LayoutParams).setMargins(5, 0, 8, 5)
+            indicator.setBackgroundResource(R.drawable.indicator_inactive)
             indicatorLayout.addView(indicator)
         }
     }
