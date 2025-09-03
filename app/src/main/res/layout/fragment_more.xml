@@ -207,8 +207,8 @@
 
                     <ImageView
                         android:id="@+id/img_notification"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/img_notification" />
 
@@ -239,8 +239,8 @@
 
                     <ImageView
                         android:id="@+id/img_favorite"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/img_favorite" />
 
@@ -272,8 +272,8 @@
 
                     <ImageView
                         android:id="@+id/img_ads"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/img_ads" />
 
@@ -304,8 +304,8 @@
 
                     <ImageView
                         android:id="@+id/img_chat"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_chat_history" />
 
@@ -338,8 +338,8 @@
 
                     <ImageView
                         android:id="@+id/img_realtors"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_companies"
                         app:tint="@color/grey"/>
@@ -410,8 +410,8 @@
 
                     <ImageView
                         android:id="@+id/imgCompanies"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_service"
                         app:tint="@color/grey" />
@@ -444,8 +444,8 @@
 
                     <ImageView
                         android:id="@+id/img_language"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/img_language" />
 
@@ -475,8 +475,8 @@
 
                     <ImageView
                         android:id="@+id/img_about"
-                        android:layout_width="30dp"
-                        android:layout_height="30dp"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_centerVertical="true"
                         android:src="@drawable/img_about_us" />
 
@@ -513,8 +513,8 @@
 
                         <ImageView
                             android:id="@+id/img_delete_account"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
                             android:layout_centerVertical="true"
                             android:src="@drawable/ic_trash" />
 

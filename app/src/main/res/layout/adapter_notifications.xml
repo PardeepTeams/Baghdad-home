@@ -20,7 +20,6 @@
         android:text="@string/report_add"
         android:layout_below="@+id/tv_title"
         android:layout_toStartOf="@+id/rlAction"
-        android:layout_marginTop="5dp"
         android:fontFamily="@font/hacen_tunisia_bold_regular"
         android:textColor="@color/grey"
         android:textSize="18sp"

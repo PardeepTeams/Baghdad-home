@@ -243,6 +243,7 @@
                  android:id="@+id/ll_edit"
                  android:layout_below="@+id/ll_top"
                  android:layout_marginTop="5dp"
+                 android:layout_marginHorizontal="5dp"
                  android:layout_width="match_parent"
                  android:layout_height="wrap_content"
                  android:baselineAligned="false">
@@ -255,6 +256,7 @@
                      android:background="@drawable/bg_outline_solid"
                      android:backgroundTint="@color/skyBlue"
                      android:gravity="center"
+                     android:layout_marginEnd="7dp"
                      android:paddingVertical="8dp">
 
                      <TextView
@@ -278,7 +280,7 @@
                      android:layout_width="0dp"
                      android:layout_height="wrap_content"
                      android:background="@drawable/bg_outline_solid"
-                     android:layout_marginStart="5dp"
+                     android:layout_marginStart="7dp"
                      android:backgroundTint="@color/light_red"
                      android:gravity="center"
                      android:paddingVertical="8dp">

@@ -10,34 +10,35 @@
         android:id="@+id/rl_top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp">
+        android:layout_marginVertical="10dp">
 
         <ImageView
             android:id="@+id/img_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:layout_marginTop="20dp"
             android:src="@drawable/ic_back_arrow" />
+
+        <TextView
+            android:id="@+id/tv_heading"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:text="@string/my_favorite"
+            android:textColor="@color/darkGrey"
+            android:textSize="20sp" />
+
+
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_heading"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp"
-        android:fontFamily="@font/hacen_tunisia_bold_regular"
-        android:text="@string/my_favorite"
-        android:textColor="@color/darkGrey"
-        android:textSize="20sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginHorizontal="10dp"
-        android:layout_marginTop="10dp"
-        android:visibility="gone">
+        android:layout_marginHorizontal="10dp">
 
         <TextView
             android:id="@+id/tvProperties"
@@ -48,7 +49,7 @@
             android:background="@drawable/bg_outline_solid"
             android:fontFamily="@font/hacen_tunisia_bold_regular"
             android:gravity="center_horizontal"
-            android:paddingVertical="10dp"
+            android:paddingVertical="7dp"
             android:text="@string/properties"
             android:textColor="@color/grey"
             android:textSize="16dp" />
@@ -62,25 +63,19 @@
             android:background="@drawable/bg_outline_blue_new"
             android:fontFamily="@font/hacen_tunisia_bold_regular"
             android:gravity="center_horizontal"
-            android:paddingVertical="10dp"
+            android:paddingVertical="7dp"
             android:text="@string/project"
             android:textColor="@color/whiteNew"
             android:textSize="16dp" />
 
     </LinearLayout>
 
-    <View
-        android:id="@+id/view_ul"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/grey_ul"
-        android:layout_marginTop="10dp"
-        android:layout_marginHorizontal="10dp"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_my_fav"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginHorizontal="5dp"
         android:paddingBottom="30dp"
         android:clipToPadding="false"/>
 
