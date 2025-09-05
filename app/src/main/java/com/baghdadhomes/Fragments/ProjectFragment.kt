@@ -35,6 +35,7 @@ import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.Utility
+import com.baghdadhomes.Utils.ZoomOutPageTransformer
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
@@ -170,6 +171,7 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
                     setCurrentIndicator(0)
                     startAutoSlide()
                     bannerPager.addCarouselEffect(enableZoom = false)
+                    bannerPager.setPageTransformer(ZoomOutPageTransformer())
                 }
                 if (model.data.allProjectCities != null) {
                     cityList.addAll(model.data.allProjectCities)

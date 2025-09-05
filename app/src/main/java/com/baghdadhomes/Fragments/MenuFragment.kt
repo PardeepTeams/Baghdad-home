@@ -42,6 +42,7 @@ import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.ProgressHud
 import com.baghdadhomes.Utils.Utility
+import com.baghdadhomes.Utils.ZoomOutPageTransformer
 import com.baghdadhomes.fcm.ApiClient
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -827,6 +828,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                     scrollView.visibility = View.VISIBLE
                     feautredList.addAll(model.data.featured_listing)
                     adapterADs.notifyDataSetChanged()
+                    img_auto_scroll.setPageTransformer(ZoomOutPageTransformer())
 
                     page = 0
                     loading = false
