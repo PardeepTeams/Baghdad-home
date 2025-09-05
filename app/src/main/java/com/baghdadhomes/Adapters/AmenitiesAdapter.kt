@@ -13,7 +13,7 @@ import com.baghdadhomes.Models.AmenityData
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
 
-class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<AmenityData>): RecyclerView.Adapter<AmenitiesAdapter.ViewHolder>() {
+class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<AmenityData>,private val onItemSelected: (Int) -> Unit): RecyclerView.Adapter<AmenitiesAdapter.ViewHolder>() {
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val imgAmenity: ImageView = itemView.findViewById(R.id.imgAmenity)
@@ -53,8 +53,7 @@ class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<Ame
         }
 
         holder.itemView.setOnClickListener {
-            amenity.isSelected = !amenity.isSelected
-
+            onItemSelected.invoke(position)
         }
     }
 }

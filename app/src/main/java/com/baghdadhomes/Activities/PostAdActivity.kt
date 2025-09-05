@@ -268,7 +268,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var nested_scroll: NestedScrollView
     lateinit var rl_main: RelativeLayout
 
-    private val amenityList : ArrayList<AmenityModel> = ArrayList()
+    private val amenityList : ArrayList<AmenityData> = ArrayList()
     lateinit var adapterAmenities :AmenitiesAdapter
     lateinit var rvAmenities: RecyclerView
 
@@ -460,12 +460,6 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         setBathroom()
         setFurnishType()
 
-        amenityList.add(AmenityModel("Balcony", R.drawable.ic_price),)
-        amenityList.add(AmenityModel("Parking Spaces", R.drawable.ic_price))
-        amenityList.add(AmenityModel("Swimming Pool", R.drawable.ic_price))
-        amenityList.add(AmenityModel("Sauna", R.drawable.ic_price))
-        amenityList.add(AmenityModel("Electricity Generator", R.drawable.ic_price))
-        amenityList.add(AmenityModel("Gym", R.drawable.ic_price))
 
         rvAmenities.layoutManager = GridLayoutManager(this,3)
         adapterAmenities = AmenitiesAdapter(this,amenityList,{position->
