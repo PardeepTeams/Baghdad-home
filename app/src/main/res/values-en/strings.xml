@@ -314,4 +314,5 @@
     <string name="bagdad">Baghdad</string>
     <string name="select_project">Select Project</string>
     <string name="completed">Completed</string>
+    <string name="total_payment">Total Price</string>
 </resources>

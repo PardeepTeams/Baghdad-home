@@ -28,7 +28,7 @@ class AdapterPriceItems(var context : Context, var list : ArrayList<ModelPropert
         position: Int
     ) {
         holder.tvPrice.text = list[position].price ?: "0"
-        holder.tvText.text = list[position].text ?: ""
+        holder.tvText.text = list[position].text ?: context.getString(R.string.total_payment)
         if (position == (list.size-1)) {
             holder.view.visibility = View.GONE
         } else {

@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -44,6 +45,7 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
         val img_bookmark = itemView.findViewById<ImageView>(R.id.img_bookmark)
         val city_image = itemView.findViewById<CircleImageView>(R.id.city_image)
         val imageItem = itemView.findViewById<ImageView>(R.id.imageItem)
+        val tv_status = itemView.findViewById<TextView>(R.id.tv_status)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsViewHolder {
@@ -72,6 +74,12 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
                     .priority(Priority.HIGH)// Cache the image for future use
             )
                 .placeholder(R.drawable.img_placeholder).into(holder.imageItem)
+        }
+
+        if(projectList.get(position).propertyAttr!=null && projectList.get(position).propertyAttr!!.propertyStatus!= null){
+            holder.tv_status.text = projectList.get(position).propertyAttr!!.propertyStatus
+        }else{
+            holder.tv_status.text = ""
         }
 
 

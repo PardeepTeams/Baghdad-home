@@ -18,7 +18,7 @@
        android:layout_height="150dp"
        android:src="@drawable/splash_screen_drawable"
        android:tint="@color/blue"
-       android:visibility="gone"
+       android:visibility="visible"
        />
 
    <com.github.ybq.android.spinkit.SpinKitView
@@ -27,10 +27,10 @@
        android:layout_width="wrap_content"
        android:layout_height="wrap_content"
        android:layout_gravity="center"
-       android:visibility="visible"
+       android:visibility="gone"
        android:progressDrawable="@drawable/splash_screen_drawable"
        android:layout_centerInParent="true"
-       app:SpinKit_Color="@color/skyBlue" />
+       app:SpinKit_Color="@color/blue" />
 
    <ProgressBar
        style="?android:attr/progressBarStyle"
