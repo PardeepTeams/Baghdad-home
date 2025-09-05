@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/txtFrequency"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingHorizontal="20dp"
+    android:paddingVertical="10dp"
+    android:background="@drawable/bg_amenity"
+    android:fontFamily="@font/hacen_tunisia_bold_regular"
+    android:text="Monthly"
+    android:textColor="@color/blackNew"
+    android:textSize="14sp"
+    android:layout_marginEnd="5dp"
+    android:gravity="center"/>

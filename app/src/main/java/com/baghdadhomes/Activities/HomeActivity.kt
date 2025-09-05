@@ -8,8 +8,12 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.baghdadhomes.Adapters.CommonBottomSheetSelectedAdapter
 import com.google.firebase.FirebaseApp
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -19,6 +23,7 @@ import com.baghdadhomes.Models.AgenciesData
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
+import com.google.android.material.bottomsheet.BottomSheetDialog
 
 class HomeActivity : BaseActivity() {
     lateinit var fl_container: FrameLayout
@@ -147,9 +152,6 @@ class HomeActivity : BaseActivity() {
                 //overridePendingTransition(0, 0)
             }
         }
-
-
-
     }
 
     fun setHomeFragment(){
@@ -298,5 +300,8 @@ class HomeActivity : BaseActivity() {
             setHomeFragment()
         }
     }
+
+
+
 
 }
