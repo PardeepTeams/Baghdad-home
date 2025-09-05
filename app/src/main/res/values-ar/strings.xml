@@ -328,4 +328,7 @@
     <string name="select">يختار</string>
     <string name="real_estate_situation">الوضع العقاري</string>
     <string name="rental_frequency">تردد الإيجار</string>
+    <string name="balcony">شرفة</string>
+    <string name="kitchen">مطبخ</string>
+    <string name="living_room">غرفة الجلوس</string>
 </resources>

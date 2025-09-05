@@ -328,4 +328,7 @@
     <string name="select">Select</string>
     <string name="real_estate_situation">Real Estate Situation</string>
     <string name="rental_frequency">Rental Frequency</string>
+    <string name="balcony">Balcony</string>
+    <string name="kitchen">Kitchen</string>
+    <string name="living_room">Living Room</string>
 </resources>

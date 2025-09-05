@@ -282,6 +282,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var tvLocationOnMap: TextView
 
     lateinit var tv_heading: TextView
+
+    var rentalFrequency = ""
     lateinit var llRentalFrequency: LinearLayout
     lateinit var rvRentalFrequency: RecyclerView
 
@@ -478,6 +480,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             for (i in frequencyList) {
                 i.isSelected = false
             }
+            rentalFrequency = frequencyList[position].name
             frequencyList[position].isSelected = true
             adapterFrequency.notifyDataSetChanged()
         })
@@ -530,6 +533,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         if (isNetworkAvailable()){
             hitGetApiWithoutToken(Constants.NEIGHBORHOOD, true, Constants.NEIGHBORHOOD_API)
+            hitGetApiWithoutToken(Constants.AMINITY, false, Constants.AMINITY_API)
         } else{
             showToast(this, resources.getString(R.string.intenet_error))
         }
@@ -992,7 +996,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         tv_for_rent.setOnClickListener {
             dismissKeyboard(tv_for_rent)
-            llRentalFrequency.visibility = View.VISIBLE
+            llRentalFrequency.visibility = View.GONE
             status = 28
             tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
             tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
@@ -2033,7 +2037,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     }
 
     private fun setFurnishType() {
-        furnishType = "yes"
+        furnishType = "Yes"
         radio_furnish_yes.isChecked = true
         radio_furnish_yes.setOnCheckedChangeListener { it,it1->
             if (it.isChecked) {
@@ -2042,12 +2046,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
         radio_furnish_no.setOnCheckedChangeListener { it,it1->
             if (it.isChecked) {
-                furnishType = "no"
+                furnishType = "No"
             }
         }
         radio_furnish_half.setOnCheckedChangeListener { it,it1->
             if (it.isChecked) {
-                furnishType = "half"
+                furnishType = "Half Furnished"
             }
         }
     }
@@ -2252,6 +2256,29 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 // map.put("propperty_image_ids[]", i.id)
             }
 
+            map.put("living_room", livingRoom)
+            map.put("kitchen", kitchen)
+            map.put("balconies", balcony)
+            map.put("floor_number", floors)
+            map.put("monthly_price", et_monthlyPrice.text.toString())
+            map.put("street_type", et_street_type.text.toString())
+            map.put("furnished", furnishType)
+            if (status == 28 && rentalFrequency.isNotEmpty()) {
+                // map.put("rental_frequency", rentalFrequency)
+            }
+            if (!tvOrientation.text.equals(getString(R.string.select))) {
+                map.put("orientation", tvOrientation.text.toString())
+            }
+            if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
+                map.put("real_estate_situation", tvRealEstateSituation.text.toString())
+            }
+            val selectedAmenities:ArrayList<String> = ArrayList()
+            for(i in amenityList){
+                if (i.isSelected == true) {
+                    selectedAmenities.add(i.id?:"")
+                }
+            }
+
             //map.put("featured_image_id", "")
             //map.put("fave_agent_display_option", "")
 
@@ -2288,7 +2315,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             }
             if (isNetworkAvailable()){
                 hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
-                hitAddPostApiWithoutTokenParams(Constants.UPDATE_ADD, true, Constants.UPDATE_POST_URL, map,imageStringId)
+                hitAddPostApiWithoutTokenParams(Constants.UPDATE_ADD, true, Constants.UPDATE_POST_URL, map,imageStringId,selectedAmenities)
             } else{
                 showToast(this, resources.getString(R.string.intenet_error))
             }
@@ -2363,7 +2390,28 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 imageStringId.add(i.id)
                 // map.put("propperty_image_ids[]", i.id)
             }
-
+            map.put("living_room", livingRoom)
+            map.put("kitchen", kitchen)
+            map.put("balconies", balcony)
+            map.put("floor_number", floors)
+            map.put("monthly_price", et_monthlyPrice.text.toString())
+            map.put("street_type", et_street_type.text.toString())
+            map.put("furnished", furnishType)
+            if (status == 28 && rentalFrequency.isNotEmpty()) {
+                // map.put("rental_frequency", rentalFrequency)
+            }
+            if (!tvOrientation.text.equals(getString(R.string.select))) {
+                map.put("orientation", tvOrientation.text.toString())
+            }
+            if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
+                map.put("real_estate_situation", tvRealEstateSituation.text.toString())
+            }
+            val selectedAmenities:ArrayList<String> = ArrayList()
+            for(i in amenityList){
+                if (i.isSelected == true) {
+                    selectedAmenities.add(i.id?:"")
+                }
+            }
             //map.put("featured_image_id", "")
             //map.put("fave_agent_display_option", "")
             /*call_country_code_id.setOnCountryChangeListener {
@@ -2407,7 +2455,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             }
             if (isNetworkAvailable()){
                 hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
-                hitAddPostApiWithoutTokenParams(Constants.ADD_POST, true, Constants.ADD_POST_URL, map,imageStringId)
+                hitAddPostApiWithoutTokenParams(Constants.ADD_POST, true, Constants.ADD_POST_URL, map,imageStringId,selectedAmenities)
             } else{
                 showToast(this,resources.getString(R.string.intenet_error))
             }
@@ -2572,6 +2620,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 } else{
                     showToast(this,getString(R.string.something_went_wrong))
                 }
+            }
+        } else if(apiType.equals(Constants.AMINITY)){
+            val model = Gson().fromJson(respopnse, AmenityModel::class.java)
+            if(model.success == true){
+                amenityList.addAll(model.features!!)
+                adapterAmenities.notifyDataSetChanged()
             }
         }
 

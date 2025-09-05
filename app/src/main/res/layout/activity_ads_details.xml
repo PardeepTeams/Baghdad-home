@@ -521,6 +521,165 @@
                                         android:textSize="12dp" />
                                 </RelativeLayout>
                             </LinearLayout>
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="5dp">
+                                <RelativeLayout
+                                    android:id="@+id/rl_balcony"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <ImageView
+                                        android:id="@+id/img_balcony"
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/img_floors_new" />
+
+                                    <TextView
+                                        android:id="@+id/tv_balcony"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_toEndOf="@+id/img_balcony"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text="@string/balcony"
+                                        android:textColor="@color/grey"
+                                        android:textSize="12dp" />
+                                    <TextView
+                                        android:id="@+id/dt_balcony"
+                                        android:layout_toEndOf="@+id/tv_balcony"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text=""
+                                        android:textColor="@color/darkGrey"
+                                        android:textSize="12dp" />
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:id="@+id/rl_kitchen"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <ImageView
+                                        android:id="@+id/img_kitchen"
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/img_bed"
+                                        app:tint="@color/darkGrey" />
+
+                                    <TextView
+                                        android:id="@+id/tv_kitchen"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_toEndOf="@+id/img_kitchen"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text="@string/kitchen"
+                                        android:textColor="@color/grey"
+                                        android:textSize="12dp" />
+                                    <TextView
+                                        android:id="@+id/dt_kitchen"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_toEndOf="@+id/tv_kitchen"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text=""
+                                        android:textColor="@color/darkGrey"
+                                        android:textSize="12dp" />
+                                </RelativeLayout>
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:weightSum="2"
+                                android:layout_marginTop="5dp">
+                                <RelativeLayout
+                                    android:id="@+id/rl_livingRoom"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <ImageView
+                                        android:id="@+id/img_livingRoom"
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/img_bed" />
+
+                                    <TextView
+                                        android:id="@+id/tv_balcony"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_toEndOf="@+id/img_livingRoom"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text="@string/living_room"
+                                        android:textColor="@color/grey"
+                                        android:textSize="12dp" />
+                                    <TextView
+                                        android:id="@+id/dt_livingRoom"
+                                        android:layout_toEndOf="@+id/tv_livingRoom"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text=""
+                                        android:textColor="@color/darkGrey"
+                                        android:textSize="12dp" />
+                                </RelativeLayout>
+                                <RelativeLayout
+                                    android:id="@+id/rl_furnished"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_weight="1">
+
+                                    <ImageView
+                                        android:id="@+id/img_furnished"
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:layout_centerVertical="true"
+                                        android:src="@drawable/img_floors_new"
+                                        app:tint="@color/darkGrey" />
+
+                                    <TextView
+                                        android:id="@+id/tv_furnished"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_toEndOf="@+id/img_furnished"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text="@string/furnished"
+                                        android:textColor="@color/grey"
+                                        android:textSize="12dp" />
+                                    <TextView
+                                        android:id="@+id/dt_furnished"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_centerVertical="true"
+                                        android:layout_marginStart="5dp"
+                                        android:layout_toEndOf="@+id/tv_furnished"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text=""
+                                        android:textColor="@color/darkGrey"
+                                        android:textSize="12dp" />
+                                </RelativeLayout>
+                            </LinearLayout>
                         </LinearLayout>
 
                         <LinearLayout

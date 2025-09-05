@@ -113,6 +113,11 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     lateinit var tvOwnerName: TextView
     lateinit var llLocation: LinearLayout
     lateinit var mapView: MapView
+    lateinit var dt_kitchen: TextView
+    lateinit var dt_balcony: TextView
+    lateinit var dt_livingRoom: TextView
+    lateinit var dt_furnished: TextView
+
     var isLogged: Boolean = true
     var prop_id: String? = null
     var prop_type: String? = null
@@ -352,6 +357,10 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         rlOwner = findViewById(R.id.rlOwner)
         imgCircle = findViewById(R.id.imgCircle)
         tvOwnerName = findViewById(R.id.tvOwnerName)
+        dt_kitchen = findViewById(R.id.dt_kitchen)
+        dt_balcony = findViewById(R.id.dt_balcony)
+        dt_livingRoom = findViewById(R.id.dt_livingRoom)
+        dt_furnished = findViewById(R.id.dt_furnished)
 
         tv_additional_ads.paint.isUnderlineText = true
         tv_recommended.paint.isUnderlineText = true

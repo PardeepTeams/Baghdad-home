@@ -764,7 +764,8 @@ abstract class BaseActivity : AppCompatActivity() {
         showLoader: Boolean,
         url: String,
         params: HashMap<String,String>,
-        imagesList:ArrayList<String>
+        imagesList:ArrayList<String>,
+        selectedAmenities:ArrayList<String>,
     ) {
         if (showLoader) {
             progressHUD = ProgressHud.show(
@@ -775,7 +776,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         ApiClient.api!!.hitAddPostApiWithouTokenFieldParams(
-            ApiClient.baseUrl + url,params,imagesList).enqueue(object : Callback<JsonObject> {
+            ApiClient.baseUrl + url,params,imagesList,selectedAmenities).enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 getData(response, type, showLoader)
             }
