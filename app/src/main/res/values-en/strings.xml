@@ -324,4 +324,8 @@
     <string name="furnished">Furnished</string>
     <string name="half_furnished">Half Furnished</string>
     <string name="amenities">Amenities</string>
+    <string name="orientation">Orientation</string>
+    <string name="select">Select</string>
+    <string name="real_estate_situation">Real Estate Situation</string>
+    <string name="rental_frequency">Rental Frequency</string>
 </resources>

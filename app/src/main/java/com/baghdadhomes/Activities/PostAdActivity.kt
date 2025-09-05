@@ -51,6 +51,7 @@ import com.hbb20.CountryCodePicker
 import com.baghdadhomes.Adapters.AdapterNBHDDialog
 import com.baghdadhomes.Adapters.AdapterPropertyImages
 import com.baghdadhomes.Adapters.AdapterPropertyImages.InterfaceSelectImage
+import com.baghdadhomes.Adapters.AmenitiesAdapter
 import com.baghdadhomes.Adapters.SpinnerCityAdapter
 import com.baghdadhomes.Models.*
 import com.baghdadhomes.PreferencesService
@@ -262,7 +263,13 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var tv_industrial: TextView
     lateinit var nested_scroll: NestedScrollView
     lateinit var rl_main: RelativeLayout
+
+    private val amenityList : ArrayList<AmenityModel> = ArrayList()
+    lateinit var adapterAmenities :AmenitiesAdapter
     lateinit var rvAmenities: RecyclerView
+
+    lateinit var tvOrientation: TextView
+    lateinit var tvRealEstateSituation: TextView
 
     lateinit var rlVideo: RelativeLayout
     lateinit var imgAddVideo: ImageView
@@ -271,6 +278,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var tvLocationOnMap: TextView
 
     lateinit var tv_heading: TextView
+    lateinit var llRentalFrequency: LinearLayout
+    lateinit var rvRentalFrequency: RecyclerView
 
     var isUpdate:Boolean = false
 
@@ -424,6 +433,11 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         imgAddVideo = findViewById(R.id.imgAddVideo)
         imgRemoveVideo = findViewById(R.id.imgRemoveVideo)
         imgPreviewVideo = findViewById(R.id.imgPreviewVideo)
+        tvOrientation = findViewById(R.id.tvOrientation)
+        tvRealEstateSituation = findViewById(R.id.tvRealEstateSituation)
+
+        llRentalFrequency = findViewById(R.id.llRentalFrequency)
+        rvRentalFrequency = findViewById(R.id.rvRentalFrequency)
 
 
         switchRentOrSale()
@@ -439,7 +453,18 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         setBathroom()
         setFurnishType()
 
+        amenityList.add(AmenityModel("Balcony", R.drawable.ic_price),)
+        amenityList.add(AmenityModel("Parking Spaces", R.drawable.ic_price))
+        amenityList.add(AmenityModel("Swimming Pool", R.drawable.ic_price))
+        amenityList.add(AmenityModel("Sauna", R.drawable.ic_price))
+        amenityList.add(AmenityModel("Electricity Generator", R.drawable.ic_price))
+        amenityList.add(AmenityModel("Gym", R.drawable.ic_price))
+
         rvAmenities.layoutManager = GridLayoutManager(this,3)
+        adapterAmenities = AmenitiesAdapter(this,amenityList)
+        rvAmenities.adapter = adapterAmenities
+
+        rvRentalFrequency.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
 
         tvLocationOnMap.setOnClickListener {
             println("$cityNameEnglish && $nbhdNameEnglish")
@@ -918,20 +943,22 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     }
 
     fun switchRentOrSale() {
+        llRentalFrequency.visibility = View.GONE
         status = 29
         tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
         tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
-        tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
+        tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
         tv_for_rent.setTextColor(resources.getColor(R.color.grey))
         tv_for_sale.setTextColor(resources.getColor(R.color.whiteNew))
         tv_for_wanted.setTextColor(resources.getColor(R.color.grey))
         tv_price_head.setText(resources.getString(R.string.selling_price))
         tv_for_sale.setOnClickListener {
             dismissKeyboard(tv_for_sale)
+            llRentalFrequency.visibility = View.GONE
             status = 29
             tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
             tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
-            tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
+            tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
             tv_for_rent.setTextColor(resources.getColor(R.color.grey))
             tv_for_sale.setTextColor(resources.getColor(R.color.whiteNew))
             tv_for_wanted.setTextColor(resources.getColor(R.color.grey))
@@ -940,6 +967,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         tv_for_rent.setOnClickListener {
             dismissKeyboard(tv_for_rent)
+            llRentalFrequency.visibility = View.VISIBLE
             status = 28
             tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
             tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
@@ -952,6 +980,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         tv_for_wanted.setOnClickListener {
             dismissKeyboard(tv_for_rent)
+            llRentalFrequency.visibility = View.GONE
             status = 28
             tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
             tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
@@ -1980,6 +2009,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
     private fun setFurnishType() {
         furnishType = "yes"
+        radio_furnish_yes.isChecked = true
         radio_furnish_yes.setOnCheckedChangeListener { it,it1->
             if (it.isChecked) {
                 furnishType = "yes"

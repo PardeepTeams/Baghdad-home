@@ -328,5 +328,9 @@
     <string name="furnished">مفروشة</string>
     <string name="half_furnished">نصف مفروشة</string>
     <string name="amenities">وسائل الراحة</string>
+    <string name="orientation">توجيه</string>
+    <string name="select">يختار</string>
+    <string name="real_estate_situation">الوضع العقاري</string>
+    <string name="rental_frequency">تردد الإيجار</string>
 
 </resources>

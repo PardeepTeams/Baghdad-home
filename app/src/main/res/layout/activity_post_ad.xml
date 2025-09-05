@@ -101,7 +101,8 @@
                     android:paddingVertical="10dp"
                     android:text="@string/for_wanted"
                     android:textColor="@color/whiteNew"
-                    android:textSize="16dp" />
+                    android:textSize="16dp"
+                    android:visibility="gone"/>
             </LinearLayout>
 
             <RelativeLayout
@@ -2050,8 +2051,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img_bathrooms"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:gravity="center_vertical"
                     android:text="@string/furnished"
@@ -2085,7 +2084,8 @@
                             android:text="@string/no"
                             android:textSize="16sp"
                             android:textColor="@color/darkGrey"
-                            android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:layout_marginHorizontal="10dp"/>
 
                         <RadioButton
                             android:id="@+id/radio_furnish_half"
@@ -2103,8 +2103,6 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_centerVertical="true"
-                    android:layout_toEndOf="@+id/img_bathrooms"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:gravity="center_vertical"
                     android:text="@string/amenities"
@@ -2119,6 +2117,62 @@
 
             </LinearLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_vertical"
+                android:text="@string/orientation"
+                android:textColor="@color/darkGrey"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvOrientation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_spinner"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="@string/select"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:singleLine="true"
+                android:textColor="@color/darkGrey"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:paddingStart="30dp"
+                android:paddingEnd="50dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_vertical"
+                android:text="@string/real_estate_situation"
+                android:textColor="@color/darkGrey"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/tvRealEstateSituation"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_spinner"
+                android:focusable="false"
+                android:focusableInTouchMode="false"
+                android:text="@string/select"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:singleLine="true"
+                android:textColor="@color/darkGrey"
+                android:padding="10dp"
+                android:gravity="center_vertical"
+                android:textSize="15sp"
+                android:paddingStart="30dp"
+                android:paddingEnd="50dp"/>
+
             <!-- <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -2131,6 +2185,29 @@
                 android:singleLine="true"
                 android:textColor="@color/grey"
                 android:textSize="14dp" />-->
+
+            <LinearLayout
+                android:id="@+id/llRentalFrequency"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/rental_frequency"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:id="@+id/rvRentalFrequency"/>
+            </LinearLayout>
 
             <RelativeLayout
                 android:layout_width="wrap_content"
@@ -2176,13 +2253,13 @@
                 android:id="@+id/tv_monthly_price_head"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                 android:gravity="center_vertical"
                 android:text="@string/monthly_price"
                 android:textColor="@color/darkGrey"
-                android:textSize="16dp" />
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"/>
 
             <EditText
                 android:id="@+id/et_monthlyPrice"
