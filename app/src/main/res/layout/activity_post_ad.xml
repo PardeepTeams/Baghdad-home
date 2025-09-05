@@ -1257,6 +1257,33 @@
                     android:textSize="14dp" />
             </RelativeLayout>
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_vertical"
+                android:text="@string/street_type"
+                android:textColor="@color/darkGrey"
+                android:textSize="16dp"
+                android:layout_marginTop="10dp"/>
+
+            <EditText
+                android:id="@+id/et_street_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/street_type"
+                android:inputType="number"
+                android:maxLength="10"
+                android:paddingHorizontal="30dp"
+                android:paddingVertical="12dp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp"
+                android:layout_marginTop="10dp"/>
+
             <LinearLayout
                 android:id="@+id/ll_counts"
                 android:layout_width="wrap_content"
@@ -1520,6 +1547,382 @@
                     android:layout_marginTop="10dp">
 
                     <ImageView
+                        android:id="@+id/img_kitchen"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_rooms"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_kitchen"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/no_of_kitchen"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/kitchen_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/kitchen_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="2"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/kitchen_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="3"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/kitchen_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="4"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/kitchen_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="5+"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/img_livingRoom"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_rooms"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_livingRoom"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/no_of_living_room"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/livingRoom_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/livingRoom_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="2"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/livingRoom_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="3"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/livingRoom_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="4"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/livingRoom_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="5+"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:id="@+id/img_balcony"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/ic_rooms"
+                        android:visibility="gone" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_toEndOf="@+id/img_balcony"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:gravity="center_vertical"
+                        android:text="@string/no_of_balcony"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="16dp" />
+                </RelativeLayout>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/balcony_1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="1"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/balcony_2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="2"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/balcony_3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="3"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/balcony_4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="4"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+
+                        <TextView
+                            android:id="@+id/balcony_5"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:background="@drawable/bg_outline_square"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:gravity="center"
+                            android:minWidth="40dp"
+                            android:minHeight="40dp"
+                            android:padding="10dp"
+                            android:paddingHorizontal="12dp"
+                            android:paddingVertical="7dp"
+                            android:singleLine="true"
+                            android:text="5+"
+                            android:textColor="@color/grey"
+                            android:textSize="16dp" />
+                    </LinearLayout>
+                </HorizontalScrollView>
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
                         android:id="@+id/img_bathrooms"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -1629,6 +2032,77 @@
                             android:textSize="16dp" />
                     </LinearLayout>
                 </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/img_bathrooms"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/furnished"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"/>
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <RadioGroup
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <RadioButton
+                            android:id="@+id/radio_furnish_yes"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/yes"
+                            android:textSize="16sp"
+                            android:textColor="@color/darkGrey"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_furnish_no"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/no"
+                            android:textSize="16sp"
+                            android:textColor="@color/darkGrey"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+
+                        <RadioButton
+                            android:id="@+id/radio_furnish_half"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/half_furnished"
+                            android:textSize="16sp"
+                            android:textColor="@color/darkGrey"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+
+                    </RadioGroup>
+
+                </HorizontalScrollView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toEndOf="@+id/img_bathrooms"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/amenities"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp"
+                    android:layout_marginTop="10dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/rvAmenities"/>
+
             </LinearLayout>
 
             <!-- <EditText
@@ -1671,6 +2145,33 @@
 
             <EditText
                 android:id="@+id/et_postPrice"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_price"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp"
+                android:inputType="number"/>
+
+            <TextView
+                android:id="@+id/tv_monthly_price_head"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_vertical"
+                android:text="@string/monthly_price"
+                android:textColor="@color/darkGrey"
+                android:textSize="16dp" />
+
+            <EditText
+                android:id="@+id/et_monthlyPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"

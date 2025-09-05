@@ -315,4 +315,12 @@
     <string name="select_project">Select Project</string>
     <string name="completed">Completed</string>
     <string name="total_payment">Total Price</string>
+    <string name="no_of_kitchen">Number of Kitchen</string>
+    <string name="no_of_living_room">Number of Living Room</string>
+    <string name="street_type">Street Type</string>
+    <string name="no_of_balcony">Number of Balcony</string>
+    <string name="monthly_price">Monthly Price</string>
+    <string name="furnished">Furnished</string>
+    <string name="half_furnished">Half Furnished</string>
+    <string name="amenities">Amenities</string>
 </resources>

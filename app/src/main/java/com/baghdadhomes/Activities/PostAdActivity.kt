@@ -32,6 +32,7 @@ import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.core.net.toUri
 import androidx.core.widget.NestedScrollView
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.abedelazizshe.lightcompressorlibrary.CompressionListener
@@ -134,6 +135,35 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var bathroom_5: TextView
     lateinit var tv_price_head: TextView
 
+    var kitchen: String = ""
+    lateinit var kitchen_1: TextView
+    lateinit var kitchen_2: TextView
+    lateinit var kitchen_3: TextView
+    lateinit var kitchen_4: TextView
+    lateinit var kitchen_5: TextView
+
+    var livingRoom: String = ""
+    lateinit var livingRoom_1: TextView
+    lateinit var livingRoom_2: TextView
+    lateinit var livingRoom_3: TextView
+    lateinit var livingRoom_4: TextView
+    lateinit var livingRoom_5: TextView
+
+    var balcony: String = ""
+    lateinit var balcony_1: TextView
+    lateinit var balcony_2: TextView
+    lateinit var balcony_3: TextView
+    lateinit var balcony_4: TextView
+    lateinit var balcony_5: TextView
+
+    lateinit var et_street_type: EditText
+    lateinit var et_monthlyPrice: EditText
+
+    var furnishType = ""
+    lateinit var radio_furnish_yes: RadioButton
+    lateinit var radio_furnish_no: RadioButton
+    lateinit var radio_furnish_half: RadioButton
+
     /*lateinit var comm_shop: TextView
     lateinit var comm_office: TextView
     lateinit var comm_store: TextView
@@ -231,6 +261,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var tv_industrial: TextView
     lateinit var nested_scroll: NestedScrollView
     lateinit var rl_main: RelativeLayout
+    lateinit var rvAmenities: RecyclerView
 
     lateinit var rlVideo: RelativeLayout
     lateinit var imgAddVideo: ImageView
@@ -365,6 +396,27 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         bathroom_3 = findViewById(R.id.bathroom_3)
         bathroom_4 = findViewById(R.id.bathroom_4)
         bathroom_5 = findViewById(R.id.bathroom_5)
+        kitchen_1 = findViewById(R.id.kitchen_1)
+        kitchen_2 = findViewById(R.id.kitchen_2)
+        kitchen_3 = findViewById(R.id.kitchen_3)
+        kitchen_4 = findViewById(R.id.kitchen_4)
+        kitchen_5 = findViewById(R.id.kitchen_5)
+        livingRoom_1 = findViewById(R.id.livingRoom_1)
+        livingRoom_2 = findViewById(R.id.livingRoom_2)
+        livingRoom_3 = findViewById(R.id.livingRoom_3)
+        livingRoom_4 = findViewById(R.id.livingRoom_4)
+        livingRoom_5 = findViewById(R.id.livingRoom_5)
+        balcony_1 = findViewById(R.id.balcony_1)
+        balcony_2 = findViewById(R.id.balcony_2)
+        balcony_3 = findViewById(R.id.balcony_3)
+        balcony_4 = findViewById(R.id.balcony_4)
+        balcony_5 = findViewById(R.id.balcony_5)
+        et_street_type = findViewById(R.id.et_street_type)
+        et_monthlyPrice = findViewById(R.id.et_monthlyPrice)
+        radio_furnish_yes = findViewById(R.id.radio_furnish_yes)
+        radio_furnish_no = findViewById(R.id.radio_furnish_no)
+        radio_furnish_half = findViewById(R.id.radio_furnish_half)
+        rvAmenities = findViewById(R.id.rvAmenities)
 
         rlVideo = findViewById(R.id.rlVideo)
         imgAddVideo = findViewById(R.id.imgAddVideo)
@@ -378,8 +430,14 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         setCommercialType()
         setLandType()
         setFloors()
+        setKitchen()
+        setLivingRoom()
+        setBalcony()
         setRooms()
         setBathroom()
+        setFurnishType()
+
+        rvAmenities.layoutManager = GridLayoutManager(this,3)
 
         tvLocationOnMap.setOnClickListener {
             println("$cityNameEnglish && $nbhdNameEnglish")
@@ -1477,6 +1535,261 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
     }
 
+    private fun setKitchen() {
+        kitchen = "1"
+        kitchen_1.background = getDrawable(R.drawable.bg_number_outline)
+        kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+        kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+        kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+        kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+        kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+        kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        kitchen_1.setOnClickListener {
+            dismissKeyboard(floor_1)
+            kitchen = "1"
+            kitchen_1.background = getDrawable(R.drawable.bg_number_outline)
+            kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        kitchen_2.setOnClickListener {
+            dismissKeyboard(floor_2)
+            kitchen = "2"
+            kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_2.background = getDrawable(R.drawable.bg_number_outline)
+            kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+
+        kitchen_3.setOnClickListener {
+            dismissKeyboard(floor_3)
+            kitchen = "3"
+            kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_3.background = getDrawable(R.drawable.bg_number_outline)
+            kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        kitchen_4.setOnClickListener {
+            dismissKeyboard(floor_4)
+            kitchen = "4"
+            kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_4.background = getDrawable(R.drawable.bg_number_outline)
+            kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        kitchen_5.setOnClickListener {
+            dismissKeyboard(floor_5)
+            kitchen = "5"
+            kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+            kitchen_5.background = getDrawable(R.drawable.bg_number_outline)
+            kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+        }
+    }
+
+    private fun setLivingRoom() {
+        livingRoom = "1"
+        livingRoom_1.background = getDrawable(R.drawable.bg_number_outline)
+        livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+        livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+        livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+        livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+        livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+        livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        livingRoom_1.setOnClickListener {
+            dismissKeyboard(floor_1)
+            livingRoom = "1"
+            livingRoom_1.background = getDrawable(R.drawable.bg_number_outline)
+            livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        livingRoom_2.setOnClickListener {
+            dismissKeyboard(floor_2)
+            livingRoom = "2"
+            livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_2.background = getDrawable(R.drawable.bg_number_outline)
+            livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+
+        livingRoom_3.setOnClickListener {
+            dismissKeyboard(floor_3)
+            livingRoom = "3"
+            livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_3.background = getDrawable(R.drawable.bg_number_outline)
+            livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        livingRoom_4.setOnClickListener {
+            dismissKeyboard(floor_4)
+            livingRoom = "4"
+            livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_4.background = getDrawable(R.drawable.bg_number_outline)
+            livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        livingRoom_5.setOnClickListener {
+            dismissKeyboard(floor_5)
+            livingRoom = "5"
+            livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+            livingRoom_5.background = getDrawable(R.drawable.bg_number_outline)
+            livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+        }
+    }
+
+    private fun setBalcony() {
+        balcony = "1"
+        balcony_1.background = getDrawable(R.drawable.bg_number_outline)
+        balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+        balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+        balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+        balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+        balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+        balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        balcony_1.setOnClickListener {
+            dismissKeyboard(floor_1)
+            balcony = "1"
+            balcony_1.background = getDrawable(R.drawable.bg_number_outline)
+            balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        balcony_2.setOnClickListener {
+            dismissKeyboard(floor_2)
+            balcony = "2"
+            balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_2.background = getDrawable(R.drawable.bg_number_outline)
+            balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+
+        balcony_3.setOnClickListener {
+            dismissKeyboard(floor_3)
+            balcony = "3"
+            balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_3.background = getDrawable(R.drawable.bg_number_outline)
+            balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        balcony_4.setOnClickListener {
+            dismissKeyboard(floor_4)
+            balcony = "4"
+            balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_4.background = getDrawable(R.drawable.bg_number_outline)
+            balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+            balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+        }
+        balcony_5.setOnClickListener {
+            dismissKeyboard(floor_5)
+            balcony = "5"
+            balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+            balcony_5.background = getDrawable(R.drawable.bg_number_outline)
+            balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+            balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+        }
+    }
+
     private fun setRooms() {
         rooms = "1"
         rooms_1.background = getDrawable(R.drawable.bg_number_outline)
@@ -1642,6 +1955,25 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             bathroom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
             bathroom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
             bathroom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+        }
+    }
+
+    private fun setFurnishType() {
+        furnishType = "yes"
+        radio_furnish_yes.setOnCheckedChangeListener { it,it1->
+            if (it.isChecked) {
+                furnishType = "yes"
+            }
+        }
+        radio_furnish_no.setOnCheckedChangeListener { it,it1->
+            if (it.isChecked) {
+                furnishType = "no"
+            }
+        }
+        radio_furnish_half.setOnCheckedChangeListener { it,it1->
+            if (it.isChecked) {
+                furnishType = "half"
+            }
         }
     }
 

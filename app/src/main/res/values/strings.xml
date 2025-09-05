@@ -319,5 +319,13 @@
     <string name="select_project">حدد المشروع</string>
     <string name="completed">مكتمل</string>
     <string name="total_payment">السعر الإجمالي</string>
+    <string name="no_of_kitchen">عدد المطبخ</string>
+    <string name="no_of_living_room">عدد غرف المعيشة</string>
+    <string name="street_type">نوع الشارع</string>
+    <string name="no_of_balcony">عدد الشرفات</string>
+    <string name="monthly_price">السعر الشهري</string>
+    <string name="furnished">مفروشة</string>
+    <string name="half_furnished">نصف مفروشة</string>
+    <string name="amenities">وسائل الراحة</string>
 
 </resources>
