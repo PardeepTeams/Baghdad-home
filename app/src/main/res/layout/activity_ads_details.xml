@@ -184,6 +184,33 @@
                             </LinearLayout>
 
                             <LinearLayout
+                                android:id="@+id/llMonthlyPrice"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:textSize="14dp"
+                                    android:text="@string/monthly_price"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:textColor="@color/new_details_color"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <TextView
+                                    android:id="@+id/dt_monthlyPrice"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:text=""
+                                    android:textColor="@color/darkGrey"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
                                 android:orientation="horizontal"
                                 android:layout_marginTop="5dp"
                                 android:layout_width="match_parent"
@@ -632,7 +659,7 @@
                                         android:textSize="12dp" />
                                     <TextView
                                         android:id="@+id/dt_livingRoom"
-                                        android:layout_toEndOf="@+id/tv_livingRoom"
+                                        android:layout_toEndOf="@+id/tv_balcony"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
@@ -680,6 +707,65 @@
                                         android:textSize="12dp" />
                                 </RelativeLayout>
                             </LinearLayout>
+
+                            <LinearLayout
+                                android:id="@+id/llStreetType"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="vertical"
+                                android:layout_marginVertical="7dp"
+                                android:paddingVertical="5dp"
+                                android:paddingHorizontal="10dp"
+                                android:background="@color/whiteNew">
+
+                                <TextView
+                                    android:textSize="14dp"
+                                    android:layout_marginTop="5dp"
+                                    android:text="@string/street_type"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:textColor="@color/new_details_color"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <TextView
+                                    android:id="@+id/dtStreetType"
+                                    android:textSize="14dp"
+                                    android:text=""
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:textColor="@color/darkGrey"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:padding="5dp"
+                                    android:minLines="2"/>
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llAmeneties"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@color/whiteNew"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp"
+                            android:paddingVertical="5dp"
+                            android:layout_marginVertical="7dp">
+
+                            <TextView
+                                android:textSize="14dp"
+                                android:layout_marginTop="5dp"
+                                android:text="@string/amenities"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:textColor="@color/darkGrey"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:id="@+id/rvAmeneties"/>
+
                         </LinearLayout>
 
                         <LinearLayout

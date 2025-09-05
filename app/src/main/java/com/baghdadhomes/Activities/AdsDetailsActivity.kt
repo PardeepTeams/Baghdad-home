@@ -117,6 +117,12 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     lateinit var dt_balcony: TextView
     lateinit var dt_livingRoom: TextView
     lateinit var dt_furnished: TextView
+    lateinit var dt_monthlyPrice: TextView
+    lateinit var llMonthlyPrice: LinearLayout
+    lateinit var llStreetType: LinearLayout
+    lateinit var dtStreetType: TextView
+    lateinit var llAmeneties: LinearLayout
+    lateinit var rvAmeneties: RecyclerView
 
     var isLogged: Boolean = true
     var prop_id: String? = null
@@ -361,6 +367,12 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         dt_balcony = findViewById(R.id.dt_balcony)
         dt_livingRoom = findViewById(R.id.dt_livingRoom)
         dt_furnished = findViewById(R.id.dt_furnished)
+        llMonthlyPrice = findViewById(R.id.llMonthlyPrice)
+        dt_monthlyPrice = findViewById(R.id.dt_monthlyPrice)
+        llAmeneties = findViewById(R.id.llAmeneties)
+        rvAmeneties = findViewById(R.id.rvAmeneties)
+        dtStreetType = findViewById(R.id.dtStreetType)
+        llStreetType = findViewById(R.id.llStreetType)
 
         tv_additional_ads.paint.isUnderlineText = true
         tv_recommended.paint.isUnderlineText = true
