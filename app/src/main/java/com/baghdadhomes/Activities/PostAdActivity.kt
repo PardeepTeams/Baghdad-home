@@ -2625,6 +2625,16 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             val model = Gson().fromJson(respopnse, AmenityModel::class.java)
             if(model.success == true){
                 amenityList.addAll(model.features!!)
+
+                if(intentModel.property_feature_details!=null){
+                    for(i in 0..intentModel.property_feature_details!!.size-1){
+                        for(j in 0..amenityList.size-1){
+                            if(amenityList.get(j).id == intentModel.property_feature_details!!.get(i).id){
+                                amenityList.get(j).isSelected = true
+                            }
+                        }
+                    }
+                }
                 adapterAmenities.notifyDataSetChanged()
             }
         }
@@ -3134,6 +3144,257 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 et_postDetail.setText(Html.fromHtml(html))
             }
         }
+
+
+
+        if(intentModel.property_meta != null){
+            if(!intentModel.property_meta.monthly_price.isNullOrEmpty()){
+                et_monthlyPrice.setText(intentModel.property_meta!!.monthly_price!!.get(0))
+            }
+        }
+
+        if(intentModel.property_feature_details!=null && amenityList .isNotEmpty() ){
+            if(intentModel.property_feature_details!=null){
+                for(i in 0..intentModel.property_feature_details!!.size-1){
+                    for(j in 0..amenityList.size-1){
+                        if(amenityList.get(j).id == intentModel.property_feature_details!!.get(i).id){
+                            amenityList.get(j).isSelected = true
+                        }
+                    }
+                }
+            }
+
+            adapterAmenities.notifyDataSetChanged()
+        }
+
+
+        if(intentModel.property_meta != null){
+            if(!intentModel.property_meta.orientation.isNullOrEmpty()) {
+                tvOrientation.text = intentModel.property_meta.orientation!!.get(0)
+            }
+        }
+
+        if(intentModel.property_meta != null){
+            if(!intentModel.property_meta.street_type.isNullOrEmpty()) {
+                et_street_type.setText(intentModel.property_meta.street_type!!.get(0))
+            }
+        }
+
+        if(intentModel.property_meta != null){
+            if(!intentModel.property_meta.real_estate_situation.isNullOrEmpty()) {
+                tvRealEstateSituation.text = intentModel.property_meta.real_estate_situation!!.get(0)
+            }
+        }
+
+        if(intentModel.property_meta != null){
+            if(!intentModel.property_meta.furnished.isNullOrEmpty()) {
+                if(intentModel.property_meta.furnished!!.get(0)!!.lowercase(Locale.getDefault()).equals("yes")){
+                    furnishType ="yes"
+                    radio_furnish_yes.isChecked = true
+                }else if(intentModel.property_meta.furnished!!.get(0)!!.lowercase(Locale.getDefault())
+                        .equals("no")){
+                    furnishType ="no"
+                    radio_furnish_no.isChecked = true
+                }else if(intentModel.property_meta.furnished!!.get(0)!!.lowercase().equals("half")){
+                    furnishType ="half"
+                    radio_furnish_half.isChecked = true
+                }
+            }
+        }
+
+
+
+        if (intentModel.property_meta != null){
+            if (!intentModel.property_meta.living_room.isNullOrEmpty()){
+                livingRoom = intentModel.property_meta.living_room!!.get(0)
+                if (livingRoom == "1"){
+                    livingRoom_1.background = getDrawable(R.drawable.bg_number_outline)
+                    livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if ( livingRoom == "2" ){
+                    livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_2.background = getDrawable(R.drawable.bg_number_outline)
+                    livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (livingRoom == "3"){
+                    livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_3.background = getDrawable(R.drawable.bg_number_outline)
+                    livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (livingRoom == "4"){
+                    livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_4.background = getDrawable(R.drawable.bg_number_outline)
+                    livingRoom_5.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (livingRoom == "5") {
+                    livingRoom_1.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_2.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_3.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_4.background = getDrawable(R.drawable.bg_outline_square)
+                    livingRoom_5.background = getDrawable(R.drawable.bg_number_outline)
+                    livingRoom_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    livingRoom_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                }
+            }
+        }
+
+        if (intentModel.property_meta != null){
+            if (!intentModel.property_meta.balconies.isNullOrEmpty()){
+                balcony = intentModel.property_meta.balconies!!.get(0)
+                if (balcony == "1"){
+                    balcony_1.background = getDrawable(R.drawable.bg_number_outline)
+                    balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if ( balcony == "2" ){
+                    balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_2.background = getDrawable(R.drawable.bg_number_outline)
+                    balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (balcony == "3"){
+                    balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_3.background = getDrawable(R.drawable.bg_number_outline)
+                    balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (balcony == "4"){
+                    balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_4.background = getDrawable(R.drawable.bg_number_outline)
+                    balcony_5.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (balcony == "5") {
+                    balcony_1.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_2.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_3.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_4.background = getDrawable(R.drawable.bg_outline_square)
+                    balcony_5.background = getDrawable(R.drawable.bg_number_outline)
+                    balcony_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    balcony_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                }
+            }
+        }
+
+
+
+        if (intentModel.property_meta != null){
+            if (!intentModel.property_meta.kitchen.isNullOrEmpty()){
+                kitchen = intentModel.property_meta.kitchen!!.get(0)
+                if (kitchen == "1"){
+                    kitchen_1.background = getDrawable(R.drawable.bg_number_outline)
+                    kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if ( kitchen == "2" ){
+                    kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_2.background = getDrawable(R.drawable.bg_number_outline)
+                    kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (kitchen == "3"){
+                    kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_3.background = getDrawable(R.drawable.bg_number_outline)
+                    kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (kitchen == "4"){
+                    kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_4.background = getDrawable(R.drawable.bg_number_outline)
+                    kitchen_5.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                    kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                } else if (kitchen == "5") {
+                    kitchen_1.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_2.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_3.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_4.background = getDrawable(R.drawable.bg_outline_square)
+                    kitchen_5.background = getDrawable(R.drawable.bg_number_outline)
+                    kitchen_1.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_2.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_3.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_4.setTextColor(ContextCompat.getColor(applicationContext, R.color.grey))
+                    kitchen_5.setTextColor(ContextCompat.getColor(applicationContext, R.color.skyBlue))
+                }
+            }
+        }
+
+
+
+
 
         if (intentModel.property_meta != null){
             if (intentModel.property_meta.fave_property_size != null){

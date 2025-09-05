@@ -2,6 +2,7 @@ package com.baghdadhomes.Models
 
 import com.google.gson.annotations.SerializedName
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class FeaturedPropertiesModel(
     @SerializedName("success") val success : Boolean,
@@ -28,6 +29,7 @@ data class ResultFeatured(
     @SerializedName("is_fav") var is_fav:Boolean? = false,
     @SerializedName("is_premium") var is_premium:Boolean? = false,
     @SerializedName("agent_agency_info") val agent_agency_info : AgentAgencyInfo? = null,
+    @SerializedName("property_feature_details") val property_feature_details : List<AmenityData>? = ArrayList(),
 )
 
 data class PropertyAttr(
@@ -54,6 +56,16 @@ data class PropertyMeta(
     @SerializedName("houzez_geolocation_lat") var houzez_geolocation_lat: List<String>,
     @SerializedName("houzez_geolocation_long") var houzez_geolocation_long: List<String>,
     @SerializedName("video") val video:ArrayList<String>,
+    @SerializedName("living_room") val living_room : List<String>? = null,
+    @SerializedName("kitchen") val kitchen : List<String>? = null,
+    @SerializedName("balconies") val balconies : List<String>? = null,
+    @SerializedName("floor_number") val floor_number : List<String>? = null,
+    @SerializedName("orientation") val orientation : List<String>? = null,
+    @SerializedName("monthly_price") val monthly_price : List<String>? = null,
+    @SerializedName("street_type") val street_type : List<String>? = null,
+    @SerializedName("real_estate_situation") val real_estate_situation : List<String>? = null,
+    @SerializedName("furnished") val furnished : List<String>? = null,
+
 )
 
 data class AgentAgencyInfo(

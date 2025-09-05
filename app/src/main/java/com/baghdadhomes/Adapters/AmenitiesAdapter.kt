@@ -45,7 +45,6 @@ class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<Ame
         if(amenity.isSelected){
             holder.txtAmenity.setTextColor(ContextCompat.getColor(context,R.color.blue))
             holder.lin_main.background = ContextCompat.getDrawable(context,R.drawable.bg_amenity_selector)
-
         }else{
             holder.txtAmenity.setTextColor(ContextCompat.getColor(context,R.color.blackNew))
             holder.lin_main.background = ContextCompat.getDrawable(context,R.drawable.bg_amenity)
