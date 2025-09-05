@@ -67,6 +67,10 @@ class Constants {
         const val NEIGHBORHOOD = "NEIGHBORHOOD"
         const val NEIGHBORHOOD_API = "wp/v2/property_city_data_area"
 
+
+        const val AMINITY_API = "houzez-mobile-api/v1/features"
+        const val AMINITY = "AMINITY"
+
         const val SEND_TOKEN = "SEND_TOKEN"
         const val SEND_TOKEN_API = "wp/v2/send-token"
 
