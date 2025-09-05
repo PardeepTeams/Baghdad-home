@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.baghdadhomes.Models.AmenityModel
 import com.baghdadhomes.R
 
-class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<AmenityModel>): RecyclerView.Adapter<AmenitiesAdapter.ViewHolder>() {
+class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<AmenityModel>,private val onItemSelected: (Int) -> Unit): RecyclerView.Adapter<AmenitiesAdapter.ViewHolder>() {
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val imgAmenity: ImageView = itemView.findViewById(R.id.imgAmenity)
@@ -45,8 +45,7 @@ class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<Ame
         }
 
         holder.itemView.setOnClickListener {
-            amenity.isSelected = !amenity.isSelected
-
+            onItemSelected.invoke(position)
         }
     }
 }

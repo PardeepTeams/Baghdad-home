@@ -11,7 +11,7 @@ import com.baghdadhomes.R
 
 class FrequencyAdapter(
     private val frequencies: ArrayList<FrequencyModel>,
-    private val onItemSelected: (FrequencyModel) -> Unit
+    private val onItemSelected: (Int) -> Unit
 ) : RecyclerView.Adapter<FrequencyAdapter.ViewHolder>() {
 
     private var selectedPosition = RecyclerView.NO_POSITION
@@ -45,12 +45,7 @@ class FrequencyAdapter(
         }
 
         holder.itemView.setOnClickListener {
-          if(isSelected){
-              frequency.isSelected = false
-          }else{
-              frequency.isSelected = true
-          }
-            notifyDataSetChanged()
+          onItemSelected.invoke(position)
         }
     }
 

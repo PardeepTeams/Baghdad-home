@@ -52,12 +52,16 @@ import com.baghdadhomes.Adapters.AdapterNBHDDialog
 import com.baghdadhomes.Adapters.AdapterPropertyImages
 import com.baghdadhomes.Adapters.AdapterPropertyImages.InterfaceSelectImage
 import com.baghdadhomes.Adapters.AmenitiesAdapter
+import com.baghdadhomes.Adapters.CommonBottomSheetSelectedAdapter
+import com.baghdadhomes.Adapters.FrequencyAdapter
 import com.baghdadhomes.Adapters.SpinnerCityAdapter
 import com.baghdadhomes.Models.*
+import com.baghdadhomes.Models.AmenityModel
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.Utility
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
@@ -281,6 +285,9 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var llRentalFrequency: LinearLayout
     lateinit var rvRentalFrequency: RecyclerView
 
+    private val frequencyList : ArrayList<FrequencyModel> = ArrayList()
+    lateinit var adapterFrequency : FrequencyAdapter
+
     var isUpdate:Boolean = false
 
     var cityNameEnglish : String? = null
@@ -461,10 +468,34 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         amenityList.add(AmenityModel("Gym", R.drawable.ic_price))
 
         rvAmenities.layoutManager = GridLayoutManager(this,3)
-        adapterAmenities = AmenitiesAdapter(this,amenityList)
+        adapterAmenities = AmenitiesAdapter(this,amenityList,{position->
+            amenityList[position].isSelected = !amenityList[position].isSelected
+            adapterAmenities.notifyDataSetChanged()
+        })
         rvAmenities.adapter = adapterAmenities
 
+        frequencyList.add(FrequencyModel("Daily"))
+        frequencyList.add(FrequencyModel("Weekly"))
+        frequencyList.add(FrequencyModel("Monthly"))
+        frequencyList.add(FrequencyModel("Yearly"))
+
         rvRentalFrequency.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        adapterFrequency = FrequencyAdapter(frequencyList,{position->
+            for (i in frequencyList) {
+                i.isSelected = false
+            }
+            frequencyList[position].isSelected = true
+            adapterFrequency.notifyDataSetChanged()
+        })
+        rvRentalFrequency.adapter = adapterFrequency
+
+        tvOrientation.setOnClickListener {
+            showOrientationBottomSheet()
+        }
+
+        tvRealEstateSituation.setOnClickListener {
+            showRealEstateBottomSheet()
+        }
 
         tvLocationOnMap.setOnClickListener {
             println("$cityNameEnglish && $nbhdNameEnglish")
@@ -3694,4 +3725,67 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         return b
     }
 
+    private fun showRealEstateBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_real_estate, null)
+        bottomSheetDialog.setContentView(view)
+
+        val txtTitle:TextView = view.findViewById(R.id.txtTitle)
+
+        txtTitle.text = getString(R.string.real_estate_situation)
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSituations)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val options = listOf(
+            "TAPU",
+            "LAND CONTRACT",
+            "NON",
+            "INVESTMENT",
+            "MUSATAHA",
+            "CARD",
+            "AGRICULTURAL TAPU"
+        )
+
+        val adapter = CommonBottomSheetSelectedAdapter(options) { selected ->
+            tvRealEstateSituation.text = selected
+            bottomSheetDialog.dismiss()
+        }
+
+        recyclerView.adapter = adapter
+        bottomSheetDialog.show()
+    }
+
+
+    private fun showOrientationBottomSheet() {
+        val bottomSheetDialog = BottomSheetDialog(this)
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_real_estate, null)
+        bottomSheetDialog.setContentView(view)
+
+        val txtTitle:TextView = view.findViewById(R.id.txtTitle)
+
+        txtTitle.text = getString(R.string.orientation)
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSituations)
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        val options = listOf(
+            "Sun Set",
+            "Sun Rise",
+            "North East",
+            "North West",
+            "South East",
+            "South West",
+            "South",
+            "North",
+            "Qibla"
+        )
+
+        val adapter = CommonBottomSheetSelectedAdapter(options) { selected ->
+            tvOrientation.text = selected
+            bottomSheetDialog.dismiss()
+        }
+
+        recyclerView.adapter = adapter
+        bottomSheetDialog.show()
+    }
 }
