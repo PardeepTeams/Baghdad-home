@@ -29,6 +29,7 @@ data class ResultDetail (
     @SerializedName("agent_agency_info") val agent_agency_info : AgenciesData,
     @SerializedName("property_address") val property_address : Property_address,
     @SerializedName("is_premium") val is_premium : Boolean,
+    @SerializedName("property_feature_details") val property_feature_details : AmenityData? = null,
 )
 
 data class Property_meta (
@@ -45,6 +46,15 @@ data class Property_meta (
     @SerializedName("houzez_geolocation_lat") val houzez_geolocation_lat : List<String>,
     @SerializedName("houzez_geolocation_long") val houzez_geolocation_long : List<String>,
     @SerializedName("reel_view") val reel_view : List<String>,
+    @SerializedName("living_room") val living_room : List<String>? = null,
+    @SerializedName("kitchen") val kitchen : List<String>? = null,
+    @SerializedName("balconies") val balconies : List<String>? = null,
+    @SerializedName("floor_number") val floor_number : List<String>? = null,
+    @SerializedName("orientation") val orientation : List<String>? = null,
+    @SerializedName("monthly_price") val monthly_price : List<String>? = null,
+    @SerializedName("street_type") val street_type : List<String>? = null,
+    @SerializedName("real_estate_situation") val real_estate_situation : List<String>? = null,
+    @SerializedName("furnished") val furnished : List<String>? = null,
 )
 
 /*data class Agent_agency_info (

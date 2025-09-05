@@ -37,11 +37,10 @@ class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<Ame
         holder.itemView.isSelected = amenity.isSelected
 
         if(!amenity.icon.isNullOrEmpty()){
-            Glide.with(context).load(amenity.icon).into(holder.imgAmenity)
+            Glide.with(context).load(amenity.icon).placeholder(R.drawable.img_placeholder).into(holder.imgAmenity)
         }else{
             holder.imgAmenity.setImageResource(R.drawable.img_placeholder)
         }
-
 
         if(amenity.isSelected){
             holder.txtAmenity.setTextColor(ContextCompat.getColor(context,R.color.blue))

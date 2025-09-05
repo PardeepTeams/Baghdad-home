@@ -29,6 +29,7 @@ data class AmenityData(
 
     @SerializedName("count")
     val count: Int? = null,
+
     @SerializedName("icon")
     val icon: String? = null,
 
