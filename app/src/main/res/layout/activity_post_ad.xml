@@ -59,7 +59,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
-                android:weightSum="2">
+                android:weightSum="3">
 
                 <TextView
                     android:id="@+id/tv_for_rent"
@@ -86,6 +86,20 @@
                     android:gravity="center_horizontal"
                     android:paddingVertical="10dp"
                     android:text="@string/for_sale"
+                    android:textColor="@color/whiteNew"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/tv_for_wanted"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_outline_blue_new"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_horizontal"
+                    android:paddingVertical="10dp"
+                    android:text="@string/for_wanted"
                     android:textColor="@color/whiteNew"
                     android:textSize="16dp" />
             </LinearLayout>

@@ -52,8 +52,8 @@
     <string name="bath">2 Bath</string>
     <string name="bed">3 Bed</string>
     <string name="post_an_ad">Post An Ad.</string>
-    <string name="for_rent">For Rent</string>
-    <string name="for_sale">For Sale</string>
+    <string name="for_rent">Rent</string>
+    <string name="for_sale">Sale</string>
     <string name="address">Address</string>
     <string name="state">State</string>
     <string name="city">City</string>
@@ -315,6 +315,7 @@
     <string name="select_project">Select Project</string>
     <string name="completed">Completed</string>
     <string name="total_payment">Total Price</string>
+    <string name="for_wanted">Wanted</string>
     <string name="no_of_kitchen">Number of Kitchen</string>
     <string name="no_of_living_room">Number of Living Room</string>
     <string name="street_type">Street Type</string>

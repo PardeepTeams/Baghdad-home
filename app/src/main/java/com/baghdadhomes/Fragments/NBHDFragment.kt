@@ -12,7 +12,9 @@ import android.view.inputmethod.EditorInfo
 import android.widget.EditText
 import android.widget.ExpandableListView
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import androidx.fragment.app.Fragment
+import com.baghdadhomes.Activities.HomeActivity
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.baghdadhomes.Activities.PropertiesSearchActivity
@@ -43,6 +45,7 @@ class NBHDFragment : BaseFragment(), AdapterNBHDItems.ChildItemClick {
     var nbhdList:ArrayList<NBHDDataResponse> = ArrayList()
     private lateinit var et_search : EditText
     private lateinit var img_clear_search : ImageView
+    private lateinit var rl_icon : RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -131,6 +134,13 @@ class NBHDFragment : BaseFragment(), AdapterNBHDItems.ChildItemClick {
         expandableListView = view.findViewById(R.id.expandableListView)
         img_clear_search = view.findViewById(R.id.img_clear_search)
         et_search = view.findViewById(R.id.et_search)
+        rl_icon = view.findViewById(R.id.rl_icon)
+
+        rl_icon.setOnClickListener {
+            ((context) as HomeActivity).setHomeFragment()
+        }
+
+
         img_clear_search.setOnClickListener {
             et_search.setText("")
             requireContext().dismissKeyboard(et_search)
