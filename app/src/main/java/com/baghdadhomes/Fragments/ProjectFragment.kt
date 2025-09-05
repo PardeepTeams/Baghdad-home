@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.fragment.app.Fragment
@@ -20,6 +21,7 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.baghdadhomes.Activities.AdsDetailsActivity
 import com.baghdadhomes.Activities.BaseActivity
+import com.baghdadhomes.Activities.HomeActivity
 import com.baghdadhomes.Activities.ProjectDetailActivity
 import com.baghdadhomes.Adapters.ProductsAdapter
 import com.baghdadhomes.Adapters.ProductsBannerPagerAdapter
@@ -67,6 +69,7 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
     private var job: Job? = null
     lateinit var et_search_property: EditText
     lateinit var tv_search_count: TextView
+    lateinit var rl_icon: RelativeLayout
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -109,7 +112,9 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
         super.onViewCreated(view, savedInstanceState)
         initView(view);
 
-
+        rl_icon.setOnClickListener {
+            ((context) as HomeActivity).setHomeFragment()
+        }
 
 
 
@@ -240,6 +245,7 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
 
     fun initView(view: View) {
         bannerPager = view.findViewById(R.id.bannerPager)
+        rl_icon = view.findViewById(R.id.rl_icon)
         rv_city = view.findViewById(R.id.rv_city)
         rv_products = view.findViewById(R.id.rv_products)
         indicatorLayout = view.findViewById(R.id.indicatorLayout)

@@ -102,6 +102,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
     lateinit var tv_for_rent: TextView
     lateinit var tv_for_sale: TextView
+    lateinit var tv_for_wanted: TextView
     lateinit var property_residence: TextView
     lateinit var property_commercial: TextView
     lateinit var property_land: TextView
@@ -330,6 +331,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         et_width = findViewById(R.id.et_width)
         tv_for_rent = findViewById(R.id.tv_for_rent)
         tv_for_sale = findViewById(R.id.tv_for_sale)
+        tv_for_wanted = findViewById(R.id.tv_for_wanted)
         rv_property_type = findViewById(R.id.rv_property_type)
         rv_photo = findViewById(R.id.rv_photo)
         property_residence = findViewById(R.id.property_residence)
@@ -861,16 +863,20 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         status = 29
         tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
         tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
+        tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
         tv_for_rent.setTextColor(resources.getColor(R.color.grey))
         tv_for_sale.setTextColor(resources.getColor(R.color.whiteNew))
+        tv_for_wanted.setTextColor(resources.getColor(R.color.grey))
         tv_price_head.setText(resources.getString(R.string.selling_price))
         tv_for_sale.setOnClickListener {
             dismissKeyboard(tv_for_sale)
             status = 29
             tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
             tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
+            tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
             tv_for_rent.setTextColor(resources.getColor(R.color.grey))
             tv_for_sale.setTextColor(resources.getColor(R.color.whiteNew))
+            tv_for_wanted.setTextColor(resources.getColor(R.color.grey))
             tv_price_head.setText(resources.getString(R.string.selling_price))
         }
 
@@ -879,8 +885,22 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             status = 28
             tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
             tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
+            tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
             tv_for_rent.setTextColor(resources.getColor(R.color.whiteNew))
             tv_for_sale.setTextColor(resources.getColor(R.color.grey))
+            tv_for_wanted.setTextColor(resources.getColor(R.color.grey))
+            tv_price_head.setText(resources.getString(R.string.rent_price))
+        }
+
+        tv_for_wanted.setOnClickListener {
+            dismissKeyboard(tv_for_rent)
+            status = 28
+            tv_for_rent.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
+            tv_for_sale.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_solid))
+            tv_for_wanted.setBackgroundDrawable(resources.getDrawable(R.drawable.bg_outline_blue_new))
+            tv_for_rent.setTextColor(resources.getColor(R.color.grey))
+            tv_for_sale.setTextColor(resources.getColor(R.color.grey))
+            tv_for_wanted.setTextColor(resources.getColor(R.color.whiteNew))
             tv_price_head.setText(resources.getString(R.string.rent_price))
         }
     }

@@ -62,6 +62,7 @@ class MoreFragment : BaseFragment() {
     lateinit var rl_my_chats:RelativeLayout
     lateinit var rlServices:RelativeLayout
     lateinit var rl_realtors:RelativeLayout
+    lateinit var rl_icon:RelativeLayout
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -128,6 +129,7 @@ class MoreFragment : BaseFragment() {
         rl_notification = view.findViewById(R.id.rl_notification)
         rl_my_chats = view.findViewById(R.id.rl_my_chats)
         rlServices = view.findViewById(R.id.rlServices)
+        rl_icon = view.findViewById(R.id.rl_icon)
 
         rl_wp = view.findViewById(R.id.rl_wp)
         rl_call = view.findViewById(R.id.rl_call)
@@ -139,6 +141,10 @@ class MoreFragment : BaseFragment() {
         tv_version.setText(resources.getString(R.string.version)+" "+ versionName)
         sign_up.getPaint().isUnderlineText = true
         log_in.getPaint().isUnderlineText = true
+
+        rl_icon.setOnClickListener {
+            ((context) as HomeActivity).setHomeFragment()
+        }
 
 
         val isLogged = PreferencesService.instance.userLoginStatus

@@ -171,6 +171,8 @@ class HomeActivity : BaseActivity() {
         }
     }
 
+
+
     fun setChatFragment(){
         setFragment(ChatHistoryActivity())
         img_menu.setImageDrawable(ContextCompat.getDrawable(this,R.drawable.ic_menu))

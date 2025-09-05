@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">بغداد الوطن</string>
+    <string name="app_name">بغداد هوم</string>
     <string name="app_name_english">Baghdad Home</string>
     <string name="home">الرئيسية</string>
     <string name="properties">عقارات</string>
@@ -319,5 +319,6 @@
     <string name="select_project">حدد المشروع</string>
     <string name="completed">مكتمل</string>
     <string name="total_payment">السعر الإجمالي</string>
+    <string name="for_wanted">مطلوب</string>
 
 </resources>
