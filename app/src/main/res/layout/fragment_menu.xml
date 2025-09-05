@@ -132,7 +132,8 @@
                         android:maxLines="1"
                         android:textColorHint="@color/grey"
                         android:singleLine="true"
-                        android:textSize="14sp" />
+                        android:textSize="14sp"
+                        android:focusableInTouchMode="false"/>
 
                 </RelativeLayout>
 

@@ -14,6 +14,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.lifecycleScope
@@ -81,6 +82,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     lateinit var tv_search_count: TextView
     lateinit var rlListGrid: RelativeLayout
     lateinit var imgListGrid: ImageView
+    lateinit var card_search: CardView
     var keyword:String = ""
     var feautredList:ArrayList<Result> = ArrayList()
     var propertiesList:ArrayList<Result> = ArrayList()
@@ -334,6 +336,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
         tv_all_properties = view.findViewById(R.id.tv_all_properties)
         tv_see_all = view.findViewById(R.id.tv_see_all)
+        card_search = view.findViewById(R.id.card_search)
         tv_all_properties.text = capitalizeFirstLetter(type) + " " + getString(R.string.ads)
         getReels()
         swipe_refresh = view.findViewById(R.id.swipe_refresh)
@@ -503,6 +506,15 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         rl_filter.setOnClickListener {
             startActivity(Intent(activity, SearchActivity::class.java))
             requireActivity().overridePendingTransition(0, 0)
+        }
+
+        card_search.setOnClickListener {
+            startActivity(Intent(activity, SearchActivity::class.java))
+            requireActivity().overridePendingTransition(0, 0)
+        }
+
+        et_search_property.setOnClickListener {
+            card_search.performClick()
         }
 
         et_search_property.setOnEditorActionListener { v, actionId, event ->
