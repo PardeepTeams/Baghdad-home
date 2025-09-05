@@ -8,21 +8,25 @@
     android:padding="8dp"
     android:id="@+id/lin_main"
     android:layout_marginEnd="5dp"
+    android:layout_marginBottom="5dp"
     android:background="@drawable/bg_amenity">
 
     <ImageView
         android:id="@+id/imgAmenity"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:src="@drawable/ic_price"
-        app:tint="@color/blackNew" />
+        android:src="@drawable/ic_price" />
 
     <TextView
         android:id="@+id/txtAmenity"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="6dp"
         android:text="Balcony"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:singleLine="true"
+        android:maxLines="1"
         android:fontFamily="@font/hacen_tunisia_bold_regular"
         android:textSize="12sp"
         android:textColor="@color/blackNew" />
