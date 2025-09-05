@@ -29,7 +29,7 @@ data class ResultDetail (
     @SerializedName("agent_agency_info") val agent_agency_info : AgenciesData,
     @SerializedName("property_address") val property_address : Property_address,
     @SerializedName("is_premium") val is_premium : Boolean,
-    @SerializedName("property_feature_details") val property_feature_details : AmenityData? = null,
+    @SerializedName("property_feature_details") val property_feature_details : List<AmenityData>? = null,
 )
 
 data class Property_meta (

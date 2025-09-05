@@ -244,6 +244,62 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
+                                    android:id="@+id/tv_orientation"
+                                    android:textSize="14dp"
+                                    android:text="@string/orientation"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:textColor="@color/new_details_color"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <TextView
+                                    android:id="@+id/dt_orientation"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_toEndOf="@+id/tv_area"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:text=""
+                                    android:textColor="@color/darkGrey"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/tv_realEstateSituation"
+                                    android:textSize="14dp"
+                                    android:text="@string/real_estate_situation"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:textColor="@color/new_details_color"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <TextView
+                                    android:id="@+id/dt_realEstateSituation"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_toEndOf="@+id/tv_realEstateSituation"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:text=""
+                                    android:textColor="@color/darkGrey"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+
+                            <LinearLayout
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
                                     android:id="@+id/tv_date"
                                     android:textSize="14dp"
                                     android:text="@string/ad_publish_date"
@@ -647,7 +703,7 @@
                                         android:src="@drawable/img_bed" />
 
                                     <TextView
-                                        android:id="@+id/tv_balcony"
+                                        android:id="@+id/tv_livingRoom"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
@@ -659,7 +715,7 @@
                                         android:textSize="12dp" />
                                     <TextView
                                         android:id="@+id/dt_livingRoom"
-                                        android:layout_toEndOf="@+id/tv_balcony"
+                                        android:layout_toEndOf="@+id/tv_livingRoom"
                                         android:layout_width="wrap_content"
                                         android:layout_height="wrap_content"
                                         android:layout_centerVertical="true"
@@ -713,14 +769,10 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:orientation="vertical"
-                                android:layout_marginVertical="7dp"
-                                android:paddingVertical="5dp"
-                                android:paddingHorizontal="10dp"
-                                android:background="@color/whiteNew">
+                                android:layout_marginTop="10dp">
 
                                 <TextView
                                     android:textSize="14dp"
-                                    android:layout_marginTop="5dp"
                                     android:text="@string/street_type"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -735,7 +787,6 @@
                                     android:textColor="@color/darkGrey"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    android:padding="5dp"
                                     android:minLines="2"/>
 
                             </LinearLayout>
@@ -764,6 +815,7 @@
                             <androidx.recyclerview.widget.RecyclerView
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
+                                android:layout_marginTop="10dp"
                                 android:id="@+id/rvAmeneties"/>
 
                         </LinearLayout>

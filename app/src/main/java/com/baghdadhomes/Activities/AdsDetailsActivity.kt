@@ -22,6 +22,7 @@ import androidmads.library.qrgenearator.QRGContents
 import androidmads.library.qrgenearator.QRGEncoder
 import androidx.core.widget.NestedScrollView
 import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
@@ -40,6 +41,7 @@ import com.google.gson.JsonObject
 import com.baghdadhomes.Adapters.AdapterAutoSliderDetailPage
 import com.baghdadhomes.Adapters.AdapterDetailAds
 import com.baghdadhomes.Adapters.AdapterDetailAds.openDetailPage
+import com.baghdadhomes.Adapters.AmenitiesAdapter
 import com.baghdadhomes.Models.*
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
@@ -123,6 +125,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     lateinit var dtStreetType: TextView
     lateinit var llAmeneties: LinearLayout
     lateinit var rvAmeneties: RecyclerView
+    lateinit var dt_orientation: TextView
+    lateinit var dt_realEstateSituation: TextView
 
     var isLogged: Boolean = true
     var prop_id: String? = null
@@ -373,6 +377,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         rvAmeneties = findViewById(R.id.rvAmeneties)
         dtStreetType = findViewById(R.id.dtStreetType)
         llStreetType = findViewById(R.id.llStreetType)
+        dt_orientation = findViewById(R.id.dt_orientation)
+        dt_realEstateSituation = findViewById(R.id.dt_realEstateSituation)
 
         tv_additional_ads.paint.isUnderlineText = true
         tv_recommended.paint.isUnderlineText = true
@@ -632,6 +638,72 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     }
                 } else{
                     prop_sub_type = ""
+                }
+
+                if (model.result.property_meta != null) {
+                    if (!model.result.property_meta.orientation.isNullOrEmpty()) {
+                        dt_orientation.text = model.result.property_meta.orientation.first()
+                    } else {
+                        dt_orientation.text = ""
+                    }
+
+                    if (!model.result.property_meta.real_estate_situation.isNullOrEmpty()) {
+                        dt_realEstateSituation.text = model.result.property_meta.real_estate_situation.first()
+                    } else {
+                        dt_realEstateSituation.text = ""
+                    }
+
+                    if (!model.result.property_meta.living_room.isNullOrEmpty()) {
+                        dt_livingRoom.text = model.result.property_meta.living_room.first()
+                    } else {
+                        dt_livingRoom.text = "0"
+                    }
+
+                    if (!model.result.property_meta.kitchen.isNullOrEmpty()) {
+                        dt_kitchen.text = model.result.property_meta.kitchen.first()
+                    } else {
+                        dt_kitchen.text = "0"
+                    }
+
+                    if (!model.result.property_meta.balconies.isNullOrEmpty()) {
+                        dt_balcony.text = model.result.property_meta.balconies.first()
+                    } else {
+                        dt_balcony.text = "0"
+                    }
+
+                    if (!model.result.property_meta.monthly_price.isNullOrEmpty()) {
+                        llMonthlyPrice.visibility = View.VISIBLE
+                        dt_monthlyPrice.text = model.result.property_meta.monthly_price.first()
+                    } else {
+                        llMonthlyPrice.visibility = View.GONE
+                    }
+
+                    if (!model.result.property_meta.street_type.isNullOrEmpty()) {
+                        llStreetType.visibility = View.VISIBLE
+                        dtStreetType.text = model.result.property_meta.street_type.first()
+                    } else {
+                        llStreetType.visibility = View.GONE
+                    }
+
+                    if (!model.result.property_meta.furnished.isNullOrEmpty()) {
+                        var furnished = model.result.property_meta.furnished.first()
+                        if (furnished == "Half Furnished") {
+                            dt_furnished.text = getString(R.string.half_furnished)
+                        } else if (furnished == "Yes") {
+                            dt_furnished.text = getString(R.string.yes)
+                        } else {
+                            dt_furnished.text = getString(R.string.no)
+                        }
+                    }
+                }
+
+                if (!model.result.property_feature_details.isNullOrEmpty()) {
+                    llAmeneties.visibility = View.VISIBLE
+                    rvAmeneties.layoutManager = GridLayoutManager(this,3)
+                    rvAmeneties.adapter = AmenitiesAdapter(this,
+                        model.result.property_feature_details as ArrayList<AmenityData>,{position->})
+                } else {
+                    llAmeneties.visibility = View.GONE
                 }
 
                 val language = PreferencesService.instance.getLanguage()

@@ -1289,7 +1289,6 @@
                 android:background="@drawable/bg_outline_solid"
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                 android:hint="@string/street_type"
-                android:maxLength="10"
                 android:paddingHorizontal="30dp"
                 android:paddingVertical="12dp"
                 android:singleLine="true"
