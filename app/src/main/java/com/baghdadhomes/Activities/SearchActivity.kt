@@ -22,6 +22,7 @@ import com.google.gson.JsonObject
 import com.baghdadhomes.Adapters.AdapterNBHDDialog
 import com.baghdadhomes.Adapters.AdapterPropertySubTypes
 import com.baghdadhomes.Adapters.AdapterSelectedNBHD
+import com.baghdadhomes.Adapters.FrequencyAdapter
 import com.baghdadhomes.Adapters.SpinnerCityAdapter
 import com.baghdadhomes.Models.*
 import com.baghdadhomes.PreferencesService
@@ -48,6 +49,11 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
     lateinit var rv_selectedNBHD :RecyclerView
     lateinit var spinner_jurisdriction :AppCompatSpinner
     lateinit var spinner_neighborhood :TextView
+
+    lateinit var rvFurnishedType : RecyclerView
+    private val furnishedTypeList : ArrayList<FrequencyModel> = ArrayList()
+    lateinit var adapterFurnished : FrequencyAdapter
+
     var nbhdList : ArrayList<NBHDDataResponse> = ArrayList()
     var selectedNBHDList : ArrayList<NBHDArea> = ArrayList()
     var cityList : ArrayList<NBHDArea> = ArrayList()
@@ -97,6 +103,7 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
         spinner_neighborhood = findViewById(R.id.spinner_neighborhood)
         rv_selectedNBHD = findViewById(R.id.rv_selectedNBHD)
         rvSubTypes = findViewById(R.id.rvSubTypes)
+        rvFurnishedType = findViewById(R.id.rvFurnishedType)
 
         img_ai.setOnClickListener {
             startActivity(Intent(this,AIChatActivity::class.java))
@@ -112,6 +119,17 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
         rvSubTypes.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
         rvSubTypes.itemAnimator = null
         rvSubTypes.adapter = adapterSubTypes
+
+        furnishedTypeList.add(FrequencyModel(getString(R.string.all),true,""))
+        furnishedTypeList.add(FrequencyModel(getString(R.string.furnished),false,"Yes"))
+        furnishedTypeList.add(FrequencyModel(getString(R.string.unFurnished),false,"No"))
+        furnishedTypeList.add(FrequencyModel(getString(R.string.half_furnished),false,"Half Furnished"))
+
+        rvFurnishedType.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL,false)
+        adapterFurnished = FrequencyAdapter(furnishedTypeList,{position->
+            setFurnishedType(position)
+        })
+        rvFurnishedType.adapter = adapterFurnished
 
         spinner_jurisdriction.setOnItemSelectedListener(object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
@@ -180,7 +198,8 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
             et_price_from.setText("")
             et_price_to.setText("")
             selectedNBHDList.clear()
-            selectedNBHDAdapter!!.notifyDataSetChanged()
+            selectedNBHDAdapter?.notifyDataSetChanged()
+            setFurnishedType(0)
         }
 
         tv_done.setOnClickListener {
@@ -199,6 +218,10 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
                 }
             }
 
+            var furnishedType = furnishedTypeList.firstOrNull {
+                it.isSelected == true
+            }?.value ?: ""
+
             val areaList: ArrayList<String> = ArrayList()
             for (i in selectedNBHDList){
                 if (i.slug != "all") {
@@ -211,7 +234,7 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
             val minArea = area_from.text.toString().trim()
             val maxArea = area_to.text.toString().trim()
 
-            val filterModel = FilterIntentModel(status, type,propertySubType, location, minPrice, maxPrice, maxArea, minArea, areaList)
+            val filterModel = FilterIntentModel(status, type,propertySubType, location, minPrice, maxPrice, maxArea, minArea, furnishedType, areaList)
             val intent = Intent(this,PropertiesSearchActivity::class.java)
             intent.putExtra("filterData",Gson().toJson(filterModel))
             startActivity(intent)
@@ -226,6 +249,13 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
 
     }
 
+    private fun setFurnishedType(position : Int) {
+        for (i in furnishedTypeList) {
+            i.isSelected = false
+        }
+        furnishedTypeList[position].isSelected = true
+        adapterFurnished.notifyDataSetChanged()
+    }
 
     private fun switchRentOrSale(){
         status = "for-sale"

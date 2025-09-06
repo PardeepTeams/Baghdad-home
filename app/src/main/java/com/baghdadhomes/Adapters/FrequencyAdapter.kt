@@ -35,7 +35,7 @@ class FrequencyAdapter(
 
         holder.txtFrequency.setTextColor(
             if (isSelected) holder.itemView.context.getColor(R.color.blue)
-            else holder.itemView.context.getColor(R.color.black)
+            else holder.itemView.context.getColor(R.color.blackNew)
         )
         if(isSelected){
             holder.txtFrequency.background = ContextCompat.getDrawable(holder.itemView.context,R.drawable.bg_amenity_selector)

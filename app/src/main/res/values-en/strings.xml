@@ -337,4 +337,5 @@
     <string name="baghdad_ai_message">Chat with Baghdad AI, Iraq\'s first AI-powered app for an effortless home-finding journey!</string>
     <string name="ai_chat_default_message_1">Hello there! this is Baghdad Assist, I am here to help you find your dream home.</string>
     <string name="ai_chat_default_message_2">Please tell me what you are looking for?</string>
+    <string name="unFurnished">Unfurnished</string>
 </resources>

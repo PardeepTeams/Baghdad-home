@@ -11,9 +11,10 @@ public class FilterIntentModel {
     String max_price;
     String max_area;
     String min_area;
+    String furnished;
     ArrayList<String> area;
 
-    public FilterIntentModel(String status, String type, String sub_type, String location, String min_price, String max_price, String max_area, String min_area, ArrayList<String> area) {
+    public FilterIntentModel(String status, String type, String sub_type, String location, String min_price, String max_price, String max_area, String min_area, String furnished, ArrayList<String> area) {
         this.status = status;
         this.type = type;
         this.sub_type = sub_type;
@@ -22,6 +23,7 @@ public class FilterIntentModel {
         this.max_price = max_price;
         this.max_area = max_area;
         this.min_area = min_area;
+        this.furnished = furnished;
         this.area = area;
     }
 
@@ -87,6 +89,14 @@ public class FilterIntentModel {
 
     public void setMin_area(String min_area) {
         this.min_area = min_area;
+    }
+
+    public String getFurnished() {
+        return furnished;
+    }
+
+    public void setFurnished(String furnished) {
+        this.furnished = furnished;
     }
 
     public ArrayList<String> getArea() {

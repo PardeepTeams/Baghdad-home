@@ -189,6 +189,7 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
                 pagemap.put("max-price", filterModel.max_price)
                 pagemap.put("max-area", filterModel.max_area)
                 pagemap.put("min-area", filterModel.min_area)
+                pagemap.put("furnished", filterModel.furnished)
                 pagemap.put("page", page.toString())
                 pagemap.put("per_page", "10")
                 pagemap.put("keybaord", keybaord)

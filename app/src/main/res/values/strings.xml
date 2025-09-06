@@ -341,5 +341,6 @@
     <string name="baghdad_ai_message">تحدث مع تطبيق بغداد AI، أول تطبيق في العراق يعتمد على الذكاء الاصطناعي لتسهيل رحلة البحث عن المنزل!</string>
     <string name="ai_chat_default_message_1">مرحبا بكم! هذا هو بغداد أسيست، أنا هنا لمساعدتك في العثور على منزل أحلامك.</string>
     <string name="ai_chat_default_message_2">من فضلك قل لي ما الذي تبحث عنه؟</string>
+    <string name="unFurnished">غير مفروشة</string>
 
 </resources>

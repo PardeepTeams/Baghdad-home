@@ -67,12 +67,53 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:visibility="gone"
         android:layout_marginTop="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/tv_for_rent"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_horizontal"
+                android:paddingVertical="10dp"
+                android:text="@string/for_rent"
+                android:textColor="@color/grey"
+                android:textSize="16dp" />
+
+            <TextView
+                android:id="@+id/tv_for_sale"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_weight="1"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:gravity="center_horizontal"
+                android:paddingVertical="10dp"
+                android:text="@string/for_sale"
+                android:textColor="@color/grey"
+                android:textSize="16dp" />
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            android:id="@+id/rvTypes"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
 
             <TextView
                 android:id="@+id/tvSeeAll"
