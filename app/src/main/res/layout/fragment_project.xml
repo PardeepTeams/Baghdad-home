@@ -113,7 +113,6 @@
 
             <LinearLayout
                 android:orientation="vertical"
-                android:paddingHorizontal="15dp"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
                 <androidx.recyclerview.widget.RecyclerView
@@ -122,6 +121,8 @@
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     android:orientation="horizontal"
                     android:layout_marginTop="15dp"
+                    android:paddingHorizontal="15dp"
+                    android:clipToPadding="false"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content" />
 
@@ -144,6 +145,7 @@
                     android:id="@+id/rv_products"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
+                    android:paddingHorizontal="15dp"
                     android:layout_marginTop="7dp"
                     android:nestedScrollingEnabled="false"
                     android:overScrollMode="never"
