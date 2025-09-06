@@ -45,6 +45,9 @@
     <color name="maroon_red">#db241c</color>
   <!--  <color name="home_circle_icon">#CE1126</color>-->
     <color name="home_circle_icon">#807F7C</color>
+
+    <!--<color name="home_circle_icon">#807F7C</color>-->
     <color name="grey_light">#CCCCCC</color>
+
 
 </resources>

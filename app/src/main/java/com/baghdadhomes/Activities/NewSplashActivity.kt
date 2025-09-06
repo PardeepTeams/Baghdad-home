@@ -26,6 +26,8 @@ import com.baghdadhomes.Models.AppUpdateCheckResponse
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
+import pl.droidsonroids.gif.GifDrawable
+import pl.droidsonroids.gif.GifImageView
 
 class NewSplashActivity : BaseActivity() {
     private var versionName: String = BuildConfig.VERSION_NAME
@@ -45,6 +47,12 @@ class NewSplashActivity : BaseActivity() {
         PreferencesService.init(this)
         PreferencesService.instance.getLanguage()
         videoview = findViewById(R.id.videoview)
+        val gifView:GifImageView = findViewById<GifImageView>(R.id.gifView)
+        val gifDrawable = gifView.drawable as GifDrawable
+        gifDrawable.loopCount = 1
+        gifDrawable.addAnimationListener {
+            checkRedirection()
+        }
 
         // ATTENTION: This was auto-generated to handle app links.
         val appLinkIntent: Intent = intent
@@ -109,7 +117,7 @@ class NewSplashActivity : BaseActivity() {
 
 
         videoview.setOnCompletionListener {
-            checkRedirection()
+           // checkRedirection()
         }
     }
 
@@ -136,9 +144,9 @@ class NewSplashActivity : BaseActivity() {
     override fun getResponse(apiType: String, respopnse: JsonObject) {
         if (apiType == Constants.APP_UPDATE_CHECK){
             model = Gson().fromJson(respopnse,AppUpdateCheckResponse::class.java)
-            Handler(Looper.getMainLooper()).postDelayed({
+        /*    Handler(Looper.getMainLooper()).postDelayed({
                 checkRedirection()
-            },2500)
+            },2300)*/
         }
     }
 
