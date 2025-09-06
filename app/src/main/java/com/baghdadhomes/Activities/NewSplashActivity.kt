@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable
 import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.Log
 import android.view.View
 import android.view.animation.AnimationUtils
@@ -39,16 +41,6 @@ class NewSplashActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_splash)
-
-        val logo: ImageView = findViewById(R.id.logoImage)
-        val text: TextView = findViewById(R.id.appText)
-
-        // Load animations
-        val topToCenter = AnimationUtils.loadAnimation(this, R.anim.top_to_center)
-        val bottomToCenter = AnimationUtils.loadAnimation(this, R.anim.bottom_to_center)
-
-        logo.startAnimation(topToCenter)
-        text.startAnimation(bottomToCenter)
 
         PreferencesService.init(this)
         PreferencesService.instance.getLanguage()
@@ -117,22 +109,26 @@ class NewSplashActivity : BaseActivity() {
 
 
         videoview.setOnCompletionListener {
-            if (intent.getBooleanExtra("languageChange", false)){
-                openHome()
+            checkRedirection()
+        }
+    }
+
+    private fun checkRedirection() {
+        if (intent.getBooleanExtra("languageChange", false)){
+            openHome()
+        } else{
+            if (model != null){
+                if (model?.success == true && !model?.version.isNullOrEmpty()){
+                    if (model?.version!! > versionName){
+                        openUpdateDialog(model?.updation_required)
+                    } else{
+                        openHome()
+                    }
+                } else{
+                    openHome()
+                }
             } else{
-                 if (model != null){
-                     if (model?.success == true && !model?.version.isNullOrEmpty()){
-                         if (model?.version!! > versionName){
-                             openUpdateDialog(model?.updation_required)
-                         } else{
-                             openHome()
-                         }
-                     } else{
-                         openHome()
-                     }
-                 } else{
-                     openHome()
-                 }
+                openHome()
             }
         }
     }
@@ -140,6 +136,9 @@ class NewSplashActivity : BaseActivity() {
     override fun getResponse(apiType: String, respopnse: JsonObject) {
         if (apiType == Constants.APP_UPDATE_CHECK){
             model = Gson().fromJson(respopnse,AppUpdateCheckResponse::class.java)
+            Handler(Looper.getMainLooper()).postDelayed({
+                checkRedirection()
+            },2500)
         }
     }
 
