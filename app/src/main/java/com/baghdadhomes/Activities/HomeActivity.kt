@@ -291,11 +291,9 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun onBackPressed() {
-        super.onBackPressed()
         val manager = supportFragmentManager.findFragmentById(R.id.fl_container)
         if (manager is MenuFragment) {
             finishAffinity()
-            // super.onBackPressed();
         } else {
             setHomeFragment()
         }

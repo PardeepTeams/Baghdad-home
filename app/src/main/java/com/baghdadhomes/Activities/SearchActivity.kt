@@ -71,6 +71,7 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
     var type: String? = null
     var location: String? = null
     var area: String? = null
+    lateinit var img_ai:ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -78,6 +79,7 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
         adjustFontScale(resources.configuration)
 
         ll_nested = findViewById(R.id.ll_nested)
+        img_ai = findViewById(R.id.img_ai)
         tv_price_head = findViewById(R.id.tv_price_head)
         img_back = findViewById(R.id.img_back)
         tv_for_rent = findViewById(R.id.tv_for_rent)
@@ -95,6 +97,11 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
         spinner_neighborhood = findViewById(R.id.spinner_neighborhood)
         rv_selectedNBHD = findViewById(R.id.rv_selectedNBHD)
         rvSubTypes = findViewById(R.id.rvSubTypes)
+
+        img_ai.setOnClickListener {
+            startActivity(Intent(this,AIChatActivity::class.java))
+            overridePendingTransition(0, 0)
+        }
 
 
         switchRentOrSale()

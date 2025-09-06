@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginHorizontal="10dp">
+
+    <LinearLayout
+        android:id="@+id/llMyMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_my_msg"
+        android:layout_marginStart="70dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:visibility="gone"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tvMyMsg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:layout_gravity="end"
+            android:textSize="14sp"
+            android:linksClickable="true"
+            android:autoLink="all"
+            android:textColorLink="@color/whiteNew"
+            android:textIsSelectable="true"
+            android:textColor="@color/whiteNew" />
+
+        <TextView
+            android:id="@+id/tvMyTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/whiteNew"
+            android:text=""
+            android:singleLine="true"
+            android:layout_gravity="end"
+            android:layout_marginTop="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/llOtherMsg"
+        android:layout_below="@id/llMyMsg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_other_msg"
+        android:layout_marginEnd="70dp"
+        android:paddingVertical="5dp"
+        android:paddingHorizontal="15dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+        <TextView
+            android:id="@+id/tvOtherMsg"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:gravity="start"
+            android:textSize="14sp"
+            android:linksClickable="true"
+            android:textColorLink="@color/blackNew"
+            android:autoLink="all"
+            android:textIsSelectable="true"
+            android:textColor="@color/blackNew" />
+
+        <TextView
+            android:id="@+id/tvOtherTime"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="@color/greybg"
+            android:text=""
+            android:singleLine="true"
+            android:layout_marginTop="5dp"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_properties"
+        android:layout_below="@+id/llOtherMsg"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</RelativeLayout>
