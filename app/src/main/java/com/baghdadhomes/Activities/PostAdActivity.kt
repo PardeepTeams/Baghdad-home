@@ -65,6 +65,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -2505,10 +2509,28 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                     showToast(this, message)
                 }
             }
-            /*var featuredPropertiesModel = Gson().fromJson(respopnse, FeaturedPropertiesModel::class.java)
-            if (featuredPropertiesModel.success){
-                startActivity(Intent(this, MyAdsActivity::class.java))
-                overridePendingTransition(0,0)
+
+
+        /*    CoroutineScope(Dispatchers.IO).launch {
+                val model = Gson().fromJson(respopnse, LoginModel::class.java)
+
+                withContext(Dispatchers.Main) {
+                    if (model.success == true) {
+                        showToast(this@YourActivity, getString(R.string.add_post_success_msg))
+                        startActivity(Intent(this@YourActivity, MyAdsActivity::class.java))
+                        finish()
+                        overridePendingTransition(0, 0)
+                    } else {
+                        val message = if (model.message == "limit") {
+                            getString(R.string.ads_limit_reached)
+                        } else if (!model.message.isNullOrEmpty()) {
+                            model.message.orEmpty()
+                        } else {
+                            getString(R.string.something_went_wrong)
+                        }
+                        showToast(this@YourActivity, message)
+                    }
+                }
             }*/
         }
         else if(apiType.equals(Constants.NEIGHBORHOOD)){
