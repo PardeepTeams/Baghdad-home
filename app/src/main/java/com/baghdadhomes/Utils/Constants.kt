@@ -141,5 +141,8 @@ class Constants {
         const val GET_PROJECT_DETAILS = "houzez-mobile-api/v1/get-project-detail"
 
         var reelsModel: ReelResult? = null
+
+        const val AISEARCH = "AISEARCH"
+        const val AISEARCHAPI = "houzez-mobile-api/v1/ai-search"
     }
 }
