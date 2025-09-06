@@ -1,0 +1,23 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/nav_more"
+        android:icon="@drawable/ic_more"
+        android:title="@string/more" />
+
+    <item
+        android:id="@+id/nav_project"
+        android:icon="@drawable/ic_projects"
+        android:title="@string/project" />
+
+    <!-- leave center empty for FAB -->
+
+    <item
+        android:id="@+id/nav_nbhd"
+        android:icon="@drawable/ic_nbhd"
+        android:title="@string/nbhd" />
+
+    <item
+        android:id="@+id/nav_menu"
+        android:icon="@drawable/ic_menu_blue"
+        android:title="@string/menu" />
+</menu>

@@ -710,6 +710,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                         } else {
                             dt_furnished.text = getString(R.string.no)
                         }
+                    } else {
+                        dt_furnished.text = getString(R.string.no)
                     }
                 }
 
