@@ -821,6 +821,9 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                     img_auto_scroll.adapter = AdapterAutoSlider(requireActivity(), arrayList)
                     setupIndicators(arrayList.size)
                     setCurrentIndicator(0)
+                    if (arrayList.size>1) {
+                        img_auto_scroll.setCurrentItem(1,true)
+                    }
                     startAutoSlide()
                    // img_auto_scroll.setPageTransformer(ZoomOutPageTransformer())
                     img_auto_scroll.addCarouselEffect(enableZoom = true)

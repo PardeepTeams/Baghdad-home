@@ -169,6 +169,9 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
                     bannerPager.adapter = bannerAdapter
                     setupIndicators(bannerList.size)
                     setCurrentIndicator(0)
+                    if (bannerList.size>1) {
+                        bannerPager.setCurrentItem(1,true)
+                    }
                     startAutoSlide()
                     bannerPager.addCarouselEffect(enableZoom = true)
                   //  bannerPager.setPageTransformer(ZoomOutPageTransformer())
