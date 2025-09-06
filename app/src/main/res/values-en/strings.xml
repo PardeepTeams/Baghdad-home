@@ -331,4 +331,6 @@
     <string name="balcony">Balcony</string>
     <string name="kitchen">Kitchen</string>
     <string name="living_room">Living Room</string>
+    <string name="see_more">See More</string>
+    <string name="see_less">See Less</string>
 </resources>

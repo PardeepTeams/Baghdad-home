@@ -331,4 +331,6 @@
     <string name="balcony">شرفة</string>
     <string name="kitchen">مطبخ</string>
     <string name="living_room">غرفة الجلوس</string>
+    <string name="see_more">See More</string>
+    <string name="see_less">See Less</string>
 </resources>

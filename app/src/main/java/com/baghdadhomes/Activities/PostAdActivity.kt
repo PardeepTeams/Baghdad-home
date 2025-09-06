@@ -271,6 +271,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     private val amenityList : ArrayList<AmenityData> = ArrayList()
     lateinit var adapterAmenities :AmenitiesAdapter
     lateinit var rvAmenities: RecyclerView
+    lateinit var tv_see_more: TextView
 
     lateinit var tvOrientation: TextView
     lateinit var tvRealEstateSituation: TextView
@@ -437,6 +438,21 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         radio_furnish_no = findViewById(R.id.radio_furnish_no)
         radio_furnish_half = findViewById(R.id.radio_furnish_half)
         rvAmenities = findViewById(R.id.rvAmenities)
+        tv_see_more = findViewById(R.id.tv_see_more)
+
+        tv_see_more.setOnClickListener {
+            if(tv_see_more.text.equals(getString(R.string.see_more))){
+                tv_see_more.text = getString(R.string.see_less)
+                tv_see_more.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, R.drawable.ic_arrow_up_see, 0
+                )
+            }else{
+                tv_see_more.text = getString(R.string.see_more)
+                tv_see_more.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, R.drawable.ic_arrow_down, 0
+                )
+            }
+        }
 
         rlVideo = findViewById(R.id.rlVideo)
         imgAddVideo = findViewById(R.id.imgAddVideo)
@@ -2636,6 +2652,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                         }
                     }
                 }
+
+               /* if(amenityList.size>9){
+                    tv_see_more.visibility = View.VISIBLE
+                }else{
+                    tv_see_more.visibility = View.GONE
+                }*/
 
 
                 adapterAmenities.notifyDataSetChanged()

@@ -127,6 +127,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     lateinit var rvAmeneties: RecyclerView
     lateinit var dt_orientation: TextView
     lateinit var dt_realEstateSituation: TextView
+    lateinit var tv_see_more: TextView
 
     var isLogged: Boolean = true
     var prop_id: String? = null
@@ -375,6 +376,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         dt_monthlyPrice = findViewById(R.id.dt_monthlyPrice)
         llAmeneties = findViewById(R.id.llAmeneties)
         rvAmeneties = findViewById(R.id.rvAmeneties)
+        tv_see_more = findViewById(R.id.tv_see_more)
         dtStreetType = findViewById(R.id.dtStreetType)
         llStreetType = findViewById(R.id.llStreetType)
         dt_orientation = findViewById(R.id.dt_orientation)
@@ -382,6 +384,20 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
 
         tv_additional_ads.paint.isUnderlineText = true
         tv_recommended.paint.isUnderlineText = true
+
+        tv_see_more.setOnClickListener {
+            if(tv_see_more.text.equals(getString(R.string.see_more))){
+                tv_see_more.text = getString(R.string.see_less)
+                tv_see_more.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, R.drawable.ic_arrow_up_see, 0
+                )
+            }else{
+                tv_see_more.text = getString(R.string.see_more)
+                tv_see_more.setCompoundDrawablesWithIntrinsicBounds(
+                    0, 0, R.drawable.ic_arrow_down, 0
+                )
+            }
+        }
 
         isLogged = PreferencesService.instance.userLoginStatus!!
 
@@ -702,6 +718,12 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     rvAmeneties.layoutManager = GridLayoutManager(this,3)
                     rvAmeneties.adapter = AmenitiesAdapter(this,
                         model.result.property_feature_details as ArrayList<AmenityData>,{position->})
+
+                    /* if(amenityList.size>9){
+                  tv_see_more.visibility = View.VISIBLE
+                   }else{
+                  tv_see_more.visibility = View.GONE
+              }*/
                 } else {
                     llAmeneties.visibility = View.GONE
                 }
