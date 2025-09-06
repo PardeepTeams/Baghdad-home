@@ -3213,6 +3213,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         if(intentModel.property_meta != null){
             if(!intentModel.property_meta.furnished.isNullOrEmpty()) {
+                Log.d("furnishType",intentModel.property_meta.furnished!!.get(0))
                 if(intentModel.property_meta.furnished!!.get(0)!!.lowercase(Locale.getDefault()).equals("yes")){
                     furnishType ="yes"
                     radio_furnish_yes.isChecked = true
@@ -3220,7 +3221,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                         .equals("no")){
                     furnishType ="no"
                     radio_furnish_no.isChecked = true
-                }else if(intentModel.property_meta.furnished!!.get(0)!!.lowercase().equals("half")){
+                }else if(intentModel.property_meta.furnished!!.get(0)!!.lowercase().equals("half furnished")){
                     furnishType ="half"
                     radio_furnish_half.isChecked = true
                 }
