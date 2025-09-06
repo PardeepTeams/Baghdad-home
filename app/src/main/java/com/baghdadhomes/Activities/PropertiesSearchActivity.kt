@@ -258,7 +258,7 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
 
 
     override fun onBackPressed() {
-        if(intent.getStringExtra("slug")!=null){
+        if(intent.getStringExtra("slug")!=null || !intent.getStringExtra("search_text").isNullOrEmpty()){
             super.onBackPressed()
         }else{
             startActivity(Intent(this, HomeActivity::class.java))
