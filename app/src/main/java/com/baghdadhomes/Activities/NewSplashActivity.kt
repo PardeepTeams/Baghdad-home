@@ -103,9 +103,10 @@ class NewSplashActivity : BaseActivity() {
 
 
 
-        val uri = Uri.parse("android.resource://${packageName}/${R.raw.new_splash_video_1}")
+       // val uri = Uri.parse("android.resource://${packageName}/${R.raw.new_splash_video_1}")
+        val path = "android.resource://$packageName/${R.raw.new_splash_video_1}"
 
-        videoview.setVideoURI(uri)
+        videoview.setVideoPath(path)
         videoview.setZOrderOnTop(true)
 
 
