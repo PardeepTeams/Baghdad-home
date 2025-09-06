@@ -138,6 +138,9 @@
 
         </RelativeLayout>
 
+
+
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_properties"
             android:layout_width="match_parent"
