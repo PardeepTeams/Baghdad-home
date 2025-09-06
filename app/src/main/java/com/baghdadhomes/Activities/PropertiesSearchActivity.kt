@@ -64,7 +64,7 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
         img_clear_search = findViewById(R.id.img_clear_search)
 
         img_back.setOnClickListener {
-            if(intent.getStringExtra("slug")!=null){
+            if(intent.getStringExtra("slug")!=null || !intent.getStringExtra("search_text").isNullOrEmpty()){
                 super.onBackPressed()
             }else{
                 startActivity(Intent(this, HomeActivity::class.java))
