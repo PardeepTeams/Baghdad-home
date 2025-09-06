@@ -30,21 +30,16 @@
             android:textColor="@color/darkGrey"
             android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/tv_clear"
+        <ImageView
+            android:id="@+id/img_ai"
+            android:src="@drawable/search_ai"
+            android:layout_centerVertical="true"
+            android:layout_gravity="center_vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="10dp"
-            android:paddingHorizontal="10dp"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/bg_outline_solid"
-            android:backgroundTint="@color/light_red"
-            android:fontFamily="@font/hacen_tunisia_bold_regular"
-            android:gravity="center_horizontal"
-            android:paddingVertical="10dp"
-            android:text="@string/clear"
-            android:textColor="@color/whiteNew"
-            android:textSize="16dp" />
+            android:padding="10dp"
+            android:layout_alignParentEnd="true" />
+
 
     </RelativeLayout>
 
@@ -434,11 +429,27 @@
         android:weightSum="2">
 
         <TextView
+            android:id="@+id/tv_clear"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/bg_outline_solid"
+            android:backgroundTint="@color/light_red"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:gravity="center_horizontal"
+            android:paddingVertical="10dp"
+            android:text="@string/clear"
+            android:textColor="@color/whiteNew"
+            android:textSize="16dp" />
+        <TextView
             android:id="@+id/tv_done"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="5dp"
-            android:layout_weight="1.8"
+            android:layout_marginStart="5dp"
+            android:layout_weight="1"
             android:background="@drawable/bg_outline_blue_new"
             android:backgroundTint="@color/skyBlue"
             android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -448,14 +459,9 @@
             android:textColor="@color/whiteNew"
             android:textSize="16dp" />
 
-        <ImageView
-            android:id="@+id/img_ai"
-            android:layout_weight="0.2"
-            android:layout_marginStart="5dp"
-            android:src="@drawable/search_ai"
-            android:layout_gravity="center_vertical"
-            android:layout_width="0dp"
-            android:paddingVertical="7dp"
-            android:layout_height="40dp"/>
+
+
+
+
     </LinearLayout>
 </RelativeLayout>

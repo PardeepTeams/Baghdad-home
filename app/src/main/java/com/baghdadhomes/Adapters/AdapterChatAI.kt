@@ -13,15 +13,12 @@ import com.baghdadhomes.Models.Result
 import com.baghdadhomes.R
 
 class AdapterChatAI(val context:Context, var chatList:ArrayList<ModelAiSearchResponse>): RecyclerView.Adapter<AdapterChatAI.ViewHolder>() {
-
-
     class ViewHolder(itemView:View):RecyclerView.ViewHolder(itemView){
         val rv_properties:RecyclerView = itemView.findViewById(R.id.rv_properties)
         var llMyMsg : LinearLayout = itemView.findViewById(R.id.llMyMsg)
         var llOtherMsg : LinearLayout = itemView.findViewById(R.id.llOtherMsg)
         var tvMyMsg : TextView = itemView.findViewById(R.id.tvMyMsg)
         var tvOtherMsg : TextView = itemView.findViewById(R.id.tvOtherMsg)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
