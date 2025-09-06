@@ -247,7 +247,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                 setupIndicators(arrayList.size)
                 setCurrentIndicator(0)
                 startAutoSlide()
-                img_auto_scroll.addCarouselEffect(enableZoom = false)
+                img_auto_scroll.addCarouselEffect(enableZoom = true)
                 /*img_auto_scroll.setSliderAdapter(AdapterAutoSlider(requireActivity(), arrayList))
                 img_auto_scroll.setIndicatorAnimation(IndicatorAnimationType.WORM) //set indicator animation by using IndicatorAnimationType. :WORM or THIN_WORM or COLOR or DROP or FILL or NONE or SCALE or SCALE_DOWN or SLIDE and SWAP!!
                 img_auto_scroll.setSliderTransformAnimation(SliderAnimations.SIMPLETRANSFORMATION)
@@ -822,13 +822,14 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                     setupIndicators(arrayList.size)
                     setCurrentIndicator(0)
                     startAutoSlide()
-                    img_auto_scroll.addCarouselEffect(enableZoom = false)
+                   // img_auto_scroll.setPageTransformer(ZoomOutPageTransformer())
+                    img_auto_scroll.addCarouselEffect(enableZoom = true)
 
                     feautredList.clear()
                     scrollView.visibility = View.VISIBLE
                     feautredList.addAll(model.data.featured_listing)
                     adapterADs.notifyDataSetChanged()
-                    img_auto_scroll.setPageTransformer(ZoomOutPageTransformer())
+
 
                     page = 0
                     loading = false
@@ -1081,20 +1082,36 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     }
 
     fun ViewPager2.addCarouselEffect(enableZoom: Boolean = true) {
-        clipChildren = false    // No clipping the left and right items
-        clipToPadding = false   // Show the viewpager in full width without clipping the padding
-        offscreenPageLimit = 3  // Render the left and right items
-        (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER // Remove the scroll effect
+        val density = Resources.getSystem().displayMetrics.density
+
+        // Convert dp to px
+        val nextItemVisiblePx = (32 * density).toInt()  // 40dp side padding
+        val currentItemHorizontalMarginPx = (2 * density).toInt()
+
+        setPadding(nextItemVisiblePx, 0, nextItemVisiblePx, 0)
+
+        clipToPadding = false
+        clipChildren = false
+        offscreenPageLimit = 3
+        (getChildAt(0) as RecyclerView).overScrollMode = RecyclerView.OVER_SCROLL_NEVER
 
         val compositePageTransformer = CompositePageTransformer()
-        compositePageTransformer.addTransformer(MarginPageTransformer((5 * Resources.getSystem().displayMetrics.density).toInt()))
+        compositePageTransformer.addTransformer(
+            MarginPageTransformer(currentItemHorizontalMarginPx)
+        )
+
         if (enableZoom) {
             compositePageTransformer.addTransformer { page, position ->
                 val r = 1 - abs(position)
-                page.scaleY = (0.80f + r * 0.20f)
+                val scale = 0.90f + r * 0.15f
+                page.scaleY = scale
+                page.scaleX = scale
             }
         }
+
         setPageTransformer(compositePageTransformer)
     }
+
+
 }
 
