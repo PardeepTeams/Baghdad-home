@@ -206,6 +206,16 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
                     pagemap.put("user_id",PreferencesService.instance.getUserData!!.ID.toString())
                 }
                 hitPostApiFilter(Constants.FILTER,true, Constants.FILTER_API, pagemap,slug)
+            } else if (!intent.getStringExtra("search_text").isNullOrEmpty()) {
+                val pagemap:HashMap<String,String> = HashMap()
+                pagemap.put("page", page.toString())
+                pagemap.put("per_page", "10")
+                pagemap.put("search_text", intent.getStringExtra("search_text").toString())
+                rv_properties.scrollToPosition(0)
+                if(PreferencesService.instance.userLoginStatus == true){
+                    pagemap.put("user_id",PreferencesService.instance.getUserData!!.ID.toString())
+                }
+                hitPostApi(Constants.FILTER,true, Constants.AISEARCHAPI, pagemap)
             }
         } else{
             loading  = true

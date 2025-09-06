@@ -196,6 +196,7 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
                     }else {
                         holder.img_bookmark.setImageDrawable(ContextCompat.getDrawable(context,R.drawable.ic_heart));
                     }
+                    notifyItemChanged(position);
                     detailPage.addRemoveFav(propertiesList.get(position),position);
                 } else {
                     detailPage.openLoginActivity();
