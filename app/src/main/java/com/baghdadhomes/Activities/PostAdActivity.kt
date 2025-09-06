@@ -2625,16 +2625,19 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             val model = Gson().fromJson(respopnse, AmenityModel::class.java)
             if(model.success == true){
                 amenityList.addAll(model.features!!)
-
-                if(intentModel.property_feature_details!=null){
-                    for(i in 0..intentModel.property_feature_details!!.size-1){
-                        for(j in 0..amenityList.size-1){
-                            if(amenityList.get(j).id == intentModel.property_feature_details!!.get(i).id){
-                                amenityList.get(j).isSelected = true
+                if(::intentModel.isInitialized){
+                    if(!intentModel.property_feature_details.isNullOrEmpty()){
+                        for(i in 0..intentModel.property_feature_details!!.size-1){
+                            for(j in 0..amenityList.size-1){
+                                if(amenityList.get(j).id == intentModel.property_feature_details!!.get(i).id){
+                                    amenityList.get(j).isSelected = true
+                                }
                             }
                         }
                     }
                 }
+
+
                 adapterAmenities.notifyDataSetChanged()
             }
         }
@@ -3153,7 +3156,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             }
         }
 
-        if(intentModel.property_feature_details!=null && amenityList .isNotEmpty() ){
+        if(!intentModel.property_feature_details.isNullOrEmpty() && amenityList .isNotEmpty() ){
             if(intentModel.property_feature_details!=null){
                 for(i in 0..intentModel.property_feature_details!!.size-1){
                     for(j in 0..amenityList.size-1){
