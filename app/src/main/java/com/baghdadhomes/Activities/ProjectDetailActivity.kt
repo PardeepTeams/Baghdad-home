@@ -598,7 +598,13 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
             }
             dt_type.setText(prop_sub_type + " - " + prop_type)
 
-            dt_price.text = "(${model.data.price?:"0"})${resources.getString(R.string.currency_code)}"
+            dt_price.text = "(${model.data.price?:"0"})"
+            var currency = if (model.data.faveCurrency == "USD") {
+                getString(R.string.currency_code_usd)
+            } else {
+                getString(R.string.currency_code)
+            }
+            dt_price.text = "${dt_price.text}$currency"
 
             dt_area.setText("${model.data.size?:"00"} ${resources.getString(R.string.m)}")
 

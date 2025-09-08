@@ -24,6 +24,7 @@ data class PropertyDetailData(
     @SerializedName("fave_property_garage") val floors: String? = null,
     @SerializedName("houzez_total_property_views") val totalViews: String? = null,
     @SerializedName("price") val price: String? = null,
+    @SerializedName("fave_currency") val faveCurrency: String? = null,
     @SerializedName("is_paid_ad") val isPaidAd: String? = null,
     @SerializedName("is_paid_ad_start_date") val paidAdStartDate: String? = null,
     @SerializedName("is_paid_ad_end_date") val paidAdEndDate: String? = null,

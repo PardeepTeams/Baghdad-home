@@ -9,14 +9,27 @@ import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.graphics.*
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Color
+import android.graphics.ImageDecoder
+import android.graphics.PorterDuff
 import android.graphics.drawable.ColorDrawable
 import android.net.Uri
-import android.os.*
+import android.os.Build
+import android.os.Bundle
+import android.os.Environment
+import android.os.Handler
+import android.os.Looper
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.Html
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.TextPaint
 import android.text.TextWatcher
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.MotionEvent
@@ -24,7 +37,17 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import android.webkit.MimeTypeMap
-import android.widget.*
+import android.widget.AdapterView
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
+import android.widget.HorizontalScrollView
+import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.RadioButton
+import android.widget.RelativeLayout
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.cardview.widget.CardView
@@ -41,13 +64,6 @@ import com.abedelazizshe.lightcompressorlibrary.VideoQuality
 import com.abedelazizshe.lightcompressorlibrary.config.Configuration
 import com.abedelazizshe.lightcompressorlibrary.config.SaveLocation
 import com.abedelazizshe.lightcompressorlibrary.config.SharedStorageConfiguration
-import com.bumptech.glide.Glide
-import com.github.dhaval2404.imagepicker.ImagePicker
-import com.github.ybq.android.spinkit.SpinKitView
-import com.google.android.gms.maps.model.LatLng
-import com.google.gson.Gson
-import com.google.gson.JsonObject
-import com.hbb20.CountryCodePicker
 import com.baghdadhomes.Adapters.AdapterNBHDDialog
 import com.baghdadhomes.Adapters.AdapterPropertyImages
 import com.baghdadhomes.Adapters.AdapterPropertyImages.InterfaceSelectImage
@@ -55,27 +71,62 @@ import com.baghdadhomes.Adapters.AmenitiesAdapter
 import com.baghdadhomes.Adapters.CommonBottomSheetSelectedAdapter
 import com.baghdadhomes.Adapters.FrequencyAdapter
 import com.baghdadhomes.Adapters.SpinnerCityAdapter
-import com.baghdadhomes.Models.*
+import com.baghdadhomes.Models.AmenityData
 import com.baghdadhomes.Models.AmenityModel
+import com.baghdadhomes.Models.FrequencyModel
+import com.baghdadhomes.Models.ImageData
+import com.baghdadhomes.Models.LoginModel
+import com.baghdadhomes.Models.NBHDArea
+import com.baghdadhomes.Models.NBHDDataResponse
+import com.baghdadhomes.Models.NBHDModel
+import com.baghdadhomes.Models.ResultFeatured
+import com.baghdadhomes.Models.UploadVideoResponse
+import com.baghdadhomes.Models.UploadimagResponse
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.Utility
+import com.bumptech.glide.Glide
+import com.github.dhaval2404.imagepicker.ImagePicker
+import com.github.ybq.android.spinkit.SpinKitView
+import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
+import com.google.gson.JsonObject
+import com.hbb20.CountryCodePicker
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import pl.droidsonroids.gif.GifImageView
-import java.io.*
+import java.io.ByteArrayInputStream
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.io.FileInputStream
+import java.io.FileOutputStream
+import java.io.IOException
 import java.text.SimpleDateFormat
-import java.util.*
+import java.util.Collections
+import java.util.Date
+import java.util.Locale
+import java.util.Random
+import kotlin.Array
+import kotlin.Boolean
+import kotlin.CharSequence
+import kotlin.Comparator
+import kotlin.Double
+import kotlin.Exception
+import kotlin.Float
+import kotlin.Int
+import kotlin.IntArray
+import kotlin.Long
+import kotlin.String
+import kotlin.arrayOf
+import kotlin.isInitialized
+import kotlin.let
+import kotlin.toString
 
 
 class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.onClick {
@@ -182,7 +233,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var radioIQD_SP: RadioButton
     lateinit var radioUSD_SP: RadioButton
 
-    lateinit var radioTerms: RadioButton
+    lateinit var checkTermsPrivacy: CheckBox
+    lateinit var tvTerms: TextView
 
     /*lateinit var comm_shop: TextView
     lateinit var comm_office: TextView
@@ -457,7 +509,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         radioUSD_MS = findViewById(R.id.radioUSD_MS)
         rvAmenities = findViewById(R.id.rvAmenities)
         tv_see_more = findViewById(R.id.tv_see_more)
-        radioTerms = findViewById(R.id.radioTerms)
+        checkTermsPrivacy = findViewById(R.id.checkTermsPrivacy)
+        tvTerms = findViewById(R.id.tvTerms)
 
         tv_see_more.setOnClickListener {
             if(tv_see_more.text.equals(getString(R.string.see_more))){
@@ -486,6 +539,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         rvRentalFrequency = findViewById(R.id.rvRentalFrequency)
 
 
+        setupTermsAndPrivacyClick()
         switchRentOrSale()
         setPropertyType()
         setResindetalType()
@@ -827,7 +881,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 showToast(this, resources.getString(R.string.ad_title_required))
             } else if (et_name.text.isEmpty()){
                 showToast(this, resources.getString(R.string.enter_name))
-            } else if (!radioTerms.isChecked){
+            } else if (!checkTermsPrivacy.isChecked){
                 showToast(this, resources.getString(R.string.accept_terms_privacy))
             } else{
                 if(isUpdate){
@@ -4204,4 +4258,90 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         recyclerView.adapter = adapter
         bottomSheetDialog.show()
     }
+
+    private fun setupTermsAndPrivacyClick() {
+        val isArabic = PreferencesService.instance.getLanguage() == "ar"
+        val text = getString(R.string.terms_and_privacy)
+
+        val spannable = SpannableString(text)
+
+        // English indices
+        if (!isArabic) {
+            val termsStart = text.indexOf("Terms")
+            val termsEnd = termsStart + "Terms".length
+
+            val privacyStart = text.indexOf("Privacy Policy")
+            val privacyEnd = privacyStart + "Privacy Policy".length
+
+            spannable.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    launchTermsUrl()
+                }
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.isUnderlineText = true
+                    // ds.color = ContextCompat.getColor(this@PostAdActivity, R.color.skyBlue)
+                }
+            }, termsStart, termsEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            spannable.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    launchPrivacyPolicyUrl()
+                }
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.isUnderlineText = true
+                    // ds.color = ContextCompat.getColor(this@PostAdActivity, R.color.skyBlue)
+                }
+            }, privacyStart, privacyEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+
+        // Arabic indices
+        else {
+            val termsStart = text.indexOf("الشروط")
+            val termsEnd = termsStart + "الشروط".length
+
+            val privacyStart = text.indexOf("سياسة الخصوصية")
+            val privacyEnd = privacyStart + "سياسة الخصوصية".length
+
+            spannable.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    launchTermsUrl()
+                }
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.isUnderlineText = true
+                    // ds.color = ContextCompat.getColor(this@PostAdActivity, R.color.skyBlue)
+                }
+            }, termsStart, termsEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+
+            spannable.setSpan(object : ClickableSpan() {
+                override fun onClick(widget: View) {
+                    launchPrivacyPolicyUrl()
+                }
+                override fun updateDrawState(ds: TextPaint) {
+                    ds.isUnderlineText = true
+                    // ds.color = ContextCompat.getColor(this@PostAdActivity, R.color.skyBlue)
+                }
+            }, privacyStart, privacyEnd, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+        }
+
+        // Apply to RadioButton
+        tvTerms.text = spannable
+        tvTerms.movementMethod = LinkMovementMethod.getInstance()
+        tvTerms.highlightColor = Color.TRANSPARENT
+    }
+
+    private fun launchTermsUrl() {
+        launchPrivacyPolicyUrl()
+    }
+
+    private fun launchPrivacyPolicyUrl() {
+        try {
+            val url = "https://baghdadhome.com/terms-and-conditions-2/"
+            val i = Intent(Intent.ACTION_VIEW)
+            i.setData(Uri.parse(url))
+            startActivity(i)
+        } catch (e : Exception) {
+            println("Error launching url : $e")
+        }
+    }
+
 }

@@ -474,7 +474,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
             val model: NewFeatureModel = Gson().fromJson(respopnse,
                 NewFeatureModel::class.java)
             if(model.success){
-                tvAppDetails.text = "www.najafhome.com\n${getString(R.string.biggest_application_in_najaf)}"
+                tvAppDetails.text = "www.baghdadhome.com\n${getString(R.string.biggest_application_in_najaf)}"
                 tvAppName.text = "${getString(R.string.app_name)} | ${getString(R.string.app_name_english)}"
                 tvAppText.text = getString(R.string.real_estate_co)
                 if(model.count!=null){
@@ -945,7 +945,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     generateQrCode(model.result.link.toString())
                 } else{
                     imv_share.visibility = View.GONE
-                    generateQrCode("www.najafhome.com")
+                    generateQrCode("www.baghdadhome.com")
                 }
 
 
@@ -1141,12 +1141,36 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
 
 
     fun fetchProperties(showLoader:Boolean){
+        // country, state, area, status,
+        var state = ""
+        var area = ""
+        var status = ""
+        if (adsDetailModel?.result != null) {
+            if (adsDetailModel?.result?.property_address != null && adsDetailModel?.result?.property_address?.property_city != null) {
+                state = adsDetailModel?.result?.property_address?.property_city?:""
+            }
+            if (adsDetailModel?.result?.property_address != null && adsDetailModel?.result?.property_address?.property_area != null) {
+                area = adsDetailModel?.result?.property_address?.property_area?:""
+            }
+            if (adsDetailModel?.result?.property_attr != null && adsDetailModel?.result?.property_attr?.property_status != null) {
+                status = adsDetailModel?.result?.property_attr?.property_status?:""
+            }
+        }
         page = page +1
         val pagemap:HashMap<String,String> = HashMap()
         pagemap.put("page",page.toString())
         pagemap.put("per_page","10")
         if(!type.equals("all")){
             pagemap.put("type",type)
+        }
+        if(state.isNotEmpty()){
+            pagemap.put("state",state)
+        }
+        if(area.isNotEmpty()){
+            pagemap.put("area",area)
+        }
+        if(status.isNotEmpty()){
+            pagemap.put("status",status)
         }
         if(PreferencesService.instance.userLoginStatus == true){
             pagemap.put("user_id",PreferencesService.instance.getUserData!!.ID.toString())
