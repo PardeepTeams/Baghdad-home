@@ -163,10 +163,20 @@ RecyclerView.Adapter<AdapterMyAds.ViewHolder>(){
 
         if (list.get(position).price != null) {
             holder.tv_price.text =
-                "(" + list.get(position).price + ")" + context.resources.getString(R.string.currency_code)
+                "(" + list.get(position).price + ")"
         } else {
-            holder.tv_price.text = "(0) " + context.resources.getString(R.string.currency_code)
+            holder.tv_price.text = "(0) "
         }
+        var currency = if (list[position].property_meta!=null && !list[position].property_meta.fave_currency.isNullOrEmpty())  {
+            if (list[position].property_meta.fave_currency?.firstOrNull() =="USD") {
+                context.getString(R.string.currency_code_usd)
+            } else {
+                context.getString(R.string.currency_code)
+            }
+        } else {
+            context.getString(R.string.currency_code)
+        }
+        holder.tv_price.text = "${holder.tv_price.text}$currency"
 
 
         if (list.get(position).post_content != null) {

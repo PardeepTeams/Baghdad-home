@@ -80,7 +80,13 @@ class AdapterProjectProperties(
         holder.tv_bedroom.text = list[position].bedrooms?:"0"
         holder.tv_batroom.text = list[position].bathrooms?:"0"
         holder.tv_number_area.text = "${list[position].size?:"0"}${context.resources.getString(R.string.m)}"
-        holder.tv_price.text = "(${list[position].price?:"0"})${context.resources.getString(R.string.currency_code)}"
+        holder.tv_price.text = "(${list[position].price?:"0"})"
+        var currency = if ((list[position].faveCurrency?:"") == "USD") {
+            context.getString(R.string.currency_code_usd)
+        } else {
+            context.getString(R.string.currency_code)
+        }
+        holder.tv_price.text = "${holder.tv_price.text}$currency"
 
         val html = list[position].postContent?:""
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

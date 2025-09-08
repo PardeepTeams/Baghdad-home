@@ -40,6 +40,7 @@ data class PropertyAttr(
 
 data class PropertyMeta(
     @SerializedName("fave_property_price") val fave_property_price : List<String>,
+    @SerializedName("fave_currency") val fave_currency : List<String>?=null,
     @SerializedName("fave_property_size") val fave_property_size : List<String>,
     @SerializedName("fave_property_bedrooms") val fave_property_bedrooms : List<String>,
     @SerializedName("fave_property_bathrooms") val fave_property_bathrooms : List<String>,
@@ -62,6 +63,7 @@ data class PropertyMeta(
     @SerializedName("floor_number") val floor_number : List<String>? = null,
     @SerializedName("orientation") val orientation : List<String>? = null,
     @SerializedName("monthly_price") val monthly_price : List<String>? = null,
+    @SerializedName("currency_monthly") val currency_monthly : List<String>? = null,
     @SerializedName("street_type") val street_type : List<String>? = null,
     @SerializedName("real_estate_situation") val real_estate_situation : List<String>? = null,
     @SerializedName("furnished") val furnished : List<String>? = null,

@@ -191,7 +191,7 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:textSize="14dp"
-                                    android:text="@string/monthly_price"
+                                    android:text="@string/monthly_service"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
                                     android:layout_weight="1"

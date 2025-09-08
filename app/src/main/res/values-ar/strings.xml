@@ -65,10 +65,10 @@
     <string name="width">--</string>
     <string name="m">م</string>
     <string name="floors">عدد الطوابق</string>
-    <string name="rooms">عدد الغرف</string>
+    <string name="rooms">عدد غرف النوم</string>
     <string name="additional_details">تفاصيل اضافية</string>
     <string name="selling_price">سعر البيع</string>
-    <string name="enter_price">ادخل السعر بالدينار العراقي</string>
+    <string name="enter_price">أدخل السعر</string>
     <string name="upload_photo">صور العقار</string>
     <string name="contact_deatils">معلومات الاتصال</string>
     <string name="name">الاسم</string>
@@ -193,6 +193,7 @@
     <string name="price_from_hint">150,000,000 د.ع</string>
     <string name="price_to_hint">250,000,000 د.ع</string>
     <string name="currency_code">د.ع</string>
+    <string name="currency_code_usd">دولار أمريكي</string>
     <string name="pm">مسائا</string>
     <string name="am">صباحا</string>
 
@@ -320,7 +321,7 @@
     <string name="no_of_living_room">عدد غرف المعيشة</string>
     <string name="street_type">نوع الشارع</string>
     <string name="no_of_balcony">عدد الشرفات</string>
-    <string name="monthly_price">السعر الشهري</string>
+    <string name="monthly_service">الخدمة الشهرية</string>
     <string name="furnished">مفروشة</string>
     <string name="half_furnished">نصف مفروشة</string>
     <string name="amenities">وسائل الراحة</string>
@@ -338,4 +339,6 @@
     <string name="ai_chat_default_message_1">مرحبا بكم! هذا هو بغداد أسيست، أنا هنا لمساعدتك في العثور على منزل أحلامك.</string>
     <string name="ai_chat_default_message_2">من فضلك قل لي ما الذي تبحث عنه؟</string>
     <string name="unFurnished">غير مفروشة</string>
+    <string name="terms_and_privacy">أوافق على <u>الشروط</u> و<u>سياسة الخصوصية</u></string>
+    <string name="accept_terms_privacy">يرجى قبول الشروط وسياسة الخصوصية</string>
 </resources>

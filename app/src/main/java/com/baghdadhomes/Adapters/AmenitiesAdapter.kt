@@ -13,7 +13,7 @@ import com.baghdadhomes.Models.AmenityData
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
 
-class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<AmenityData>,private val onItemSelected: (Int) -> Unit): RecyclerView.Adapter<AmenitiesAdapter.ViewHolder>() {
+class AmenitiesAdapter(var context:Context, var seeAll : Boolean,private val amenities: ArrayList<AmenityData>,private val onItemSelected: (Int) -> Unit): RecyclerView.Adapter<AmenitiesAdapter.ViewHolder>() {
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val imgAmenity: ImageView = itemView.findViewById(R.id.imgAmenity)
@@ -27,7 +27,15 @@ class AmenitiesAdapter(var context:Context, private val amenities: ArrayList<Ame
     }
 
     override fun getItemCount(): Int {
-       return amenities.size
+        return if (seeAll) {
+            amenities.size
+        } else {
+            if (amenities.size>9) {
+                9
+            } else {
+                amenities.size
+            }
+        }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

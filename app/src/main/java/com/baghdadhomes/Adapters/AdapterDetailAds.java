@@ -23,6 +23,7 @@ import com.baghdadhomes.PreferencesService;
 import com.baghdadhomes.R;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.ViewHolder> {
     private Context context;
@@ -146,10 +147,18 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
         }
 
         if(propertiesList.get(position).getPrice()!=null){
-            holder.tv_price.setText("(" + propertiesList.get(position).getPrice() + ")" + context.getResources().getString(R.string.currency_code));
+            holder.tv_price.setText("(" + propertiesList.get(position).getPrice() + ")");
         }else {
-            holder.tv_price.setText("(0) " + context.getResources().getString(R.string.currency_code));
+            holder.tv_price.setText("(0) ");
         }
+
+        String currency = "";
+        if (propertiesList.get(position).getFave_currency() != null && Objects.equals(propertiesList.get(position).getFave_currency(), "USD")) {
+            currency = context.getString(R.string.currency_code_usd);
+        } else {
+            currency = context.getString(R.string.currency_code);
+        }
+        holder.tv_price.setText(holder.tv_price.getText() + currency);
 
         if(propertiesList.get(position).getPost_content()!=null){
             String html = propertiesList.get(position).getPost_content();

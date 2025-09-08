@@ -2117,7 +2117,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
-                    android:gravity="center_vertical"
+                    android:gravity="end"
+                    android:layout_gravity="end"
                     android:text="@string/see_more"
                     android:drawablePadding="10dp"
                     android:textColor="@color/blue"
@@ -2223,21 +2224,52 @@
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp">
+                android:layout_marginTop="5dp">
 
                 <ImageView
                     android:id="@+id/img_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
                     android:src="@drawable/ic_price" />
+
+                <RadioGroup
+                    android:id="@+id/radioGroupSp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp">
+
+                    <RadioButton
+                        android:id="@+id/radioIQD_SP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency_code"
+                        android:textSize="16sp"
+                        android:textColor="@color/darkGrey"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+
+                    <RadioButton
+                        android:id="@+id/radioUSD_SP"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency_code_usd"
+                        android:textSize="16sp"
+                        android:textColor="@color/darkGrey"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+
+                </RadioGroup>
 
                 <TextView
                     android:id="@+id/tv_price_head"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="10dp"
                     android:layout_toEndOf="@+id/img_price"
+                    android:layout_toStartOf="@+id/radioGroupSp"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:gravity="center_vertical"
                     android:text="@string/selling_price"
@@ -2249,7 +2281,6 @@
                 android:id="@+id/et_postPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_outline_solid"
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                 android:hint="@string/enter_price"
@@ -2260,17 +2291,54 @@
                 android:textSize="14dp"
                 android:inputType="number"/>
 
-            <TextView
-                android:id="@+id/tv_monthly_price_head"
-                android:layout_width="wrap_content"
+
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:fontFamily="@font/hacen_tunisia_bold_regular"
-                android:gravity="center_vertical"
-                android:text="@string/monthly_price"
-                android:textColor="@color/darkGrey"
-                android:textSize="16dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="5dp">
+
+                <RadioGroup
+                    android:id="@+id/radioGroupMs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="10dp">
+
+                    <RadioButton
+                        android:id="@+id/radioIQD_MS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency_code"
+                        android:textSize="16sp"
+                        android:textColor="@color/darkGrey"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+
+                    <RadioButton
+                        android:id="@+id/radioUSD_MS"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/currency_code_usd"
+                        android:textSize="16sp"
+                        android:textColor="@color/darkGrey"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"/>
+
+                </RadioGroup>
+
+                <TextView
+                    android:id="@+id/tv_monthly_price_head"
+                    android:layout_toStartOf="@id/radioGroupMs"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:gravity="center_vertical"
+                    android:text="@string/monthly_service"
+                    android:textColor="@color/darkGrey"
+                    android:textSize="16dp"
+                    android:layout_centerVertical="true"/>
+
+            </RelativeLayout>
 
             <EditText
                 android:id="@+id/et_monthlyPrice"
@@ -2579,6 +2647,15 @@
                 android:singleLine="true"
                 android:textColor="@color/grey"
                 android:textSize="14dp" />-->
+
+            <RadioButton
+                android:id="@+id/radioTerms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_and_privacy"
+                android:textSize="16sp"
+                android:textColor="@color/darkGrey"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"/>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button_addPost"

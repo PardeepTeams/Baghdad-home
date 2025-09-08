@@ -66,10 +66,10 @@
     <string name="width">--</string>
     <string name="m">m</string>
     <string name="floors">Number of Floor</string>
-    <string name="rooms">Number of Room</string>
+    <string name="rooms">Number of Bedrooms</string>
     <string name="additional_details">Additional Details</string>
     <string name="selling_price">Selling Price</string>
-    <string name="enter_price">Enter the price in Iraqi dinars</string>
+    <string name="enter_price">Enter the price</string>
     <string name="upload_photo">Upload Property Photo</string>
     <string name="contact_deatils">Contact Details</string>
     <string name="name">Name</string>
@@ -195,6 +195,7 @@
     <string name="price_from_hint">150, 000, 000 IDQ</string>
     <string name="price_to_hint">250,000,000 IDQ</string>
     <string name="currency_code">IDQ</string>
+    <string name="currency_code_usd">USD</string>
     <string name="pm">PM</string>
     <string name="am">AM</string>
     <string name="company_title">Global cleaning services company</string>
@@ -320,7 +321,7 @@
     <string name="no_of_living_room">Number of Living Room</string>
     <string name="street_type">Street Type</string>
     <string name="no_of_balcony">Number of Balcony</string>
-    <string name="monthly_price">Monthly Price</string>
+    <string name="monthly_service">Monthly Service</string>
     <string name="furnished">Furnished</string>
     <string name="half_furnished">Half Furnished</string>
     <string name="amenities">Amenities</string>
@@ -338,4 +339,6 @@
     <string name="ai_chat_default_message_1">Hello there! this is Baghdad Assist, I am here to help you find your dream home.</string>
     <string name="ai_chat_default_message_2">Please tell me what you are looking for?</string>
     <string name="unFurnished">Unfurnished</string>
+    <string name="terms_and_privacy">I agree to the <u>Terms</u> and <u>Privacy Policy</u></string>
+    <string name="accept_terms_privacy">Please accept terms and privacy policy</string>
 </resources>

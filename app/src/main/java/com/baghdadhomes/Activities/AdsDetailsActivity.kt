@@ -157,6 +157,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     var isFav = false;
     var adsDetailModel: AdsDetailModel? = null
 
+    lateinit var adapterAmenities: AmenitiesAdapter
+
     override fun onMapReady(p0: GoogleMap) {
         map = p0
     }
@@ -397,6 +399,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     0, 0, R.drawable.ic_arrow_down, 0
                 )
             }
+            adapterAmenities.seeAll = !adapterAmenities.seeAll
+            adapterAmenities.notifyDataSetChanged()
         }
 
         isLogged = PreferencesService.instance.userLoginStatus!!
@@ -690,6 +694,12 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     if (!model.result.property_meta.monthly_price.isNullOrEmpty()) {
                         llMonthlyPrice.visibility = View.VISIBLE
                         dt_monthlyPrice.text = model.result.property_meta.monthly_price.first()
+                        var monthlyCurrency = if (model.result.property_meta.fave_currency?.firstOrNull()=="USD")  {
+                            getString(R.string.currency_code_usd)
+                        } else {
+                            getString(R.string.currency_code)
+                        }
+                        dt_monthlyPrice.text = "(${dt_monthlyPrice.text})$monthlyCurrency"
                     } else {
                         llMonthlyPrice.visibility = View.GONE
                     }
@@ -718,14 +728,15 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 if (!model.result.property_feature_details.isNullOrEmpty()) {
                     llAmeneties.visibility = View.VISIBLE
                     rvAmeneties.layoutManager = GridLayoutManager(this,3)
-                    rvAmeneties.adapter = AmenitiesAdapter(this,
+                    adapterAmenities = AmenitiesAdapter(this,false,
                         model.result.property_feature_details as ArrayList<AmenityData>,{position->})
+                    rvAmeneties.adapter = adapterAmenities
 
-                    /* if(amenityList.size>9){
-                  tv_see_more.visibility = View.VISIBLE
-                   }else{
-                  tv_see_more.visibility = View.GONE
-              }*/
+                    if(model.result.property_feature_details.size>9){
+                        tv_see_more.visibility = View.VISIBLE
+                    }else{
+                        tv_see_more.visibility = View.GONE
+                    }
                 } else {
                     llAmeneties.visibility = View.GONE
                 }
@@ -796,10 +807,20 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 //dt_type.setText(prop_sub_type + " " + prop_type)
 
                 if(model.result.price!=null && !model.result.price.equals("null")){
-                    dt_price.setText("("+model.result.price+")"+ resources.getString(R.string.currency_code))
+                    dt_price.text = "("+model.result.price+")"
                 } else{
-                    dt_price.setText("(0)"+ resources.getString(R.string.currency_code))
+                    dt_price.text = "(0)"
                 }
+                var currency = if (model.result.property_meta!=null && !model.result.property_meta.fave_currency.isNullOrEmpty())  {
+                    if (model.result.property_meta.fave_currency.firstOrNull() =="USD") {
+                        getString(R.string.currency_code_usd)
+                    } else {
+                        getString(R.string.currency_code)
+                    }
+                } else {
+                    getString(R.string.currency_code)
+                }
+                dt_price.text = "${dt_price.text}$currency"
 
                 if (model.result.property_meta.fave_property_size != null){
                     dt_area.setText(model.result.property_meta.fave_property_size.get(0) + " "+ resources.getString(R.string.m))

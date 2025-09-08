@@ -24,6 +24,7 @@ data class Result (
     @SerializedName("fave_property_size") val fave_property_size : String,
     @SerializedName("fave_property_land") val fave_property_land : String,
     @SerializedName("price") val price : String,
+    @SerializedName("fave_currency") val fave_currency : String?=null,
     @SerializedName("houzez_total_property_views") var totalViews: String,
     @SerializedName("is_premium") var is_premium: Boolean,
 )

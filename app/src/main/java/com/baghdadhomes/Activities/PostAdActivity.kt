@@ -174,6 +174,16 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var radio_furnish_no: RadioButton
     lateinit var radio_furnish_half: RadioButton
 
+    var currency_MS = ""
+    lateinit var radioIQD_MS: RadioButton
+    lateinit var radioUSD_MS: RadioButton
+
+    var currency_SP = ""
+    lateinit var radioIQD_SP: RadioButton
+    lateinit var radioUSD_SP: RadioButton
+
+    lateinit var radioTerms: RadioButton
+
     /*lateinit var comm_shop: TextView
     lateinit var comm_office: TextView
     lateinit var comm_store: TextView
@@ -441,8 +451,13 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         radio_furnish_yes = findViewById(R.id.radio_furnish_yes)
         radio_furnish_no = findViewById(R.id.radio_furnish_no)
         radio_furnish_half = findViewById(R.id.radio_furnish_half)
+        radioIQD_SP = findViewById(R.id.radioIQD_SP)
+        radioUSD_SP = findViewById(R.id.radioUSD_SP)
+        radioIQD_MS = findViewById(R.id.radioIQD_MS)
+        radioUSD_MS = findViewById(R.id.radioUSD_MS)
         rvAmenities = findViewById(R.id.rvAmenities)
         tv_see_more = findViewById(R.id.tv_see_more)
+        radioTerms = findViewById(R.id.radioTerms)
 
         tv_see_more.setOnClickListener {
             if(tv_see_more.text.equals(getString(R.string.see_more))){
@@ -456,6 +471,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                     0, 0, R.drawable.ic_arrow_down, 0
                 )
             }
+            adapterAmenities.seeAll = !adapterAmenities.seeAll
+            adapterAmenities.notifyDataSetChanged()
         }
 
         rlVideo = findViewById(R.id.rlVideo)
@@ -481,10 +498,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         setRooms()
         setBathroom()
         setFurnishType()
+        setPriceCurrency()
+        setMonthlyServiceCurrency()
 
 
         rvAmenities.layoutManager = GridLayoutManager(this,3)
-        adapterAmenities = AmenitiesAdapter(this,amenityList,{position->
+        adapterAmenities = AmenitiesAdapter(this,false,amenityList,{position->
             amenityList[position].isSelected = !amenityList[position].isSelected
             adapterAmenities.notifyDataSetChanged()
         })
@@ -804,10 +823,18 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         button_addPost.setOnClickListener {
             dismissKeyboard(button_addPost)
-            if(isUpdate){
-                updatePost()
-            }else{
-                addPost()
+            if (et_addTitle.text.isEmpty()){
+                showToast(this, resources.getString(R.string.ad_title_required))
+            } else if (et_name.text.isEmpty()){
+                showToast(this, resources.getString(R.string.enter_name))
+            } else if (!radioTerms.isChecked){
+                showToast(this, resources.getString(R.string.accept_terms_privacy))
+            } else{
+                if(isUpdate){
+                    updatePost()
+                } else {
+                    addPost()
+                }
             }
 
         }
@@ -2076,6 +2103,35 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
     }
 
+    private fun setPriceCurrency() {
+        currency_SP = "IQD"
+        radioIQD_SP.isChecked = true
+        radioIQD_SP.setOnCheckedChangeListener { it,it1->
+            if (it.isChecked) {
+                currency_SP = "IQD"
+            }
+        }
+        radioUSD_SP.setOnCheckedChangeListener { it,it1->
+            if (it.isChecked) {
+                currency_SP = "USD"
+            }
+        }
+    }
+
+    private fun setMonthlyServiceCurrency() {
+        currency_MS = "IQD"
+        radioIQD_MS.isChecked = true
+        radioIQD_MS.setOnCheckedChangeListener { it,it1->
+            if (it.isChecked) {
+                currency_MS = "IQD"
+            }
+        }
+        radioUSD_MS.setOnCheckedChangeListener { it,it1->
+            if (it.isChecked) {
+                currency_MS = "USD"
+            }
+        }
+    }
 
 
     private fun openGallery() {
@@ -2228,117 +2284,112 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             }
         }
 
-        if (et_addTitle.text.isEmpty()){
-            showToast(this, resources.getString(R.string.ad_title_required))
-        } else if (et_name.text.isEmpty()){
-            showToast(this, resources.getString(R.string.enter_name))
+        val map: HashMap<String, String> = HashMap()
+        map.put("action", "update_property")
+        map.put("user_id", userId)
+        map.put("prop_id",intentModel.iD.toString())
+        map.put("prop_title", et_addTitle.text.toString().trim())
+        map.put("prop_des", et_postDetail.text.toString().trim())
+        map.put("prop_type[]", propertyType.toString())
+        map.put("prop_status[]", status.toString())
+        map.put("prop_price", et_postPrice.text.toString().trim())
+        //map.put("prop_label", )
+        //map.put("prop_price_prefix", )
+        //map.put("prop_sec_price", )
+        map.put("currency", currency_SP)
+        //map.put("prop_video_url", "")
+        map.put("prop_beds", rooms)
+        map.put("prop_baths", bathroom)
+        map.put("prop_size", et_postArea.text.toString().trim())
+        map.put("prop_size_prefix", "sqft")
+        map.put("prop_land_area", et_width.text.toString().trim())
+        map.put("prop_land_area_prefix", "sqft")
+        map.put("prop_garage", floors)
+        //map.put("prop_features[]",)
+        //map.put("property_map_address",)
+        //map.put("country",)
+        map.put("video", videoUrl)
+        map.put("locality", city)
+        //map.put("neighborhood", nbhdSlug!!)
+        if (nbhdSlug != null && nbhdSlug!!.isNotEmpty()){
+            map.put("neighborhood", nbhdSlug.toString())
+        }
+        //map.put("postal_code",)
+        if (propertyLatLng != null) {
+            map.put("lat",propertyLatLng?.latitude.toString())
+            map.put("lng",propertyLatLng?.longitude.toString())
+        }
+        map.put("prop_garage_size", propertySubType)
+        map.put("user_submit_has_no_membership", "no")
+        val imageStringId:ArrayList<String> = ArrayList()
+        for(i in imagesList){
+            imageStringId.add(i.id)
+            // map.put("propperty_image_ids[]", i.id)
+        }
+
+        map.put("living_room", livingRoom)
+        map.put("kitchen", kitchen)
+        map.put("balconies", balcony)
+        map.put("floor_number", floors)
+        map.put("monthly_price", et_monthlyPrice.text.toString())
+        map.put("currency_monthly", currency_MS)
+        map.put("street_type", et_street_type.text.toString())
+        map.put("furnished", furnishType)
+        if (status == 28 && rentalFrequency.isNotEmpty()) {
+            // map.put("rental_frequency", rentalFrequency)
+        }
+        if (!tvOrientation.text.equals(getString(R.string.select))) {
+            map.put("orientation", tvOrientation.text.toString())
+        }
+        if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
+            map.put("real_estate_situation", tvRealEstateSituation.text.toString())
+        }
+        val selectedAmenities:ArrayList<String> = ArrayList()
+        for(i in amenityList){
+            if (i.isSelected == true) {
+                selectedAmenities.add(i.id?:"")
+            }
+        }
+
+        //map.put("featured_image_id", "")
+        //map.put("fave_agent_display_option", "")
+
+        /*call_country_code_id.setOnCountryChangeListener {
+            callCountryCode = "+"+ it.phoneCode
+        }*/
+
+        /*wp_country_code_id.setOnCountryChangeListener {
+            wpCountryCode = "+" + it.phoneCode
+        }*/
+        call_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
+            override fun onCountrySelected() {
+                callCountryCode =  call_country_code_id.getSelectedCountryCodeWithPlus()
+                (call_country_code_id.getSelectedCountryCodeWithPlus())
+            }
+
+        })
+
+        wp_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
+            override fun onCountrySelected() {
+                wpCountryCode =  wp_country_code_id.getSelectedCountryCodeWithPlus()
+                (wp_country_code_id.getSelectedCountryCodeWithPlus())
+            }
+
+        })
+        val profileMap: HashMap<String, String> = HashMap()
+        profileMap.put("user_id", userId)
+        profileMap.put("display_name", et_name.text.toString().trim())
+        if (et_callNo.text.isNotEmpty()){
+            profileMap.put("call_number", callCountryCode+et_callNo.text.toString().trim())
+        }
+        if (et_wpNo.text.isNotEmpty()){
+            profileMap.put("whatsapp_number", wpCountryCode+et_wpNo.text.toString().trim())
+        }
+        if (isNetworkAvailable()){
+            hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
+            hitAddPostApiWithoutTokenParams(Constants.UPDATE_ADD, true, Constants.UPDATE_POST_URL, map,imageStringId,selectedAmenities)
         } else{
-            val map: HashMap<String, String> = HashMap()
-            map.put("action", "update_property")
-            map.put("user_id", userId)
-            map.put("prop_id",intentModel.iD.toString())
-            map.put("prop_title", et_addTitle.text.toString().trim())
-            map.put("prop_des", et_postDetail.text.toString().trim())
-            map.put("prop_type[]", propertyType.toString())
-            map.put("prop_status[]", status.toString())
-            map.put("prop_price", et_postPrice.text.toString().trim())
-            //map.put("prop_label", )
-            //map.put("prop_price_prefix", )
-            //map.put("prop_sec_price", )
-            map.put("currency", "IDR")
-            //map.put("prop_video_url", "")
-            map.put("prop_beds", rooms)
-            map.put("prop_baths", bathroom)
-            map.put("prop_size", et_postArea.text.toString().trim())
-            map.put("prop_size_prefix", "sqft")
-            map.put("prop_land_area", et_width.text.toString().trim())
-            map.put("prop_land_area_prefix", "sqft")
-            map.put("prop_garage", floors)
-            //map.put("prop_features[]",)
-            //map.put("property_map_address",)
-            //map.put("country",)
-            map.put("video", videoUrl)
-            map.put("locality", city)
-            //map.put("neighborhood", nbhdSlug!!)
-            if (nbhdSlug != null && nbhdSlug!!.isNotEmpty()){
-                map.put("neighborhood", nbhdSlug.toString())
-            }
-            //map.put("postal_code",)
-            if (propertyLatLng != null) {
-                map.put("lat",propertyLatLng?.latitude.toString())
-                map.put("lng",propertyLatLng?.longitude.toString())
-            }
-            map.put("prop_garage_size", propertySubType)
-            map.put("user_submit_has_no_membership", "no")
-            val imageStringId:ArrayList<String> = ArrayList()
-            for(i in imagesList){
-                imageStringId.add(i.id)
-                // map.put("propperty_image_ids[]", i.id)
-            }
-
-            map.put("living_room", livingRoom)
-            map.put("kitchen", kitchen)
-            map.put("balconies", balcony)
-            map.put("floor_number", floors)
-            map.put("monthly_price", et_monthlyPrice.text.toString())
-            map.put("street_type", et_street_type.text.toString())
-            map.put("furnished", furnishType)
-            if (status == 28 && rentalFrequency.isNotEmpty()) {
-                // map.put("rental_frequency", rentalFrequency)
-            }
-            if (!tvOrientation.text.equals(getString(R.string.select))) {
-                map.put("orientation", tvOrientation.text.toString())
-            }
-            if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
-                map.put("real_estate_situation", tvRealEstateSituation.text.toString())
-            }
-            val selectedAmenities:ArrayList<String> = ArrayList()
-            for(i in amenityList){
-                if (i.isSelected == true) {
-                    selectedAmenities.add(i.id?:"")
-                }
-            }
-
-            //map.put("featured_image_id", "")
-            //map.put("fave_agent_display_option", "")
-
-            /*call_country_code_id.setOnCountryChangeListener {
-                callCountryCode = "+"+ it.phoneCode
-            }*/
-
-            /*wp_country_code_id.setOnCountryChangeListener {
-                wpCountryCode = "+" + it.phoneCode
-            }*/
-            call_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
-                override fun onCountrySelected() {
-                    callCountryCode =  call_country_code_id.getSelectedCountryCodeWithPlus()
-                    (call_country_code_id.getSelectedCountryCodeWithPlus())
-                }
-
-            })
-
-            wp_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
-                override fun onCountrySelected() {
-                    wpCountryCode =  wp_country_code_id.getSelectedCountryCodeWithPlus()
-                    (wp_country_code_id.getSelectedCountryCodeWithPlus())
-                }
-
-            })
-            val profileMap: HashMap<String, String> = HashMap()
-            profileMap.put("user_id", userId)
-            profileMap.put("display_name", et_name.text.toString().trim())
-            if (et_callNo.text.isNotEmpty()){
-                profileMap.put("call_number", callCountryCode+et_callNo.text.toString().trim())
-            }
-            if (et_wpNo.text.isNotEmpty()){
-                profileMap.put("whatsapp_number", wpCountryCode+et_wpNo.text.toString().trim())
-            }
-            if (isNetworkAvailable()){
-                hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
-                hitAddPostApiWithoutTokenParams(Constants.UPDATE_ADD, true, Constants.UPDATE_POST_URL, map,imageStringId,selectedAmenities)
-            } else{
-                showToast(this, resources.getString(R.string.intenet_error))
-            }
+            showToast(this, resources.getString(R.string.intenet_error))
         }
 
     }
@@ -2365,126 +2416,116 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         callnumber = et_callNo.text.toString()
         whatsappNumber = et_wpNo.text.toString()
 
-        if (et_addTitle.text.isEmpty()){
-            showToast(this, resources.getString(R.string.ad_title_required))
-        } else if (et_name.text.isEmpty()){
-            showToast(this, resources.getString(R.string.enter_name))
-        } else{
-            val map: HashMap<String, String> = HashMap()
-            map.put("action", "add_property")
-            map.put("user_id", userId)
-            map.put("prop_title", et_addTitle.text.toString().trim())
-            map.put("prop_des", et_postDetail.text.toString().trim())
-            map.put("prop_type[]", propertyType.toString())
-            map.put("prop_status[]", status.toString())
-            map.put("prop_price", et_postPrice.text.toString().trim())
-            //map.put("prop_label", )
-            //map.put("prop_price_prefix", )
-            //map.put("prop_sec_price", )
-            map.put("currency", "IDR")
-            //map.put("prop_video_url", "")
-            map.put("prop_beds", rooms)
-            map.put("prop_baths", bathroom)
-            map.put("prop_size", et_postArea.text.toString().trim())
-            map.put("prop_size_prefix", "sqft")
-            map.put("prop_land_area", et_width.text.toString().trim())
-            map.put("prop_land_area_prefix", "sqft")
-            map.put("prop_garage", floors)
-            //map.put("prop_features[]",)
-            //map.put("property_map_address",)
-            //map.put("country",)
-            map.put("locality", city)
-            map.put("video", videoUrl)
-            if (nbhdSlug != null && nbhdSlug!!.isNotEmpty()){
-                map.put("neighborhood", nbhdSlug.toString())
-            }
-            //map.put("postal_code",)
-            if (propertyLatLng != null) {
-                map.put("lat", propertyLatLng?.latitude.toString())
-                map.put("lng", propertyLatLng?.longitude.toString())
-            }
-            map.put("prop_garage_size", propertySubType)
-            map.put("user_submit_has_no_membership", "no")
-            val imageStringId:ArrayList<String> = ArrayList()
-            for(i in imagesList){
-                imageStringId.add(i.id)
-                // map.put("propperty_image_ids[]", i.id)
-            }
-            map.put("living_room", livingRoom)
-            map.put("kitchen", kitchen)
-            map.put("balconies", balcony)
-            map.put("floor_number", floors)
-            map.put("monthly_price", et_monthlyPrice.text.toString())
-            map.put("street_type", et_street_type.text.toString())
-            map.put("furnished", furnishType)
-            if (status == 28 && rentalFrequency.isNotEmpty()) {
-                // map.put("rental_frequency", rentalFrequency)
-            }
-            if (!tvOrientation.text.equals(getString(R.string.select))) {
-                map.put("orientation", tvOrientation.text.toString())
-            }
-            if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
-                map.put("real_estate_situation", tvRealEstateSituation.text.toString())
-            }
-            val selectedAmenities:ArrayList<String> = ArrayList()
-            for(i in amenityList){
-                if (i.isSelected == true) {
-                    selectedAmenities.add(i.id?:"")
-                }
-            }
-            //map.put("featured_image_id", "")
-            //map.put("fave_agent_display_option", "")
-            /*call_country_code_id.setOnCountryChangeListener {
-                callCountryCode = "+"+ it.phoneCode
-            }
-            wp_country_code_id.setOnCountryChangeListener {
-                wpCountryCode = "+" + it.phoneCode
-            }*/
-
-            call_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
-                override fun onCountrySelected() {
-                    callCountryCode =  call_country_code_id.getSelectedCountryCodeWithPlus()
-                    (call_country_code_id.getSelectedCountryCodeWithPlus())
-                }
-
-            })
-
-            wp_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
-                override fun onCountrySelected() {
-                    wpCountryCode =  wp_country_code_id.getSelectedCountryCodeWithPlus()
-                    (wp_country_code_id.getSelectedCountryCodeWithPlus())
-                }
-
-            })
-
-            val profileMap: HashMap<String, String> = HashMap()
-            profileMap.put("user_id", userId)
-            profileMap.put("display_name", et_name.text.toString().trim())
-            if (et_callNo.text.toString().isNotEmpty()){
-                profileMap.put("call_number", callCountryCode+et_callNo.text.toString().trim())
-            } else{
-                profileMap.put("call_number", "")
-            }
-            if (PreferencesService.instance.getLoginMethod() != "whatsapp"){
-                if (et_wpNo.text.toString().isNotEmpty()){
-                    profileMap.put("whatsapp_number", wpCountryCode+et_wpNo.text.toString().trim())
-                } else{
-                    profileMap.put("whatsapp_number","")
-                }
-
-            }
-            if (isNetworkAvailable()){
-                hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
-                hitAddPostApiWithoutTokenParams(Constants.ADD_POST, true, Constants.ADD_POST_URL, map,imageStringId,selectedAmenities)
-            } else{
-                showToast(this,resources.getString(R.string.intenet_error))
+        val map: HashMap<String, String> = HashMap()
+        map.put("action", "add_property")
+        map.put("user_id", userId)
+        map.put("prop_title", et_addTitle.text.toString().trim())
+        map.put("prop_des", et_postDetail.text.toString().trim())
+        map.put("prop_type[]", propertyType.toString())
+        map.put("prop_status[]", status.toString())
+        map.put("prop_price", et_postPrice.text.toString().trim())
+        //map.put("prop_label", )
+        //map.put("prop_price_prefix", )
+        //map.put("prop_sec_price", )
+        map.put("currency", currency_SP)
+        //map.put("prop_video_url", "")
+        map.put("prop_beds", rooms)
+        map.put("prop_baths", bathroom)
+        map.put("prop_size", et_postArea.text.toString().trim())
+        map.put("prop_size_prefix", "sqft")
+        map.put("prop_land_area", et_width.text.toString().trim())
+        map.put("prop_land_area_prefix", "sqft")
+        map.put("prop_garage", floors)
+        //map.put("prop_features[]",)
+        //map.put("property_map_address",)
+        //map.put("country",)
+        map.put("locality", city)
+        map.put("video", videoUrl)
+        if (nbhdSlug != null && nbhdSlug!!.isNotEmpty()){
+            map.put("neighborhood", nbhdSlug.toString())
+        }
+        //map.put("postal_code",)
+        if (propertyLatLng != null) {
+            map.put("lat", propertyLatLng?.latitude.toString())
+            map.put("lng", propertyLatLng?.longitude.toString())
+        }
+        map.put("prop_garage_size", propertySubType)
+        map.put("user_submit_has_no_membership", "no")
+        val imageStringId:ArrayList<String> = ArrayList()
+        for(i in imagesList){
+            imageStringId.add(i.id)
+            // map.put("propperty_image_ids[]", i.id)
+        }
+        map.put("living_room", livingRoom)
+        map.put("kitchen", kitchen)
+        map.put("balconies", balcony)
+        map.put("floor_number", floors)
+        map.put("monthly_price", et_monthlyPrice.text.toString())
+        map.put("currency_monthly", currency_MS)
+        map.put("street_type", et_street_type.text.toString())
+        map.put("furnished", furnishType)
+        if (status == 28 && rentalFrequency.isNotEmpty()) {
+            // map.put("rental_frequency", rentalFrequency)
+        }
+        if (!tvOrientation.text.equals(getString(R.string.select))) {
+            map.put("orientation", tvOrientation.text.toString())
+        }
+        if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
+            map.put("real_estate_situation", tvRealEstateSituation.text.toString())
+        }
+        val selectedAmenities:ArrayList<String> = ArrayList()
+        for(i in amenityList){
+            if (i.isSelected == true) {
+                selectedAmenities.add(i.id?:"")
             }
         }
-        /*if(imagesList!=null && imagesList.size>0){
-
-        }else{
-            Utility.showToast(this,"please select the images")
+        //map.put("featured_image_id", "")
+        //map.put("fave_agent_display_option", "")
+        /*call_country_code_id.setOnCountryChangeListener {
+            callCountryCode = "+"+ it.phoneCode
+        }
+        wp_country_code_id.setOnCountryChangeListener {
+            wpCountryCode = "+" + it.phoneCode
         }*/
+
+        call_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
+            override fun onCountrySelected() {
+                callCountryCode =  call_country_code_id.getSelectedCountryCodeWithPlus()
+                (call_country_code_id.getSelectedCountryCodeWithPlus())
+            }
+
+        })
+
+        wp_country_code_id.setOnCountryChangeListener(object :CountryCodePicker.OnCountryChangeListener{
+            override fun onCountrySelected() {
+                wpCountryCode =  wp_country_code_id.getSelectedCountryCodeWithPlus()
+                (wp_country_code_id.getSelectedCountryCodeWithPlus())
+            }
+
+        })
+
+        val profileMap: HashMap<String, String> = HashMap()
+        profileMap.put("user_id", userId)
+        profileMap.put("display_name", et_name.text.toString().trim())
+        if (et_callNo.text.toString().isNotEmpty()){
+            profileMap.put("call_number", callCountryCode+et_callNo.text.toString().trim())
+        } else{
+            profileMap.put("call_number", "")
+        }
+        if (PreferencesService.instance.getLoginMethod() != "whatsapp"){
+            if (et_wpNo.text.toString().isNotEmpty()){
+                profileMap.put("whatsapp_number", wpCountryCode+et_wpNo.text.toString().trim())
+            } else{
+                profileMap.put("whatsapp_number","")
+            }
+
+        }
+        if (isNetworkAvailable()){
+            hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
+            hitAddPostApiWithoutTokenParams(Constants.ADD_POST, true, Constants.ADD_POST_URL, map,imageStringId,selectedAmenities)
+        } else{
+            showToast(this,resources.getString(R.string.intenet_error))
+        }
 
     }
 
@@ -2675,11 +2716,11 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                     }
                 }
 
-               /* if(amenityList.size>9){
+                if(amenityList.size>9){
                     tv_see_more.visibility = View.VISIBLE
                 }else{
                     tv_see_more.visibility = View.GONE
-                }*/
+                }
 
 
                 adapterAmenities.notifyDataSetChanged()
@@ -3452,6 +3493,24 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         if (intentModel.price != null){
             et_postPrice.setText(intentModel.price)
+        }
+
+        if (intentModel.property_meta != null){
+            if (intentModel.property_meta.fave_currency?.firstOrNull() == "USD") {
+                currency_SP = "USD"
+                radioUSD_SP.isChecked = true
+            } else {
+                currency_SP = "IQD"
+                radioIQD_SP.isChecked = true
+            }
+
+            if (intentModel.property_meta.currency_monthly?.firstOrNull() == "USD") {
+                currency_MS = "USD"
+                radioUSD_MS.isChecked = true
+            } else {
+                currency_MS = "IQD"
+                radioIQD_MS.isChecked = true
+            }
         }
 
         if (intentModel.property_meta != null){
