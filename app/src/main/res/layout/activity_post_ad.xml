@@ -2344,7 +2344,6 @@
                 android:id="@+id/et_monthlyPrice"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:background="@drawable/bg_outline_solid"
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                 android:hint="@string/enter_price"
