@@ -322,6 +322,37 @@
                                     android:textSize="14dp" />
                             </LinearLayout>
 
+
+
+                            <LinearLayout
+                                android:id="@+id/lin_video_link"
+                                android:orientation="horizontal"
+                                android:layout_marginTop="5dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:id="@+id/tv_youtube_url"
+                                    android:textSize="14dp"
+                                    android:text="@string/video_you_tube_url"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:textColor="@color/new_details_color"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"/>
+
+                                <TextView
+                                    android:id="@+id/dt_video_link"
+                                    android:layout_weight="1"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginStart="5dp"
+                                    android:layout_toEndOf="@+id/tv_date"
+                                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                    android:text=""
+                                    android:textColor="@color/darkGrey"
+                                    android:textSize="14dp" />
+                            </LinearLayout>
+
                         </LinearLayout>
 
                         <LinearLayout

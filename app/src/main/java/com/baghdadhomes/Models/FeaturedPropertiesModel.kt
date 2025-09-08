@@ -30,6 +30,7 @@ data class ResultFeatured(
     @SerializedName("is_premium") var is_premium:Boolean? = false,
     @SerializedName("agent_agency_info") val agent_agency_info : AgentAgencyInfo? = null,
     @SerializedName("property_feature_details") val property_feature_details : List<AmenityData>? = ArrayList(),
+    @SerializedName("youtube_url") val youtube_url : String? = null,
 )
 
 data class PropertyAttr(

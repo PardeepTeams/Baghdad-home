@@ -16,6 +16,7 @@ import kotlin.math.floor
 import kotlin.math.log10
 import kotlin.math.pow
 import android.content.Context
+import android.net.Uri
 
 object Utility {
     fun showToast(context: Context, message: String) {
@@ -113,7 +114,7 @@ object Utility {
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
-    fun isYouTubeVideoUrl(url: String?): Boolean {
+ /*   fun isYouTubeVideoUrl(url: String?): Boolean {
         try {
             if (url.isNullOrEmpty()) return false
 
@@ -124,6 +125,25 @@ object Utility {
         } catch(e : Exception) {
             return false
         }
+    }*/
+
+    fun isYouTubeVideoUrl(input: String): Boolean {
+        return try {
+            val uri = Uri.parse(input)
+            val host = uri.host?.lowercase() ?: return false
+
+            // Check YouTube hostnames
+            if (host.contains("youtube.com") || host.contains("youtu.be")) {
+                // Check if it has a video id
+                val hasVideoId = uri.getQueryParameter("v") != null || host.contains("youtu.be")
+                hasVideoId
+            } else {
+                false
+            }
+        } catch (e: Exception) {
+            false
+        }
     }
+
 
 }

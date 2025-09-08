@@ -2,6 +2,7 @@ package com.baghdadhomes.fcm
 
 import com.google.gson.JsonObject
 import com.baghdadhomes.Models.AdsDetailModel
+import com.baghdadhomes.Models.LoginModel
 import com.baghdadhomes.Models.NewFeatureModel
 import com.baghdadhomes.Models.ProjectDetailResponse
 import okhttp3.MultipartBody
@@ -69,4 +70,9 @@ interface ApiService {
 
     @POST
     suspend fun getPropertyDetails(@Url url: String, @QueryMap parameters: HashMap<String, String>): Response<ProjectDetailResponse>
+
+
+    @FormUrlEncoded
+    @POST
+    suspend fun addPost(@Url url: String,@FieldMap map:Map<String,String>,@Field("propperty_image_ids[]") imagesList:ArrayList<String>,@Field("prop_features[]") selectedAmenities:ArrayList<String>): Response<LoginModel>
 }
