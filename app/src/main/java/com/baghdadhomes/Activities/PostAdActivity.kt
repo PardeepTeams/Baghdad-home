@@ -86,6 +86,7 @@ import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.Utility
+import com.baghdadhomes.fcm.ApiClient
 import com.bumptech.glide.Glide
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.github.ybq.android.spinkit.SpinKitView
@@ -2451,7 +2452,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             profileMap.put("whatsapp_number", wpCountryCode+et_wpNo.text.toString().trim())
         }
         if (isNetworkAvailable()){
-            hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
+            ApiClient.api!!.hitPostApiWithouTokenFieldParams(
+                ApiClient.baseUrl + Constants.PROFILE_UPDATE_API,profileMap)
             hitAddPostApiWithoutTokenParams(Constants.UPDATE_ADD, true, Constants.UPDATE_POST_URL, map,imageStringId,selectedAmenities)
         } else{
             showToast(this, resources.getString(R.string.intenet_error))
@@ -2587,7 +2589,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         }
         if (isNetworkAvailable()){
-            hitPostApi(Constants.PROFILE_UPDATE, false, Constants.PROFILE_UPDATE_API, profileMap)
+            ApiClient.api!!.hitPostApiWithouTokenFieldParams(
+                ApiClient.baseUrl + Constants.PROFILE_UPDATE_API,profileMap)
             hitAddPostApiWithoutTokenParams(Constants.ADD_POST, true, Constants.ADD_POST_URL, map,imageStringId,selectedAmenities)
         } else{
             showToast(this,resources.getString(R.string.intenet_error))
