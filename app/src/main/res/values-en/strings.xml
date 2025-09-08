@@ -341,4 +341,6 @@
     <string name="unFurnished">Unfurnished</string>
     <string name="terms_and_privacy">I agree to the <u>Terms</u> and <u>Privacy Policy</u></string>
     <string name="accept_terms_privacy">Please accept terms and privacy policy</string>
+    <string name="enter_youtube_url">Enter Youtube Video URL</string>
+    <string name="enter_valid_youtube_url">Please enter valid Youtube URL</string>
 </resources>

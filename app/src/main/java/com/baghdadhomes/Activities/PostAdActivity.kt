@@ -347,6 +347,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var imgRemoveVideo: ImageView
     lateinit var imgPreviewVideo: ImageView
     lateinit var tvLocationOnMap: TextView
+    lateinit var et_youtube_url: EditText
 
     lateinit var tv_heading: TextView
 
@@ -511,6 +512,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         tv_see_more = findViewById(R.id.tv_see_more)
         checkTermsPrivacy = findViewById(R.id.checkTermsPrivacy)
         tvTerms = findViewById(R.id.tvTerms)
+        et_youtube_url = findViewById(R.id.et_youtube_url)
 
         tv_see_more.setOnClickListener {v ->
             if(tv_see_more.text.equals(getString(R.string.see_more))){
@@ -887,6 +889,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 showToast(this, resources.getString(R.string.ad_title_required))
             } else if (et_name.text.isEmpty()){
                 showToast(this, resources.getString(R.string.enter_name))
+            } else if (et_youtube_url.text.isNotEmpty() && Utility.isYouTubeVideoUrl(et_youtube_url.text.toString())){
+                showToast(this, resources.getString(R.string.enter_valid_youtube_url))
             } else if (!checkTermsPrivacy.isChecked){
                 showToast(this, resources.getString(R.string.accept_terms_privacy))
             } else{
@@ -2369,6 +2373,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         //map.put("property_map_address",)
         //map.put("country",)
         map.put("video", videoUrl)
+        map.put("youtube_url", et_youtube_url.text.toString().trim())
         map.put("locality", city)
         //map.put("neighborhood", nbhdSlug!!)
         if (nbhdSlug != null && nbhdSlug!!.isNotEmpty()){
@@ -2501,6 +2506,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         //map.put("country",)
         map.put("locality", city)
         map.put("video", videoUrl)
+        map.put("youtube_url", et_youtube_url.text.toString().trim())
         if (nbhdSlug != null && nbhdSlug!!.isNotEmpty()){
             map.put("neighborhood", nbhdSlug.toString())
         }

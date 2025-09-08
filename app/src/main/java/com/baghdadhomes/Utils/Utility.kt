@@ -113,4 +113,17 @@ object Utility {
         return BitmapDescriptorFactory.fromBitmap(bitmap)
     }
 
+    fun isYouTubeVideoUrl(url: String?): Boolean {
+        try {
+            if (url.isNullOrEmpty()) return false
+
+            val regex = Regex(
+                "^(https?://)?(www\\.)?(youtube\\.com/watch\\?v=|youtu\\.be/)[a-zA-Z0-9_-]{11}.*$"
+            )
+            return regex.matches(url.trim())
+        } catch(e : Exception) {
+            return false
+        }
+    }
+
 }

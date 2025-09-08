@@ -345,5 +345,7 @@
     <string name="unFurnished">غير مفروشة</string>
     <string name="terms_and_privacy">أوافق على <u>الشروط</u> و<u>سياسة الخصوصية</u></string>
     <string name="accept_terms_privacy">يرجى قبول الشروط وسياسة الخصوصية</string>
+    <string name="enter_youtube_url">أدخل عنوان URL لفيديو يوتيوب</string>
+    <string name="enter_valid_youtube_url">الرجاء إدخال عنوان URL صالح لليوتيوب</string>
 
 </resources>

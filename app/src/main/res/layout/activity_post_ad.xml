@@ -2496,6 +2496,21 @@
                     android:visibility="gone"/>
             </RelativeLayout>
 
+            <EditText
+                android:id="@+id/et_youtube_url"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_outline_solid"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:hint="@string/enter_youtube_url"
+                android:maxLines="1"
+                android:padding="15sp"
+                android:singleLine="true"
+                android:textColor="@color/grey"
+                android:textSize="14dp" />
+
+
             <RelativeLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
