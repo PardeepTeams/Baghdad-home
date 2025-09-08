@@ -156,6 +156,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     lateinit var tv_see_all:TextView
     var isFav = false;
     var adsDetailModel: AdsDetailModel? = null
+    lateinit var lin_video_link:LinearLayout
+    lateinit var dt_video_link:TextView
 
     lateinit var adapterAmenities: AmenitiesAdapter
 
@@ -315,6 +317,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         tvAppDetails = findViewById(R.id.tvAppDetails)
         tvAppName = findViewById(R.id.tvAppName)
         tvAppText = findViewById(R.id.tvAppText)
+        lin_video_link = findViewById(R.id.lin_video_link)
+        dt_video_link = findViewById(R.id.dt_video_link)
         imgQr = findViewById(R.id.imgQr)
         tv_see_all = findViewById(R.id.tv_see_all)
         tv_see_all.setOnClickListener {
@@ -544,6 +548,18 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                             img_bookmarked.visibility = View.GONE
                         }
                     }
+                }
+
+                if(!model.result.youtube_url.isNullOrEmpty()){
+                    lin_video_link.visibility = View.VISIBLE
+                    dt_video_link.text = model.result.youtube_url
+                }else{
+                    lin_video_link.visibility = View.GONE
+                }
+
+                dt_video_link.setOnClickListener {
+                    val intent = Intent(Intent.ACTION_VIEW, Uri.parse(model.result.youtube_url))
+                    startActivity(intent)
                 }
 
                 try {

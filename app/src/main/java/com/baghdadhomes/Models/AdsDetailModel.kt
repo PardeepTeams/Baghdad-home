@@ -30,6 +30,7 @@ data class ResultDetail (
     @SerializedName("property_address") val property_address : Property_address,
     @SerializedName("is_premium") val is_premium : Boolean,
     @SerializedName("property_feature_details") val property_feature_details : List<AmenityData>? = null,
+    @SerializedName("youtube_url") val youtube_url : String? = null,
 )
 
 data class Property_meta (

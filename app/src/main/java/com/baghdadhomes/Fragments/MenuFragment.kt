@@ -1109,6 +1109,13 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                 val scale = 0.90f + r * 0.15f
                 page.scaleY = scale
                 page.scaleX = scale
+
+                val cardView = page as? com.google.android.material.card.MaterialCardView
+                cardView?.let {
+                    val maxRadius = 15f * density // side item corner radius
+                    val minRadius = 40f * density  // center item corner radius
+                    it.radius = minRadius + (1 - r) * (maxRadius - minRadius)
+                }
             }
         }
 
