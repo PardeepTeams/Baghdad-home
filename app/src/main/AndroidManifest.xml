@@ -193,7 +193,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="najafhome.com"
+                    android:host="baghdadhome.com"
                     android:pathPrefix="/property"
                     android:scheme="https" />
             </intent-filter>
@@ -204,7 +204,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="najafhome.com"
+                    android:host="baghdadhome.com"
                     android:pathPrefix="/property"
                     android:scheme="http" />
             </intent-filter>
@@ -215,7 +215,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="najafhome.com"
+                    android:host="baghdadhome.com"
                     android:pathPrefix="/properties"
                     android:scheme="https" />
             </intent-filter>
@@ -226,7 +226,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="najafhome.com"
+                    android:host="baghdadhome.com"
                     android:pathPrefix="/properties"
                     android:scheme="http" />
             </intent-filter>
@@ -237,7 +237,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="najafhome.com"
+                    android:host="baghdadhome.com"
                     android:pathPrefix="/author"
                     android:scheme="https" />
             </intent-filter>
@@ -248,7 +248,7 @@
                 <category android:name="android.intent.category.BROWSABLE" />
 
                 <data
-                    android:host="najafhome.com"
+                    android:host="baghdadhome.com"
                     android:pathPrefix="/author"
                     android:scheme="http" />
             </intent-filter>
