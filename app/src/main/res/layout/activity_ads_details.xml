@@ -349,6 +349,8 @@
                                     android:layout_toEndOf="@+id/tv_date"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
+                                    android:autoLink="web"
+                                    android:textColorLink="@color/blue"
                                     android:textColor="@color/darkGrey"
                                     android:textSize="14dp" />
                             </LinearLayout>
