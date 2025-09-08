@@ -512,7 +512,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         checkTermsPrivacy = findViewById(R.id.checkTermsPrivacy)
         tvTerms = findViewById(R.id.tvTerms)
 
-        tv_see_more.setOnClickListener {
+        tv_see_more.setOnClickListener {v ->
             if(tv_see_more.text.equals(getString(R.string.see_more))){
                 tv_see_more.text = getString(R.string.see_less)
                 tv_see_more.setCompoundDrawablesWithIntrinsicBounds(
@@ -523,9 +523,15 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 tv_see_more.setCompoundDrawablesWithIntrinsicBounds(
                     0, 0, R.drawable.ic_arrow_down, 0
                 )
+            /*    Handler(Looper.getMainLooper()).postDelayed({
+                    val y = v.top + v.height + 2000
+                    nested_scroll.smoothScrollTo(0, y)
+                }, 200)*/
+
             }
             adapterAmenities.seeAll = !adapterAmenities.seeAll
             adapterAmenities.notifyDataSetChanged()
+
         }
 
         rlVideo = findViewById(R.id.rlVideo)

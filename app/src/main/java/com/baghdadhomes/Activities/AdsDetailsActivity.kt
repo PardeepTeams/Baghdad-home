@@ -1163,9 +1163,9 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         if(!type.equals("all")){
             pagemap.put("type",type)
         }
-        if(state.isNotEmpty()){
+       /* if(state.isNotEmpty()){
             pagemap.put("state",state)
-        }
+        }*/
         if(area.isNotEmpty()){
             pagemap.put("area",area)
         }
