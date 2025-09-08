@@ -2603,7 +2603,6 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         if (apiType.equals(Constants.ADD_POST, true)) {
             val model = Gson().fromJson(respopnse, LoginModel::class.java)
             if (model.success == true) {
-                showToast(this, getString(R.string.add_post_success_msg))
                 startActivity(Intent(this, MyAdsActivity::class.java))
                 finish()
                 overridePendingTransition(0, 0)
