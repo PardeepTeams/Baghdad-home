@@ -331,38 +331,6 @@
 
 
 
-                <RelativeLayout
-                    android:id="@+id/rl_realtors"
-                    android:layout_marginTop="5dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/img_realtors"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:layout_centerVertical="true"
-                        android:src="@drawable/ic_companies"
-                        app:tint="@color/grey"/>
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerVertical="true"
-                        android:layout_marginStart="10dp"
-                        android:layout_toEndOf="@+id/img_realtors"
-                        android:fontFamily="@font/hacen_tunisia_bold_regular"
-                        android:text="@string/realtors"
-                        android:textColor="@color/darkGrey"
-                        android:textSize="16sp" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#407F7F7F"
-                    android:layout_marginTop="5dp" />
 
             </LinearLayout>
 
@@ -402,6 +370,39 @@
                     android:layout_height="1dp"
                     android:background="#407F7F7F"
                     android:layout_marginTop="5dp" />-->
+
+                <RelativeLayout
+                    android:id="@+id/rl_realtors"
+                    android:layout_marginTop="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_realtors"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/ic_companies"
+                        app:tint="@color/grey"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="10dp"
+                        android:layout_toEndOf="@+id/img_realtors"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:text="@string/realtors"
+                        android:textColor="@color/darkGrey"
+                        android:textSize="16sp" />
+
+                </RelativeLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="#407F7F7F"
+                    android:layout_marginTop="5dp" />
 
                 <RelativeLayout
                     android:id="@+id/rlServices"
