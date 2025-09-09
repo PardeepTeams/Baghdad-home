@@ -887,13 +887,35 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         button_addPost.setOnClickListener {
             dismissKeyboard(button_addPost)
             if (et_addTitle.text.isEmpty()){
+                et_addTitle.error = resources.getString(R.string.ad_title_required)
                 showToast(this, resources.getString(R.string.ad_title_required))
-            } else if (et_name.text.isEmpty()){
-                showToast(this, resources.getString(R.string.enter_name))
+                scrollNestedScrollViewToRequiredTarget(et_addTitle)
+            } else if (spinner_neighborhood.text.isEmpty() || spinner_neighborhood.text == getString(R.string.choose_the_neighborhood)){
+                spinner_neighborhood.error = resources.getString(R.string.choose_the_neighborhood)
+                showToast(this, resources.getString(R.string.choose_the_neighborhood))
+                scrollNestedScrollViewToRequiredTarget(spinner_neighborhood)
+            } else if (tvLocationOnMap.text.isEmpty() || tvLocationOnMap.text == getString(R.string.location_on_map)){
+                tvLocationOnMap.error = getString(R.string.location_on_map)
+                showToast(this, resources.getString(R.string.location_on_map))
+                scrollNestedScrollViewToRequiredTarget(tvLocationOnMap)
+            } else if (et_postPrice.text.isEmpty()){
+                et_postPrice.error = getString(R.string.enter_price)
+                showToast(this, resources.getString(R.string.enter_price))
+                scrollNestedScrollViewToRequiredTarget(et_postPrice)
+            } else if (imagesList.isEmpty()){
+                showToast(this, resources.getString(R.string.upload_photo))
+                scrollNestedScrollViewToRequiredTarget(rv_photo)
             } else if (et_youtube_url.text.isNotEmpty() && Utility.isYouTubeVideoUrl(et_youtube_url.text.toString())){
+                et_youtube_url.error = getString(R.string.enter_valid_youtube_url)
                 showToast(this, resources.getString(R.string.enter_valid_youtube_url))
+                scrollNestedScrollViewToRequiredTarget(et_youtube_url)
+            } else if (et_name.text.isEmpty()){
+                et_name.error = getString(R.string.enter_name)
+                showToast(this, resources.getString(R.string.enter_name))
+                scrollNestedScrollViewToRequiredTarget(et_name)
             } else if (!checkTermsPrivacy.isChecked){
                 showToast(this, resources.getString(R.string.accept_terms_privacy))
+                scrollNestedScrollViewToRequiredTarget(checkTermsPrivacy)
             } else{
                 if(isUpdate){
                     updatePost()
@@ -1008,6 +1030,10 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
 
         nbhdAdapter = AdapterNBHDDialog(this, cityList1, this)
+    }
+
+    fun scrollNestedScrollViewToRequiredTarget(targetView : View) {
+        nested_scroll.smoothScrollTo(0, targetView.top)
     }
 
     fun openNeighborhoodDialog(){
