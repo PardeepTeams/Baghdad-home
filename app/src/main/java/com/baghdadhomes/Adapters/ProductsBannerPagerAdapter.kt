@@ -19,6 +19,7 @@ class ProductsBannerPagerAdapter(var bannerList:ArrayList<ProjectSlider>) :
 
     class ProductsBannerViewHolder(@NonNull itemView: View) : RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView = itemView.findViewById(R.id.bannerImage)
+        var img_watermark: ImageView = itemView.findViewById(R.id.img_watermark)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductsBannerViewHolder {
@@ -32,19 +33,41 @@ class ProductsBannerPagerAdapter(var bannerList:ArrayList<ProjectSlider>) :
     }
 
     override fun onBindViewHolder(holder: ProductsBannerViewHolder, position: Int) {
-        Glide.with(holder.imageView.context)
-            .load(bannerList[position].sliderImage)
-            .placeholder(R.drawable.img_placeholder)
-            .apply(
-                RequestOptions()
-                    .override(600, 600)
-                    .diskCacheStrategy(DiskCacheStrategy.ALL)
-            )
-            .thumbnail(
-                Glide.with(holder.imageView.context)
-                    .load(bannerList[position].sliderImage) // ✅ Use URL
-                    .override(600, 600)
-            )
-            .into(holder.imageView)
+        if(!bannerList.get(position).sliderImage.isNullOrEmpty()){
+            Glide.with(holder.imageView.context)
+                .load(bannerList[position].sliderImage)
+                .placeholder(R.drawable.img_placeholder)
+                .apply(
+                    RequestOptions()
+                        .override(600, 600)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                )
+                .thumbnail(
+                    Glide.with(holder.imageView.context)
+                        .load(bannerList[position].sliderImage) // ✅ Use URL
+                        .override(600, 600)
+                )
+                .into(holder.imageView)
+
+            holder.img_watermark.visibility = View.VISIBLE
+        }else{
+            Glide.with(holder.imageView.context)
+                .load("")
+                .placeholder(R.drawable.img_placeholder)
+                .apply(
+                    RequestOptions()
+                        .override(600, 600)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                )
+                .thumbnail(
+                    Glide.with(holder.imageView.context)
+                        .load(bannerList[position].sliderImage) // ✅ Use URL
+                        .override(600, 600)
+                )
+                .into(holder.imageView)
+
+            holder.img_watermark.visibility = View.GONE
+        }
+
     }
 }

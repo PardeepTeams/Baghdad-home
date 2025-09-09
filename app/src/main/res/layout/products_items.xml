@@ -54,15 +54,18 @@
                 android:gravity="center" />
 
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                android:id="@+id/city_image"
-                android:src="@drawable/img_placeholder"
-                android:layout_width="40dp"
-                android:layout_marginBottom="10dp"
+                android:layout_width="50dp"
+                android:layout_height="36dp"
+                android:layout_marginTop="5dp"
                 android:layout_marginEnd="10dp"
                 android:visibility="gone"
-                android:layout_gravity="end|bottom"
-                android:layout_height="40dp"/>
+                android:layout_gravity="bottom|end"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentBottom="true"
+                android:background="@drawable/img_watermark"
+                android:scaleType="centerCrop"/>
         </FrameLayout>
 
         <!-- Text Info -->

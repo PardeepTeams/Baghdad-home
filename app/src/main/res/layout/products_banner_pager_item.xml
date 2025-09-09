@@ -6,12 +6,30 @@
     app:cardUseCompatPadding="true"
     app:cardPreventCornerOverlap="false"
     android:layout_height="match_parent">
-
-    <ImageView
-        android:id="@+id/bannerImage"
-        android:scaleType="centerCrop"
-        android:background="@drawable/img_placeholder"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/bannerImage"
+            android:scaleType="centerCrop"
+            android:background="@drawable/img_placeholder"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+
+        <ImageView
+            android:id="@+id/img_watermark"
+            android:layout_width="50dp"
+            android:layout_height="36dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="10dp"
+            android:visibility="gone"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/img_watermark"
+            android:scaleType="centerCrop" />
+    </RelativeLayout>
+
+
 
 </androidx.cardview.widget.CardView>

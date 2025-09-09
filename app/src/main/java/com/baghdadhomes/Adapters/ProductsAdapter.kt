@@ -43,7 +43,7 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
       //  val viewPager = itemView.findViewById<ViewPager2>(R.id.imageViewPager)
         val indicatorLayout = itemView.findViewById<LinearLayout>(R.id.indicatorLayout)
         val img_bookmark = itemView.findViewById<ImageView>(R.id.img_bookmark)
-        val city_image = itemView.findViewById<CircleImageView>(R.id.city_image)
+        val city_image = itemView.findViewById<ImageView>(R.id.city_image)
         val imageItem = itemView.findViewById<ImageView>(R.id.imageItem)
         val tv_status = itemView.findViewById<TextView>(R.id.tv_status)
     }
@@ -66,6 +66,7 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
                         .diskCacheStrategy(DiskCacheStrategy.ALL)  // Cache the image for future use
                 )
                 .into(holder.imageItem)
+            holder.city_image.visibility = View.VISIBLE
         }else{
             Glide.with(context).load(R.drawable.img_placeholder). apply(
                 RequestOptions()
@@ -74,6 +75,8 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
                     .priority(Priority.HIGH)// Cache the image for future use
             )
                 .placeholder(R.drawable.img_placeholder).into(holder.imageItem)
+
+            holder.city_image.visibility = View.GONE
         }
 
         if(projectList.get(position).propertyAttr!=null && projectList.get(position).propertyAttr!!.propertyStatus!= null){

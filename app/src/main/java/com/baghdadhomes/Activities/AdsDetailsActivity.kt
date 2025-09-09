@@ -160,6 +160,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     lateinit var dt_video_link:TextView
 
     lateinit var adapterAmenities: AmenitiesAdapter
+    lateinit var lin_no:LinearLayout
 
     override fun onMapReady(p0: GoogleMap) {
         map = p0
@@ -320,6 +321,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         lin_video_link = findViewById(R.id.lin_video_link)
         dt_video_link = findViewById(R.id.dt_video_link)
         imgQr = findViewById(R.id.imgQr)
+        lin_no = findViewById(R.id.lin_no)
         tv_see_all = findViewById(R.id.tv_see_all)
         tv_see_all.setOnClickListener {
             var intent:Intent = Intent(this,AllPropertiesActivity::class.java)
@@ -493,6 +495,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                         propertiesList.add(i)
                     }
                 }
+
+
                 //propertiesList.addAll(model.result)
               //  val fastAdapter = FastAdapter.with(adapterDetailAds)
                 rv_recommended.setAdapter(adapterDetailAds)
@@ -1228,6 +1232,12 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                                     }
                                     rv_recommended.setAdapter(adapterDetailAds)
                                     adapterDetailAds.notifyDataSetChanged()
+
+                                    if(propertiesList.size>0){
+                                        lin_no.visibility = View.GONE
+                                    }else{
+                                        lin_no.visibility = View.VISIBLE
+                                    }
                                     if(showLoader){
                                         try {
                                             lifecycleScope.launch(Dispatchers.Main) {

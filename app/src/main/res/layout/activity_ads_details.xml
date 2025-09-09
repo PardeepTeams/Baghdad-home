@@ -112,7 +112,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text="@string/project_id_tv"
                                     android:textColor="@color/new_details_color"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
 
                                 <TextView
                                     android:id="@+id/property_id"
@@ -124,7 +124,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -134,11 +134,12 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_type"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/property_type"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
                                     android:layout_weight="1"
+
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"/>
 
@@ -151,8 +152,9 @@
                                     android:layout_toEndOf="@+id/tv_type"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
+
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -162,8 +164,9 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_price"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/price_tv"
+
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
                                     android:layout_weight="1"
@@ -180,7 +183,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -190,7 +193,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content">
                                 <TextView
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/monthly_service"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -207,7 +210,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -217,7 +220,7 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_area"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/area_tv"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -234,8 +237,9 @@
                                     android:layout_toEndOf="@+id/tv_area"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
+
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -245,7 +249,7 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_orientation"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/orientation"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -263,7 +267,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -273,7 +277,7 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_realEstateSituation"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/real_estate_situation"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -291,7 +295,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                             <LinearLayout
@@ -301,7 +305,7 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_date"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/ad_publish_date"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -319,7 +323,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
 
@@ -332,7 +336,7 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_youtube_url"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/video_you_tube_url"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -352,7 +356,7 @@
                                     android:autoLink="web"
                                     android:textColorLink="@color/blue"
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
                         </LinearLayout>
@@ -373,7 +377,7 @@
                                 android:layout_height="wrap_content">
                                 <TextView
                                     android:id="@+id/tv_address"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/address"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -391,7 +395,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
                                     android:textColor="@color/darkGrey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
                             </LinearLayout>
 
 
@@ -408,7 +412,7 @@
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text="@string/location_on_map"
                                     android:textColor="@color/grey"
-                                    android:textSize="14dp" />
+                                    android:textSize="14sp" />
 
                                 <androidx.cardview.widget.CardView
                                     android:layout_width="match_parent"
@@ -437,7 +441,7 @@
                             android:background="@color/whiteNew">
 
                             <TextView
-                                android:textSize="14dp"
+                                android:textSize="14sp"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/post_details"
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -447,7 +451,7 @@
 
                             <TextView
                                 android:id="@+id/dt_details"
-                                android:textSize="14dp"
+                                android:textSize="14sp"
                                 android:text=""
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                                 android:textColor="@color/darkGrey"
@@ -470,7 +474,7 @@
 
                             <TextView
                                 android:id="@+id/tv_additional_ads"
-                                android:textSize="14dp"
+                                android:textSize="14sp"
                                 android:text="@string/additional_details"
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                                 android:textColor="@color/darkGrey"
@@ -505,8 +509,9 @@
                                         android:layout_toEndOf="@+id/img_width"
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/street_width"
+
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_width"
                                         android:layout_toEndOf="@+id/tv_width"
@@ -517,7 +522,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                                 <RelativeLayout
                                     android:id="@+id/rl_street"
@@ -542,8 +547,9 @@
                                         android:layout_toEndOf="@+id/img_rooms"
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/rooms"
+
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_rooms"
                                         android:layout_width="wrap_content"
@@ -553,8 +559,9 @@
                                         android:layout_toEndOf="@+id/tv_rooms"
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
+
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                             </LinearLayout>
 
@@ -585,8 +592,9 @@
                                         android:layout_toEndOf="@+id/img_floors"
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/floors"
+
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_floors"
                                         android:layout_toEndOf="@+id/tv_floors"
@@ -597,7 +605,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                                 <RelativeLayout
                                     android:id="@+id/rl_bathrooms"
@@ -623,7 +631,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/bathrooms"
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_bathroom"
                                         android:layout_width="wrap_content"
@@ -634,7 +642,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                             </LinearLayout>
                             <LinearLayout
@@ -665,7 +673,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/balcony"
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_balcony"
                                         android:layout_toEndOf="@+id/tv_balcony"
@@ -676,7 +684,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                                 <RelativeLayout
                                     android:id="@+id/rl_kitchen"
@@ -702,7 +710,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/kitchen"
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_kitchen"
                                         android:layout_width="wrap_content"
@@ -713,7 +721,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                             </LinearLayout>
 
@@ -745,7 +753,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/living_room"
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_livingRoom"
                                         android:layout_toEndOf="@+id/tv_livingRoom"
@@ -756,7 +764,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                                 <RelativeLayout
                                     android:id="@+id/rl_furnished"
@@ -782,7 +790,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text="@string/furnished"
                                         android:textColor="@color/grey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                     <TextView
                                         android:id="@+id/dt_furnished"
                                         android:layout_width="wrap_content"
@@ -793,7 +801,7 @@
                                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                                         android:text=""
                                         android:textColor="@color/darkGrey"
-                                        android:textSize="12dp" />
+                                        android:textSize="12sp" />
                                 </RelativeLayout>
                             </LinearLayout>
 
@@ -805,7 +813,7 @@
                                 android:layout_marginTop="10dp">
 
                                 <TextView
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text="@string/street_type"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/new_details_color"
@@ -814,7 +822,7 @@
 
                                 <TextView
                                     android:id="@+id/dtStreetType"
-                                    android:textSize="14dp"
+                                    android:textSize="14sp"
                                     android:text=""
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:textColor="@color/darkGrey"
@@ -837,7 +845,7 @@
                             android:layout_marginVertical="7dp">
 
                             <TextView
-                                android:textSize="14dp"
+                                android:textSize="14sp"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/amenities"
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -861,7 +869,7 @@
                                 android:text="@string/see_more"
                                 android:drawablePadding="10dp"
                                 android:textColor="@color/blue"
-                                android:textSize="16dp"
+                                android:textSize="16sp"
                                 android:visibility="gone"
                                 android:drawableEnd="@drawable/ic_arrow_down"
                                 android:layout_marginTop="10dp"/>
@@ -878,7 +886,7 @@
                             android:layout_marginVertical="7dp">
 
                             <TextView
-                                android:textSize="14dp"
+                                android:textSize="14sp"
                                 android:layout_marginTop="5dp"
                                 android:text="@string/real_estate_poster"
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -977,7 +985,7 @@
                                             android:drawablePadding="5dp"
                                             android:padding="5dp"
                                             android:maxLines="1"
-                                            android:textSize="14dp"
+                                            android:textSize="14sp"
                                             android:textAlignment="textEnd"
                                             android:textColor="@color/darkGrey"
                                             app:drawableEndCompat="@drawable/ic_menu_small"
@@ -992,7 +1000,7 @@
                                             android:padding="5dp"
                                             android:layout_marginTop="2dp"
                                             android:maxLines="1"
-                                            android:textSize="14dp"
+                                            android:textSize="14sp"
                                             android:textAlignment="textEnd"
                                             android:textColor="@color/darkGrey"
                                             app:drawableEndCompat="@drawable/ic_call_small"
@@ -1006,7 +1014,7 @@
                                             android:drawablePadding="5dp"
                                             android:padding="5dp"
                                             android:maxLines="2"
-                                            android:textSize="12dp"
+                                            android:textSize="12sp"
                                             android:layout_marginTop="2dp"
                                             android:textAlignment="textEnd"
                                             android:textColor="@color/darkGrey"
@@ -1038,7 +1046,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="00"
-                                            android:textSize="12dp"
+                                            android:textSize="12sp"
                                             android:layout_marginEnd="5dp"
                                             android:textColor="@color/darkGrey"
                                             android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -1071,7 +1079,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="00"
-                                            android:textSize="12dp"
+                                            android:textSize="12sp"
                                             android:layout_marginEnd="5dp"
                                             android:textColor="@color/darkGrey"
                                             android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -1104,7 +1112,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="00"
-                                            android:textSize="12dp"
+                                            android:textSize="12sp"
                                             android:layout_marginEnd="5dp"
                                             android:textColor="@color/darkGrey"
                                             android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -1137,7 +1145,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="00"
-                                            android:textSize="12dp"
+                                            android:textSize="12sp"
                                             android:layout_marginEnd="5dp"
                                             android:textColor="@color/darkGrey"
                                             android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -1170,7 +1178,7 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:text="00"
-                                            android:textSize="12dp"
+                                            android:textSize="12sp"
                                             android:layout_marginEnd="5dp"
                                             android:textColor="@color/darkGrey"
                                             android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -1302,7 +1310,7 @@
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                                 android:text="@string/ads_owner"
                                 android:textColor="@color/new_details_color"
-                                android:textSize="14dp" />
+                                android:textSize="14sp" />
 
                             <TextView
                                 android:id="@+id/tvOwnerName"
@@ -1357,7 +1365,7 @@
                                 android:includeFontPadding="false"
                                 android:text="@string/report_property"
                                 android:textColor="@color/skyBlue"
-                                android:textSize="14dp" />
+                                android:textSize="14sp" />
 
                             <View
                                 android:layout_width="160dp"
@@ -1370,7 +1378,7 @@
 
                         <TextView
                             android:id="@+id/tv_recommended"
-                            android:textSize="14dp"
+                            android:textSize="14sp"
                             android:layout_marginTop="10dp"
                             android:text="@string/recommended"
                             android:fontFamily="@font/hacen_tunisia_bold_regular"
@@ -1386,6 +1394,29 @@
                         android:id="@+id/rv_recommended"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
+
+
+                    <LinearLayout
+                        android:id="@+id/lin_no"
+                        android:visibility="gone"
+                        android:layout_gravity="center"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp">
+
+                        <TextView
+                            android:id="@+id/tv_no_found"
+                            android:textSize="14sp"
+                            android:layout_marginTop="10dp"
+                            android:text="@string/no_properties_found"
+                            android:fontFamily="@font/hacen_tunisia_bold_regular"
+                            android:textColor="@color/darkGrey"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+
+                    </LinearLayout>
+
 
                     <RelativeLayout
                         android:layout_marginTop="15dp"
@@ -1435,7 +1466,7 @@
                             android:layout_height="wrap_content"
                             android:text="@string/view_more"
                             android:textColor="@color/skyBlue"
-                            android:textSize="16dp"
+                            android:textSize="16sp"
                             android:textStyle="bold" />
 
                         <!-- <View
@@ -1508,7 +1539,7 @@
                         android:text=""
                         android:textColor="@color/whiteNew"
                         android:includeFontPadding="false"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold" />
                 </RelativeLayout>
 
@@ -1546,7 +1577,7 @@
                         android:text="0"
                         android:textColor="@color/whiteNew"
                         android:includeFontPadding="false"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:textStyle="bold"
                         android:visibility="gone"/>
                 </RelativeLayout>
@@ -1622,7 +1653,7 @@
                         android:fontFamily="@font/hacen_tunisia_bold_regular"
                         android:text="0"
                         android:textColor="@color/whiteNew"
-                        android:textSize="16dp"
+                        android:textSize="16sp"
                         android:includeFontPadding="false"
                         android:textStyle="bold" />
                 </RelativeLayout>

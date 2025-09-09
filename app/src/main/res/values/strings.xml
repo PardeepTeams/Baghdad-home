@@ -33,7 +33,7 @@
     <string name="menu">الرئيسية</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="property_search">منظمة العفو الدولية البحث</string>
+    <string name="property_search">البحث الذكي</string>
     <string name="featured_ads">إعلانات مميزه</string>
     <string name="ad_type">Alamir NBHD.</string>
     <string name="all">الكل</string>
@@ -348,5 +348,6 @@
     <string name="enter_youtube_url">أدخل عنوان URL لفيديو يوتيوب</string>
     <string name="enter_valid_youtube_url">الرجاء إدخال عنوان URL صالح لليوتيوب</string>
     <string name="video_you_tube_url">عنوان URL للفيديو على YouTube</string>
+    <string name="no_properties_found">لم يتم العثور على خصائص</string>
 
 </resources>

@@ -35,6 +35,7 @@ class AdapterProjectProperties(
         var tv_price: TextView = itemView.findViewById<TextView>(R.id.tv_price)
         var tv_number_area: TextView = itemView.findViewById<TextView>(R.id.tv_number_area)
         var tv_sell: TextView = itemView.findViewById<TextView>(R.id.tv_sell)
+        var img_watermark: ImageView = itemView.findViewById<ImageView>(R.id.img_watermark)
     }
 
 
@@ -71,9 +72,18 @@ class AdapterProjectProperties(
             holder.tv_sell.visibility = View.GONE
         }
 
-        Glide.with(context).load(list[position].thumbnail?:"")
-            .placeholder(R.drawable.img_placeholder)
-            .into(holder.imv_property)
+        if(!list.get(position).thumbnail.isNullOrEmpty()){
+            Glide.with(context).load(list[position].thumbnail?:"")
+                .placeholder(R.drawable.img_placeholder)
+                .into(holder.imv_property)
+            holder.img_watermark.visibility = View.VISIBLE
+        }else{
+            holder.img_watermark.visibility = View.GONE
+            Glide.with(context).load("")
+                .placeholder(R.drawable.img_placeholder)
+                .into(holder.imv_property)
+        }
+
 
         holder.tv_title.text = (list[position].postTitle ?: "").trim()
 
