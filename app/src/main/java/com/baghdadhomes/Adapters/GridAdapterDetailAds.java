@@ -79,10 +79,11 @@ public class GridAdapterDetailAds  extends RecyclerView.Adapter<GridAdapterDetai
             holder.tv_sell.setVisibility(View.GONE);
         }
 
+        holder.img_watermark.setVisibility(View.GONE);
         if(propertiesList.get(position).getThumbnail()!=null){
             String image = propertiesList.get(position).getThumbnail().toString();
             if(image!=null && !image.equals("false")){
-
+                holder.img_watermark.setVisibility(View.VISIBLE);
                 Glide.with(context).load(image).placeholder(R.drawable.img_placeholder)
                         .apply(new RequestOptions().override(300, 300).diskCacheStrategy(DiskCacheStrategy.ALL)).
                         into(holder.imv_property);
@@ -188,7 +189,7 @@ public class GridAdapterDetailAds  extends RecyclerView.Adapter<GridAdapterDetai
     }
 
     protected  class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView img_bookmark,imv_property,img_premimum;
+        ImageView img_bookmark,imv_property,img_premimum, img_watermark;
         TextView tv_details,tv_title,tv_area_property,tv_width,tv_bedroom,tv_batroom,tv_price,tv_number_area,tv_sell;
 
         public ViewHolder(@NonNull View itemView) {
@@ -205,6 +206,7 @@ public class GridAdapterDetailAds  extends RecyclerView.Adapter<GridAdapterDetai
             tv_number_area = itemView.findViewById(R.id.tv_number_area);
             tv_sell = itemView.findViewById(R.id.tv_sell);
             img_premimum = itemView.findViewById(R.id.img_premimum);
+            img_watermark = itemView.findViewById(R.id.img_watermark);
         }
     }
 

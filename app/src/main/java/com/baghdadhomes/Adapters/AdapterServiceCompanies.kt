@@ -26,6 +26,7 @@ class AdapterServiceCompanies(var  context: Context, var list: ArrayList<Service
     RecyclerView.Adapter<AdapterServiceCompanies.ViewHolder>() {
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+        var img_watermark: ImageView = itemView.findViewById(R.id.img_watermark)
         var img_bookmark: ImageView = itemView.findViewById(R.id.img_bookmark)
         var img_bookmarked: ImageView = itemView.findViewById(R.id.img_bookmarked)
         var img_company: ImageView = itemView.findViewById(R.id.img_company)
@@ -47,8 +48,10 @@ class AdapterServiceCompanies(var  context: Context, var list: ArrayList<Service
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
 
         if (list.get(position).thumbnail != null){
+            holder.img_watermark.visibility = View.VISIBLE
             Glide.with(context).load(list.get(position).thumbnail).placeholder(R.drawable.img_placeholder).into(holder.img_company)
         } else{
+            holder.img_watermark.visibility = View.GONE
             Glide.with(context).load(R.drawable.img_placeholder).placeholder(R.drawable.img_placeholder).into(holder.img_company)
         }
 

@@ -21,6 +21,7 @@ class AdapterAutoSlider(
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var iv_auto_image_slider: ImageView = itemView.findViewById(R.id.iv_auto_image_slider)
+        var img_watermark: ImageView = itemView.findViewById(R.id.img_watermark)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,6 +33,7 @@ class AdapterAutoSlider(
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         //val imageView = viewHolder.itemView.findViewById<ImageView>(R.id.iv_auto_image_slider)
         if (arrayList.size > 0) {
+            viewHolder.img_watermark.visibility = View.VISIBLE
             Glide.with(context).load(arrayList[position].slider_image)
                 .placeholder(R.drawable.img_placeholder).apply(
                     RequestOptions()
@@ -40,6 +42,7 @@ class AdapterAutoSlider(
                 )
                 .into(viewHolder.iv_auto_image_slider)
         } else {
+            viewHolder.img_watermark.visibility = View.GONE
             Glide.with(context).load(R.drawable.img_placeholder)
                 .placeholder(R.drawable.img_placeholder)
                 .apply(

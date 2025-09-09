@@ -20,6 +20,7 @@ class AdapterAllCompanies(var context: Context, var list : ArrayList<AgenciesDat
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         var imgBig : ImageView = itemView.findViewById(R.id.imgBig)
+        var img_watermark : ImageView = itemView.findViewById(R.id.img_watermark)
         var imgCircle : CircleImageView = itemView.findViewById(R.id.imgCircle)
         var tvName : TextView = itemView.findViewById(R.id.tvName)
         var tvAddress : TextView = itemView.findViewById(R.id.tvAddress)
@@ -31,11 +32,23 @@ class AdapterAllCompanies(var context: Context, var list : ArrayList<AgenciesDat
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        Glide.with(context).load(list[position].user_image.orEmpty())
-            .placeholder(R.drawable.img_placeholder).into(holder.imgBig)
 
-        Glide.with(context).load(list[position].user_image.orEmpty())
-            .placeholder(R.drawable.img_placeholder).into(holder.imgCircle)
+        if (!list[position].user_image.isNullOrEmpty()){
+            holder.img_watermark.visibility = View.VISIBLE
+            Glide.with(context).load(list[position].user_image.orEmpty())
+                .placeholder(R.drawable.img_placeholder).into(holder.imgBig)
+
+            Glide.with(context).load(list[position].user_image.orEmpty())
+                .placeholder(R.drawable.img_placeholder).into(holder.imgCircle)
+        } else {
+            holder.img_watermark.visibility = View.GONE
+
+            Glide.with(context).load(R.drawable.img_placeholder).into(holder.imgBig)
+
+            Glide.with(context).load(R.drawable.img_placeholder).into(holder.imgCircle)
+
+        }
+
 
         holder.tvName.text = list[position].display_name.orEmpty()
         holder.tvAddress.text = list[position].address.orEmpty()

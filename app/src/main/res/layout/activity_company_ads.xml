@@ -101,12 +101,29 @@
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="10dp">
 
-                    <ImageView
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="170dp"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/img_placeholder"
-                        android:id="@+id/imgBig"/>
+                        android:layout_height="170dp">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="170dp"
+                            android:scaleType="centerCrop"
+                            android:src="@drawable/img_placeholder"
+                            android:id="@+id/imgBig"/>
+
+                        <ImageView
+                            android:id="@+id/img_watermark"
+                            android:layout_width="50dp"
+                            android:layout_height="36dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentBottom="true"
+                            android:background="@drawable/img_watermark"
+                            android:scaleType="centerCrop" />
+
+                    </RelativeLayout>
 
                     <de.hdodenhof.circleimageview.CircleImageView
                         android:layout_width="60dp"

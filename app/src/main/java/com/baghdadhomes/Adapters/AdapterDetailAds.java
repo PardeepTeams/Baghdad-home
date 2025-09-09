@@ -107,6 +107,7 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
             holder.tv_sell.setVisibility(View.GONE);
         }
 
+        holder.img_watermark.setVisibility(View.GONE);
         if(propertiesList.get(position).getThumbnail()!=null){
             String image = propertiesList.get(position).getThumbnail().toString();
             int width = holder.imv_property.getWidth();
@@ -121,7 +122,6 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
                         thumbnail(Glide.with(context).load(image).override(width, height)).
                         into(holder.imv_property);
             }else {
-                holder.img_watermark.setVisibility(View.GONE);
                 Glide.with(context).load(R.drawable.img_placeholder).placeholder(R.drawable.img_placeholder).
                         apply(new RequestOptions().override(width, height).diskCacheStrategy(DiskCacheStrategy.ALL)).into(holder.imv_property);
             }

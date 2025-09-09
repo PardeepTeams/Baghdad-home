@@ -24,6 +24,7 @@ RecyclerView.Adapter<AdapterMyAds.ViewHolder>(){
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var img_bookmark: ImageView = itemView.findViewById(R.id.img_bookmark)
+        var img_watermark: ImageView = itemView.findViewById(R.id.img_watermark)
         var img_premimum: ImageView = itemView.findViewById(R.id.img_premimum)
       //  var img_bookmarked: ImageView = itemView.findViewById(R.id.img_bookmarked)
         var imv_property: ImageView = itemView.findViewById(R.id.imv_property)
@@ -110,11 +111,13 @@ RecyclerView.Adapter<AdapterMyAds.ViewHolder>(){
             holder.tv_sell.visibility = View.GONE
         }
 
+        holder.img_watermark.visibility = View.GONE
         if (list.get(position).thumbnail != null) {
             val image: String = list.get(position).thumbnail.toString()
             val width: Int = holder.imv_property.getWidth()
             val height: Int = holder.imv_property.getHeight()
             if (image != null && image != "false") {
+                holder.img_watermark.visibility = View.VISIBLE
                 Glide.with(context).load(image).placeholder(R.drawable.img_placeholder).
                 apply(
                     RequestOptions()

@@ -42,6 +42,7 @@ class CompanyAdsActivity : BaseActivity(), AdapterDetailAds.openDetailPage, OnMa
     private lateinit var tvSharePage : TextView
     private lateinit var rvAds : RecyclerView
     private lateinit var imgBig : ImageView
+    private lateinit var img_watermark : ImageView
     private lateinit var imgCircle : CircleImageView
     private lateinit var tvName : TextView
     private lateinit var tvCity : TextView
@@ -116,6 +117,7 @@ class CompanyAdsActivity : BaseActivity(), AdapterDetailAds.openDetailPage, OnMa
         tvAdsCount = findViewById(R.id.tvAdsCount)
         rvAds = findViewById(R.id.rvAds)
         imgBig = findViewById(R.id.imgBig)
+        img_watermark = findViewById(R.id.img_watermark)
         imgCircle = findViewById(R.id.imgCircle)
         tvName = findViewById(R.id.tvName)
         tvCity = findViewById(R.id.tvCity)
@@ -286,8 +288,17 @@ class CompanyAdsActivity : BaseActivity(), AdapterDetailAds.openDetailPage, OnMa
                         tvFollow.visibility = View.GONE
                     }
 
-                    Glide.with(this).load(model.agency_details?.user_image.orEmpty()).placeholder(R.drawable.img_placeholder).into(imgBig)
-                    Glide.with(this).load(model.agency_details?.user_image.orEmpty()).placeholder(R.drawable.img_placeholder).into(imgCircle)
+                    if (!model.agency_details?.user_image.isNullOrEmpty()) {
+                        img_watermark.visibility = View.VISIBLE
+
+                        Glide.with(this).load(model.agency_details?.user_image.orEmpty()).placeholder(R.drawable.img_placeholder).into(imgBig)
+                        Glide.with(this).load(model.agency_details?.user_image.orEmpty()).placeholder(R.drawable.img_placeholder).into(imgCircle)
+                    } else {
+                        img_watermark.visibility = View.GONE
+
+                        Glide.with(this).load(R.drawable.img_placeholder).into(imgBig)
+                        Glide.with(this).load(R.drawable.img_placeholder).into(imgCircle)
+                    }
 
                     tvName.text = model.agency_details?.display_name.orEmpty()
 
