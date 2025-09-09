@@ -42,7 +42,7 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
 
 
     protected  class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView img_bookmark,imv_property,img_premimum;
+        ImageView img_bookmark,imv_property,img_premimum, img_watermark;
         TextView tv_details,tv_title,tv_area_property,tv_width,tv_bedroom,tv_batroom,tv_price,tv_number_area,tv_sell;
 
         public ViewHolder(@NonNull View itemView) {
@@ -59,6 +59,7 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
             tv_number_area = itemView.findViewById(R.id.tv_number_area);
             tv_sell = itemView.findViewById(R.id.tv_sell);
             img_premimum = itemView.findViewById(R.id.img_premimum);
+            img_watermark = itemView.findViewById(R.id.img_watermark);
         }
     }
 
@@ -111,7 +112,7 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
             int width = holder.imv_property.getWidth();
             int height = holder.imv_property.getHeight();
             if(image!=null && !image.equals("false")){
-
+                holder.img_watermark.setVisibility(View.VISIBLE);
                 Glide.with(context).load(image).placeholder(R.drawable.img_placeholder)
                         .apply(new RequestOptions().override(300, 300)
                         .priority(Priority.HIGH)
@@ -120,6 +121,7 @@ public class AdapterDetailAds extends RecyclerView.Adapter<AdapterDetailAds.View
                         thumbnail(Glide.with(context).load(image).override(width, height)).
                         into(holder.imv_property);
             }else {
+                holder.img_watermark.setVisibility(View.GONE);
                 Glide.with(context).load(R.drawable.img_placeholder).placeholder(R.drawable.img_placeholder).
                         apply(new RequestOptions().override(width, height).diskCacheStrategy(DiskCacheStrategy.ALL)).into(holder.imv_property);
             }
