@@ -478,7 +478,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
             val model: NewFeatureModel = Gson().fromJson(respopnse,
                 NewFeatureModel::class.java)
             if(model.success){
-                tvAppDetails.text = "www.baghdadhome.com\n${getString(R.string.biggest_application_in_najaf)}"
+                tvAppDetails.text = "www.baghdadhome.com\n${getString(R.string.biggest_application_in_baghdad)}"
                 tvAppName.text = "${getString(R.string.app_name)} | ${getString(R.string.app_name_english)}"
                 tvAppText.text = getString(R.string.real_estate_co)
                 if(model.count!=null){
@@ -1211,7 +1211,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                         if (model != null) {
                             if(model.success){
                                 withContext(Dispatchers.Main) {
-                                    tvAppDetails.text = "www.najafhome.com\n${getString(R.string.biggest_application_in_najaf)}"
+                                    tvAppDetails.text = "www.baghdadhome.com\n${getString(R.string.biggest_application_in_baghdad)}"
                                     tvAppName.text = "${getString(R.string.app_name)} | ${getString(R.string.app_name_english)}"
                                     tvAppText.text = getString(R.string.real_estate_co)
                                     if(model.count!=null){

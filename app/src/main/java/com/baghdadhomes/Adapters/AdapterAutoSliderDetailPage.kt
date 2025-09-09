@@ -29,7 +29,7 @@ class AdapterAutoSliderDetailPage(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         if (arrayList.size > 0) {
-            //waterMark.setVisibility(View.VISIBLE);
+            holder.img_watermark.setVisibility(View.VISIBLE);
             Glide.with(context).load(arrayList[position]).placeholder(R.drawable.img_placeholder)
                 .apply(
                     RequestOptions()
@@ -39,7 +39,7 @@ class AdapterAutoSliderDetailPage(
                 override(600, 600))
                 .into(holder.iv_auto_image_slider)
         } else {
-            //waterMark.setVisibility(View.GONE);
+            holder.img_watermark.setVisibility(View.GONE);
             Glide.with(context).load(R.drawable.img_placeholder)
                 .apply(
                     RequestOptions()
