@@ -19,7 +19,7 @@
             android:id="@+id/bottomNavigationView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:menu="@menu/bottom_nav_menu"
+            app:menu="@menu/bottom_nav_menu_new"
             android:background="@android:color/transparent"
             />
     </com.google.android.material.floatingactionbutton.FloatingActionButton>

@@ -31,7 +31,6 @@
         android:layout_below="@+id/splashscreen"
         android:layout_marginTop="39dp"
         android:gravity="center"
-        android:text="@string/splash_new_text"
         android:textColor="@android:color/black"
         android:textSize="20sp"
         android:textStyle="bold" />

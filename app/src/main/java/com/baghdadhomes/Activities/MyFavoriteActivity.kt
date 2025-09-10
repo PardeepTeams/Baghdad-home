@@ -41,7 +41,7 @@ class MyFavoriteActivity : BaseActivity(), AdapterDetailAds.openDetailPage,Produ
             if(isProject){
                 val map:HashMap<String,String> = HashMap()
                 map.put("user_id",userID)
-                hitPostApi(Constants.GET_FAV_Project,true,Constants.GET_FAV_Project_API , map)
+                hitGetApiWithoutToken(Constants.GET_FAV_Project,true,Constants.GET_FAV_Project_API + userID)
             }else{
                 hitGetApiWithoutToken(Constants.GET_FAVORITE,true,Constants.GET_FAVORITE_API + userID)
 
