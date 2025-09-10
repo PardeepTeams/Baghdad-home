@@ -643,105 +643,10 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         el_main.setOnClickListener {
             dismissKeyboard(el_main)
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imm.hideSoftInputFromWindow( el_main.windowToken, 0)
+            imm.hideSoftInputFromWindow(el_main.windowToken, 0)
             isPermissionAsked = false
             if (hasPermissions(*PERMISSIONS)) {
-                if(isUpdate){
-                    if(imagesList.size>0){
-                        val count  = 15-imagesList.size
-                        FishBun.with(this)
-                            .setImageAdapter(GlideAdapter())
-                            .setPickerCount(count)
-                            .setPickerSpanCount(5)
-                            .setActionBarColor(
-                                Color.parseColor("#ffffff"),
-                                Color.parseColor("#ffffff"),
-                                true
-                            )
-                            .setActionBarTitleColor(Color.parseColor("#000000"))
-                            .setAlbumSpanCount(1, 2)
-                            .setButtonInAlbumActivity(false)
-                            .setCamera(true)
-                            .exceptGif(true)
-                            .setReachLimitAutomaticClose(false)
-                            .hasCameraInPickerPage(true)
-                            .setMenuDoneText(resources.getString(R.string.upload_photos))
-                            .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
-                            .setHomeAsUpIndicatorDrawable(
-                                ContextCompat.getDrawable(
-                                    this,
-                                    R.drawable.ic_back_arrow
-                                )
-                            )
-                            .setAllViewTitle(resources.getString(R.string.all_of_your_photo))
-                            .setActionBarTitle(getString(R.string.app_name))
-                            .textOnImagesSelectionLimitReached("You can't select any more.")
-                            .textOnNothingSelected("I need a photo!")
-                            .startAlbumWithOnActivityResult(REQUEST_CODE)
-                    } else{
-                        val count  = 15-imagesList.size
-                        FishBun.with(this)
-                            .setImageAdapter(GlideAdapter())
-                            .setPickerCount(count)
-                            .setPickerSpanCount(5)
-                            .setActionBarColor(
-                                Color.parseColor("#ffffff"),
-                                Color.parseColor("#ffffff"),
-                                true
-                            )
-                            .setActionBarTitleColor(Color.parseColor("#000000"))
-                            .setAlbumSpanCount(1, 2)
-                            .setButtonInAlbumActivity(false)
-                            .setCamera(true)
-                            .exceptGif(true)
-                            .setReachLimitAutomaticClose(false)
-                            .hasCameraInPickerPage(true)
-                            .setMenuDoneText(resources.getString(R.string.upload_photos))
-                            .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
-                            .setHomeAsUpIndicatorDrawable(
-                                ContextCompat.getDrawable(
-                                    this,
-                                    R.drawable.ic_back_arrow
-                                )
-                            )
-                            .setAllViewTitle(resources.getString(R.string.all_of_your_photo))
-                            .setActionBarTitle(getString(R.string.app_name))
-                            .textOnImagesSelectionLimitReached("You can't select any more.")
-                            .textOnNothingSelected("I need a photo!")
-                            .startAlbumWithOnActivityResult(REQUEST_CODE)
-                    }
-                }else{
-                    val count  = 15-imagesList.size
-                    FishBun.with(this)
-                        .setImageAdapter(GlideAdapter())
-                        .setPickerCount(count)
-                        .setPickerSpanCount(5)
-                        .setActionBarColor(
-                            Color.parseColor("#ffffff"),
-                            Color.parseColor("#ffffff"),
-                            true
-                        )
-                        .setActionBarTitleColor(Color.parseColor("#000000"))
-                        .setAlbumSpanCount(1, 2)
-                        .setButtonInAlbumActivity(false)
-                        .setCamera(true)
-                        .exceptGif(true)
-                        .setReachLimitAutomaticClose(false)
-                        .hasCameraInPickerPage(true)
-                        .setMenuDoneText(resources.getString(R.string.upload_photos))
-                        .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
-                        .setHomeAsUpIndicatorDrawable(
-                            ContextCompat.getDrawable(
-                                this,
-                                R.drawable.ic_back_arrow
-                            )
-                        )
-                        .setAllViewTitle(resources.getString(R.string.all_of_your_photo))
-                        .setActionBarTitle(getString(R.string.app_name))
-                        .textOnImagesSelectionLimitReached("You can't select any more.")
-                        .textOnNothingSelected("I need a photo!")
-                        .startAlbumWithOnActivityResult(REQUEST_CODE)
-                }
+                openImagePicker()
             } else {
                 ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL)
             }
@@ -1034,6 +939,39 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
 
         nbhdAdapter = AdapterNBHDDialog(this, cityList1, this)
+    }
+
+    private fun openImagePicker() {
+        val count  = 15-imagesList.size
+        FishBun.with(this)
+            .setImageAdapter(GlideAdapter())
+            .setPickerCount(count)
+            .setPickerSpanCount(5)
+            .setActionBarColor(
+                Color.parseColor("#ffffff"),
+                Color.parseColor("#ffffff"),
+                true
+            )
+            .setActionBarTitleColor(Color.parseColor("#000000"))
+            .setAlbumSpanCount(1, 2)
+            .setButtonInAlbumActivity(false)
+            .setCamera(true)
+            .exceptGif(true)
+            .setReachLimitAutomaticClose(false)
+            .hasCameraInPickerPage(true)
+            .setMenuDoneText(resources.getString(R.string.upload_photos))
+            .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
+            .setHomeAsUpIndicatorDrawable(
+                ContextCompat.getDrawable(
+                    this,
+                    R.drawable.ic_back_arrow
+                )
+            )
+            .setAllViewTitle(resources.getString(R.string.all_of_your_photo))
+            .setActionBarTitle(getString(R.string.app_name))
+            .textOnImagesSelectionLimitReached("You can't select any more.")
+            .textOnNothingSelected("I need a photo!")
+            .startAlbumWithOnActivityResult(REQUEST_CODE)
     }
 
     fun scrollNestedScrollViewToRequiredTarget(targetView : View) {
@@ -2250,100 +2188,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             if (!isPermissionAsked) {
                 isPermissionAsked = true
                 if (hasPermissions(*permissions)) {
-                    if(isUpdate){
-                        if(imagesList.size>0){
-                            val count  = 15-imagesList.size
-                            FishBun.with(this)
-                                .setImageAdapter(GlideAdapter())
-                                .setPickerCount(count)
-                                .setPickerSpanCount(5)
-                                .setSelectedImages(path)
-                                .setActionBarColor(
-                                    Color.parseColor("#ffffff"),
-                                    Color.parseColor("#ffffff"),
-                                    true
-                                )
-                                .setActionBarTitleColor(Color.parseColor("#000000"))
-                                .setAlbumSpanCount(1, 2)
-                                .setButtonInAlbumActivity(false)
-                                .setCamera(true)
-                                .exceptGif(true)
-                                .setReachLimitAutomaticClose(false)
-                                .hasCameraInPickerPage(true)
-                                .setMenuDoneText(resources.getString(R.string.upload_photos))
-                                .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
-                                .setHomeAsUpIndicatorDrawable(
-                                    ContextCompat.getDrawable(
-                                        this,
-                                        R.drawable.ic_back_arrow
-                                    )
-                                )
-                                .setAllViewTitle(resources.getString(R.string.all_of_your_photo))
-                                .setActionBarTitle(getString(R.string.app_name))
-                                .textOnImagesSelectionLimitReached("You can't select any more.")
-                                .textOnNothingSelected("I need a photo!")
-                                .startAlbumWithOnActivityResult(REQUEST_CODE)
-                        } else{
-                            val count  = 15-imagesList.size
-                            FishBun.with(this)
-                                .setImageAdapter(GlideAdapter())
-                                .setPickerCount(count)
-                                .setPickerSpanCount(5)
-                                .setSelectedImages(path)
-                                .setActionBarColor(
-                                    Color.parseColor("#ffffff"),
-                                    Color.parseColor("#ffffff"),
-                                    true
-                                )
-                                .setActionBarTitleColor(Color.parseColor("#000000"))
-                                .setAlbumSpanCount(1, 2)
-                                .setButtonInAlbumActivity(false)
-                                .setCamera(true)
-                                .exceptGif(true)
-                                .setReachLimitAutomaticClose(false)
-                                .hasCameraInPickerPage(true)
-                                .setMenuDoneText(resources.getString(R.string.upload_photos))
-                                .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
-                                .setHomeAsUpIndicatorDrawable(
-                                    ContextCompat.getDrawable(
-                                        this,
-                                        R.drawable.ic_back_arrow
-                                    )
-                                )
-                                .setAllViewTitle(resources.getString(R.string.all_of_your_photo))
-                                .setActionBarTitle(getString(R.string.app_name))
-                                .textOnImagesSelectionLimitReached("You can't select any more.")
-                                .textOnNothingSelected("I need a photo!")
-                                .startAlbumWithOnActivityResult(REQUEST_CODE)
-                        }
-                    }else{
-                        val count  = 15-imagesList.size
-                        FishBun.with(this)
-                            .setImageAdapter(GlideAdapter())
-                            .setPickerCount(count)
-                            .setPickerSpanCount(5)
-                            .setActionBarColor(
-                                Color.parseColor("#ffffff"),
-                                Color.parseColor("#ffffff"),
-                                true
-                            )
-                            .setActionBarTitleColor(Color.parseColor("#000000"))
-                            .setAlbumSpanCount(1, 2)
-                            .setButtonInAlbumActivity(false)
-                            .setCamera(true)
-                            .exceptGif(true)
-                            .setReachLimitAutomaticClose(false)
-                            .hasCameraInPickerPage(true)
-                            .setMenuDoneText(resources.getString(R.string.upload_photos))
-                            .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
-                            .setMenuTextColor(ContextCompat.getColor(this, R.color.skyBlue))
-                            .setHomeAsUpIndicatorDrawable(ContextCompat.getDrawable(this, R.drawable.ic_back_arrow))
-                            .setAllViewTitle(resources.getString(R.string.all_of_your_photo))
-                            .setActionBarTitle(getString(R.string.app_name))
-                            .textOnImagesSelectionLimitReached("You can't select any more.")
-                            .textOnNothingSelected("I need a photo!")
-                            .startAlbumWithOnActivityResult(REQUEST_CODE)
-                    }
+                    openImagePicker()
                 }
                 return
             }
@@ -2633,6 +2478,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         if (apiType.equals(Constants.ADD_POST, true)) {
             val model = Gson().fromJson(respopnse, LoginModel::class.java)
             if (model.success == true) {
+                showToast(this, getString(R.string.add_post_success_msg))
                 startActivity(Intent(this, MyAdsActivity::class.java))
                 finish()
                 overridePendingTransition(0, 0)

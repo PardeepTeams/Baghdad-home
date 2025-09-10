@@ -1280,7 +1280,8 @@
                 android:text="@string/street_type"
                 android:textColor="@color/darkGrey"
                 android:textSize="16dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:visibility="gone"/>
 
             <EditText
                 android:id="@+id/et_street_type"
@@ -1294,7 +1295,8 @@
                 android:singleLine="true"
                 android:textColor="@color/grey"
                 android:textSize="14dp"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:visibility="gone"/>
 
             <LinearLayout
                 android:id="@+id/ll_counts"

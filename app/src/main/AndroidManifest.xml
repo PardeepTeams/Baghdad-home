@@ -42,6 +42,19 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
         <activity
+            android:name="com.sangcomz.fishbun.ui.picker.PickerActivity"
+            android:theme="@style/FishBunPopupTheme"
+            android:windowSoftInputMode="adjustResize"
+            tools:replace="android:theme"/>
+        <activity
+            android:name="com.sangcomz.fishbun.ui.album.ui.AlbumActivity"
+            android:theme="@style/FishBunTheme"
+            tools:replace="android:theme" />
+        <activity
+            android:name="com.sangcomz.fishbun.ui.detail.ui.DetailImageActivity"
+            android:theme="@style/FishBunTheme"
+            tools:replace="android:theme" />
+        <activity
             android:name=".Activities.AIChatActivity"
             android:exported="false" />
         <activity
