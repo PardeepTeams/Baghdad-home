@@ -199,12 +199,9 @@
     <string name="currency_code_usd">USD</string>
     <string name="pm">PM</string>
     <string name="am">AM</string>
-    <string name="company_title">Global cleaning services company</string>
     <string name="services_type">Services Type</string>
-    <string name="service_name">Cleaning - Services</string>
     <string name="working_hours">Working Hours</string>
     <string name="overview">Over view:</string>
-    <string name="company_detail_full">Global cleaning services company Global cleaning services company  Global cleaning services company Global cleaning services company Global cleaning services company Global cleaning services company Global cleaning services company Global cleaning services company  Global cleaning services company Global cleaning services company</string>
     <string name="social_media">Social Media</string>
 
     <string name="report_add">Report the property ad.</string>
@@ -218,7 +215,6 @@
     <string name="send_report_btn">Send Report about the ad.</string>
     <string name="no_property_found">No property found</string>
     <string name="no_company_found">No company found</string>
-    <string name="select_reason">Please select reason</string>
     <string name="update">Update</string>
     <string name="enter_comment">Please enter a comment</string>
     <string name="verify_otp_title">Verify OTP</string>
@@ -300,7 +296,6 @@
     <string name="real_estate_poster">Real Estate Poster</string>
     <string name="biggest_application_in_baghdad">Biggest real estate application in Baghdad city</string>
     <string name="max_size">Add a maximum 2MB Image</string>
-    <string name="upload_max_size">Please upload a maximum 2MB Image</string>
     <string name="take_look_at_property">إلقاء نظره على هذا العقار</string>
     <string name="follow">Follow</string>
     <string name="following">Following</string>

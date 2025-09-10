@@ -201,12 +201,9 @@
     <string name="pm">مسائا</string>
     <string name="am">صباحا</string>
 
-    <string name="company_title">Global cleaning services company</string>
     <string name="services_type">نوع الخدمة</string>
-    <string name="service_name">Cleaning - Services</string>
     <string name="working_hours">ساعات العمل</string>
     <string name="overview">نظرة عامة</string>
-    <string name="company_detail_full">Global cleaning services company Global cleaning services company  Global cleaning services company Global cleaning services company Global cleaning services company Global cleaning services company Global cleaning services company Global cleaning services company  Global cleaning services company Global cleaning services company</string>
     <string name="social_media">وسائل التواصل الاجتماعي</string>
 
     <string name="report_add">الإبلاغ عن اعلان</string>
@@ -220,9 +217,8 @@
     <string name="send_report_btn">ارسل الإبلاغ عن الاعلان</string>
     <string name="no_property_found">لم يتم العثور على ممتلكات</string>
     <string name="no_company_found">لم يتم العثور على شركة</string>
-    <string name="select_reason">Please select reason</string>
     <string name="update">تحديث</string>
-    <string name="enter_comment">Please enter a comment</string>
+    <string name="enter_comment">الرجاء إدخال تعليق</string>
     <string name="verify_otp_title">مصادقة  الوتساب</string>
     <string name="delete_message">هل انت  متأكد من عملية حذف الإعلان؟</string>
     <string name="yes">نعم</string>
@@ -302,8 +298,7 @@
     <string name="reels">ريلز</string>
     <string name="real_estate_poster">ملصق العقارات</string>
     <string name="biggest_application_in_baghdad">أكبر تطبيق عقاري في بغداد</string>
-    <string name="max_size">Add a maximum 2MB Image</string>
-    <string name="upload_max_size">Please upload a maximum 2MB Image</string>
+    <string name="max_size">أضف صورة بحد أقصى 2 ميجا بايت</string>
     <string name="take_look_at_property">إلقاء نظره على هذا العقار</string>
     <string name="follow">تابع</string>
     <string name="following">متابع</string>
@@ -336,8 +331,8 @@
     <string name="balcony">شرفة</string>
     <string name="kitchen">مطبخ</string>
     <string name="living_room">غرفة الجلوس</string>
-    <string name="see_more">See More</string>
-    <string name="see_less">See Less</string>
+    <string name="see_more">شاهد المزيد</string>
+    <string name="see_less">انظر أقل</string>
     <string name="baghdad_ai">بغداد الوطن منظمة العفو الدولية</string>
     <string name="baghdad_ai_message">تحدث مع تطبيق بغداد AI، أول تطبيق في العراق يعتمد على الذكاء الاصطناعي لتسهيل رحلة البحث عن المنزل!</string>
     <string name="ai_chat_default_message_1">مرحبا بكم! هذا هو بغداد أسيست، أنا هنا لمساعدتك في العثور على منزل أحلامك.</string>

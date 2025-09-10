@@ -76,7 +76,7 @@
                             android:layout_height="wrap_content"
                             android:layout_alignParentBottom="true"
                             android:fontFamily="@font/hacen_tunisia_bold_regular"
-                            android:text="@string/company_title"
+                            android:text="@string/services_type"
                             android:textColor="@color/darkGrey"
                             android:textSize="20dp" />
 
@@ -103,7 +103,7 @@
                                 android:layout_marginStart="5dp"
                                 android:layout_toEndOf="@+id/tv_comp_service"
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
-                                android:text="@string/service_name"
+                                android:text="@string/services_type"
                                 android:textColor="@color/darkGrey"
                                 android:textSize="16dp" />
                         </RelativeLayout>
@@ -199,7 +199,7 @@
                                 android:id="@+id/tv_company_details"
                                 android:padding="10dp"
                                 android:textSize="16dp"
-                                android:text="@string/company_detail_full"
+                                android:text="@string/overview"
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                                 android:textColor="@color/darkGrey"
                                 android:layout_width="wrap_content"
