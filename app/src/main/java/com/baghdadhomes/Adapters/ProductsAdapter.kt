@@ -124,7 +124,7 @@ class ProductsAdapter(var context:Context,var projectList:ArrayList<ProjectData>
             )
         }
         holder.city_image.setOnClickListener {
-            context.startActivity(Intent(context, CityDetailActivity::class.java))
+          //  context.startActivity(Intent(context, CityDetailActivity::class.java))
 
         }
 

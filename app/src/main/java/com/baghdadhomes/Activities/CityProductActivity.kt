@@ -54,7 +54,7 @@ import com.google.gson.JsonObject
         map["city_id"] = cityID!!
 
         if (isNetworkAvailable()){
-            hitPostApi(Constants.GET_Project_CITY,true, Constants.GET_Project_City_API,map)
+            hitGetApiWithoutTokenWithParams(Constants.GET_Project_CITY,true, Constants.GET_Project_City_API,map)
         } else{
             showToast(this, getString(R.string.intenet_error))
         }

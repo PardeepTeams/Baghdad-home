@@ -98,7 +98,7 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
         }
         Log.d("NewMap", map.toString());
         if (isNetworkAvailable()) {
-            hitPostApi(
+            hitGetApiWithoutTokenWithParams(
                 Constants.GET_Project_Main,
                 true,
                 Constants.GET_Project_Main_API,

@@ -2,9 +2,11 @@
 <resources>
     <string name="app_name">بغداد هوم</string>
     <string name="app_name_english">Baghdad Home</string>
-    <string name="home">الرئيسية</string>
+
     <string name="properties">Properties</string>
-    <string name="contact_us">اتصل بنا</string>
+    <string name="residential">سكني</string>
+    <string name="commercial">تجاري</string>
+<!--    <string name="contact_us">اتصل بنا</string>
     <string name="about_us">من نحن</string>
     <string name="residential">سكني</string>
     <string name="res1">بيت</string>
@@ -26,13 +28,12 @@
     <string name="splash">مسافة واحدة بين البائع والمشتري</string>
     <string name="add">يضيف</string>
     <string name="add_new">اضافة اعلان</string>
-    <string name="splash_new_text">بوابه النجف العقاريه</string>
+    <string name="splash_new_text">بوابه النجف العقاريه</string>-->
     <string name="more">more</string>
     <string name="services">Services</string>
     <string name="add_ads">Add ads.</string>
     <string name="nbhd">NBHD.</string>
     <string name="menu">menu</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="property_search">AI Search</string>
     <string name="featured_ads">Featured Ads</string>
@@ -85,7 +86,7 @@
     <string name="neighbor_search">NEIGHBORHOOD SEARCH</string>
     <string name="neighborhoods">Neighborhoods</string>
     <string name="city_name">Al-ameer</string>
-    <string name="najaf">Najaf</string>
+    <string name="najaf">Baghdad</string>
     <string name="property_Id">Property ID</string>
     <string name="price_tv">Price</string>
     <string name="project_id_tv">Property Id</string>
