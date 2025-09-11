@@ -358,4 +358,17 @@
     <string name="south">South</string>
     <string name="qibla">Qibla</string>
     <string name="north">North</string>
+
+    <string name="tapu_eng">TAPU</string>
+    <string name="land_contact_eng">LAND CONTRACT</string>
+    <string name="nun_eng">NON</string>
+    <string name="investment_eng">INVESTMENT</string>
+    <string name="mustana_eng">MUSATAHA</string>
+    <string name="agriculture_tapu_eng">AGRICULTURAL TAPU</string>
+
+    <string name="sun_set_eng">Sun Set</string>
+    <string name="sun_rise_eng">Sun Rise</string>
+    <string name="south_eng">South</string>
+    <string name="qibla_eng">Qibla</string>
+    <string name="north_eng">North</string>
 </resources>
