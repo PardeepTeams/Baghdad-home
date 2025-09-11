@@ -329,7 +329,10 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var rvAmenities: RecyclerView
     lateinit var tv_see_more: TextView
 
+    var selectedOrientationEnglish = ""
     lateinit var tvOrientation: TextView
+
+    var selectedRealEstateSituationEnglish = ""
     lateinit var tvRealEstateSituation: TextView
 
     lateinit var rlVideo: RelativeLayout
@@ -2268,11 +2271,11 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         if (status == 28 && rentalFrequency.isNotEmpty()) {
             // map.put("rental_frequency", rentalFrequency)
         }
-        if (!tvOrientation.text.equals(getString(R.string.select))) {
-            map.put("orientation", tvOrientation.text.toString())
+        if (selectedOrientationEnglish.isNotEmpty()) {
+            map.put("orientation", selectedOrientationEnglish)
         }
-        if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
-            map.put("real_estate_situation", tvRealEstateSituation.text.toString())
+        if (selectedRealEstateSituationEnglish.isNotEmpty()) {
+            map.put("real_estate_situation", selectedRealEstateSituationEnglish)
         }
         val selectedAmenities:ArrayList<String> = ArrayList()
         for(i in amenityList){
@@ -2399,11 +2402,11 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         if (status == 28 && rentalFrequency.isNotEmpty()) {
             // map.put("rental_frequency", rentalFrequency)
         }
-        if (!tvOrientation.text.equals(getString(R.string.select))) {
-            map.put("orientation", tvOrientation.text.toString())
+        if (selectedOrientationEnglish.isNotEmpty()) {
+            map.put("orientation", selectedOrientationEnglish)
         }
-        if (!tvRealEstateSituation.text.equals(getString(R.string.select))) {
-            map.put("real_estate_situation", tvRealEstateSituation.text.toString())
+        if (selectedRealEstateSituationEnglish.isNotEmpty()) {
+            map.put("real_estate_situation", selectedRealEstateSituationEnglish)
         }
         val selectedAmenities:ArrayList<String> = ArrayList()
         for(i in amenityList){
@@ -3215,7 +3218,19 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         if(intentModel.property_meta != null){
             if(!intentModel.property_meta.orientation.isNullOrEmpty()) {
-                tvOrientation.text = intentModel.property_meta.orientation!!.get(0)
+                selectedOrientationEnglish = intentModel.property_meta.orientation!!.get(0)
+                if (selectedOrientationEnglish == "Sun Set") {
+                    tvOrientation.text = getString(R.string.sun_set)
+                } else if (selectedOrientationEnglish == "Sun Rise") {
+                    tvOrientation.text = getString(R.string.sun_rise)
+                } else if (selectedOrientationEnglish == "South") {
+                    tvOrientation.text = getString(R.string.south)
+                } else if (selectedOrientationEnglish == "Qibla") {
+                    tvOrientation.text = getString(R.string.qibla)
+                } else if (selectedOrientationEnglish == "North") {
+                    tvOrientation.text = getString(R.string.north)
+                }
+
             }
         }
 
@@ -3227,7 +3242,20 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         if(intentModel.property_meta != null){
             if(!intentModel.property_meta.real_estate_situation.isNullOrEmpty()) {
-                tvRealEstateSituation.text = intentModel.property_meta.real_estate_situation!!.get(0)
+                selectedRealEstateSituationEnglish = intentModel.property_meta.real_estate_situation!!.get(0)
+                if (selectedRealEstateSituationEnglish == "TAPU") {
+                    tvRealEstateSituation.text = getString(R.string.tapu)
+                } else if (selectedRealEstateSituationEnglish == "LAND CONTRACT") {
+                    tvRealEstateSituation.text = getString(R.string.land_contact)
+                } else if (selectedRealEstateSituationEnglish == "NON") {
+                    tvRealEstateSituation.text = getString(R.string.nun)
+                } else if (selectedRealEstateSituationEnglish == "INVESTMENT") {
+                    tvRealEstateSituation.text = getString(R.string.investment)
+                } else if (selectedRealEstateSituationEnglish == "MUSATAHA") {
+                    tvRealEstateSituation.text = getString(R.string.mustana)
+                } else if (selectedRealEstateSituationEnglish == "AGRICULTURAL TAPU") {
+                    tvRealEstateSituation.text = getString(R.string.agriculture_tapu)
+                }
             }
         }
 
@@ -4109,19 +4137,30 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSituations)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        var options:ArrayList<String> = ArrayList()
+        var options:ArrayList<Int> = ArrayList()
+        options.add(R.string.tapu)
+        options.add(R.string.land_contact)
+        options.add(R.string.nun)
+        options.add(R.string.investment)
+        options.add(R.string.mustana)
+        options.add(R.string.agriculture_tapu)
 
-        options.add(getString(R.string.tapu))
-        options.add(getString(R.string.land_contact))
-        options.add(getString(R.string.nun))
-        options.add(getString(R.string.investment))
-        options.add(getString(R.string.mustana))
-        options.add(getString(R.string.agriculture_tapu))
-
-        val adapter = CommonBottomSheetSelectedAdapter(options) { selected ->
+        val adapter = CommonBottomSheetSelectedAdapter(options.map { getString(it) }) { selected ->
+            // `selected` here is the *display text* (current locale)
             tvRealEstateSituation.text = selected
+
+            // ✅ Find resId back from index
+            val index = options.indexOfFirst { getString(it) == selected }
+            if (index != -1) {
+                val resId = options[index]
+                val englishValue = getEnglishString(this, resId)
+                selectedRealEstateSituationEnglish = englishValue
+                // send arabicValue to server here
+            }
+
             bottomSheetDialog.dismiss()
         }
+
 
         recyclerView.adapter = adapter
         bottomSheetDialog.show()
@@ -4141,20 +4180,37 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val options = listOf(
-            getString(R.string.sun_set),
-            getString(R.string.sun_rise),
-            getString(R.string.north),
-            getString(R.string.south),
-            getString(R.string.qibla)
+            R.string.sun_set,
+            R.string.sun_rise,
+            R.string.north,
+            R.string.south,
+            R.string.qibla,
         )
 
-        val adapter = CommonBottomSheetSelectedAdapter(options) { selected ->
+        val adapter = CommonBottomSheetSelectedAdapter(options.map { getString(it) }) { selected ->
+            // `selected` here is the *display text* (current locale)
             tvOrientation.text = selected
+
+            // ✅ Find resId back from index
+            val index = options.indexOfFirst { getString(it) == selected }
+            if (index != -1) {
+                val resId = options[index]
+                val englishValue = getEnglishString(this, resId)
+                selectedOrientationEnglish = englishValue
+            }
+
             bottomSheetDialog.dismiss()
         }
 
         recyclerView.adapter = adapter
         bottomSheetDialog.show()
+    }
+
+    fun getEnglishString(context: Context, resId: Int): String {
+        val config = android.content.res.Configuration(context.resources.configuration)
+        config.setLocale(Locale("en"))
+        val localizedContext = context.createConfigurationContext(config)
+        return localizedContext.resources.getString(resId)
     }
 
     private fun setupTermsAndPrivacyClick() {
