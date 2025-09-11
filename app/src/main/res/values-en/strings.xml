@@ -227,7 +227,12 @@
     <string name="report_scceccfully">Report sent successfully.</string>
     <string name="profile_updated">Profile Updated Successfully</string>
     <string name="ok">Done</string>
-    <string name="about_text_1"><![CDATA[Baghdad home provides you with distinctive real estate opportunities , whether your goal is residential or commercial , Baghdad home will satisfy your needs for any real estate requirement . Beginning with real estate consultation and brokerage as well as Legal advice , Baghdad home is your guide and gate to the real estate world in Baghdad city.]]></string>
+   <!-- <string name="about_text_1"><![CDATA[Baghdad home provides you with distinctive real estate opportunities , whether your goal is residential or commercial , Baghdad home will satisfy your needs for any real estate requirement . Beginning with real estate consultation and brokerage as well as Legal advice , Baghdad home is your guide and gate to the real estate world in Baghdad city.]]></string>-->
+    <string name="about_text_1">  Distinctive Real Estate with North American Standards and Team\n\n
+    Our app brings a new standard to the real estate market in Iraq, powered by Canadian innovation and a team of international experts. We combine global knowledge with local insight to deliver unique, trusted, and professional real estate services.\n\n
+    With a focus on transparency, convenience, and technology, our platform connects buyers, sellers, and investors with exclusive opportunities across Iraq and beyond. Whether you’re looking for residential, commercial, or investment properties, we provide tailored solutions supported by international expertise and innovative tools that simplify every step of the real estate journey.\n\n
+    At Distinctive Real Estate, we are more than just an app—we are your reliable partner in finding, investing, and growing with confidence in Iraq’s evolving real estate market.
+</string>
     <string name="about_text_2"><![CDATA[When and If you wish to create or post a real estate ad , you will be responsible and liable for the content of your ads. You acknowledge to free Baghdad home from any situation arising from your ads or some of your ads including legal but not limited to that. Baghdad Home reserves the right to block and delete any ads that don\'t meet their requirements without any warning or further notice .]]></string>
 
     <string name="camera_name">Camera</string>
@@ -342,4 +347,10 @@
     <string name="video_you_tube_url">Video You Tube URL</string>
     <string name="no_properties_found">No properties found</string>
     <string name="select_city">Select City</string>
+    <string name="tapu">TAPU</string>
+    <string name="land_contact">LAND CONTRACT</string>
+    <string name="nun">NON</string>
+    <string name="investment">INVESTMENT</string>
+    <string name="mustana">MUSATAHA</string>
+    <string name="agriculture_tapu">AGRICULTURAL TAPU</string>
 </resources>

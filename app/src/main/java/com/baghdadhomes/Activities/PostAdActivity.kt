@@ -4109,15 +4109,14 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSituations)
         recyclerView.layoutManager = LinearLayoutManager(this)
 
-        val options = listOf(
-            "TAPU",
-            "LAND CONTRACT",
-            "NON",
-            "INVESTMENT",
-            "MUSATAHA",
-            "CARD",
-            "AGRICULTURAL TAPU"
-        )
+        var options:ArrayList<String> = ArrayList()
+
+        options.add(getString(R.string.tapu))
+        options.add(getString(R.string.land_contact))
+        options.add(getString(R.string.nun))
+        options.add(getString(R.string.investment))
+        options.add(getString(R.string.mustana))
+        options.add(getString(R.string.agriculture_tapu))
 
         val adapter = CommonBottomSheetSelectedAdapter(options) { selected ->
             tvRealEstateSituation.text = selected

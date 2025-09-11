@@ -95,6 +95,7 @@
                 android:textColor="@color/darkGrey"
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                 android:textSize="14dp"
+                android:visibility="gone"
                 android:layout_marginTop="30dp"/>
 
             <TextView
