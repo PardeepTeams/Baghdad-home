@@ -345,4 +345,9 @@
     <string name="video_you_tube_url">عنوان URL للفيديو على YouTube</string>
     <string name="no_properties_found">لم يتم العثور على خصائص</string>
     <string name="select_city">اختر المدينة</string>
+    <string name="sun_set">الغرب</string>
+    <string name="sun_rise">الشرق</string>
+    <string name="south">الجنوب</string>
+    <string name="qibla">القبله</string>
+    <string name="north">الشمال</string>
 </resources>

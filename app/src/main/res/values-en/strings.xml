@@ -342,4 +342,9 @@
     <string name="video_you_tube_url">Video You Tube URL</string>
     <string name="no_properties_found">No properties found</string>
     <string name="select_city">Select City</string>
+    <string name="sun_set">Sun Set</string>
+    <string name="sun_rise">Sun Rise</string>
+    <string name="south">South</string>
+    <string name="qibla">Qibla</string>
+    <string name="north">North</string>
 </resources>

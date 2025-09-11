@@ -4142,15 +4142,11 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         recyclerView.layoutManager = LinearLayoutManager(this)
 
         val options = listOf(
-            "Sun Set",
-            "Sun Rise",
-            "North East",
-            "North West",
-            "South East",
-            "South West",
-            "South",
-            "North",
-            "Qibla"
+            getString(R.string.sun_set),
+            getString(R.string.sun_rise),
+            getString(R.string.north),
+            getString(R.string.south),
+            getString(R.string.qibla)
         )
 
         val adapter = CommonBottomSheetSelectedAdapter(options) { selected ->
