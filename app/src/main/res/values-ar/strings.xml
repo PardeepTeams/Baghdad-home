@@ -329,9 +329,9 @@
     <string name="furnished">مفروشة</string>
     <string name="half_furnished">نصف مفروشة</string>
     <string name="amenities">وسائل الراحة</string>
-    <string name="orientation">توجيه</string>
+    <string name="orientation">الاتجاه </string>
     <string name="select">يختار</string>
-    <string name="real_estate_situation">الوضع العقاري</string>
+    <string name="real_estate_situation">فتره العقد العقاري</string>
     <string name="rental_frequency">تردد الإيجار</string>
     <string name="balcony">شرفة</string>
     <string name="kitchen">مطبخ</string>
@@ -356,4 +356,17 @@
     <string name="investment">استثمار</string>
     <string name="mustana">مساطحه</string>
     <string name="agriculture_tapu">طابو زراعي</string>
+
+    <string name="tapu_eng">TAPU</string>
+    <string name="land_contact_eng">LAND CONTRACT</string>
+    <string name="nun_eng">NON</string>
+    <string name="investment_eng">INVESTMENT</string>
+    <string name="mustana_eng">MUSATAHA</string>
+    <string name="agriculture_tapu_eng">AGRICULTURAL TAPU</string>
+
+    <string name="sun_set_eng">Sun Set</string>
+    <string name="sun_rise_eng">Sun Rise</string>
+    <string name="south_eng">South</string>
+    <string name="qibla_eng">Qibla</string>
+    <string name="north_eng">North</string>
 </resources>

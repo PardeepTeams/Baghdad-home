@@ -681,14 +681,38 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 }
 
                 if (model.result.property_meta != null) {
-                    if (!model.result.property_meta.orientation.isNullOrEmpty()) {
-                        dt_orientation.text = model.result.property_meta.orientation.first()
+               /*     if (!model.result.property_meta.orientation.isNullOrEmpty()) {
+                        if(model.result.property_meta.orientation.first().equals(getString(R.string.sun_set_eng))){
+                            dt_orientation.text = getString(R.string.sun_set)
+                        }else  if(model.result.property_meta.orientation.first().equals(getString(R.string.sun_rise_eng))){
+                            dt_orientation.text = getString(R.string.sun_rise)
+                        }else  if(model.result.property_meta.orientation.first().equals(getString(R.string.south_eng))){
+                            dt_orientation.text = getString(R.string.south)
+                        }else  if(model.result.property_meta.orientation.first().equals(getString(R.string.qibla_eng))){
+                            dt_orientation.text = getString(R.string.qibla)
+                        }else  if(model.result.property_meta.orientation.first().equals(getString(R.string.north_eng))){
+                            dt_orientation.text = getString(R.string.north)
+                        }
+                      //  dt_orientation.text = model.result.property_meta.orientation.first()
                     } else {
                         dt_orientation.text = ""
-                    }
+                    }*/
 
                     if (!model.result.property_meta.real_estate_situation.isNullOrEmpty()) {
-                        dt_realEstateSituation.text = model.result.property_meta.real_estate_situation.first()
+                        if(model.result.property_meta.real_estate_situation.first().equals(getString(R.string.tapu_eng))){
+                            dt_realEstateSituation.text = getString(R.string.tapu)
+                        }else if(model.result.property_meta.real_estate_situation.first().equals(getString(R.string.land_contact_eng))){
+                            dt_realEstateSituation.text = getString(R.string.land_contact)
+                        }else if(model.result.property_meta.real_estate_situation.first().equals(getString(R.string.nun_eng))){
+                            dt_realEstateSituation.text = getString(R.string.nun)
+                        }else if(model.result.property_meta.real_estate_situation.first().equals(getString(R.string.investment_eng))){
+                            dt_realEstateSituation.text = getString(R.string.investment)
+                        }else if(model.result.property_meta.real_estate_situation.first().equals(getString(R.string.mustana_eng))){
+                            dt_realEstateSituation.text = getString(R.string.mustana)
+                        }else if(model.result.property_meta.real_estate_situation.first().equals(getString(R.string.agriculture_tapu_eng))){
+                            dt_realEstateSituation.text = getString(R.string.agriculture_tapu)
+                        }
+                     //   dt_realEstateSituation.text = model.result.property_meta.real_estate_situation.first()
                     } else {
                         dt_realEstateSituation.text = ""
                     }
