@@ -144,5 +144,8 @@ class Constants {
 
         const val AISEARCH = "AISEARCH"
         const val AISEARCHAPI = "houzez-mobile-api/v1/ai-search"
+
+        const val GET_HOME_CITY = "HOME_API_CITY"
+        const val GET_HOME_CITY_API = "houzez-mobile-api/v1/get-cities"
     }
 }

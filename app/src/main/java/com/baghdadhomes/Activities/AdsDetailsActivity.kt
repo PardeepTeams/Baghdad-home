@@ -1183,12 +1183,19 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         if(!type.equals("all")){
             pagemap.put("type",type)
         }
+
+        if(PreferencesService.instance.getHomeCity!=null){
+            val seletCity = PreferencesService.instance.getHomeCity
+            if(seletCity!=null){
+                pagemap.put("location",seletCity.slug!!)
+            }
+        }
        /* if(state.isNotEmpty()){
             pagemap.put("state",state)
         }*/
-        if(area.isNotEmpty()){
+       /* if(area.isNotEmpty()){
             pagemap.put("area",area)
-        }
+        }*/
         if(status.isNotEmpty()){
             pagemap.put("status",status)
         }
