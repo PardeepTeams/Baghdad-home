@@ -64,7 +64,7 @@ class HomeSelectCityAdapter(val context:Context,val cityList:ArrayList<HomeCity>
         } else {
             val lowerCaseQuery = query.lowercase()
             for (city in cityList) {
-                if (city.name!!.lowercase().contains(lowerCaseQuery)) {
+                if (city.description!!.lowercase().contains(lowerCaseQuery) || city.name!!.lowercase().contains(lowerCaseQuery)) {
                     filteredList.add(city)
                 }
             }

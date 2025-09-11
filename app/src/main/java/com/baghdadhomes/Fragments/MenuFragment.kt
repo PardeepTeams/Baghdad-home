@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.*
 import androidx.cardview.widget.CardView
@@ -475,6 +476,10 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
            }*/
 
         rlListGrid.setOnClickListener {
+            scrollView.scrollTo(0, 0)
+        }
+
+        imgListGrid.setOnClickListener {
             if (imgListGrid.contentDescription == "Grid"){
                 imgListGrid.contentDescription = "List"
                 imgListGrid.setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.ic_grid))
@@ -1170,6 +1175,9 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         var adapterCity:HomeSelectCityAdapter
         val bottomSheetDialog = BottomSheetDialog(requireActivity())
         val view = layoutInflater.inflate(R.layout.bottom_sheet_select_city, null)
+        bottomSheetDialog.window?.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE
+        )
         bottomSheetDialog.setContentView(view)
 
         val txtTitle:TextView = view.findViewById(R.id.txtTitle)
@@ -1225,6 +1233,16 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
 
 
+      /*  bottomSheetDialog.setOnShowListener { dialog ->
+            val d = dialog as BottomSheetDialog
+            val bottomSheet = d.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
+            bottomSheet?.let {
+                val behavior = com.google.android.material.bottomsheet.BottomSheetBehavior.from(it)
+                it.layoutParams.height = ViewGroup.LayoutParams.MATCH_PARENT
+                behavior.state = com.google.android.material.bottomsheet.BottomSheetBehavior.STATE_EXPANDED
+                behavior.isFitToContents = false
+            }
+        }*/
 
         recyclerView.adapter = adapterCity
         bottomSheetDialog.show()
