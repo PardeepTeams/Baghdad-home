@@ -299,7 +299,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                 saveHomeData(model)
             }.start()
         }else if(apiType.equals(Constants.GET_HOME_CITY)){
-         var cityModel = Gson().fromJson(respopnse,HomeCityResponseModel::class.java)
+            var cityModel = Gson().fromJson(respopnse,HomeCityResponseModel::class.java)
             if(cityModel.success == true){
                 if(!cityModel.cities.isNullOrEmpty()){
                     cityList.addAll(cityModel.cities!!)

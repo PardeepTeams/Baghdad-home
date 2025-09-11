@@ -341,7 +341,7 @@
                     android:gravity="center_vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:layout_toStartOf="@+id/rlListGrid"
+                        android:layout_toStartOf="@+id/rlImgListGrid"
                         android:outlineSpotShadowColor="@color/grey"
                         android:outlineAmbientShadowColor="@color/grey"
                         app:cardCornerRadius="8dp"
@@ -430,7 +430,7 @@
                     </androidx.cardview.widget.CardView>
 
                     <RelativeLayout
-                        android:id="@+id/rlListGrid"
+                        android:id="@+id/rlImgListGrid"
                         android:layout_width="36dp"
                         android:layout_height="36dp"
                         android:layout_centerVertical="true"
