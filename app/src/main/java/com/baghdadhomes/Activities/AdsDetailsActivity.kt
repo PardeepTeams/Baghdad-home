@@ -681,7 +681,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 }
 
                 if (model.result.property_meta != null) {
-               /*     if (!model.result.property_meta.orientation.isNullOrEmpty()) {
+                    if (!model.result.property_meta.orientation.isNullOrEmpty()) {
                         if(model.result.property_meta.orientation.first().equals(getString(R.string.sun_set_eng))){
                             dt_orientation.text = getString(R.string.sun_set)
                         }else  if(model.result.property_meta.orientation.first().equals(getString(R.string.sun_rise_eng))){
@@ -696,7 +696,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                       //  dt_orientation.text = model.result.property_meta.orientation.first()
                     } else {
                         dt_orientation.text = ""
-                    }*/
+                    }
 
                     if (!model.result.property_meta.real_estate_situation.isNullOrEmpty()) {
                         if(model.result.property_meta.real_estate_situation.first().equals(getString(R.string.tapu_eng))){
