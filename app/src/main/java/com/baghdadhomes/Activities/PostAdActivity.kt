@@ -48,6 +48,8 @@ import android.widget.RadioButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.cardview.widget.CardView
@@ -95,6 +97,8 @@ import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.gson.Gson
 import com.google.gson.JsonObject
 import com.hbb20.CountryCodePicker
+import com.hi.library.utils.TrimType
+import com.hi.library.utils.TrimVideo
 import com.sangcomz.fishbun.FishBun
 import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
 import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
@@ -113,21 +117,6 @@ import java.util.Collections
 import java.util.Date
 import java.util.Locale
 import java.util.Random
-import kotlin.Array
-import kotlin.Boolean
-import kotlin.CharSequence
-import kotlin.Comparator
-import kotlin.Double
-import kotlin.Exception
-import kotlin.Float
-import kotlin.Int
-import kotlin.IntArray
-import kotlin.Long
-import kotlin.String
-import kotlin.arrayOf
-import kotlin.isInitialized
-import kotlin.let
-import kotlin.toString
 
 
 class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.onClick {
@@ -2882,11 +2871,16 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             Log.d("imagePicker","VideoPicker")
             val uri : Uri? = data?.data!!
             if (uri != null && checkIfUriCanBeUsedForVideo(uri)){
-                val videoFile = getFile(this,uri)
+                /*val videoFile = getFile(this,uri)
                 val intent = Intent(this,VideoTrimmerActivity::class.java)
                 intent.putExtra("videoUri",Uri.fromFile(videoFile))
                 startActivityForResult(intent,REQUEST_CODE_TRIM)
-                overridePendingTransition(0,0)
+                overridePendingTransition(0,0)*/
+                TrimVideo.activity(uri.toString())
+                    .setTrimType(TrimType.MIN_MAX_DURATION)
+                    .setMinToMax(2, 30)
+                    .setTitle(getString(R.string.trim_video))
+                    .start(this, videoTrimResultLauncher)
             } else{
                 showToast(this,getString(R.string.file_format_unupport))
             }
@@ -2918,6 +2912,25 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
 
     }
+
+    var videoTrimResultLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult(), { result->
+            if (result.resultCode == RESULT_OK && result.data != null) {
+                val uri = Uri.parse(TrimVideo.getTrimmedVideoPath(result.data))
+                Log.d("Trimmed Path", "Trimmed path:: " + uri)
+
+                val filepath = uri.toString()
+                val file = File(filepath)
+                val videoUri = Uri.fromFile(file)
+                val uris = mutableListOf<Uri>()
+                uris.add(videoUri)
+                compressVideo(uris)
+
+            } else {
+                println("videoTrimResultLauncher data is null")
+            }
+        }
+    )
 
     fun deleteFilesFromStorage() {
         val fullPath = File(Environment.getExternalStorageDirectory(), "Movies")
@@ -3062,7 +3075,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 override fun onFailure(index: Int, failureMessage: String) {
                     imageView_progress.visibility = View.GONE
                     Log.wtf("failureMessage", failureMessage)
-                    showToast(this@PostAdActivity,getString(R.string.failed_trim))
+                    showToast(this@PostAdActivity,getString(com.github.dhaval2404.imagepicker.R.string.error_failed_to_compress_image))
                 }
 
                 override fun onCancelled(index: Int) {
