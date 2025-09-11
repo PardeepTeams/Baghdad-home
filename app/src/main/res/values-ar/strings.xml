@@ -333,7 +333,7 @@
     <string name="living_room">غرفة الجلوس</string>
     <string name="see_more">شاهد المزيد</string>
     <string name="see_less">انظر أقل</string>
-    <string name="baghdad_ai">بغداد الوطن منظمة العفو الدولية</string>
+    <string name="baghdad_ai"> بغداد هوم</string>
     <string name="baghdad_ai_message">تحدث مع تطبيق بغداد AI، أول تطبيق في العراق يعتمد على الذكاء الاصطناعي لتسهيل رحلة البحث عن المنزل!</string>
     <string name="ai_chat_default_message_1">مرحبا بكم! هذا هو بغداد أسيست، أنا هنا لمساعدتك في العثور على منزل أحلامك.</string>
     <string name="ai_chat_default_message_2">من فضلك قل لي ما الذي تبحث عنه؟</string>
@@ -344,4 +344,5 @@
     <string name="enter_valid_youtube_url">الرجاء إدخال عنوان URL صالح لليوتيوب</string>
     <string name="video_you_tube_url">عنوان URL للفيديو على YouTube</string>
     <string name="no_properties_found">لم يتم العثور على خصائص</string>
+    <string name="select_city">اختر المدينة</string>
 </resources>

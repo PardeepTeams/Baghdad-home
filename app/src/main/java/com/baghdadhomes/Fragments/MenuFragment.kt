@@ -27,8 +27,6 @@ import androidx.viewpager2.widget.MarginPageTransformer
 import androidx.viewpager2.widget.ViewPager2
 import com.amar.library.ui.StickyScrollView
 import com.amar.library.ui.interfaces.IScrollViewListener
-import com.google.gson.Gson
-import com.google.gson.JsonObject
 import com.baghdadhomes.Activities.*
 import com.baghdadhomes.Adapters.AdapterAutoSlider
 import com.baghdadhomes.Adapters.AdapterDetailAds
@@ -36,14 +34,17 @@ import com.baghdadhomes.Adapters.AdapterDetailAds.openDetailPage
 import com.baghdadhomes.Adapters.AdapterFeatureAds
 import com.baghdadhomes.Adapters.AdapterStories
 import com.baghdadhomes.Adapters.GridAdapterDetailAds
+import com.baghdadhomes.Adapters.HomeSelectCityAdapter
 import com.baghdadhomes.Models.*
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.ProgressHud
 import com.baghdadhomes.Utils.Utility
-import com.baghdadhomes.Utils.ZoomOutPageTransformer
 import com.baghdadhomes.fcm.ApiClient
+import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.gson.Gson
+import com.google.gson.JsonObject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -103,6 +104,10 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     lateinit var tv_all_properties:TextView
     lateinit var tv_see_all:TextView
     lateinit var swipe_refresh:SwipeRefreshLayout
+    lateinit var tv_city_name:TextView
+    var selectedCityModel:HomeCity? = null
+
+    var cityList:ArrayList<HomeCity> = ArrayList()
 
     override fun onResume() {
         super.onResume()
@@ -292,6 +297,16 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
                 val model = Gson().fromJson(respopnse,HomeModel::class.java)
                 saveHomeData(model)
             }.start()
+        }else if(apiType.equals(Constants.GET_HOME_CITY)){
+         var cityModel = Gson().fromJson(respopnse,HomeCityResponseModel::class.java)
+            if(cityModel.success == true){
+                if(!cityModel.cities.isNullOrEmpty()){
+                    cityList.addAll(cityModel.cities!!)
+
+                }
+
+            }
+
         }
     }
 
@@ -334,16 +349,37 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         img_auto_scroll = view.findViewById(R.id.img_auto_scroll)
         rv_ads_type = view.findViewById(R.id.rv_ads_type)
         rv_detail_ads = view.findViewById(R.id.rv_detail_ads)
+        tv_city_name = view.findViewById(R.id.tv_city_name)
 
         tv_all_properties = view.findViewById(R.id.tv_all_properties)
         tv_see_all = view.findViewById(R.id.tv_see_all)
         card_search = view.findViewById(R.id.card_search)
         tv_all_properties.text = capitalizeFirstLetter(type) + " " + getString(R.string.ads)
+        if( PreferencesService.instance.getHomeCity!=null){
+            selectedCityModel = PreferencesService.instance.getHomeCity
+        }
+        if(selectedCityModel!=null){
+            if(PreferencesService.instance.getLanguage().equals("ar")){
+                tv_city_name.text = selectedCityModel!!.name
+            }else{
+                if(selectedCityModel!!.description!=null && selectedCityModel!!.description!!.isNotEmpty()) {
+                    tv_city_name.text = selectedCityModel!!.description
+                } else {
+                    tv_city_name.text = selectedCityModel!!.name
+                }
+            }
+        }
         getReels()
         swipe_refresh = view.findViewById(R.id.swipe_refresh)
         swipe_refresh.setOnRefreshListener {
             swipe_refresh.isRefreshing = false;
            getReels()
+        }
+
+
+
+        tv_city_name.setOnClickListener {
+            showCityBottomSheet()
         }
 
 
@@ -724,6 +760,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         map["featured"] ="1"
         if (isNetworkAvailable()){
             scrollView.scrollTo(0,0)
+            hitGetApiWithoutToken(Constants.GET_HOME_CITY,false,Constants.GET_HOME_CITY_API)
             hitGetApiWithoutTokenWithParams(Constants.GET_HOME,true,Constants.GET_HOME_API,map)
         } else{
             showToast(requireContext(), getString(R.string.intenet_error))
@@ -872,6 +909,9 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         pagemap["keyword"] = keyword
         if(!type.equals("all")){
             pagemap.put("type",type)
+        }
+        if(selectedCityModel!=null){
+            pagemap.put("location",selectedCityModel!!.slug!!)
         }
         if(PreferencesService.instance.userLoginStatus == true){
             pagemap.put("user_id",PreferencesService.instance.getUserData!!.ID.toString())
@@ -1123,5 +1163,71 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     }
 
 
+
+
+
+    private fun showCityBottomSheet() {
+        var adapterCity:HomeSelectCityAdapter
+        val bottomSheetDialog = BottomSheetDialog(requireActivity())
+        val view = layoutInflater.inflate(R.layout.bottom_sheet_select_city, null)
+        bottomSheetDialog.setContentView(view)
+
+        val txtTitle:TextView = view.findViewById(R.id.txtTitle)
+        val etSearch:EditText = view.findViewById(R.id.et_search_city)
+
+        txtTitle.text = getString(R.string.select_city)
+
+        if(selectedCityModel!=null){
+
+            for(i in 0..cityList.size-1){
+                cityList.get(i).isSelected = false
+                if(cityList.get(i).termId == selectedCityModel!!.termId){
+                    cityList.get(i).isSelected = true
+                }
+            }
+        }
+
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSituations)
+        recyclerView.layoutManager = LinearLayoutManager(requireActivity())
+        adapterCity = HomeSelectCityAdapter(requireActivity(),cityList, object:HomeSelectCityAdapter.CityClickInterface{
+            override fun onCityClick(cityModel: HomeCity) {
+                bottomSheetDialog.dismiss()
+                selectedCityModel = cityModel
+
+                PreferencesService.instance.saveHomeCity(selectedCityModel!!)
+
+                if(PreferencesService.instance.getLanguage().equals("ar")){
+                    tv_city_name.text = selectedCityModel!!.name
+                }else{
+                    if(selectedCityModel!!.description!=null && selectedCityModel!!.description!!.isNotEmpty()) {
+                        tv_city_name.text = selectedCityModel!!.description
+                    } else {
+                        tv_city_name.text = selectedCityModel!!.name
+                    }
+                }
+                page = 0
+                fetchProperties (true)
+
+
+            }
+
+        })
+
+
+        etSearch.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                adapterCity.filter(s.toString())
+            }
+
+            override fun afterTextChanged(s: Editable) {}
+        })
+
+
+
+
+        recyclerView.adapter = adapterCity
+        bottomSheetDialog.show()
+    }
 }
 

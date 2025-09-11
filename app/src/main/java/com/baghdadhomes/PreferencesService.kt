@@ -3,8 +3,8 @@ package com.baghdadhomes
 import android.annotation.SuppressLint
 import android.content.Context
 import android.content.SharedPreferences
+import com.baghdadhomes.Models.HomeCity
 import com.google.gson.Gson
-import com.baghdadhomes.Models.HomeModel
 import com.baghdadhomes.Models.LoginResponse
 import com.baghdadhomes.Models.NewFeatureModel
 import com.baghdadhomes.Models.Result
@@ -196,18 +196,18 @@ class PreferencesService  constructor()
         return prefs.getString("lang", "ar").toString()
     }
 
-    fun saveHomeData(userdata: HomeModel) {
+    fun saveHomeCity(userdata: HomeCity) {
         val editor = prefs.edit()
         val gson = Gson()
         val json = gson.toJson(userdata)
-        editor.putString("home_data", json)
+        editor.putString("city_data", json)
         editor.apply()
     }
 
-    val getHomeData: HomeModel?
+    val getHomeCity: HomeCity?
         get() = Gson().fromJson(
-            prefs.getString("home_data", ""),
-            HomeModel::class.java
+            prefs.getString("city_data", ""),
+            HomeCity::class.java
         )
 
     fun saveFeaturedData(userdata: NewFeatureModel) {

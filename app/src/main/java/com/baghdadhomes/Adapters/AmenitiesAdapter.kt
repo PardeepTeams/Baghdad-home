@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.baghdadhomes.Models.AmenityData
+import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.bumptech.glide.Glide
 
@@ -40,7 +41,17 @@ class AmenitiesAdapter(var context:Context, var seeAll : Boolean,private val ame
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val amenity: AmenityData = amenities.get(position)
-        holder.txtAmenity.text = amenity.name
+
+        if(PreferencesService.instance.getLanguage().equals("ar")){
+            holder.txtAmenity.text = amenity.name
+        }else{
+            if(amenity.description!=null && amenity.description.isNotEmpty()) {
+                holder.txtAmenity.text = amenity.description
+            } else {
+                holder.txtAmenity.text = amenity.name
+            }
+        }
+
       //  holder.imgAmenity.setImageResource(amenity.icon)
         holder.itemView.isSelected = amenity.isSelected
 
@@ -49,6 +60,7 @@ class AmenitiesAdapter(var context:Context, var seeAll : Boolean,private val ame
         }else{
             holder.imgAmenity.setImageResource(R.drawable.img_placeholder)
         }
+
 
         if(amenity.isSelected){
             holder.txtAmenity.setTextColor(ContextCompat.getColor(context,R.color.blue))

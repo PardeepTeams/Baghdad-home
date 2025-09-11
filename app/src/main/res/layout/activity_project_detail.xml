@@ -124,6 +124,8 @@
                                     android:layout_toEndOf="@+id/tv_property_id"
                                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                                     android:text=""
+                                    android:textFontWeight="600"
+                                    android:textStyle="italic"
                                     android:textColor="@color/darkGrey"
                                     android:textSize="14dp" />
                             </LinearLayout>
