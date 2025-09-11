@@ -73,7 +73,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     lateinit var img_auto_scroll: ViewPager2
     lateinit var indicatorLayout: LinearLayout
     lateinit var scrollView: StickyScrollView
-    lateinit var title: LinearLayout
+    lateinit var title: RelativeLayout
     lateinit var ll_to_hide: LinearLayout
     lateinit var rl_search: RelativeLayout
     lateinit var rl_filter: RelativeLayout
