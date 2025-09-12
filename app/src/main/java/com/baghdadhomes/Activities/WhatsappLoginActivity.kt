@@ -509,10 +509,47 @@ class WhatsappLoginActivity : BaseActivity() {
             .addOnSuccessListener {
                 fcmUser = firebaseAuth.currentUser
 
-                val map : HashMap<String, String> = HashMap()
+                val map: HashMap<String, String> = HashMap()
                 map["user_id"] = fcmUser?.uid.orEmpty()
 
-                hitPostApi(Constants.CHECK_SOCIAL_LOGIN, true, Constants.CHECK_SOCIAL_LOGIN_API, map)
+              /*  val displayName = fcmUser!!.displayName
+                val photoUrl = fcmUser!!.photoUrl.toString()
+                val phoneNumber = fcmUser!!.phoneNumber
+                val uID = fcmUser!!.uid
+                var email = fcmUser!!.email
+
+                if (email.isNullOrEmpty() || email == "null") {
+                    try {
+                        email = fcmUser!!.providerData[1].email
+                    } catch (e: Exception) {
+                        e.message
+                    }
+                }
+
+                //   val map: HashMap<String, String> = HashMap()
+                if (!email.isNullOrEmpty()) {
+                    map["email"] = email
+                }
+                if (!phoneNumber.isNullOrEmpty()) {
+                    map["phone"] = phoneNumber
+                }
+                map["source"] = "phone"
+                //   map["user_id"] = uID
+                map["login_type"] = "google"
+                map["profile_url"] = photoUrl
+                map["display_name"] = displayName.toString()
+                map["device_token"] = firebaseDeviceToken.toString()
+                map["role_type"] = "agency"*//*if (role_type == "houzez_agency") {
+                        "agency"
+                    } else {
+                        "customer"
+                    }*//*
+                *//* if (!responseModel?.allowed_ads.isNullOrEmpty()){
+                        map["allowed_ads"] = responseModel?.allowed_ads.toString()
+                    }*//*
+                hitPostApi(Constants.SOCIAL_LOGIN, true, Constants.SOCIAL_LOGIN_API, map)*/
+
+                  hitPostApi(Constants.CHECK_SOCIAL_LOGIN, true, Constants.CHECK_SOCIAL_LOGIN_API, map)
             }
             .addOnFailureListener { e ->
                 Log.d("Google_Login_Failure", e.message.toString())

@@ -590,14 +590,17 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
         tvLocationOnMap.setOnClickListener {
             println("$cityNameEnglish && $nbhdNameEnglish")
-            val intent = Intent(this, MapViewActivity::class.java)
-            intent.putExtra("city", cityNameEnglish.orEmpty())
-            intent.putExtra("nbhd", nbhdNameEnglish.orEmpty())
-            if (propertyLatLng != null){
-                intent.putExtra("lat", propertyLatLng?.latitude)
-                intent.putExtra("lng", propertyLatLng?.longitude)
+            if(!cityNameEnglish.isNullOrEmpty()){
+                val intent = Intent(this, MapViewActivity::class.java)
+                intent.putExtra("city", cityNameEnglish.orEmpty())
+                intent.putExtra("nbhd", nbhdNameEnglish.orEmpty())
+                if (propertyLatLng != null){
+                    intent.putExtra("lat", propertyLatLng?.latitude)
+                    intent.putExtra("lng", propertyLatLng?.longitude)
+                }
+                startActivityForResult(intent, REQUEST_CODE_LOCATION)
             }
-            startActivityForResult(intent, REQUEST_CODE_LOCATION)
+
         }
 
         rlVideo.setOnClickListener {
@@ -2561,9 +2564,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                             }
                         }
                     }
-                    cityNameEnglish = nbhdList1[spinnerPosition].description.orEmpty()
-                    spinner_jurisdriction.setSelection(spinnerPosition)
-                    cityList1 = nbhdList1.get(spinnerPosition).area as ArrayList<NBHDArea>
+                    if(nbhdList1!=null && nbhdList1.isNotEmpty()){
+                        cityNameEnglish = nbhdList1[spinnerPosition].description.orEmpty()
+                        spinner_jurisdriction.setSelection(spinnerPosition)
+                        cityList1 = nbhdList1.get(spinnerPosition).area as ArrayList<NBHDArea>
+                    }
+
 
                     /*adapterCity = CitySpinnerAdapter(this, cityList1)
                     spinner_neighborhood.adapter = adapterCity*/

@@ -316,7 +316,7 @@ class MoreFragment : BaseFragment() {
 
         rl_web.setOnClickListener {
             val i = Intent(Intent.ACTION_VIEW)
-            i.data = Uri.parse("https://www.najafhome.com")
+            i.data = Uri.parse("https://www.baghdadhome.com")
             startActivity(i)
         }
 
