@@ -312,7 +312,7 @@
 
                             <TextView
                                 android:textSize="14dp"
-                                android:text="Unit Details &amp; Floor Plans"
+                                android:text="@string/Units_details"
                                 android:layout_marginTop="10dp"
                                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                                 android:textColor="@color/new_details_color"

@@ -48,8 +48,10 @@
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:text="100 m2"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:textColor="@color/darkGrey"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -73,8 +75,10 @@
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:text="4 Bedrooms"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:textColor="@color/darkGrey"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
             <LinearLayout
@@ -97,8 +101,10 @@
                     android:layout_marginStart="5dp"
                     android:fontFamily="@font/hacen_tunisia_bold_regular"
                     android:text="4 Baths"
+                    android:singleLine="true"
+                    android:maxLines="1"
                     android:textColor="@color/darkGrey"
-                    android:textSize="14sp" />
+                    android:textSize="12sp" />
             </LinearLayout>
 
 

@@ -371,4 +371,14 @@
     <string name="south_eng">South</string>
     <string name="qibla_eng">Qibla</string>
     <string name="north_eng">North</string>
+    <string name="floor_plan_images">Floor Plan Images</string>
+    <string name="price_plan_details">Payment Plan</string>
+    <string name="floor_plan">Floor Plan</string>
+    <string name="Units_details">Units Details &amp; Floor Plans</string>
+    <string name="bathrooms_new">Bathrooms</string>
+    <string name="payment_plans">Payment Plan</string>
+    <string name="photos">Photos</string>
+    <string name="specs">Specs</string>
+    <string name="area">Area</string>
+    <string name="house_plan">House Plan</string>
 </resources>

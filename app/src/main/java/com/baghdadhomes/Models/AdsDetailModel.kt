@@ -23,6 +23,8 @@ data class ResultDetail (
     @SerializedName("property_type") val property_type : String,
     @SerializedName("property_attr") val property_attr : Property_attr,
     @SerializedName("property_images") val property_images : List<String>,
+    @SerializedName("floor_plans") val floor_plans:ArrayList<FloorPlan>? = ArrayList(),
+    @SerializedName("property_price_plan") val property_price_plan:ArrayList<PropertyPricePlan>? = ArrayList(),
     @SerializedName("property_images_id") val property_images_id : List<Int>,
     @SerializedName("property_images_thumb") val property_images_thumb : List<String>,
     @SerializedName("price") val price : String,
@@ -81,4 +83,9 @@ data class Property_address (
 data class Property_attr (
     @SerializedName("property_type") val property_type : String,
     @SerializedName("property_status") val property_status : String,
+)
+
+data class PropertyPricePlan(
+    @SerializedName("title") val title : String? = null,
+    @SerializedName("price") val price : String? = null,
 )

@@ -41,6 +41,10 @@ import com.google.gson.JsonObject
 import com.baghdadhomes.Adapters.AdapterAutoSliderDetailPage
 import com.baghdadhomes.Adapters.AdapterDetailAds
 import com.baghdadhomes.Adapters.AdapterDetailAds.openDetailPage
+import com.baghdadhomes.Adapters.AdapterFloorPlans
+import com.baghdadhomes.Adapters.AdapterFloorPlansProperties
+import com.baghdadhomes.Adapters.AdapterPriceItems
+import com.baghdadhomes.Adapters.AdapterPropertyPrice
 import com.baghdadhomes.Adapters.AmenitiesAdapter
 import com.baghdadhomes.Models.*
 import com.baghdadhomes.PreferencesService
@@ -151,6 +155,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     lateinit var tvWidthCard : TextView
     lateinit var imgQr : ImageView
 
+
+
     var currentIndex = 0
     private var job: Job? = null
     lateinit var tv_see_all:TextView
@@ -161,6 +167,23 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
 
     lateinit var adapterAmenities: AmenitiesAdapter
     lateinit var lin_no:LinearLayout
+
+    lateinit var images_count_new:TextView
+    lateinit var floor_image_count:TextView
+    lateinit var tv_location_map:TextView
+    lateinit var rvFloorPlans:RecyclerView
+    lateinit var lin_floor_plan_images:LinearLayout
+    var floorPlansList : ArrayList<String> = ArrayList()
+    lateinit var adapterFloorPlans: AdapterFloorPlansProperties
+    lateinit var lin_area:LinearLayout
+    lateinit var tvArea:TextView
+    lateinit var tvBedroom:TextView
+    lateinit var tvBathroom:TextView
+    lateinit var rvAreaPrices:RecyclerView
+    lateinit var lin_payment:LinearLayout
+    lateinit var adapterPropertyPrice: AdapterPropertyPrice
+
+    var priceTableList:ArrayList<PropertyPricePlan> = ArrayList()
 
     override fun onMapReady(p0: GoogleMap) {
         map = p0
@@ -306,6 +329,15 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
     }
 
     private fun inits(){
+
+         tvArea  = findViewById(R.id.tvArea)
+         tvBedroom  = findViewById(R.id.tvBedroom)
+         tvBathroom  = findViewById(R.id.tvBathroom)
+        lin_payment  = findViewById(R.id.lin_payment)
+        lin_floor_plan_images = findViewById(R.id.lin_floor_plan_images)
+        images_count_new = findViewById(R.id.images_count_new)
+        floor_image_count = findViewById(R.id.floor_image_count)
+        tv_location_map = findViewById(R.id.tv_location_map)
         tvPropertyTypeCard = findViewById(R.id.tvPropertyTypeCard)
         tvPropertyTypeCard2 = findViewById(R.id.tvPropertyTypeCard2)
         tvAddressCard = findViewById(R.id.tvAddressCard)
@@ -323,12 +355,46 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         imgQr = findViewById(R.id.imgQr)
         lin_no = findViewById(R.id.lin_no)
         tv_see_all = findViewById(R.id.tv_see_all)
+        rvFloorPlans = findViewById(R.id.rvFloorPlans)
+        rvAreaPrices = findViewById(R.id.rvAreaPrices)
+        lin_area = findViewById(R.id.lin_area)
+
+        rvAreaPrices.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL,false)
+        adapterPropertyPrice = AdapterPropertyPrice(this,priceTableList)
+        rvAreaPrices.adapter = adapterPropertyPrice
+
+        rvFloorPlans.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
         tv_see_all.setOnClickListener {
             var intent:Intent = Intent(this,AllPropertiesActivity::class.java)
             intent.putExtra("type",type)
             startActivity(intent)
             overridePendingTransition(0,0)
 
+        }
+
+        tv_location_map.setOnClickListener {
+            val intent:Intent = Intent(this,ImagesDetailsActivity::class.java)
+            intent.putExtra("model",Gson().toJson(adsDetailModel))
+            intent.putExtra("type","3")
+            startActivity(intent)
+            overridePendingTransition(0,0)
+        }
+
+        floor_image_count.setOnClickListener {
+            val intent:Intent = Intent(this,ImagesDetailsActivity::class.java)
+            intent.putExtra("model",Gson().toJson(adsDetailModel))
+            intent.putExtra("type","2")
+            startActivity(intent)
+            overridePendingTransition(0,0)
+        }
+
+        images_count_new.setOnClickListener {
+            val intent:Intent = Intent(this,ImagesDetailsActivity::class.java)
+            intent.putExtra("model",Gson().toJson(adsDetailModel))
+            intent.putExtra("type","1")
+            startActivity(intent)
+            overridePendingTransition(0,0)
         }
         relative_main = findViewById(R.id.relative_main)
         tv_image_count = findViewById(R.id.tv_image_count)
@@ -505,9 +571,6 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         } else if (apiType.equals(Constants.VIEW_COUNT)){
                 val model:AdsDetailModel = Gson().fromJson(respopnse, AdsDetailModel::class.java)
                 updateUI(model)
-
-
-
         }
     }
 
@@ -525,7 +588,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
             relative_main.visibility = View.VISIBLE
             if (model.success && model.result != null){
                // responseList.add(model.result)
-
+                adapterFloorPlans = AdapterFloorPlansProperties(this, floorPlansList,model!!.result)
+                rvFloorPlans.adapter = adapterFloorPlans
                 val newViewCount = model?.result?.property_meta?.houzez_total_property_views?.get(0) ?: "0"
                 tv_view_count.setText(newViewCount)
                 isFav = model.result.is_fav
@@ -564,6 +628,26 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 dt_video_link.setOnClickListener {
                     val intent = Intent(Intent.ACTION_VIEW, Uri.parse(model.result.youtube_url))
                     startActivity(intent)
+                }
+
+                if(!model.result.floor_plans.isNullOrEmpty()){
+                    lin_floor_plan_images.visibility = View.VISIBLE
+                    lin_area.visibility = View.GONE
+                    for(i in model.result.floor_plans){
+                        floorPlansList.add(i.fave_plan_image!!)
+                    }
+                }else{
+                    lin_floor_plan_images.visibility = View.GONE
+                    lin_area.visibility = View.GONE
+                }
+                adapterFloorPlans.notifyDataSetChanged()
+
+                if(!model.result.property_price_plan.isNullOrEmpty()){
+                    lin_payment.visibility = View.VISIBLE
+                    priceTableList.addAll(model.result.property_price_plan)
+                    adapterPropertyPrice.notifyDataSetChanged()
+                }else{
+                    lin_payment.visibility = View.GONE
                 }
 
                 try {
@@ -736,27 +820,37 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     }
 
                     if (!model.result.property_meta.monthly_price.isNullOrEmpty()) {
-                        llMonthlyPrice.visibility = View.VISIBLE
-                        dt_monthlyPrice.text = model.result.property_meta.monthly_price.first()
-                        var monthlyCurrency = if (model.result.property_meta.fave_currency?.firstOrNull()=="USD")  {
-                            getString(R.string.currency_code_usd)
-                        } else {
-                            getString(R.string.currency_code)
+                        if(!model.result.property_meta.monthly_price.first().isNullOrEmpty()){
+                            llMonthlyPrice.visibility = View.VISIBLE
+                            dt_monthlyPrice.text = model.result.property_meta.monthly_price.first()
+                            var monthlyCurrency = if (model.result.property_meta.fave_currency?.firstOrNull()=="USD")  {
+                                getString(R.string.currency_code_usd)
+                            } else {
+                                getString(R.string.currency_code)
+                            }
+                            dt_monthlyPrice.text = "(${dt_monthlyPrice.text})$monthlyCurrency"
+                        }else{
+                            llMonthlyPrice.visibility = View.GONE
                         }
-                        dt_monthlyPrice.text = "(${dt_monthlyPrice.text})$monthlyCurrency"
+
                     } else {
                         llMonthlyPrice.visibility = View.GONE
                     }
 
                     if (!model.result.property_meta.street_type.isNullOrEmpty()) {
-                        llStreetType.visibility = View.VISIBLE
-                        dtStreetType.text = model.result.property_meta.street_type.first()
+                        if(!model.result.property_meta.street_type.first().isNullOrEmpty()){
+                            llStreetType.visibility = View.VISIBLE
+                            dtStreetType.text = model.result.property_meta.street_type.first()
+                        } else {
+                            llStreetType.visibility = View.GONE
+                        }
+
                     } else {
                         llStreetType.visibility = View.GONE
                     }
 
                     if (!model.result.property_meta.furnished.isNullOrEmpty()) {
-                        var furnished = model.result.property_meta.furnished.first()
+                        val furnished = model.result.property_meta.furnished.first()
                         if (furnished == "Half Furnished") {
                             dt_furnished.text = getString(R.string.half_furnished)
                         } else if (furnished == "Yes") {
@@ -867,11 +961,13 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 dt_price.text = "${dt_price.text}$currency"
 
                 if (model.result.property_meta.fave_property_size != null){
+                    tvArea.text = model.result.property_meta.fave_property_size.get(0) + " "+ resources.getString(R.string.m)
                     dt_area.setText(model.result.property_meta.fave_property_size.get(0) + " "+ resources.getString(R.string.m))
                     tvAreaCard.setText(model.result.property_meta.fave_property_size.get(0) + " "+ resources.getString(R.string.m))
                 } else{
                     dt_area.setText("00 "+ resources.getString(R.string.m))
                     tvAreaCard.setText("00 "+ resources.getString(R.string.m))
+                    tvArea.text = "00 "+ resources.getString(R.string.m)
                 }
 
                 if (model.result.post_content != null) {
@@ -903,9 +999,11 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 if(model.result.property_meta.fave_property_bedrooms!=null){
                     dt_rooms.setText(model.result.property_meta.fave_property_bedrooms.get(0))
                     tvBedroomCard.setText(model.result.property_meta.fave_property_bedrooms.get(0))
+                    tvBedroom.setText(model.result.property_meta.fave_property_bedrooms.get(0) + " " + getString(R.string.bedroom))
                 }else{
                     dt_rooms.setText("0")
                     tvBedroomCard.setText("0")
+                    tvBedroom.setText("0")
                 }
 
                 if (model.result.property_meta != null){
@@ -923,9 +1021,11 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 if(model.result.property_meta.fave_property_bathrooms!=null){
                     dt_bathroom.setText(model.result.property_meta.fave_property_bathrooms.get(0))
                     tvBathroomCard.setText(model.result.property_meta.fave_property_bathrooms.get(0))
+                    tvBathroom.setText(model.result.property_meta.fave_property_bathrooms.get(0) + " " + getString(R.string.bathrooms_new) )
                 }else{
                     dt_bathroom.setText("0")
                     tvBathroomCard.setText("0")
+                    tvBathroom.setText("0")
                 }
 
                 if (model.result.property_attr != null) {
@@ -1002,8 +1102,10 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                     }
                     if (imageList.isNotEmpty()){
                         tv_image_count.setText(imageList.size.toString())
+                        images_count_new.setText(imageList.size.toString())
                     } else{
                         tv_image_count.setText("0")
+                        images_count_new.setText("0")
                     }
                 }else{
                     if(!model.result.thumbnail.isNullOrEmpty()){

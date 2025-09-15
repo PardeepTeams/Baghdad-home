@@ -5,7 +5,7 @@
     <string name="properties">عقارات</string>
     <string name="commercial">تجاري</string>
     <string name="residential">سكني</string>
-   <!-- <string name="contact_us">اتصل بنا</string>
+    <!-- <string name="contact_us">اتصل بنا</string>
     <string name="about_us">من نحن</string>
     <string name="residential">سكني</string>
     <string name="res1">بيت</string>
@@ -226,7 +226,7 @@
     <string name="report_scceccfully">تم ارسال الإبلاغ بنجاح</string>
     <string name="profile_updated">تم تحديث الملف الشخصي بنجاح</string>
     <string name="ok">موافق</string>
-<!--    <string name="about_text_1">توفر لكم شركة بغداد هوم فرصًا عقارية مميزة، سواءً كان هدفكم سكنيًا أو تجاريًا، فشركة بغداد هوم ستلبي احتياجاتكم لأي متطلبات عقارية. بدءًا من الاستشارات والوساطة العقارية بالإضافة إلى الاستشارات القانونية، فإن شركة بغداد هوم هي دليلكم وبوابتكم إلى عالم العقارات في مدينة بغداد.</string>-->
+    <!--    <string name="about_text_1">توفر لكم شركة بغداد هوم فرصًا عقارية مميزة، سواءً كان هدفكم سكنيًا أو تجاريًا، فشركة بغداد هوم ستلبي احتياجاتكم لأي متطلبات عقارية. بدءًا من الاستشارات والوساطة العقارية بالإضافة إلى الاستشارات القانونية، فإن شركة بغداد هوم هي دليلكم وبوابتكم إلى عالم العقارات في مدينة بغداد.</string>-->
     <string name="about_text_1">بغداد هوم\n\n
     يُرسي تطبيقنا معايير جديدة لسوق العقارات في جميع مناطق واحياء العاصمه بغداد ، مدعومًا بابتكارات كندية وشمال امريكيه وفريق من الخبراء العقاريين المحترفين. نجمع بين المعرفة العالمية والرؤية المحلية لتقديم خدمات عقارية فريدة وموثوقة واحترافية.\n\n
     مع تركيزنا على الشفافية والراحة والتكنولوجيا، تربط منصتنا المشترين والبائعين والمستثمرين بفرص حصرية في جميع انحاء بغداد السلام والمحبه. سواء كنت تبحث عن عقارات سكنية أو تجارية أو استثمارية، نقدم حلولاً مصممة خصيصًا مدعومة بخبرات دولية وأدوات مبتكرة تُبسط كل خطوة من رحلة البحث عن عقار.\n\n
@@ -376,5 +376,15 @@
     <string name="south_eng">South</string>
     <string name="qibla_eng">Qibla</string>
     <string name="north_eng">North</string>
+    <string name="floor_plan_images">صور مخطط الطابق</string>
+    <string name="price_plan_details">خطة الدفع</string>
+    <string name="floor_plan">خطة الكلمة</string>
+    <string name="Units_details">تفاصيل الوحدات والمخططات الطابقية</string>
+    <string name="bathrooms_new">الحمامات</string>
+    <string name="payment_plans">خطة الدفع</string>
+    <string name="photos">صور</string>
+    <string name="specs">المواصفات</string>
+    <string name="area">منطقة</string>
+    <string name="house_plan">خطة المنزل</string>
 
 </resources>

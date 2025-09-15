@@ -374,4 +374,14 @@
     <string name="south_eng">South</string>
     <string name="qibla_eng">Qibla</string>
     <string name="north_eng">North</string>
+    <string name="floor_plan_images">صور مخطط الطابق</string>
+    <string name="price_plan_details">خطة الدفع</string>
+    <string name="floor_plan">خطة الكلمة</string>
+    <string name="Units_details">تفاصيل الوحدات والمخططات الطابقية</string>
+    <string name="bathrooms_new">الحمامات</string>
+    <string name="payment_plans">خطة الدفع</string>
+    <string name="photos">صور</string>
+    <string name="specs">المواصفات</string>
+    <string name="area">منطقة</string>
+    <string name="house_plan">خطة المنزل</string>
 </resources>

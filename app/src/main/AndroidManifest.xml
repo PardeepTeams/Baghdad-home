@@ -42,10 +42,16 @@
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
         <activity
+            android:name=".Activities.FloorPlansDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".Activities.ImagesDetailsActivity"
+            android:exported="false" />
+        <activity
             android:name="com.sangcomz.fishbun.ui.picker.PickerActivity"
             android:theme="@style/FishBunPopupTheme"
             android:windowSoftInputMode="adjustResize"
-            tools:replace="android:theme"/>
+            tools:replace="android:theme" />
         <activity
             android:name="com.sangcomz.fishbun.ui.album.ui.AlbumActivity"
             android:theme="@style/FishBunTheme"
@@ -212,6 +218,7 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 

@@ -26,7 +26,7 @@ class AdapterServices(var context:Context, var list: ArrayList<ServicesResponse>
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        var view = LayoutInflater.from(context).inflate(R.layout.layout_services, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.layout_services, parent, false)
         return ViewHolder(view)
     }
 

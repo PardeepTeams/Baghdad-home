@@ -54,7 +54,7 @@ interface ApiService {
 
     @FormUrlEncoded
     @POST
-    fun hitAddPostApiWithouTokenFieldParams(@Url url: String,@FieldMap map:Map<String,String>,@Field("propperty_image_ids[]") imagesList:ArrayList<String>,@Field("prop_features[]") selectedAmenities:ArrayList<String>): Call<JsonObject>
+    fun hitAddPostApiWithouTokenFieldParams(@Url url: String,@FieldMap map:Map<String,String>,@Field("propperty_image_ids[]") imagesList:ArrayList<String>, @FieldMap floorPlans: Map<String, String>,@Field("prop_features[]") selectedAmenities:ArrayList<String>): Call<JsonObject>
 
     @POST
     fun hitSendOtpApi(@Header ("Authorization") token: String, @Url url: String, @Body map : HashMap<Any, Any>): Call<JsonObject>

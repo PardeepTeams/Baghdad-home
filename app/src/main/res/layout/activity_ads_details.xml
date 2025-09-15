@@ -34,7 +34,9 @@
                     <androidx.viewpager2.widget.ViewPager2
                         android:id="@+id/img_auto_scroll"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="match_parent">
+
+                    </androidx.viewpager2.widget.ViewPager2>
 
                     <LinearLayout
                         android:id="@+id/indicatorLayout"
@@ -56,6 +58,69 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="vertical">
+
+                        <LinearLayout
+                            android:weightSum="4"
+                            android:layout_gravity="center_vertical"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/images_count_new"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.7"
+                                android:drawableStart="@drawable/ic_message_img_new"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:paddingVertical="7dp"
+                                android:paddingHorizontal="7dp"
+                                android:drawablePadding="5dp"
+                                android:layout_toEndOf="@+id/imv_message"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="0"
+                                android:textColor="@color/blackNew"
+                                android:includeFontPadding="false"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/floor_image_count"
+                                android:layout_width="0dp"
+                                android:layout_weight="1.5"
+                                android:drawableStart="@drawable/ic_message_img_new"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:paddingVertical="7dp"
+                                android:paddingHorizontal="7dp"
+                                android:drawablePadding="5dp"
+                                android:layout_toEndOf="@+id/imv_message"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="@string/floor_plan"
+                                android:textColor="@color/blackNew"
+                                android:includeFontPadding="false"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/tv_location_map"
+                                android:layout_width="0dp"
+                                android:layout_weight="0.8"
+                                android:drawableStart="@drawable/location_on_icon"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+
+                                android:drawablePadding="5dp"
+                                android:paddingVertical="7dp"
+                                android:paddingHorizontal="7dp"
+                                android:layout_toEndOf="@+id/imv_message"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:text="@string/map"
+                                android:textColor="@color/blackNew"
+                                android:includeFontPadding="false"
+                                android:textSize="14sp" />
+
+                        </LinearLayout>
+
 
                         <RelativeLayout
                             android:layout_marginVertical="7dp"
@@ -359,6 +424,156 @@
                                     android:textColorLink="@color/blue"
                                     android:textColor="@color/darkGrey"
                                     android:textSize="14sp" />
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lin_payment"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_payment_details"
+                                android:textSize="14sp"
+
+                                android:text="@string/payment_plans"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:textColor="@color/new_details_color"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:background="@drawable/bg_price_item"
+                                tools:listitem="@layout/layout_price_item"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                android:id="@+id/rvAreaPrices"/>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/lin_floor_plan_images"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <TextView
+                                android:id="@+id/tv_unit_details"
+                                android:textSize="14sp"
+                                android:text="@string/Units_details"
+                                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                android:textColor="@color/new_details_color"
+                                android:layout_weight="1"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"/>
+
+
+                            <androidx.recyclerview.widget.RecyclerView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="5dp"
+                                android:id="@+id/rvFloorPlans"/>
+
+                        </LinearLayout>
+
+
+                        <LinearLayout
+                            android:id="@+id/lin_area"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp"
+                            android:layout_marginTop="5dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:orientation="horizontal"
+                                android:background="@color/grey_light"
+                                android:paddingVertical="5dp">
+
+                                <LinearLayout
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_weight="1" >
+
+                                    <ImageView
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:src="@drawable/ic_area"
+                                        app:tint="@color/darkGrey" />
+                                    <TextView
+                                        android:id="@+id/tvArea"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text="100 m2"
+                                        android:textColor="@color/darkGrey"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_marginHorizontal="10dp"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_weight="1" >
+
+                                    <ImageView
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:src="@drawable/ic_bedroom"
+                                        app:tint="@color/darkGrey" />
+                                    <TextView
+                                        android:id="@+id/tvBedroom"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text="4 Bedrooms"
+                                        android:textColor="@color/darkGrey"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+
+                                <LinearLayout
+                                    android:layout_height="wrap_content"
+                                    android:layout_width="wrap_content"
+                                    android:orientation="horizontal"
+                                    android:layout_gravity="center"
+                                    android:gravity="center"
+                                    android:layout_weight="1" >
+
+                                    <ImageView
+                                        android:layout_width="14dp"
+                                        android:layout_height="14dp"
+                                        android:src="@drawable/ic_bath"
+                                        app:tint="@color/darkGrey" />
+                                    <TextView
+                                        android:id="@+id/tvBathroom"
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginStart="5dp"
+                                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                                        android:text="4 Baths"
+                                        android:textColor="@color/darkGrey"
+                                        android:textSize="14sp" />
+                                </LinearLayout>
+
+
                             </LinearLayout>
 
                         </LinearLayout>

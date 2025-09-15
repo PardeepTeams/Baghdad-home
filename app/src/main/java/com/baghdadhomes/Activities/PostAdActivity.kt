@@ -66,6 +66,7 @@ import com.abedelazizshe.lightcompressorlibrary.VideoQuality
 import com.abedelazizshe.lightcompressorlibrary.config.Configuration
 import com.abedelazizshe.lightcompressorlibrary.config.SaveLocation
 import com.abedelazizshe.lightcompressorlibrary.config.SharedStorageConfiguration
+import com.baghdadhomes.Adapters.AdapterFloorImages
 import com.baghdadhomes.Adapters.AdapterNBHDDialog
 import com.baghdadhomes.Adapters.AdapterPropertyImages
 import com.baghdadhomes.Adapters.AdapterPropertyImages.InterfaceSelectImage
@@ -117,9 +118,10 @@ import java.util.Collections
 import java.util.Date
 import java.util.Locale
 import java.util.Random
+import kotlin.math.floor
 
 
-class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.onClick {
+class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.onClick,AdapterFloorImages.InterfaceSelectFllorImage {
     private var isPermissionAsked = false
     private val PERMISSION_ALL = 1
     private val CAMERA_REQUEST = 1888
@@ -146,8 +148,10 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     var random = Random()
 
     lateinit var adapterPropertyImages: AdapterPropertyImages
+    lateinit var adapterFloorImages: AdapterFloorImages
     lateinit var rv_property_type: RecyclerView
     lateinit var rv_photo: RecyclerView
+    lateinit var rv_floor_photo: RecyclerView
     var status: Int = 0
     lateinit var ll_nested: LinearLayout
 
@@ -162,6 +166,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var spin_kit: SpinKitView
     lateinit var imageView_progress: GifImageView
     var images_count:Int = 0
+    var floor_images_count:Int = 0
     lateinit var adapterNBHD : SpinnerCityAdapter
     //lateinit var adapterCity : CitySpinnerAdapter
     var floors: String = ""
@@ -256,10 +261,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var spinner_neighborhood: TextView
     lateinit var img_back: ImageView
     lateinit var el_main: RelativeLayout
+    lateinit var el_floor_main: RelativeLayout
     var selectedPosition = 0
     var cityList1: ArrayList<NBHDArea> = ArrayList()
     var nbhdList1: ArrayList<NBHDDataResponse> = ArrayList()
     var imagesList: ArrayList<ImageData> = ArrayList()
+    var floorImagesList: ArrayList<ImageData> = ArrayList()
     var files: File? = null
     var userId: String = ""
     var name: String = ""
@@ -367,6 +374,8 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var nbhdAdapter: AdapterNBHDDialog
     lateinit var nbhdDialog: Dialog
 
+    var imageType:String = ""
+
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -444,6 +453,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         tv_for_wanted = findViewById(R.id.tv_for_wanted)
         rv_property_type = findViewById(R.id.rv_property_type)
         rv_photo = findViewById(R.id.rv_photo)
+        rv_floor_photo = findViewById(R.id.rv_floor_photo)
         property_residence = findViewById(R.id.property_residence)
         property_commercial = findViewById(R.id.property_commercial)
         property_land = findViewById(R.id.property_land)
@@ -460,6 +470,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         et_callNo = findViewById(R.id.et_callNo)
         et_wpNo = findViewById(R.id.et_wpNo)
         el_main = findViewById(R.id.el_main)
+        el_floor_main = findViewById(R.id.el_floor_main)
         button_addPost = findViewById(R.id.button_addPost)
 
         floor_1 = findViewById(R.id.floor_1)
@@ -636,9 +647,23 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
 
         el_main.setOnClickListener {
+            imageType = "property"
             dismissKeyboard(el_main)
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(el_main.windowToken, 0)
+            isPermissionAsked = false
+            if (hasPermissions(*PERMISSIONS)) {
+                openImagePicker()
+            } else {
+                ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL)
+            }
+        }
+
+        el_floor_main.setOnClickListener {
+            imageType = "floor"
+            dismissKeyboard(el_floor_main)
+            val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            imm.hideSoftInputFromWindow(el_floor_main.windowToken, 0)
             isPermissionAsked = false
             if (hasPermissions(*PERMISSIONS)) {
                 openImagePicker()
@@ -738,9 +763,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
 
         adapterPropertyImages = AdapterPropertyImages(this, imagesList, this)
+        adapterFloorImages = AdapterFloorImages(this, floorImagesList, this)
 
         rv_photo.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false))
+        rv_floor_photo.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false))
         rv_photo.setAdapter(adapterPropertyImages)
+        rv_floor_photo.setAdapter(adapterFloorImages)
 
         et_callNo.addTextChangedListener(object : TextWatcher{
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -937,7 +965,12 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     }
 
     private fun openImagePicker() {
-        val count  = 15-imagesList.size
+        val count  = 0;
+        if(imageType.equals("property")){
+            15-imagesList.size
+        }else{
+            15-floorImagesList.size
+        }
         FishBun.with(this)
             .setImageAdapter(GlideAdapter())
             .setPickerCount(count)
@@ -968,6 +1001,9 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             .textOnNothingSelected("I need a photo!")
             .startAlbumWithOnActivityResult(REQUEST_CODE)
     }
+
+
+
 
     fun scrollNestedScrollViewToRequiredTarget(targetView : View) {
         nested_scroll.smoothScrollTo(0, targetView.top)
@@ -2321,10 +2357,22 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         if (et_wpNo.text.isNotEmpty()){
             profileMap.put("whatsapp_number", wpCountryCode+et_wpNo.text.toString().trim())
         }
+        val floorImageStringId:ArrayList<HashMap<String,String>> = ArrayList()
+        val floorPlansMap = HashMap<String, String>()
+        if(floorImagesList.isNotEmpty()){
+            floorImagesList.forEachIndexed { index, data ->
+                floorPlansMap["floor_plans[$index][fave_plan_image]"] = data.url
+            }
+            /*  for(i in floorImagesList){
+                  val imagesMap:HashMap<String,String> = HashMap()
+                  imagesMap.put("fave_plan_image",i.url)
+                  // map.put("propperty_image_ids[]", i.id)
+              }*/
+        }
         if (isNetworkAvailable()){
             ApiClient.api!!.hitPostApiWithouTokenFieldParams(
                 ApiClient.baseUrl + Constants.PROFILE_UPDATE_API,profileMap)
-            hitAddPostApiWithoutTokenParams(Constants.UPDATE_ADD, true, Constants.UPDATE_POST_URL, map,imageStringId,selectedAmenities)
+            hitAddPostApiWithoutTokenParams(Constants.UPDATE_ADD, true, Constants.UPDATE_POST_URL, map,imageStringId,floorPlansMap,selectedAmenities)
         } else{
             showToast(this, resources.getString(R.string.intenet_error))
         }
@@ -2394,6 +2442,19 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             imageStringId.add(i.id)
             // map.put("propperty_image_ids[]", i.id)
         }
+        val floorImageStringId:ArrayList<HashMap<String,String>> = ArrayList()
+        val floorPlansMap = HashMap<String, String>()
+        if(floorImagesList.isNotEmpty()){
+            floorImagesList.forEachIndexed { index, data ->
+                floorPlansMap["floor_plans[$index][fave_plan_image]"] = data.url
+            }
+          /*  for(i in floorImagesList){
+                val imagesMap:HashMap<String,String> = HashMap()
+                imagesMap.put("fave_plan_image",i.url)
+                // map.put("propperty_image_ids[]", i.id)
+            }*/
+        }
+
         map.put("living_room", livingRoom)
         map.put("kitchen", kitchen)
         map.put("balconies", balcony)
@@ -2461,7 +2522,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         if (isNetworkAvailable()){
             ApiClient.api!!.hitPostApiWithouTokenFieldParams(
                 ApiClient.baseUrl + Constants.PROFILE_UPDATE_API,profileMap)
-            hitAddPostApiWithoutTokenParams(Constants.ADD_POST, true, Constants.ADD_POST_URL, map,imageStringId,selectedAmenities)
+            hitAddPostApiWithoutTokenParams(Constants.ADD_POST, true, Constants.ADD_POST_URL, map,imageStringId,floorPlansMap,selectedAmenities)
         } else{
             showToast(this,resources.getString(R.string.intenet_error))
         }
@@ -2583,24 +2644,47 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             val model: UploadimagResponse =
                 Gson().fromJson(respopnse, UploadimagResponse::class.java)
             if (model.success) {
-                imagesList.add(model.data)
-                if (imagesList.size < 15) {
-                    el_main.visibility = View.VISIBLE
-                } else {
-                    el_main.visibility = View.GONE
-                }
-                adapterPropertyImages.notifyDataSetChanged()
-                if(images_count<15){
-                    if(imagesList.size >= images_count){
-                        spin_kit.visibility = View.GONE
-                        imageView_progress.visibility = View.GONE
+                if(imageType.equals("property")){
+                    imagesList.add(model.data)
+                    if (imagesList.size < 15) {
+                        el_main.visibility = View.VISIBLE
+                    } else {
+                        el_main.visibility = View.GONE
+                    }
+                    adapterPropertyImages.notifyDataSetChanged()
+                    if(images_count<15){
+                        if(imagesList.size >= images_count){
+                            spin_kit.visibility = View.GONE
+                            imageView_progress.visibility = View.GONE
+                        }
+                    }else{
+                        if(imagesList.size == images_count){
+                            spin_kit.visibility = View.GONE
+                            imageView_progress.visibility = View.GONE
+                        }
                     }
                 }else{
-                    if(imagesList.size == images_count){
-                        spin_kit.visibility = View.GONE
-                        imageView_progress.visibility = View.GONE
+                    floorImagesList.add(model.data)
+                    if (floorImagesList.size < 15) {
+                        el_floor_main.visibility = View.VISIBLE
+                    } else {
+                        el_floor_main.visibility = View.GONE
+                    }
+                    adapterFloorImages.notifyDataSetChanged()
+                    if(floor_images_count<15){
+                        if(floorImagesList.size >= floor_images_count){
+                            spin_kit.visibility = View.GONE
+                            imageView_progress.visibility = View.GONE
+                        }
+                    }else{
+                        if(floorImagesList.size == floor_images_count){
+                            spin_kit.visibility = View.GONE
+                            imageView_progress.visibility = View.GONE
+                        }
                     }
                 }
+
+
 
             }
         }else if(apiType.equals(Constants.UPDATE_ADD)){
@@ -3175,16 +3259,27 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             }
 
         }
-        if (imagesList.size < 15) {
-            el_main.visibility = View.VISIBLE
+
+
+        if(intentModel.floor_plans!=null && intentModel.floor_plans!!.size>0){
+            for(i in 0..intentModel.floor_plans!!.size-1){
+                floorImagesList.add(ImageData(i.toString(),intentModel.floor_plans!!.get(i).fave_plan_image!!,""))
+            }
+
+        }
+        if (floorImagesList.size < 15) {
+            el_floor_main.visibility = View.VISIBLE
         } else {
-            el_main.visibility = View.GONE
+            el_floor_main.visibility = View.GONE
         }
 
         adapterPropertyImages = AdapterPropertyImages(this, imagesList, this)
+        adapterFloorImages = AdapterFloorImages(this, floorImagesList, this)
 
         rv_photo.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false))
+        rv_floor_photo.setLayoutManager(LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false))
         rv_photo.setAdapter(adapterPropertyImages)
+        rv_floor_photo.setAdapter(adapterFloorImages)
 
         if (intentModel.post_title != null){
             et_addTitle.setText(intentModel.post_title)
@@ -4308,5 +4403,11 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             val y = targetView.top - 50  // small offset for better visibility
             nestedScrollView.smoothScrollTo(0, y)
         }
+    }
+
+    override fun onSelectFloorImage(position: Int) {
+        floorImagesList.removeAt(position)
+        adapterFloorImages.notifyDataSetChanged()
+        el_floor_main.visibility = View.VISIBLE
     }
 }

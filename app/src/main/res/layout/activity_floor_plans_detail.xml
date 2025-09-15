@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_marginVertical="10dp"
+        android:layout_height="wrap_content">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:layout_gravity="center_vertical"
+            android:gravity="center_vertical">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:src="@drawable/ic_back_arrow" />
+
+            <TextView
+                android:id="@+id/tvHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/hacen_tunisia_bold_regular"
+                android:text="@string/floor_plan"
+                android:layout_centerInParent="true"
+                android:textColor="@color/darkGrey"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <!-- Specs Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/specs"
+            android:textSize="16sp"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:padding="16dp"
+            android:textColor="@color/darkGrey" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="4dp">
+
+                <LinearLayout
+                    android:id="@+id/linArea"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@android:drawable/ic_menu_crop"
+                        app:tint="@color/darkGrey" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="@string/area"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/hacen_tunisia_bold_regular"
+                        android:textColor="@color/darkGrey" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/tv_area"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=""
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkGrey" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linBedrooms"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="4dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_myplaces"
+                    app:tint="@color/darkGrey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/bedroom"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkGrey" />
+
+                <TextView
+                    android:id="@+id/tvBedrooms"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text=""
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkGrey" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/linBath"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingVertical="4dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@android:drawable/ic_menu_gallery"
+                    app:tint="@color/darkGrey" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/bathrooms_new"
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkGrey"/>
+
+                <TextView
+                    android:id="@+id/tvBath"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="end"
+                    android:text=""
+                    android:fontFamily="@font/hacen_tunisia_bold_regular"
+                    android:textSize="14sp"
+                    android:textColor="@color/darkGrey" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- House Plan Section -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/house_plan"
+            android:textSize="16sp"
+            android:fontFamily="@font/hacen_tunisia_bold_regular"
+            android:textColor="@color/darkGrey"
+            android:paddingHorizontal="16dp" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_marginHorizontal="10dp"
+            app:cardCornerRadius="10dp"
+            app:cardElevation="5dp"
+            app:cardUseCompatPadding="true"
+            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="200dp">
+            <ImageView
+                android:id="@+id/floorPlanImage"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:adjustViewBounds="true"
+                android:src="@drawable/img_placeholder"
+                android:scaleType="centerCrop"
+                />
+        </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

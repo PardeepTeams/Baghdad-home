@@ -24,6 +24,7 @@ data class ResultFeatured(
     @SerializedName("property_meta")val property_meta:PropertyMeta,
     @SerializedName("property_attr") val property_attr:PropertyAttr? = null,
     @SerializedName("property_images") val property_images:ArrayList<String>,
+    @SerializedName("floor_plans") val floor_plans:ArrayList<FloorPlan>? = ArrayList(),
     @SerializedName("property_images_id") val property_images_id:ArrayList<String>,
     @SerializedName("link") val link:String? = null,
     @SerializedName("is_fav") var is_fav:Boolean? = false,
@@ -81,4 +82,8 @@ data class PropertyAddress(
     @SerializedName("property_country") val property_country:String,
     @SerializedName("property_state") val property_state:String,
     @SerializedName("property_city") val property_city:String,
+)
+
+data class FloorPlan(
+    @SerializedName("fave_plan_image") val fave_plan_image: String?=null
 )

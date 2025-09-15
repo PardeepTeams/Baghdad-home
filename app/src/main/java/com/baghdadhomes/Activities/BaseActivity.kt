@@ -66,6 +66,7 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.*
 import java.util.regex.Pattern
+import kotlin.collections.HashMap
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -765,6 +766,7 @@ abstract class BaseActivity : AppCompatActivity() {
         url: String,
         params: HashMap<String,String>,
         imagesList:ArrayList<String>,
+        floorImagesList: Map<String, String>,
         selectedAmenities:ArrayList<String>,
     ) {
         if (showLoader) {
@@ -776,7 +778,7 @@ abstract class BaseActivity : AppCompatActivity() {
         }
 
         ApiClient.api!!.hitAddPostApiWithouTokenFieldParams(
-            ApiClient.baseUrl + url,params,imagesList,selectedAmenities).enqueue(object : Callback<JsonObject> {
+            ApiClient.baseUrl + url,params,imagesList,floorImagesList,selectedAmenities).enqueue(object : Callback<JsonObject> {
             override fun onResponse(call: Call<JsonObject>, response: Response<JsonObject>) {
                 getData(response, type, showLoader)
             }
