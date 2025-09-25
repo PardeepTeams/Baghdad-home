@@ -26,6 +26,17 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.baghdadhomes.Models.UploadimagResponse
+import com.baghdadhomes.PreferencesService
+import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
+import com.baghdadhomes.Utils.ProgressHud
+import com.baghdadhomes.Utils.Utility
+import com.baghdadhomes.fcm.*
+import com.baghdadhomes.fcm.ApiClient.baseUrl
+import com.baghdadhomes.fcm.ApiClient.baseUrlSmsApi
 import com.facebook.login.LoginManager
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -37,15 +48,6 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.messaging.FirebaseMessaging
 import com.google.gson.Gson
 import com.google.gson.JsonObject
-import com.baghdadhomes.Models.UploadimagResponse
-import com.baghdadhomes.PreferencesService
-import com.baghdadhomes.R
-import com.baghdadhomes.Utils.Constants
-import com.baghdadhomes.Utils.ProgressHud
-import com.baghdadhomes.Utils.Utility
-import com.baghdadhomes.fcm.*
-import com.baghdadhomes.fcm.ApiClient.baseUrl
-import com.baghdadhomes.fcm.ApiClient.baseUrlSmsApi
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -66,7 +68,6 @@ import java.io.IOException
 import java.io.InputStream
 import java.util.*
 import java.util.regex.Pattern
-import kotlin.collections.HashMap
 
 
 abstract class BaseActivity : AppCompatActivity() {
@@ -76,6 +77,19 @@ abstract class BaseActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         adjustFontScale(resources.configuration)
+
+       /* val rootView = findViewById<View>(android.R.id.content)
+        ViewCompat.setOnApplyWindowInsetsListener(
+            rootView
+        ) { v, insets -> // Apply system bars padding
+            v.setPadding(
+                insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
+                insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
+                insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
+                insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
+            )
+            insets
+        }*/
         PreferencesService.init(this)
         if(PreferencesService.instance.getLanguage()!=null && PreferencesService.instance.getLanguage().isNotEmpty()){
             var code  = PreferencesService.instance.getLanguage()

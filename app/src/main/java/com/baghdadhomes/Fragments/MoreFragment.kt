@@ -180,37 +180,35 @@ class MoreFragment : BaseFragment() {
         mGoogleSignInClient = GoogleSignIn.getClient(requireContext(), gso);
 
         rl_my_chats.setOnClickListener {
-            /*startActivity(Intent(context, ChatHistoryActivity::class.java))
-            requireActivity().overridePendingTransition(0,0)*/
             ((context) as HomeActivity).setChatFragment()
         }
 
         rl_realtors.setOnClickListener {
             // ((context) as HomeActivity).setRealEstateFragment()
             startActivity(Intent(context, RealEstateFragment::class.java))
-            requireActivity().overridePendingTransition(0,0)
+          //  requireActivity().overridePendingTransition(0,0)
         }
 
         card_view.setOnClickListener {
             startActivity(Intent(context, UpdateProfileActivity::class.java))
-            requireActivity().overridePendingTransition(0,0)
+           // requireActivity().overridePendingTransition(0,0)
         }
 
         sign_up.setOnClickListener{
             //startActivity(Intent(context, RegisterActivity::class.java))
-            //requireActivity().overridePendingTransition(0, 0)
+            //requireActivity().//overridePendingTransition(0,0)
             (context as BaseActivity).loginTypeDialog(true)
         }
 
         log_in.setOnClickListener{
             //startActivity(Intent(context, LoginActivity::class.java))
-            //requireActivity().overridePendingTransition(0, 0)
+            //requireActivity().//overridePendingTransition(0,0)
             (context as BaseActivity).loginTypeDialog(false)
         }
 
         rlServices.setOnClickListener{
             startActivity(Intent(context, ServicesActivity::class.java))
-            requireActivity().overridePendingTransition(0, 0)
+          //  requireActivity().//overridePendingTransition(0,0)
         }
 
         tv_logout.setOnClickListener{
@@ -235,7 +233,7 @@ class MoreFragment : BaseFragment() {
             // PreferencesService.instance.clear()
             PreferencesService.instance.saveUserLoginStatus(false)
             startActivity(Intent(context, HomeActivity::class.java))
-            requireActivity().overridePendingTransition(0,0)
+          //  requireActivity().overridePendingTransition(0,0)
             /*   mGoogleSignInClient.signOut().addOnCompleteListener{
                    if (it.isSuccessful){
                       //  PreferencesService.instance.clearPreference()
@@ -251,27 +249,27 @@ class MoreFragment : BaseFragment() {
 
         rl_notification.setOnClickListener {
             startActivity(Intent(context, NotificationsActivity::class.java))
-            requireActivity().overridePendingTransition(0, 0)
+        //    requireActivity().//overridePendingTransition(0,0)
         }
 
         rl_my_fav.setOnClickListener {
             startActivity(Intent(context, MyFavoriteActivity::class.java))
-            requireActivity().overridePendingTransition(0, 0)
+          //  requireActivity().//overridePendingTransition(0,0)
         }
 
         rl_my_ads.setOnClickListener{
             startActivity(Intent(context, MyAdsActivity::class.java))
-            requireActivity().overridePendingTransition(0, 0)
+          //  requireActivity().//overridePendingTransition(0,0)
         }
 
         rl_language.setOnClickListener {
-            //((activity as BaseActivity).chooseLanguage(activity as BaseActivity))
+          //  ((activity as BaseActivity).chooseLanguage(activity as BaseActivity))
             ((activity as BaseActivity).showBottomSheetDialog(activity as BaseActivity))
         }
 
         rl_about_us.setOnClickListener {
             startActivity(Intent(context, AboutUsActivity::class.java))
-            requireActivity().overridePendingTransition(0, 0)
+          //  requireActivity().//overridePendingTransition(0,0)
         }
 
         rl_delete_account.setOnClickListener {
@@ -315,9 +313,16 @@ class MoreFragment : BaseFragment() {
         }
 
         rl_web.setOnClickListener {
-            val i = Intent(Intent.ACTION_VIEW)
+
+            val appUrl = "https://play.google.com/store/apps/details?id=com.baghdadhomes"
+            val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                type = "text/plain"
+                putExtra(Intent.EXTRA_TEXT, "$appUrl")
+            }
+            startActivity(Intent.createChooser(shareIntent, "Share via"))
+           /* val i = Intent(Intent.ACTION_VIEW)
             i.data = Uri.parse("https://www.baghdadhome.com")
-            startActivity(i)
+            startActivity(i)*/
         }
 
         rl_fb.setOnClickListener {
@@ -341,7 +346,7 @@ class MoreFragment : BaseFragment() {
 
                 PreferencesService.instance.saveUserLoginStatus(false)
                 startActivity(Intent(context, HomeActivity::class.java))
-                requireActivity().overridePendingTransition(0,0)
+             //   requireActivity().overridePendingTransition(0,0)
             }
         } else if (apiType.equals(Constants.GET_USER_PROFILE)){
             val model = Gson().fromJson(respopnse, LoginModel::class.java)

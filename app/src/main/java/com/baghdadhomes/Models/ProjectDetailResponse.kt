@@ -35,7 +35,8 @@ data class PropertyDetailData(
     @SerializedName("is_premium") val isPremium: Boolean? = null,
     @SerializedName("gallery_images") val galleryImages: ArrayList<GalleryImages>? = null,
     @SerializedName("floor_plans") val floorPlans: ArrayList<ProjectFloorPlan>? = null,
-    @SerializedName("child_properties") val childProperties: ArrayList<ChildProperty>? = null
+    @SerializedName("child_properties") val childProperties: ArrayList<ChildProperty>? = null,
+    @SerializedName("property_price_plan") val property_price_plan:ArrayList<PropertyPricePlan>?=ArrayList()
 )
 
 data class GalleryImages(

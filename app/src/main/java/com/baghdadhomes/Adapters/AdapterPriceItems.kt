@@ -7,9 +7,11 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.baghdadhomes.Models.ModelPropertyPriceTable
+import com.baghdadhomes.Models.PropertyPricePlan
+import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 
-class AdapterPriceItems(var context : Context, var list : ArrayList<ModelPropertyPriceTable>) : RecyclerView.Adapter<AdapterPriceItems.ViewHolder>() {
+class AdapterPriceItems(var context : Context, var list : ArrayList<PropertyPricePlan>) : RecyclerView.Adapter<AdapterPriceItems.ViewHolder>() {
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         var tvPrice : TextView = itemView.findViewById(R.id.tvPrice)
         var tvText : TextView = itemView.findViewById(R.id.tvText)
@@ -28,7 +30,13 @@ class AdapterPriceItems(var context : Context, var list : ArrayList<ModelPropert
         position: Int
     ) {
         holder.tvPrice.text = list[position].price ?: "0"
-        holder.tvText.text = list[position].text ?: context.getString(R.string.total_payment)
+
+        if(PreferencesService.instance.getLanguage().equals("ar")){
+            holder.tvText.text = list[position].title
+        }else{
+            holder.tvText.text = list[position].title_english
+        }
+      //  holder.tvText.text = list[position].text ?: context.getString(R.string.total_payment)
         if (position == (list.size-1)) {
             holder.view.visibility = View.GONE
         } else {

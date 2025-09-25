@@ -9,19 +9,25 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
-    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES" />
-    <uses-permission android:name="android.permission.READ_MEDIA_VIDEO" />
     <uses-permission
         android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
+
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_IMAGES"
+        tools:node="remove" />
+    <uses-permission
+        android:name="android.permission.READ_MEDIA_VIDEO"
         tools:node="remove" />
 
     <queries>
         <intent>
             <action android:name="android.media.action.IMAGE_CAPTURE" />
+        </intent>
+        <intent>
+            <action android:name="android.media.action.VIDEO_CAPTURE" />
         </intent>
     </queries>
 
@@ -41,25 +47,25 @@
         android:vmSafeMode="true"
         tools:ignore="GoogleAppIndexingWarning"
         tools:replace="android:allowBackup">
+
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.fileprovider"
+            android:exported="false"
+            android:grantUriPermissions="true"
+            tools:node="replace">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths" />
+        </provider>
+
         <activity
             android:name=".Activities.FloorPlansDetailActivity"
             android:exported="false" />
         <activity
             android:name=".Activities.ImagesDetailsActivity"
             android:exported="false" />
-        <activity
-            android:name="com.sangcomz.fishbun.ui.picker.PickerActivity"
-            android:theme="@style/FishBunPopupTheme"
-            android:windowSoftInputMode="adjustResize"
-            tools:replace="android:theme" />
-        <activity
-            android:name="com.sangcomz.fishbun.ui.album.ui.AlbumActivity"
-            android:theme="@style/FishBunTheme"
-            tools:replace="android:theme" />
-        <activity
-            android:name="com.sangcomz.fishbun.ui.detail.ui.DetailImageActivity"
-            android:theme="@style/FishBunTheme"
-            tools:replace="android:theme" />
+
         <activity
             android:name=".Activities.AIChatActivity"
             android:exported="false" />
@@ -89,34 +95,28 @@
         <activity
             android:name=".Activities.MapViewActivity"
             android:configChanges="locale|layoutDirection"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".Activities.CompanyAdsActivity"
             android:configChanges="locale|layoutDirection"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".Activities.ServicesActivity"
             android:configChanges="locale|layoutDirection"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".Activities.MessagingActivity"
             android:configChanges="locale|layoutDirection"
-            android:exported="false"
-            android:screenOrientation="portrait" />
+            android:exported="false" />
         <activity
             android:name=".Activities.VideoTrimmerActivity"
             android:configChanges="locale|layoutDirection"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".Activities.VideoViewActivity"
             android:configChanges="locale|layoutDirection"
             android:exported="false"
-            android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustNothing" />
         <activity
             android:name=".Activities.AboutUsActivity"
@@ -174,8 +174,7 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
-            android:label="@string/app_name"
-            android:screenOrientation="nosensor" />
+            android:label="@string/app_name" />
 
         <meta-data
             android:name="com.facebook.sdk.ClientToken"
@@ -324,11 +323,7 @@
             android:name="org.apache.http.legacy"
             android:required="false" />
 
-        <activity
-            android:name=".MainActivity"
-            android:configChanges="locale|layoutDirection"
-            android:exported="true"
-            android:windowSoftInputMode="adjustNothing" />
+
         <activity
             android:name=".SplashScreen"
             android:configChanges="locale|layoutDirection"

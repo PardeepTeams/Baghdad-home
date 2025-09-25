@@ -206,9 +206,11 @@ abstract class BaseVideoTrimmerView @JvmOverloads constructor(
         val mediaMetadataRetriever = MediaMetadataRetriever()
         mediaMetadataRetriever.setDataSource(context, src)
         val metadataKeyDuration =
-            java.lang.Long.parseLong(
-                mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)
-            )
+            mediaMetadataRetriever.extractMetadata(MediaMetadataRetriever.METADATA_KEY_DURATION)?.let {
+                java.lang.Long.parseLong(
+                    it
+                )
+            }
         if (timeVideo < minDurationInMs) {
             /* if (metadataKeyDuration - endPosition > MIN_TIME_FRAME - timeVideo) {
                  endPosition += MIN_TIME_FRAME - timeVideo

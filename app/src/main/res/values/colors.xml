@@ -15,9 +15,10 @@
   <!--  <color name="teal_700">#0A3D62</color>-->
    <!-- <color name="teal_700">#3f51b5</color>-->
     <color name="teal_700">#009DD8</color>
-    <color name="black">#CE1126</color>
-    <color name="white">#CE1126</color>
-
+    <color name="blackRed">#CE1126</color>
+    <color name="whiteRed">#CE1126</color>
+    <color name="black">#000000</color>
+    <color name="white">#ffffff</color>
     <color name="grey_ul">#407F7F7F</color>
     <color name="grey">#7A7A7A</color>
     <color name="greybg">#707070</color>
@@ -48,6 +49,8 @@
 
     <!--<color name="home_circle_icon">#807F7C</color>-->
     <color name="grey_light">#CCCCCC</color>
+    <color name="ted_image_picker_primary">#ffffff</color>
+    <color name="ted_image_picker_primary_pressed">#009DD8</color>
 
 
 </resources>

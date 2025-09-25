@@ -55,7 +55,7 @@ class SelectProjectBottomSheet : BottomSheetDialogFragment() {
             val intent:Intent = Intent(requireContext(), ProjectDetailActivity::class.java)
             intent.putExtra("propertyId",selected.id.toString())
             startActivity(intent)
-            requireActivity().overridePendingTransition(0, 0)
+           // requireActivity().//overridePendingTransition(0,0)
         }
         rv.layoutManager = LinearLayoutManager(requireContext(),LinearLayoutManager.VERTICAL,false)
         rv.adapter = adapter

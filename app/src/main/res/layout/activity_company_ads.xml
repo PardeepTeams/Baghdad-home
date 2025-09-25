@@ -123,6 +123,11 @@
                             android:background="@drawable/img_watermark"
                             android:scaleType="centerCrop" />
 
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="#2E000000" />
+
                     </RelativeLayout>
 
                     <de.hdodenhof.circleimageview.CircleImageView
@@ -151,7 +156,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:singleLine="true"
-                            android:textColor="@color/darkGrey"
+                            android:textColor="@color/whiteNew"
                             android:fontFamily="@font/hacen_tunisia_bold_regular"
                             android:textSize="16sp"
                             android:id="@+id/tvName"/>

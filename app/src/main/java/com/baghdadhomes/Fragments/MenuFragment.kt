@@ -302,6 +302,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
             var cityModel = Gson().fromJson(respopnse,HomeCityResponseModel::class.java)
             if(cityModel.success == true){
                 if(!cityModel.cities.isNullOrEmpty()){
+                    cityList.add(HomeCity("","الجميع","","All",""))
                     cityList.addAll(cityModel.cities!!)
 
                 }
@@ -385,10 +386,10 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
 
         tv_see_all.setOnClickListener {
-            var intent:Intent = Intent(requireContext(),AllPropertiesActivity::class.java)
+            val intent:Intent = Intent(requireContext(),AllPropertiesActivity::class.java)
             intent.putExtra("type",type)
             startActivity(intent)
-            requireActivity().overridePendingTransition(0,0)
+          //  requireActivity().overridePendingTransition(0,0)
 
         }
 
@@ -547,12 +548,12 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
         rl_filter.setOnClickListener {
             startActivity(Intent(activity, SearchActivity::class.java))
-            requireActivity().overridePendingTransition(0, 0)
+         //   requireActivity().//overridePendingTransition(0,0)
         }
 
         card_search.setOnClickListener {
             startActivity(Intent(activity, SearchActivity::class.java))
-            requireActivity().overridePendingTransition(0, 0)
+          //  requireActivity().//overridePendingTransition(0,0)
         }
 
         et_search_property.setOnClickListener {
@@ -779,7 +780,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         intent.putExtra("view_count",model!!.totalViews)
         intent.putExtra("myAd",false)
         startActivity(intent)
-        requireActivity().overridePendingTransition(0, 0)
+       // requireActivity().//overridePendingTransition(0,0)
     }
 
     override fun openFeatureDetail(model: Result?) {
@@ -790,7 +791,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         // intent.putExtra("model",Gson().toJson(model))
         intent.putExtra("myAd",false)
         startActivity(intent)
-        requireActivity().overridePendingTransition(0, 0)
+      //  requireActivity().//overridePendingTransition(0,0)
     }
 
     override fun editAd(model: Result?) {
@@ -838,7 +839,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
             val intent = Intent(activity,VideoViewActivity::class.java)
             intent.putExtra("position",position)
             startActivity(intent)
-            requireActivity().overridePendingTransition(0, 0)
+         //   requireActivity().//overridePendingTransition(0,0)
         }
 
     }
@@ -915,7 +916,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         if(!type.equals("all")){
             pagemap.put("type",type)
         }
-        if(selectedCityModel!=null){
+        if(selectedCityModel!=null && !selectedCityModel!!.slug!!.isNullOrEmpty()){
             pagemap.put("location",selectedCityModel!!.slug!!)
         }
         if(PreferencesService.instance.userLoginStatus == true){
@@ -1172,7 +1173,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
 
     private fun showCityBottomSheet() {
-        var adapterCity:HomeSelectCityAdapter
+        val adapterCity:HomeSelectCityAdapter
         val bottomSheetDialog = BottomSheetDialog(requireActivity())
         val view = layoutInflater.inflate(R.layout.bottom_sheet_select_city, null)
         bottomSheetDialog.window?.setSoftInputMode(

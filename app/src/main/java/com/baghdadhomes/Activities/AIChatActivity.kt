@@ -123,7 +123,7 @@ class AIChatActivity : BaseActivity(), AdapterChatAI.AdapterAiChatAction {
         intent.putExtra("view_count", model.totalViews)
         intent.putExtra("myAd",false)
         startActivity(intent)
-        overridePendingTransition(0, 0)
+       // overridePendingTransition(0, 0)
     }
 
     override fun onSeeAllClick(position: Int) {

@@ -2177,7 +2177,7 @@
                 android:background="@drawable/bg_spinner"
                 android:focusable="false"
                 android:focusableInTouchMode="false"
-                android:text="@string/select"
+                android:text="@string/select_realstate"
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                 android:singleLine="true"
                 android:textColor="@color/darkGrey"
@@ -2368,6 +2368,7 @@
                 android:text="@string/price_plan_details"
                 android:textColor="@color/darkGrey"
                 android:textSize="16dp"
+                android:visibility="gone"
                 android:layout_marginTop="5dp"
                 android:layout_centerVertical="true"/>
 
@@ -2379,6 +2380,7 @@
                 android:fontFamily="@font/hacen_tunisia_bold_regular"
                 android:hint="@string/enter_price"
                 android:maxLines="1"
+                android:visibility="gone"
                 android:padding="15sp"
                 android:singleLine="true"
                 android:textColor="@color/grey"

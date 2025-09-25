@@ -400,7 +400,7 @@ class CompanyAdsActivity : BaseActivity(), AdapterDetailAds.openDetailPage, OnMa
         intent.putExtra("view_count",model!!.totalViews)
       //  intent.putExtra("model", Gson().toJson(model))
         startActivity(intent)
-        overridePendingTransition(0, 0)
+        //overridePendingTransition(0, 0)
     }
 
     override fun editAd(model: Result?) {
@@ -443,7 +443,7 @@ class CompanyAdsActivity : BaseActivity(), AdapterDetailAds.openDetailPage, OnMa
         val intent = Intent(this,VideoViewActivity::class.java)
         intent.putExtra("position",position)
         startActivity(intent)
-        overridePendingTransition(0, 0)
+       // overridePendingTransition(0, 0)
     }
 
 }

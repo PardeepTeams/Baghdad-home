@@ -59,13 +59,9 @@ class WhatsappRegisterScreen : BaseActivity() {
     var random = Random()
     var PERMISSIONS = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         arrayOf(
-            Manifest.permission.READ_MEDIA_IMAGES,
-            Manifest.permission.READ_MEDIA_VIDEO,
             Manifest.permission.CAMERA)
     } else{
         arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA)
     }
     lateinit var et_name:EditText
@@ -493,7 +489,7 @@ class WhatsappRegisterScreen : BaseActivity() {
                 val intent:Intent = Intent(this,HomeActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
-                overridePendingTransition(0,0)
+              //  overridePendingTransition(0,0)
             }else{
                 try {
                     FirebaseAuth.getInstance().signOut()
@@ -614,8 +610,15 @@ class WhatsappRegisterScreen : BaseActivity() {
                     files = File(imageUri.path)
                     if (Build.VERSION.SDK_INT < 28) {
                         files = File(imageUri.path)
-                        val bitmap =
-                            MediaStore.Images.Media.getBitmap(contentResolver, imageUri)
+                        val bitmap = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                            val source = ImageDecoder.createSource(contentResolver, imageUri)
+                            ImageDecoder.decodeBitmap(source) { decoder, _, _ ->
+                                decoder.isMutableRequired = true
+                                decoder.allocator = ImageDecoder.ALLOCATOR_SOFTWARE // or HARDWARE if needed
+                            }
+                        } else {
+                            MediaStore.Images.Media.getBitmap(contentResolver, imageUri) // fallback for older devices
+                        }
                         if (socialModel != null){
                             hitImageUploadApi(files)
                         } else {

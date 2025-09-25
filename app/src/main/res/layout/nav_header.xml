@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:text="نجف هوم"
         android:textSize="28dp"
-        android:textColor="@color/white"
+        android:textColor="@color/whiteRed"
         android:layout_gravity="center"
         android:gravity="center"
         android:textAlignment="center"

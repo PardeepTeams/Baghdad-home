@@ -85,7 +85,8 @@
     <string name="fromGallery">Gallery</string>
     <string name="openCamera">Camera</string>
     <string name="some_selected_files_not_supported">Some selected files not supported by app.</string>
-    <string name="neighbor_search">ابحث عن الحي السكني </string>
+   <!-- <string name="neighbor_search">ابحث عن الحي السكني </string>-->
+    <string name="neighbor_search">ابحث عن الحي السكني</string>
     <string name="neighborhoods">الاحياء السكنية</string>
     <string name="city_name">Al-ameer</string>
     <string name="najaf">Najaf</string>
@@ -330,8 +331,8 @@
     <string name="half_furnished">نصف مفروشة</string>
     <string name="amenities">وسائل الراحة</string>
     <string name="orientation">الاتجاه </string>
-    <string name="select">يختار</string>
-    <string name="real_estate_situation">فتره العقد العقاري</string>
+    <string name="select">أختر</string>
+    <string name="real_estate_situation">الوضع العقاري</string>
     <string name="rental_frequency">تردد الإيجار</string>
     <string name="balcony">شرفة</string>
     <string name="kitchen">مطبخ</string>
@@ -376,7 +377,7 @@
     <string name="north_eng">North</string>
     <string name="floor_plan_images">صور مخطط الطابق</string>
     <string name="price_plan_details">خطة الدفع</string>
-    <string name="floor_plan">خطة الكلمة</string>
+    <string name="floor_plan">مخطط الطابق</string>
     <string name="Units_details">تفاصيل الوحدات والمخططات الطابقية</string>
     <string name="bathrooms_new">الحمامات</string>
     <string name="payment_plans">خطة الدفع</string>
@@ -384,4 +385,8 @@
     <string name="specs">المواصفات</string>
     <string name="area">منطقة</string>
     <string name="house_plan">خطة المنزل</string>
+    <string name="no_neighborhood_found">لم يتم العثور على حي.</string>
+    <string name="select_realstate">أختر</string>
+    <string name="choose_the_neighborhood_first">اختر الحي أولا</string>
+    <string name="upload_video_new">Upload Video</string>
 </resources>

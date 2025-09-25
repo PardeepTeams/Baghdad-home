@@ -88,4 +88,5 @@ data class Property_attr (
 data class PropertyPricePlan(
     @SerializedName("title") val title : String? = null,
     @SerializedName("price") val price : String? = null,
+    @SerializedName("title_english") val title_english : String? = null,
 )

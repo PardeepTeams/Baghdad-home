@@ -233,10 +233,10 @@ class LoginActivity : BaseActivity() {
                     PreferencesService.instance.saveUserProfile(loginModel.response)
                     PreferencesService.instance.saveUserLoginStatus(true)
                     PreferencesService.instance.saveUserLoginMethod("simple")
-                    var intent:Intent = Intent(this,HomeActivity::class.java)
+                    val intent:Intent = Intent(this,HomeActivity::class.java)
                     startActivity(intent)
                     finishAffinity()
-                    overridePendingTransition(0,0)
+                   // overridePendingTransition(0,0)
                 }else if (loginModel.message!=null){
                     Utility.showToast(this,loginModel.message.toString())
                 }

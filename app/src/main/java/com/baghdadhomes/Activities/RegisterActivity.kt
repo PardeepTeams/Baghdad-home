@@ -76,13 +76,9 @@ class RegisterActivity : BaseActivity() {
     private val PICK_IMAGE_REQUEST_CODE = 102
     var PERMISSIONS = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         arrayOf(
-            Manifest.permission.READ_MEDIA_IMAGES,
-            Manifest.permission.READ_MEDIA_VIDEO,
             Manifest.permission.CAMERA)
     } else{
         arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA)
     }
     var mimeTypes = arrayOf("image/jpeg", "image/jpg", "image/png")
@@ -699,8 +695,8 @@ class RegisterActivity : BaseActivity() {
     }
 
     private fun openImagePicker() {
-        isPermissionAsked = false
-        if (hasPermissions(*PERMISSIONS)) {
+      //  isPermissionAsked = false
+      //  if (hasPermissions(*PERMISSIONS)) {
             val layoutInflater = LayoutInflater.from(this)
             val customView = layoutInflater.inflate(R.layout.image_picker_choose_dialog, null)
             val lytCameraPick:LinearLayout = customView.findViewById(R.id.lytCameraPick)
@@ -738,9 +734,9 @@ class RegisterActivity : BaseActivity() {
                 .maxResultSize(1080, 1080)	//Final image resolution will be less than 1080 x 1080(Optional)
                 .start()*/
             //  openImagePickDialog()
-        } else {
+       /* } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS, PERMISSION_ALL)
-        }
+        }*/
     }
 
     private fun openImagePickDialog() {

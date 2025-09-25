@@ -188,6 +188,6 @@ class ChatHistoryActivity : BaseFragment(), AdapterChatList.OpenMessages {
             intent.putExtra("postData", Gson().toJson(postDetails))
         }
         startActivity(intent)
-        requireActivity().overridePendingTransition(0,0)
+      //  requireActivity().overridePendingTransition(0,0)
     }
 }

@@ -48,13 +48,15 @@ import android.widget.RadioButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.result.ActivityResultCallback
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatSpinner
 import androidx.cardview.widget.CardView
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.core.content.FileProvider
 import androidx.core.net.toUri
 import androidx.core.widget.NestedScrollView
 import androidx.recyclerview.widget.GridLayoutManager
@@ -100,9 +102,9 @@ import com.google.gson.JsonObject
 import com.hbb20.CountryCodePicker
 import com.hi.library.utils.TrimType
 import com.hi.library.utils.TrimVideo
-import com.sangcomz.fishbun.FishBun
-import com.sangcomz.fishbun.FishBun.Companion.INTENT_PATH
-import com.sangcomz.fishbun.adapter.image.impl.GlideAdapter
+import com.otaliastudios.transcoder.Transcoder
+import com.otaliastudios.transcoder.TranscoderListener
+import com.otaliastudios.transcoder.strategy.DefaultVideoStrategy
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
@@ -135,13 +137,9 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var image_property:ImageView
     var PERMISSIONS = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
         arrayOf(
-            Manifest.permission.READ_MEDIA_IMAGES,
-            Manifest.permission.READ_MEDIA_VIDEO,
             Manifest.permission.CAMERA)
     } else{
         arrayOf(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.CAMERA)
     }
     var mimeTypes = arrayOf("image/jpeg", "image/jpg", "image/png")
@@ -154,6 +152,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var rv_floor_photo: RecyclerView
     var status: Int = 0
     lateinit var ll_nested: LinearLayout
+    var count  = 15;
 
     lateinit var tv_for_rent: TextView
     lateinit var tv_for_sale: TextView
@@ -375,6 +374,94 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
     lateinit var nbhdDialog: Dialog
 
     var imageType:String = ""
+
+    private lateinit var tempVideoUri: Uri
+    private lateinit var videoFile: File
+    private var cameraImageUri: Uri? = null
+
+  //  private lateinit var pickMultipleImages: ActivityResultLauncher<PickVisualMediaRequest>
+
+   private val pickMultipleImages  =
+    registerForActivityResult(ActivityResultContracts.PickMultipleVisualMedia(count)) { uris: List<Uri> ->
+        if (uris.isNotEmpty()) {
+            handleSelectedImages(uris)
+        }
+    }
+
+    private val  takePhotoLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            if (result.resultCode == Activity.RESULT_OK) {
+                cameraImageUri?.let {
+                    val selectedImages = mutableListOf<Uri>()
+                    selectedImages.add(it)
+                    handleSelectedImages(selectedImages)
+                }
+            }
+        }
+
+    val pickVideoLauncher = registerForActivityResult(
+        ActivityResultContracts.GetContent()
+    ) { uri: Uri? ->
+        uri?.let {
+            if (checkIfUriCanBeUsedForVideo(it)) {
+                // Start trimming using TrimVideo
+                TrimVideo.activity(it.toString())
+                    .setTrimType(TrimType.MIN_MAX_DURATION)
+                    .setMinToMax(2, 30)
+                    .setTitle(getString(R.string.trim_video))
+                    .start(this, videoTrimResultLauncher)
+            } else {
+                showToast(this, getString(R.string.file_format_unupport))
+            }
+        }
+    }
+
+ /*   val captureVideoLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            val uri: Uri? = result.data?.data
+            uri?.let {
+                val videoFile = getFile(this, it)
+                val videoUri = Uri.fromFile(videoFile)
+                val uris = mutableListOf<Uri>()
+                uris.add(videoUri)
+                compressVideo(uris)
+            }
+        }
+    }*/
+
+    private val recordVideoLauncher = registerForActivityResult(
+        ActivityResultContracts.StartActivityForResult()
+    ) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // video recorded successfully
+            val recordedUri = tempVideoUri
+            tempVideoUri?.let {
+                val videoFile = getFile(this, it)
+                val videoUri = Uri.fromFile(videoFile)
+                val uris = mutableListOf<Uri>()
+                uris.add(videoUri)
+                compressVideo(uris)
+            }
+        }
+    }
+/*    private val recordVideoLauncher =
+        registerForActivityResult(ActivityResultContracts.CaptureVideo()) { success ->
+            if (success) {
+                // You got a recorded video Uri
+                tempVideoUri?.let {
+                    val videoFile = getFile(this, it)
+                    val videoUri = Uri.fromFile(videoFile)
+                    val uris = mutableListOf<Uri>()
+                    uris.add(videoUri)
+                    compressVideo(uris)
+                }
+                // Do something with it
+            } else {
+                // user cancelled
+            }
+        }*/
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -600,7 +687,6 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
 
         tvLocationOnMap.setOnClickListener {
-            println("$cityNameEnglish && $nbhdNameEnglish")
             if(!cityNameEnglish.isNullOrEmpty()){
                 val intent = Intent(this, MapViewActivity::class.java)
                 intent.putExtra("city", cityNameEnglish.orEmpty())
@@ -610,6 +696,13 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                     intent.putExtra("lng", propertyLatLng?.longitude)
                 }
                 startActivityForResult(intent, REQUEST_CODE_LOCATION)
+            }else{
+               /* val intent = Intent(this, MapViewActivity::class.java)
+                if (propertyLatLng != null){
+                    intent.putExtra("lat", propertyLatLng?.latitude)
+                    intent.putExtra("lng", propertyLatLng?.longitude)
+                }
+                startActivityForResult(intent, REQUEST_CODE_LOCATION)*/
             }
 
         }
@@ -652,6 +745,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
             imm.hideSoftInputFromWindow(el_main.windowToken, 0)
             isPermissionAsked = false
+
             if (hasPermissions(*PERMISSIONS)) {
                 openImagePicker()
             } else {
@@ -934,19 +1028,24 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 }*/
                 var language = PreferencesService.instance.getLanguage()
                 Handler(Looper.getMainLooper()).postDelayed({
-                    for (i in cityList1){
-                        if (nbhd != null){
-                            if (i.name.equals(nbhd)){
-                                nbhdSlug = i.slug
-                                nbhdNameEnglish = i.description.orEmpty()
-                                if (language == "ar"){
-                                    spinner_neighborhood.text = i.name
-                                } else{
-                                    spinner_neighborhood.text = i.description
+                    if(cityList1.isNullOrEmpty()){
+                        spinner_neighborhood.text = getString(R.string.choose_the_neighborhood)
+                    }else{
+                        for (i in cityList1){
+                            if (nbhd != null){
+                                if (i.name.equals(nbhd)){
+                                    nbhdSlug = i.slug
+                                    nbhdNameEnglish = i.description.orEmpty()
+                                    if (language == "ar"){
+                                        spinner_neighborhood.text = i.name
+                                    } else{
+                                        spinner_neighborhood.text = i.description
+                                    }
                                 }
                             }
                         }
                     }
+
                 }, 100)
 
             }
@@ -964,14 +1063,83 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         nbhdAdapter = AdapterNBHDDialog(this, cityList1, this)
     }
 
-    private fun openImagePicker() {
-        val count  = 0;
-        if(imageType.equals("property")){
-            15-imagesList.size
-        }else{
-            15-floorImagesList.size
+    private fun createImageUri(): Uri {
+        val imageFileName = "temp_image_${System.currentTimeMillis()}.jpg"
+        val contentValues = android.content.ContentValues().apply {
+            put(MediaStore.Images.Media.DISPLAY_NAME, imageFileName)
+            put(MediaStore.Images.Media.MIME_TYPE, "image/jpeg")
         }
-        FishBun.with(this)
+        return contentResolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, contentValues)!!
+    }
+    private fun openImagePicker() {
+
+        if(imageType.equals("property")){
+          count =   15-imagesList.size
+        }else{
+            count =  15-floorImagesList.size
+        }
+
+
+        val layoutInflater = LayoutInflater.from(this)
+        val customView = layoutInflater.inflate(R.layout.image_picker_choose_dialog, null)
+        val lytCameraPick:LinearLayout = customView.findViewById(R.id.lytCameraPick)
+        val lytGalleryPick:LinearLayout = customView.findViewById(R.id.lytGalleryPick)
+
+        val dialog = AlertDialog.Builder(this)
+            .setTitle(R.string.choose_option)
+            .setView(customView)
+            .setNegativeButton(R.string.option_cancel) { _, _ ->
+
+            }
+            .show()
+
+        lytCameraPick.setOnClickListener {
+            val imageFile = File.createTempFile("image_", ".jpg", cacheDir)
+            cameraImageUri = FileProvider.getUriForFile(
+                this,
+                "${packageName}.fileprovider",
+                imageFile
+            )
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraImageUri)
+            takePhotoLauncher.launch(intent)
+            dialog.dismiss()
+        }
+
+
+        lytGalleryPick.setOnClickListener {
+            pickMultipleImages.launch(
+                PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+            )
+            dialog.dismiss()
+        }
+
+
+
+
+
+
+
+       /* TedImagePicker.with(this)
+            .title(getString(R.string.app_name)) // ActionBar title
+            .buttonText(resources.getString(R.string.upload_photos)) // Done button text
+            .buttonBackground(R.color.skyBlue) // Button color
+            .buttonTextColor(R.color.whiteNew)
+            .backButton(R.drawable.ic_back_arrow) // Back arrow icon
+            .cameraTileBackground(R.color.whiteNew) // Camera tile color
+            .cameraTileImage(R.drawable.ic_camera_new)
+            .mediaType(MediaType.IMAGE) // Only images (no GIFs, no videos)
+            .max(count, "You can't select any more.") // Selection limit + message
+            .errorListener {  }
+            .showCameraTile(true) // Show camera option
+            .startMultiImage { uriList ->
+                handleSelectedImages(uriList)
+            }
+*/
+        /*pickImagesLauncher.launch(
+            PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly)
+        )*/
+       /* FishBun.with(this)
             .setImageAdapter(GlideAdapter())
             .setPickerCount(count)
             .setPickerSpanCount(5)
@@ -999,10 +1167,75 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             .setActionBarTitle(getString(R.string.app_name))
             .textOnImagesSelectionLimitReached("You can't select any more.")
             .textOnNothingSelected("I need a photo!")
-            .startAlbumWithOnActivityResult(REQUEST_CODE)
+            .startAlbumWithOnActivityResult(REQUEST_CODE)*/
     }
 
 
+
+    private fun handleSelectedImages(uriList: List<Uri>) {
+        for (uri in uriList) {
+            try {
+                val bitmap: Bitmap
+                val files: File
+
+                if (Build.VERSION.SDK_INT < 28) {
+                    // For older Android
+                    bitmap = MediaStore.Images.Media.getBitmap(contentResolver, uri)
+                    files = File(getRealPathFromUri(uri)) // helper function shown below
+                } else {
+                    // For Android 9 (API 28) and above
+                    val source = ImageDecoder.createSource(contentResolver, uri)
+                    bitmap = ImageDecoder.decodeBitmap(source)
+                    val inputFile = getFileImageFromUri(uri)
+                    files = inputFile!!
+                }
+
+                val fileSizeKB = files.length() / 1024.0
+                val fileSizeMB = fileSizeKB / 1024.0
+
+                // Convert bitmap to temp file (your method)
+                val newFile = bitmapToFile(bitmap, currentdateImageName, fileSizeMB)
+
+                // Prepare request
+                if(newFile!=null){
+                    val requestFile = newFile!!.asRequestBody("image/*".toMediaTypeOrNull())
+                    val body = MultipartBody.Part.createFormData(
+                        "async-upload",
+                        newFile.name + ".png",
+                        requestFile
+                    )
+
+                    if (isNetworkAvailable()) {
+                        imageView_progress.visibility = View.VISIBLE
+                        hitMultipartApiWithoutParams(
+                            Constants.UPLOAD_IMAGE,
+                            false,
+                            "houzez-mobile-api/v1/media_upload",
+                            body,
+                            imageView_progress
+                        )
+                    } else {
+                        showToast(this, resources.getString(R.string.intenet_error))
+                    }
+                }
+
+            } catch (e: Exception) {
+                Log.e("ImageError", e.message.toString())
+            }
+        }
+    }
+
+
+    private fun getRealPathFromUri(uri: Uri): String {
+        var path = ""
+        val projection = arrayOf(MediaStore.Images.Media.DATA)
+        contentResolver.query(uri, projection, null, null, null)?.use { cursor ->
+            val columnIndex = cursor.getColumnIndexOrThrow(MediaStore.Images.Media.DATA)
+            cursor.moveToFirst()
+            path = cursor.getString(columnIndex)
+        }
+        return path
+    }
 
 
     fun scrollNestedScrollViewToRequiredTarget(targetView : View) {
@@ -1022,6 +1255,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         val cv_cardView: CardView = nbhdDialog.findViewById(R.id.cv_cardView)
         val et_serach: EditText = nbhdDialog.findViewById(R.id.et_serach)
         val img_clear_search: ImageView = nbhdDialog.findViewById(R.id.img_clear_search)
+        val tv_no_data: TextView = nbhdDialog.findViewById(R.id.tv_no_data)
 
         cv_cardView.visibility = View.VISIBLE
 
@@ -1030,6 +1264,13 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         nbhdAdapter = AdapterNBHDDialog(this, cityList1, this)
         rv_nbhd.adapter = nbhdAdapter
         nbhdAdapter.notifyDataSetChanged()
+
+
+        if(!cityList1.isNullOrEmpty()){
+            tv_no_data.visibility = View.GONE
+        }else{
+            tv_no_data.visibility = View.VISIBLE
+        }
 
         et_serach.setOnEditorActionListener{ v, actionId, event ->
             if (actionId == EditorInfo.IME_ACTION_SEARCH){
@@ -2860,93 +3101,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                     }
             }
         } else if (requestCode == REQUEST_CODE && resultCode == RESULT_OK) {
-            path.clear()
-            path = data!!.getParcelableArrayListExtra(INTENT_PATH)!!;
-            images_count = path.size
-            for (i in path) {
-                val imageListInUri = i
-                if (Build.VERSION.SDK_INT < 28) {
-                    val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-                    val cursor: Cursor? = contentResolver.query(
-                        imageListInUri,
-                        filePathColumn, null, null, null
-                    )
-                    cursor!!.moveToFirst()
-                    val columnIndex: Int = cursor.getColumnIndex(filePathColumn.get(0))
-                    var imgDecodableString = cursor.getString(columnIndex)
-                    val bitmap =
-                        MediaStore.Images.Media.getBitmap(contentResolver, imageListInUri)
-                    files = File(i.path)
-                    val file_size: Double = java.lang.String.valueOf(files!!.length() / 1024).toDouble()
-                    val file_sizeMB: Double = (file_size/1024)
-                    //files = File(imgDecodableString)
-                    files = bitmapToFile(bitmap, currentdateImageName,file_sizeMB)
-                    val fileSizeUpload = (files!!.length() / 1024 )
-                    println("FileSizeUpload:$fileSizeUpload")
-                        val requestFile = files!!.asRequestBody("image/*".toMediaTypeOrNull())
-                        var body = MultipartBody.Part.createFormData(
-                            "async-upload",
-                            files!!.name + ".png",
-                            requestFile
-                        )
-                        if (isNetworkAvailable()){
-                            imageView_progress.visibility = View.VISIBLE
-                            hitMultipartApiWithoutParams(
-                                Constants.UPLOAD_IMAGE, false, "houzez-mobile-api/v1/media_upload",
-                                body,imageView_progress
-                            )
-                        } else{
-                            showToast(this, resources.getString(R.string.intenet_error))
-                        }
-                } else {
-                    val source = imageListInUri.let {
-                        contentResolver?.let { it1 ->
-                            ImageDecoder.createSource(
-                                it1,
-                                it
-                            )
-                        }
-                    }
-                    val filePathColumn = arrayOf(MediaStore.Images.Media.DATA)
-                    val cursor: Cursor? = contentResolver.query(
-                        imageListInUri,
-                        filePathColumn, null, null, null
-                    )
-                    cursor!!.moveToFirst()
-                    val columnIndex: Int = cursor.getColumnIndex(filePathColumn.get(0))
-                    val imgDecodableString = cursor.getString(columnIndex)
-                    cursor.close()
-                    try {
-                      //  val bitmap = source.let { ImageDecoder.decodeBitmap(it!!) }
-                        files = File(imgDecodableString)
-                        val bitmap = decodeFile(files)
-                        val file_size: Double = java.lang.String.valueOf(files!!.length() / 1024).toDouble()
-                        val file_sizeMB: Double = (file_size/1024)
-                        files = bitmapToFile(bitmap, currentdateImageName,file_sizeMB)
-                        val fileSizeUpload = (files!!.length() / 1024 )
-                        println("FileSizeUpload:$fileSizeUpload")
-                        val requestFile = files!!.asRequestBody("image/*".toMediaTypeOrNull())
-                        val body = MultipartBody.Part.createFormData(
-                            "async-upload",
-                            files!!.name + ".png",
-                            requestFile
-                        )
-                        if (isNetworkAvailable()){
-                            imageView_progress.visibility = View.VISIBLE
-                            hitMultipartApiWithoutParams(
-                                Constants.UPLOAD_IMAGE, false, "houzez-mobile-api/v1/media_upload",
-                                body,imageView_progress
-                            )
-                        } else{
-                            showToast(this, resources.getString(R.string.intenet_error))
-                        }
-                    }catch (e:Exception){
-                      Log.d("ImageError",e.message.toString())
-                    }
 
-
-                }
-            }
 
         } else if (requestCode == VIDEO_UPLOAD_CAMERA_CODE && resultCode == RESULT_OK){
             val uri : Uri? = data?.data!!
@@ -3068,7 +3223,43 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
         }
     }
 
+
+
     fun openVideoChooser(){
+     /*   if(hasPermissions(*PERMISSIONS)){
+
+            TedImagePicker.with(this)
+                .showCameraTile(true)
+                .title(getString(R.string.app_name))
+                .buttonText(resources.getString(R.string.upload_video_new)) // Done button text
+                .buttonBackground(R.color.skyBlue) // Button color
+                .buttonTextColor(R.color.skyBlue)
+                .backButton(R.drawable.ic_back_arrow) // Back arrow icon
+                .cameraTileBackground(R.color.whiteNew) // Camera tile color
+                .cameraTileImage(R.drawable.ic_camera_new)
+                .mediaType(MediaType.VIDEO) // Only video
+                .start { uri: Uri ->
+                    if (uri.toString().endsWith(".mp4") || uri.toString().endsWith(".mov") || uri.toString().contains("video")) {
+                        // Only allow video types
+                        if (checkIfUriCanBeUsedForVideo(uri)) {
+                            // Start trimming using TrimVideo
+                            TrimVideo.activity(uri.toString())
+                                .setTrimType(TrimType.MIN_MAX_DURATION)
+                                .setMinToMax(2, 30)
+                                .setTitle(getString(R.string.trim_video))
+                                .start(this, videoTrimResultLauncher)
+                        } else {
+                            showToast(this, getString(R.string.file_format_unupport))
+                        }
+                    } else {
+                        showToast(this, "Selected file is not a video")
+                    }
+
+                }
+        }else{
+            ActivityCompat.requestPermissions(this, PERMISSIONS, VIDEO_PERMISSION_REQUEST_CODE)
+        }*/
+
         if (hasPermissions(*PERMISSIONS)) {
             val layoutInflater = LayoutInflater.from(this)
             val customView = layoutInflater.inflate(R.layout.image_picker_choose_dialog, null)
@@ -3084,39 +3275,131 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                 .show()
 
             lytCameraPick.setOnClickListener {
-                val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
-                intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1)
-                intent.putExtra(MediaStore.EXTRA_DURATION_LIMIT,30)
-                //intent.putExtra(MediaStore.EXTRA_SIZE_LIMIT,50*1048576L) //size in Mb * 1048576L
-                startActivityForResult(intent,VIDEO_UPLOAD_CAMERA_CODE)
+                val videoFile = File.createTempFile("video_", ".mp4", cacheDir)
+                tempVideoUri = FileProvider.getUriForFile(
+                    this,
+                    "${packageName}.fileprovider",
+                    videoFile
+                )
+               // recordVideoLauncher.launch(tempVideoUri)
+
+                val intent = Intent(MediaStore.ACTION_VIDEO_CAPTURE).apply {
+                    putExtra(MediaStore.EXTRA_OUTPUT, tempVideoUri)
+                    putExtra(MediaStore.EXTRA_DURATION_LIMIT, 30) // limit to 30 seconds
+                    putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1)   // optional: high quality
+                }
+
+                recordVideoLauncher.launch(intent)
+                dialog.dismiss()
                 dialog.dismiss()
             }
 
 
             lytGalleryPick.setOnClickListener {
-                val intent = Intent(Intent.ACTION_PICK)
-                intent.type = "video/*"
-                intent.action = Intent.ACTION_GET_CONTENT
-                startActivityForResult(intent,VIDEO_UPLOAD_GALLERY_CODE)
+                pickVideoLauncher.launch("video/*") // Only video
                 dialog.dismiss()
             }
 
         } else {
             ActivityCompat.requestPermissions(this, PERMISSIONS, VIDEO_PERMISSION_REQUEST_CODE)
         }
+    }
 
+    fun getFileFromUri(uri: Uri): File? {
+        return try {
+            val inputStream = contentResolver.openInputStream(uri)
+            val tempFile = File.createTempFile("temp_video", ".mp4", cacheDir)
+            inputStream?.use { input ->
+                tempFile.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+            tempFile
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
+    }
+
+    fun getFileImageFromUri(uri: Uri): File? {
+        return try {
+            val inputStream = contentResolver.openInputStream(uri)
+            val tempFile = File.createTempFile("temp_image", ".jpg", cacheDir)
+            inputStream?.use { input ->
+                tempFile.outputStream().use { output ->
+                    input.copyTo(output)
+                }
+            }
+            tempFile
+        } catch (e: Exception) {
+            e.printStackTrace()
+            null
+        }
     }
 
     private fun compressVideo(uris: MutableList<Uri>) {
         imageView_progress.visibility = View.VISIBLE
+
+        uris.forEachIndexed { index, uri ->
+
+            // Convert Uri to temporary File
+            val inputFile = getFileFromUri(uri)
+            if (inputFile == null) {
+                showToast(this@PostAdActivity,"Failed to read video file")
+                return@forEachIndexed
+            }
+
+            // Output file in cacheDir
+            val outputFile = File(cacheDir, "compressed_video_$index.mp4")
+
+            // Video compression strategy (VERY_LOW quality)
+            val videoStrategy = DefaultVideoStrategy.Builder()
+                .bitRate(300_000) // adjust bitrate as needed
+                .build()
+
+            // Start transcoding
+            Transcoder.into(outputFile.absolutePath)
+                .addDataSource(inputFile.absolutePath) // pass File instead of Uri
+              //  .setVideoStrategy(videoStrategy)
+                .setListener(object : TranscoderListener {
+                    override fun onTranscodeProgress(progress: Double) {
+                        // Optional: update UI progress
+                    }
+
+                    override fun onTranscodeCompleted(successCode: Int) {
+                        imageView_progress.visibility = View.GONE
+                        if (outputFile.exists()) {
+                            // File exists → upload it
+                            hitUploadVideoApi(outputFile)
+                        } else {
+                            showToast(this@PostAdActivity,"Compressed video not found")
+                        }
+                    }
+
+                    override fun onTranscodeCanceled() {
+                        imageView_progress.visibility = View.GONE
+                        showToast(this@PostAdActivity,"Compression canceled")
+                    }
+
+                    override fun onTranscodeFailed(p0: Throwable) {
+                        imageView_progress.visibility = View.GONE
+                       showToast(this@PostAdActivity,"Compression failed")
+                    }
+                })
+                .setVideoTrackStrategy(videoStrategy)
+                .transcode()
+        }
+
+
+
         //lifecycleScope.launch {
-        VideoCompressor.start(
+  /*      VideoCompressor.start(
             context = applicationContext,
             uris = uris,
             isStreamable = false,
             sharedStorageConfiguration = SharedStorageConfiguration(
                 //saveAt = SaveLocation.movies,
-                saveAt = SaveLocation.movies,
+                saveAt = SaveLocation.downloads,
                 videoName = "NajafCompress"
             ),
 //                appSpecificStorageConfiguration = AppSpecificStorageConfiguration(
@@ -3132,36 +3415,68 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                     //Update UI
                     if (percent <= 100)
                         runOnUiThread {
-                            /*data[index] = VideoDetailsModel(
+                            *//*data[index] = VideoDetailsModel(
                                 "",
                                 uris[index],
                                 "",
                                 percent
                             )
-                            adapter.notifyDataSetChanged()*/
+                            adapter.notifyDataSetChanged()*//*
                         }
                 }
 
                 override fun onStart(index: Int) {
-                    /*data.add(
+                    *//*data.add(
                         index,
                         VideoDetailsModel("", uris[index], "")
                     )
-                    adapter.notifyDataSetChanged()*/
+                    adapter.notifyDataSetChanged()*//*
                 }
 
                 override fun onSuccess(index: Int, size: Long, path: String?) {
-                    /*data[index] = VideoDetailsModel(
+                    *//*data[index] = VideoDetailsModel(
                         path,
                         uris[index],
                         getFileSize(size),
                         100F
                     )
-                    adapter.notifyDataSetChanged()*/
-                    imageView_progress.visibility = View.GONE
+                    adapter.notifyDataSetChanged()*//*
+                 *//*   imageView_progress.visibility = View.GONE
+
                     val videoFile = File(path!!)
-                    if (videoFile != null){
+                    if (videoFile!=null && videoFile.exists()) {
                         hitUploadVideoApi(videoFile)
+                    } else {
+                        showToast(this@PostAdActivity, "Compressed video not found")
+                    }*//*
+
+                    imageView_progress.visibility = View.GONE
+                    if (!path.isNullOrEmpty()) {
+                        val file = File(path)
+                        if (file.exists()) {
+                            // Direct file exists, upload it
+                            hitUploadVideoApi(file)
+                        } else {
+                            // Maybe it's a content URI
+                            try {
+                                val uri = Uri.parse(path)
+                                val inputStream = contentResolver.openInputStream(uri)
+                                if (inputStream != null) {
+                                    val tempFile = File.createTempFile("upload_", ".mp4", cacheDir)
+                                    tempFile.outputStream().use { output ->
+                                        inputStream.copyTo(output)
+                                    }
+                                    hitUploadVideoApi(tempFile)
+                                } else {
+                                    showToast(this@PostAdActivity, "Compressed video not found")
+                                }
+                            } catch (e: Exception) {
+                                e.printStackTrace()
+                                showToast(this@PostAdActivity, "Compressed video not found")
+                            }
+                        }
+                    } else {
+                        showToast(this@PostAdActivity, "Compression path is null")
                     }
                 }
 
@@ -3177,7 +3492,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
                     // make UI changes, cleanup, etc
                 }
             },
-        )
+        )*/
         //}
     }
 

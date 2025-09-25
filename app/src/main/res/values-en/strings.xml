@@ -381,4 +381,9 @@
     <string name="specs">Specs</string>
     <string name="area">Area</string>
     <string name="house_plan">House Plan</string>
+    <string name="no_neighborhood_found">No neighborhood found.</string>
+    <string name="select_realstate">Select</string>
+    <string name="choose_the_neighborhood_first">Choose the neighborhood first</string>
+
+    <string name="upload_video_new">تحميل الفيديو</string>
 </resources>

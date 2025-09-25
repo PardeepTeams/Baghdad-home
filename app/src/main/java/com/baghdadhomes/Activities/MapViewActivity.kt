@@ -74,7 +74,10 @@ class MapViewActivity : AppCompatActivity(), OnMapReadyCallback {
             }, 100)
 
         } else {
-            getLocationFromAddress(location)
+            if(location!=null && location!!.isNotEmpty()){
+                getLocationFromAddress(location)
+            }
+
         }
 
     }

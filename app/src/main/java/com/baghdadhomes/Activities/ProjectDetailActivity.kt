@@ -74,6 +74,7 @@ import com.baghdadhomes.Models.ModelPropertyBedrooms
 import com.baghdadhomes.Models.ModelPropertyPriceTable
 import com.baghdadhomes.Models.ProjectDetailResponse
 import com.baghdadhomes.Models.ProjectFloorPlan
+import com.baghdadhomes.Models.PropertyPricePlan
 
 class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReadyCallback {
     lateinit var img_auto_scroll: ViewPager2
@@ -143,7 +144,7 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
     var areaList : ArrayList<ModelPropertyBedrooms> = ArrayList()
     lateinit var adapterAreaItem : AdapterAreaItem
 
-    var priceTableList : ArrayList<ModelPropertyPriceTable> = ArrayList()
+    var priceTableList : ArrayList<PropertyPricePlan> = ArrayList()
     lateinit var priceItemsAdapter : AdapterPriceItems
 
     var bedroomsList : ArrayList<ModelPropertyBedrooms> = ArrayList()
@@ -756,14 +757,15 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
 
     private fun updatePriceTable(position : Int) {
         priceTableList.clear()
-        if (!adsDetailModel?.data?.floorPlans.isNullOrEmpty()) {
-            var filteredPlanList = adsDetailModel?.data?.floorPlans?.filter {
+        if (!adsDetailModel?.data?.property_price_plan.isNullOrEmpty()) {
+            priceTableList.addAll(adsDetailModel?.data?.property_price_plan!!)
+           /* var filteredPlanList = adsDetailModel?.data?.floorPlans?.filter {
                 it.favePlanSize == areaList[position].bedrooms
             }.orEmpty()
 
             for (i in filteredPlanList) {
                 priceTableList.add(ModelPropertyPriceTable(i.favePlanPrice,"Down Payment"))
-            }
+            }*/
         }
         priceItemsAdapter.notifyDataSetChanged()
     }

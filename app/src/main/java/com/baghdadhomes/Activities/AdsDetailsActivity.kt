@@ -228,7 +228,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 intent.putExtra("post_id", prop_id.toString())
                 //intent.putExtra("post_id", prop_id.toString())
                 startActivity(intent)
-                overridePendingTransition(0,0)
+                //overridePendingTransition(0,0)
             } else{
                 loginTypeDialog(false)
                 //startActivity(Intent(this, LoginActivity::class.java))
@@ -303,25 +303,23 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         }
 
         nestedScrollView.getViewTreeObserver().addOnScrollChangedListener {
-            if (nestedScrollView != null) {
-                try {
-                    if(loading){
-                        val view = nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1) as View
-                        val diff: Int = view.bottom - (nestedScrollView.getHeight() + nestedScrollView.getScrollY())
-                        if (diff == 0) {
-                            if (propertiesList.size > 0) {
-                                if (isNetworkAvailable()){
-                                    loading = false
-                                    getProperties(true)
-                                } else{
-                                    showToast(this, resources.getString(R.string.intenet_error))
-                                }
+            try {
+                if(loading){
+                    val view = nestedScrollView.getChildAt(nestedScrollView.getChildCount() - 1) as View
+                    val diff: Int = view.bottom - (nestedScrollView.getHeight() + nestedScrollView.getScrollY())
+                    if (diff == 0) {
+                        if (propertiesList.size > 0) {
+                            if (isNetworkAvailable()){
+                                loading = false
+                                getProperties(true)
+                            } else{
+                                showToast(this, resources.getString(R.string.intenet_error))
                             }
                         }
                     }
-                } catch (e: Exception) {
-                    e.message
                 }
+            } catch (e: Exception) {
+                e.message
             }
         }
 
@@ -366,10 +364,10 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         rvFloorPlans.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
         tv_see_all.setOnClickListener {
-            var intent:Intent = Intent(this,AllPropertiesActivity::class.java)
+            val intent:Intent = Intent(this,AllPropertiesActivity::class.java)
             intent.putExtra("type",type)
             startActivity(intent)
-            overridePendingTransition(0,0)
+          //  overridePendingTransition(0,0)
 
         }
 
@@ -378,7 +376,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
             intent.putExtra("model",Gson().toJson(adsDetailModel))
             intent.putExtra("type","3")
             startActivity(intent)
-            overridePendingTransition(0,0)
+          //  overridePendingTransition(0,0)
         }
 
         floor_image_count.setOnClickListener {
@@ -386,7 +384,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
             intent.putExtra("model",Gson().toJson(adsDetailModel))
             intent.putExtra("type","2")
             startActivity(intent)
-            overridePendingTransition(0,0)
+         //   overridePendingTransition(0,0)
         }
 
         images_count_new.setOnClickListener {
@@ -394,7 +392,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
             intent.putExtra("model",Gson().toJson(adsDetailModel))
             intent.putExtra("type","1")
             startActivity(intent)
-            overridePendingTransition(0,0)
+          //  overridePendingTransition(0,0)
         }
         relative_main = findViewById(R.id.relative_main)
         tv_image_count = findViewById(R.id.tv_image_count)
@@ -549,9 +547,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                 tvAppDetails.text = "www.baghdadhome.com\n${getString(R.string.biggest_application_in_baghdad)}"
                 tvAppName.text = "${getString(R.string.app_name)} | ${getString(R.string.app_name_english)}"
                 tvAppText.text = getString(R.string.real_estate_co)
-                if(model.count!=null){
-                    totalCount = model.count
-                }
+                totalCount = model.count
                 if(page == 1){
                     propertiesList.clear()
                 }
@@ -590,7 +586,7 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                // responseList.add(model.result)
                 adapterFloorPlans = AdapterFloorPlansProperties(this, floorPlansList,model!!.result)
                 rvFloorPlans.adapter = adapterFloorPlans
-                val newViewCount = model?.result?.property_meta?.houzez_total_property_views?.get(0) ?: "0"
+                val newViewCount = model.result?.property_meta?.houzez_total_property_views?.get(0) ?: "0"
                 tv_view_count.setText(newViewCount)
                 isFav = model.result.is_fav
 

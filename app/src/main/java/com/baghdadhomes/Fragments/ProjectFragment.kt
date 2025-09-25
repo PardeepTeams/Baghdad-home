@@ -375,7 +375,7 @@ class ProjectFragment : BaseFragment(), ProductsAdapter.openDetailPage {
         val intent = Intent(requireActivity(), ProjectDetailActivity::class.java)
         intent.putExtra("propertyId",model!!.id.toString())
         startActivity(intent)
-        requireActivity().overridePendingTransition(0, 0)
+        //requireActivity().//overridePendingTransition(0,0)
     }
 }
 
