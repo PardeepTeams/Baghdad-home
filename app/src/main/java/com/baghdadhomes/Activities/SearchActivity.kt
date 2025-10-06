@@ -235,8 +235,10 @@ class SearchActivity : BaseActivity(), AdapterNBHDDialog.onClick,
             val maxArea = area_to.text.toString().trim()
 
             val filterModel = FilterIntentModel(status, type,propertySubType, location, minPrice, maxPrice, maxArea, minArea, furnishedType, areaList)
+             Constants.slug.clear()
             val intent = Intent(this,PropertiesSearchActivity::class.java)
-            intent.putExtra("filterData",Gson().toJson(filterModel))
+            Constants.filterModel = filterModel
+          //  intent.putExtra("filterData",Gson().toJson(filterModel))
             startActivity(intent)
         }
 

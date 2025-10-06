@@ -372,24 +372,27 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
         }
 
         tv_location_map.setOnClickListener {
+            Constants.adsDetailModel = adsDetailModel
             val intent:Intent = Intent(this,ImagesDetailsActivity::class.java)
-            intent.putExtra("model",Gson().toJson(adsDetailModel))
+           // intent.putExtra("model",Gson().toJson(adsDetailModel))
             intent.putExtra("type","3")
             startActivity(intent)
           //  overridePendingTransition(0,0)
         }
 
         floor_image_count.setOnClickListener {
+            Constants.adsDetailModel = adsDetailModel
             val intent:Intent = Intent(this,ImagesDetailsActivity::class.java)
-            intent.putExtra("model",Gson().toJson(adsDetailModel))
+          //  intent.putExtra("model",Gson().toJson(adsDetailModel))
             intent.putExtra("type","2")
             startActivity(intent)
          //   overridePendingTransition(0,0)
         }
 
         images_count_new.setOnClickListener {
+            Constants.adsDetailModel = adsDetailModel
             val intent:Intent = Intent(this,ImagesDetailsActivity::class.java)
-            intent.putExtra("model",Gson().toJson(adsDetailModel))
+         //   intent.putExtra("model",Gson().toJson(adsDetailModel))
             intent.putExtra("type","1")
             startActivity(intent)
           //  overridePendingTransition(0,0)
@@ -690,7 +693,8 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
 
                         rlOwner.setOnClickListener {
                             val intent = Intent(this, CompanyAdsActivity::class.java)
-                            intent.putExtra("agencyData", Gson().toJson(model.result.agent_agency_info))
+                            intent.putExtra("agentId",model.result.agent_agency_info.ID)
+                          //  intent.putExtra("agencyData", Gson().toJson(model.result.agent_agency_info))
                             startActivity(intent)
                         }
                     } else {
@@ -1125,8 +1129,10 @@ class AdsDetailsActivity : BaseActivity(), openDetailPage, OnMapReadyCallback {
                                 price = model.result?.price
                             )
                             val intent = Intent(this, MessagingActivity::class.java)
-                            intent.putExtra("receiverModel", Gson().toJson(model.result?.agent_agency_info))
-                            intent.putExtra("postData", Gson().toJson(postData))
+                            Constants.postDetails = postData
+                            Constants.agencyModel = model.result?.agent_agency_info
+                          //  intent.putExtra("receiverModel", Gson().toJson(model.result?.agent_agency_info))
+                          //  intent.putExtra("postData", Gson().toJson(postData))
                             startActivity(intent)
                         }
                     } else{

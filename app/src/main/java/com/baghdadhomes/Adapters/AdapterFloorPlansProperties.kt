@@ -14,6 +14,7 @@ import com.baghdadhomes.Adapters.AdapterFloorPlans.ViewHolder
 import com.baghdadhomes.Models.ProjectFloorPlan
 import com.baghdadhomes.Models.ResultDetail
 import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 
@@ -53,9 +54,10 @@ class AdapterFloorPlansProperties(var context : Context, var list : ArrayList<St
 
 
         holder.itemView.setOnClickListener {
+            Constants.resultDetail = resultDetail
             var intent:Intent = Intent(context, FloorPlansDetailActivity::class.java)
             intent.putExtra("image",list[position])
-            intent.putExtra("model",Gson().toJson(resultDetail))
+           // intent.putExtra("model",Gson().toJson(resultDetail))
             context.startActivity(intent)
         }
 

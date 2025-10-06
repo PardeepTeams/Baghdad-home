@@ -21,12 +21,14 @@ import android.os.Looper
 import android.provider.OpenableColumns
 import android.util.Log
 import android.view.View
+import android.view.WindowInsetsController
 import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.view.ViewCompat
+import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import com.baghdadhomes.Models.UploadimagResponse
 import com.baghdadhomes.PreferencesService
@@ -76,20 +78,36 @@ abstract class BaseActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        WindowCompat.setDecorFitsSystemWindows(window, false)
+
+        val rootView = findViewById<View>(android.R.id.content)
+        ViewCompat.setOnApplyWindowInsetsListener(rootView) { view, insets ->
+            val statusBarHeight = insets.getInsets(WindowInsetsCompat.Type.statusBars()).top
+            // Cap status bar inset to avoid extra space
+            val topPadding = if (statusBarHeight > 100) 100 else statusBarHeight
+
+            // Navigation bar inset
+            val navBarHeight = insets.getInsets(WindowInsetsCompat.Type.navigationBars()).bottom
+            val bottomPadding = if (navBarHeight > 100) 100 else navBarHeight
+
+            // Apply padding only to top and bottom, leave sides 0
+            view.setPadding(0, topPadding, 0, bottomPadding)
+
+            insets
+        }
+
+        // 3️⃣ Optional: Light status bar icons (for dark UI)
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.R) {
+            window.insetsController?.setSystemBarsAppearance(
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS,
+                WindowInsetsController.APPEARANCE_LIGHT_STATUS_BARS
+            )
+        } else {
+            @Suppress("DEPRECATION")
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
         adjustFontScale(resources.configuration)
 
-       /* val rootView = findViewById<View>(android.R.id.content)
-        ViewCompat.setOnApplyWindowInsetsListener(
-            rootView
-        ) { v, insets -> // Apply system bars padding
-            v.setPadding(
-                insets.getInsets(WindowInsetsCompat.Type.systemBars()).left,
-                insets.getInsets(WindowInsetsCompat.Type.systemBars()).top,
-                insets.getInsets(WindowInsetsCompat.Type.systemBars()).right,
-                insets.getInsets(WindowInsetsCompat.Type.systemBars()).bottom
-            )
-            insets
-        }*/
         PreferencesService.init(this)
         if(PreferencesService.instance.getLanguage()!=null && PreferencesService.instance.getLanguage().isNotEmpty()){
             var code  = PreferencesService.instance.getLanguage()

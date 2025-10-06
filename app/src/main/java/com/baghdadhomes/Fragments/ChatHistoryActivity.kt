@@ -183,9 +183,13 @@ class ChatHistoryActivity : BaseFragment(), AdapterChatList.OpenMessages {
             )
         }
         val intent = Intent(context, MessagingActivity::class.java)
-        intent.putExtra("receiverModel",Gson().toJson(model))
+        Constants.agencyModel = model
+       // intent.putExtra("receiverModel",Gson().toJson(model))
         if (postDetails != null) {
-            intent.putExtra("postData", Gson().toJson(postDetails))
+            Constants.postDetails = postDetails
+           // intent.putExtra("postData", Gson().toJson(postDetails))
+        }else{
+            Constants.postDetails = null
         }
         startActivity(intent)
       //  requireActivity().overridePendingTransition(0,0)

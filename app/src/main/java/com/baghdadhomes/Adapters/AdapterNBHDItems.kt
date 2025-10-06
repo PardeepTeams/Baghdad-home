@@ -17,7 +17,7 @@ import com.baghdadhomes.R
 
 class AdapterNBHDItems(private val context: Context,
                        private var categoryList: ArrayList<NBHDDataResponse>,
-                       var childItemClick:ChildItemClick): BaseExpandableListAdapter(), Filterable {
+                       var childItemClick:ChildItemClick,val isHome:Boolean): BaseExpandableListAdapter(), Filterable {
 
     var filterList: ArrayList<NBHDDataResponse> = categoryList
     private var valueFilter: ValueFilter? = null

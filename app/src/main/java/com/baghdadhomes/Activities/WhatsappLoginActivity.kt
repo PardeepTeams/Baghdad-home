@@ -350,7 +350,7 @@ class WhatsappLoginActivity : BaseActivity() {
                 val intent:Intent = Intent(this,HomeActivity::class.java)
                 startActivity(intent)
                 finishAffinity()
-                overridePendingTransition(0,0)
+              //  overridePendingTransition(0,0)
             }else{
                 val intent:Intent = Intent(this,WhatsappRegisterScreen::class.java)
                 val phoneString = countryCode + et_whatsapp_no.text.toString()

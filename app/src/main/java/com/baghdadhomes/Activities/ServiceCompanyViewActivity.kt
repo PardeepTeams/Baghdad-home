@@ -19,6 +19,7 @@ import com.baghdadhomes.Adapters.AdapterCompaniesSlider
 import com.baghdadhomes.Models.ServicesListResponse
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -90,8 +91,9 @@ class ServiceCompanyViewActivity : BaseActivity() {
         if (intent.getStringExtra("arabic_title") != null){
             arabic_title = intent.getStringExtra("arabic_title")
         }
-        if(intent.getStringExtra("model")!=null){
-            serviceCompanyModel = Gson().fromJson(intent.getStringExtra("model"),ServicesListResponse::class.java)
+        if(Constants.serviceListResponse!=null){
+          //  serviceCompanyModel = Gson().fromJson(intent.getStringExtra("model"),ServicesListResponse::class.java)
+            serviceCompanyModel = Constants.serviceListResponse!!
         }
 
         init()

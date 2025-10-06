@@ -1,6 +1,7 @@
 package com.baghdadhomes.Activities
 
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -11,9 +12,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.baghdadhomes.Adapters.CommonBottomSheetSelectedAdapter
+
 import com.google.firebase.FirebaseApp
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -23,7 +22,11 @@ import com.baghdadhomes.Models.AgenciesData
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
 import com.baghdadhomes.Utils.Constants
-import com.google.android.material.bottomsheet.BottomSheetDialog
+import kotlinx.coroutines.CoroutineStart
+import java.security.MessageDigest
+import java.security.NoSuchAlgorithmException
+import android.util.Base64
+import android.util.Log
 
 class HomeActivity : BaseActivity() {
     lateinit var fl_container: FrameLayout
@@ -47,10 +50,30 @@ class HomeActivity : BaseActivity() {
         super.onResume()
     }
 
+    fun printKeyHash() {
+        try {
+            val info = packageManager.getPackageInfo(
+                packageName,
+                PackageManager.GET_SIGNATURES
+            )
+            for (signature in info.signatures!!) {
+                val md = MessageDigest.getInstance("SHA")
+                md.update(signature.toByteArray())
+                val keyHash = Base64.encodeToString(md.digest(), Base64.DEFAULT)
+                Log.d("KeyHash:", keyHash)
+            }
+        } catch (e: PackageManager.NameNotFoundException) {
+            e.printStackTrace()
+        } catch (e: NoSuchAlgorithmException) {
+            e.printStackTrace()
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
         FirebaseApp.initializeApp(this)
+        printKeyHash()
         adjustFontScale(resources.configuration)
         PreferencesService.init(this)
         fl_container = findViewById(R.id.fl_container)
@@ -100,8 +123,10 @@ class HomeActivity : BaseActivity() {
                                 sendBy
                             }
                             val intent = Intent(this, MessagingActivity::class.java)
-                            intent.putExtra("receiverModel", Gson().toJson(receiverModel))
-                            intent.putExtra("postData", Gson().toJson(postData))
+                            Constants.agencyModel = receiverModel
+                            Constants.postDetails = postData
+                                // intent.putExtra("receiverModel", Gson().toJson(receiverModel))
+                          //  intent.putExtra("postData", Gson().toJson(postData))
                             startActivity(intent)
                             this.overridePendingTransition(0, 0)
                         } else {
@@ -144,6 +169,7 @@ class HomeActivity : BaseActivity() {
         rl_add.setOnClickListener{
             val isLogged = PreferencesService.instance.userLoginStatus
             if (isLogged == true){
+                Constants.resultFeautred = null
                 startActivity(Intent(this@HomeActivity, PostAdActivity::class.java))
                 overridePendingTransition(0, 0)
             } else{
@@ -271,6 +297,7 @@ class HomeActivity : BaseActivity() {
 
             val isLogged = PreferencesService.instance.userLoginStatus
             if (isLogged == true){
+                Constants.resultFeautred = null
                 startActivity(Intent(this@HomeActivity, PostAdActivity::class.java))
                 overridePendingTransition(0, 0)
             } else{

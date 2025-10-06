@@ -284,7 +284,7 @@ class ProjectDetailActivity : BaseActivity(), ProjectPropertyActions, OnMapReady
             var intent:Intent = Intent(this,AllPropertiesActivity::class.java)
             intent.putExtra("type",type)
             startActivity(intent)
-            overridePendingTransition(0,0)
+         //   overridePendingTransition(0,0)
 
         }
         relative_main = findViewById(R.id.relative_main)

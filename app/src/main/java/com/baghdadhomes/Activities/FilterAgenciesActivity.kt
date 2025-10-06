@@ -54,6 +54,19 @@ class FilterAgenciesActivity : BaseActivity() {
                 }
             }
         }
+
+        if(Constants.nbhdModel!=null){
+            nbhdModel = Constants.nbhdModel
+            if (nbhdModel != null){
+                setData()
+            } else {
+                if(isNetworkAvailable()){
+                    hitGetApiWithoutToken(Constants.NEIGHBORHOOD, true, Constants.NEIGHBORHOOD_API)
+                }else{
+                    showToast(this, resources.getString(R.string.intenet_error))
+                }
+            }
+        }
     }
 
     private fun inits(){

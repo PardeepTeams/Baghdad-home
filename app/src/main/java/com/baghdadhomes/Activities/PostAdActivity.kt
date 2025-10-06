@@ -722,11 +722,17 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
             imgPreviewVideo.visibility = View.GONE
         }
 
-        if (intent.getStringExtra("model")!=null){
-            intentModel = Gson().fromJson(intent.getStringExtra("model"), ResultFeatured::class.java)
+        if(Constants.resultFeautred!=null){
+            intentModel =   Constants.resultFeautred!!;
             isUpdate= intent.getBooleanExtra("isUpdate",false)!!
             setIntentData()
         }
+
+       /* if (intent.getStringExtra("model")!=null){
+            intentModel = Gson().fromJson(intent.getStringExtra("model"), ResultFeatured::class.java)
+            isUpdate= intent.getBooleanExtra("isUpdate",false)!!
+            setIntentData()
+        }*/
 
 
         rv_property_type.visibility = View.GONE
@@ -2929,6 +2935,7 @@ class PostAdActivity : BaseActivity(), InterfaceSelectImage, AdapterNBHDDialog.o
 
             }
         }else if(apiType.equals(Constants.UPDATE_ADD)){
+            Constants.resultFeautred = null
             finish()
             overridePendingTransition(0,0)
         } else if (apiType.equals(Constants.PROFILE_UPDATE)){

@@ -6,6 +6,7 @@ import android.widget.LinearLayout
 import android.widget.TextView
 import com.baghdadhomes.Models.ResultDetail
 import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
 import com.bumptech.glide.Glide
 import com.google.gson.Gson
 import com.google.gson.JsonObject
@@ -42,6 +43,10 @@ class FloorPlansDetailActivity : BaseActivity() {
 
         if(intent.getStringExtra("model")!=null){
             model = Gson().fromJson(intent.getStringExtra("model"),ResultDetail::class.java)
+        }
+
+        if(Constants.resultDetail!=null){
+            model = Constants.resultDetail
         }
 
         if(intent.getStringExtra("image")!=null){

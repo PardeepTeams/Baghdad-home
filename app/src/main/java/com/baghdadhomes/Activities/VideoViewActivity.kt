@@ -95,7 +95,7 @@ class VideoViewActivity : BaseActivity(), AdapterVideoView.VideoViewAction {
         val intent = Intent(this,AdsDetailsActivity::class.java)
         intent.putExtra("propertyId",storiesList[position].post_id.orEmpty())
         startActivity(intent)
-        overridePendingTransition(0, 0)
+      //  overridePendingTransition(0, 0)
     }
 
     override fun onCancelClick() {
@@ -165,12 +165,11 @@ class VideoViewActivity : BaseActivity(), AdapterVideoView.VideoViewAction {
                 thumbnail = model.thumbnail,
                 price = model.price
             )
-
+            Constants.agencyModel = receiverModel
+            Constants.postDetails = postData
             val intent = Intent(this, MessagingActivity::class.java)
-            intent.putExtra("receiverModel", Gson().toJson(receiverModel))
-            intent.putExtra("postData", Gson().toJson(postData))
             startActivity(intent)
-            overridePendingTransition(0, 0)
+          //  overridePendingTransition(0, 0)
         } else {
             loginTypeDialog(false)
             //startActivity(Intent(this, LoginActivity::class.java))

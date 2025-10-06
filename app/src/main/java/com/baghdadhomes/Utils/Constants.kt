@@ -1,6 +1,14 @@
 package com.baghdadhomes.Utils
 
+import com.baghdadhomes.Models.AdsDataChat
+import com.baghdadhomes.Models.AdsDetailModel
+import com.baghdadhomes.Models.AgenciesData
+import com.baghdadhomes.Models.FilterIntentModel
+import com.baghdadhomes.Models.NBHDModel
 import com.baghdadhomes.Models.ReelResult
+import com.baghdadhomes.Models.ResultDetail
+import com.baghdadhomes.Models.ResultFeatured
+import com.baghdadhomes.Models.ServicesListResponse
 
 class Constants {
     companion object {
@@ -147,5 +155,15 @@ class Constants {
 
         const val GET_HOME_CITY = "HOME_API_CITY"
         const val GET_HOME_CITY_API = "houzez-mobile-api/v1/get-cities"
+
+        var resultFeautred: ResultFeatured? = null
+        var postDetails : AdsDataChat?= null
+        var agencyModel: AgenciesData??= null
+        var nbhdModel : NBHDModel?= null
+        var resultDetail: ResultDetail? = null
+        var adsDetailModel: AdsDetailModel? = null
+        var filterModel: FilterIntentModel? = null
+        var  serviceListResponse: ServicesListResponse? = null
+        var slug: ArrayList<String> = ArrayList()
     }
 }

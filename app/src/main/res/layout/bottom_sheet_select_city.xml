@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    android:padding="16dp">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/txtTitle"
@@ -11,6 +10,8 @@
         android:layout_height="wrap_content"
         android:text="@string/select_city"
         android:textSize="16sp"
+        android:layout_marginTop="16dp"
+        android:paddingHorizontal="16dp"
         android:fontFamily="@font/hacen_tunisia_bold_regular"
         android:paddingBottom="10dp" />
 
@@ -22,6 +23,7 @@
         android:background="@drawable/bg_outline_solid"
         android:fontFamily="@font/hacen_tunisia_bold_regular"
         android:hint="@string/search"
+        android:layout_marginHorizontal="16dp"
         android:maxLines="1"
         android:paddingVertical="10dp"
         android:paddingHorizontal="7dp"
@@ -35,7 +37,22 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerSituations"
         android:layout_width="match_parent"
+        android:layout_marginHorizontal="16dp"
         android:layout_height="wrap_content"
         android:nestedScrollingEnabled="false" />
+
+    <ExpandableListView
+        android:id="@+id/expandableListViewSearch"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:childDivider="@null"
+        android:scrollIndicators="none"
+        android:scrollbars="none"
+        android:visibility="gone"
+        android:layout_marginTop="10dp"
+        android:divider="@null"
+        android:paddingBottom="20dp"
+        android:clipToPadding="false"
+        android:groupIndicator="@null" />
 
 </LinearLayout>

@@ -143,8 +143,10 @@ class ServicesSearchActivity : BaseActivity(), AdapterServiceCompanies.openDetai
     }
 
     override fun openDetails(model: ServicesListResponse) {
+        Constants.serviceListResponse = model
         val intent = Intent(this, ServiceCompanyViewActivity::class.java)
-        intent.putExtra("model", Gson().toJson(model))
+      //  intent.putExtra("model", Gson().toJson(model))
+
         intent.putExtra("postTitle", postTitle)
         intent.putExtra("arabic_title", arabic_title)
         startActivity(intent)

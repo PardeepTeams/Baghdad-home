@@ -28,6 +28,7 @@ import com.baghdadhomes.Models.AgenciesData
 import com.baghdadhomes.Models.ModelMessages
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.ProgressHud
 import com.baghdadhomes.Utils.Utility
 import de.hdodenhof.circleimageview.CircleImageView
@@ -106,9 +107,30 @@ class MessagingActivity : BaseActivity() {
                 Glide.with(this).load(sendTo?.user_image).placeholder(R.drawable.img_placeholder).into(imgPerson)
             }
         }
+
+        if(Constants.agencyModel!=null){
+            sendTo = Constants.agencyModel
+            tvName.text = sendTo?.display_name!!
+
+            if (!sendTo?.user_image.isNullOrEmpty()){
+                Glide.with(this).load(sendTo?.user_image).placeholder(R.drawable.img_placeholder).into(imgPerson)
+            }
+        }
         if (intent.getStringExtra("postData") != null){
             postData = Gson().fromJson(intent.getStringExtra("postData"),AdsDataChat::class.java)
 
+            if (postData != null){
+                rlPostDetail.visibility = View.VISIBLE
+
+                Glide.with(this).load(postData?.thumbnail.orEmpty()).placeholder(R.drawable.img_placeholder).into(imgPost)
+
+                tvPostTitle.text = postData?.post_title.orEmpty()
+                tvPostPrice.text = "(${postData?.price ?: "0"})${getString(R.string.currency_code)}"
+            }
+        }
+
+        if(Constants.postDetails!=null){
+            postData = Constants.postDetails
             if (postData != null){
                 rlPostDetail.visibility = View.VISIBLE
 

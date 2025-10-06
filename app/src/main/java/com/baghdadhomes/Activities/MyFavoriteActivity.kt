@@ -133,7 +133,7 @@ class MyFavoriteActivity : BaseActivity(), AdapterDetailAds.openDetailPage,Produ
        // intent.putExtra("model",Gson().toJson(model))
         startActivity(intent)
         // startActivity(Intent(activity, AdsDetailsActivity::class.java))
-        overridePendingTransition(0, 0)
+       // overridePendingTransition(0, 0)
     }
 
     override fun editAd(model: Result?) {
@@ -198,7 +198,7 @@ class MyFavoriteActivity : BaseActivity(), AdapterDetailAds.openDetailPage,Produ
         val intent = Intent(this, ProjectDetailActivity::class.java)
         intent.putExtra("propertyId",model!!.id.toString())
         startActivity(intent)
-        overridePendingTransition(0, 0)
+        //overridePendingTransition(0, 0)
     }
 
 }

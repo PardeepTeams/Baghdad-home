@@ -140,8 +140,9 @@ class RealEstateFragment : BaseActivity(), OnMapReadyCallback {
         }
 
         imgFilter.setOnClickListener {
+            Constants.nbhdModel = nbhdModel
             val intent = Intent(this, FilterAgenciesActivity::class.java)
-            intent.putExtra("nbhdModel", Gson().toJson(nbhdModel))
+           // intent.putExtra("nbhdModel", Gson().toJson(nbhdModel))
             intent.putExtra("city", city.orEmpty())
             intent.putExtra("nbhd", nbhd.orEmpty())
             launcher.launch(intent)
@@ -345,7 +346,8 @@ class RealEstateFragment : BaseActivity(), OnMapReadyCallback {
 
         rlCompanyDetails.setOnClickListener {
             val intent = Intent(this, CompanyAdsActivity::class.java)
-            intent.putExtra("agencyData", Gson().toJson(agenciesData))
+            intent.putExtra("agentId",agenciesData.ID)
+          //  intent.putExtra("agencyData", Gson().toJson(agenciesData))
             startActivity(intent)
         }
     }

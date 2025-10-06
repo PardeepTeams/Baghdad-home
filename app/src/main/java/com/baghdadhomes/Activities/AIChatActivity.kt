@@ -127,7 +127,9 @@ class AIChatActivity : BaseActivity(), AdapterChatAI.AdapterAiChatAction {
     }
 
     override fun onSeeAllClick(position: Int) {
+        Constants.slug.clear()
         var intent = Intent(this, PropertiesSearchActivity::class.java)
+        Constants.filterModel = null
         intent.putExtra("search_text", chatList[position].searchText?:"")
         startActivity(intent)
     }

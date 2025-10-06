@@ -33,6 +33,7 @@ import com.baghdadhomes.Adapters.AdapterAutoSlider
 import com.baghdadhomes.Adapters.AdapterDetailAds
 import com.baghdadhomes.Adapters.AdapterDetailAds.openDetailPage
 import com.baghdadhomes.Adapters.AdapterFeatureAds
+import com.baghdadhomes.Adapters.AdapterNBHDItems
 import com.baghdadhomes.Adapters.AdapterStories
 import com.baghdadhomes.Adapters.GridAdapterDetailAds
 import com.baghdadhomes.Adapters.HomeSelectCityAdapter
@@ -109,6 +110,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
     var selectedCityModel:HomeCity? = null
 
     var cityList:ArrayList<HomeCity> = ArrayList()
+    var nbhdList:ArrayList<NBHDDataResponse> = ArrayList()
 
     override fun onResume() {
         super.onResume()
@@ -309,6 +311,49 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
             }
 
+        }else  if(apiType.equals(Constants.NEIGHBORHOOD)){
+            val model = Gson().fromJson(respopnse, NBHDModel::class.java)
+            if(model.success){
+                //nbhdList.addAll(model.response)
+                val list : java.util.ArrayList<NBHDDataResponse> = java.util.ArrayList()
+                if (PreferencesService.instance.getLanguage() != "ar") {
+                    for (i in 0 until model.response.size) {
+                        val listArea1 : java.util.ArrayList<NBHDArea> = java.util.ArrayList()
+                        val listArea : java.util.ArrayList<NBHDArea> = java.util.ArrayList()
+                        for (j in 0 until model.response.get(i).area.size){
+                            if (!model.response.get(i).area.get(j).description.isNullOrEmpty()){
+                                listArea.add(model.response.get(i).area.get(j))
+                            }
+                        }
+                        listArea.sortWith{ lhs, rhs ->
+                            lhs!!.description.compareTo(rhs!!.description)
+                        }
+
+                        listArea1.add(NBHDArea(getString(R.string.all),"all",getString(R.string.all)))
+                        listArea1.addAll(listArea)
+                        list.add(NBHDDataResponse(model.response[i].name,model.response[i].description,model.response[i].slug,listArea1))
+                    }
+                } else{
+                    //list.addAll(model.response)
+                    for (i in 0 until model.response.size) {
+                        val listArea1 : java.util.ArrayList<NBHDArea> = java.util.ArrayList()
+                        val listArea : java.util.ArrayList<NBHDArea> = java.util.ArrayList()
+                        for (j in 0 until model.response.get(i).area.size){
+                            listArea.add(model.response.get(i).area.get(j))
+                        }
+                        listArea.sortWith{ lhs, rhs ->
+                            lhs!!.name.compareTo(rhs!!.name)
+                        }
+
+                        listArea1.add(NBHDArea(getString(R.string.all),"all",getString(R.string.all)))
+                        listArea1.addAll(listArea)
+                        list.add(NBHDDataResponse(model.response[i].name,model.response[i].description,model.response[i].slug,listArea1))
+                    }
+                }
+                nbhdList.addAll(list)
+
+
+            }
         }
     }
 
@@ -767,6 +812,7 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         if (isNetworkAvailable()){
             scrollView.scrollTo(0,0)
             hitGetApiWithoutToken(Constants.GET_HOME_CITY,false,Constants.GET_HOME_CITY_API)
+            hitGetApiWithoutToken(Constants.NEIGHBORHOOD, false, Constants.NEIGHBORHOOD_API)
             hitGetApiWithoutTokenWithParams(Constants.GET_HOME,true,Constants.GET_HOME_API,map)
         } else{
             showToast(requireContext(), getString(R.string.intenet_error))
@@ -1174,6 +1220,8 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
 
     private fun showCityBottomSheet() {
         val adapterCity:HomeSelectCityAdapter
+        val adapterNBHD :AdapterNBHDItems
+
         val bottomSheetDialog = BottomSheetDialog(requireActivity())
         val view = layoutInflater.inflate(R.layout.bottom_sheet_select_city, null)
         bottomSheetDialog.window?.setSoftInputMode(
@@ -1197,6 +1245,20 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         }
 
         val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerSituations)
+        val expandableListView = view.findViewById<ExpandableListView>(R.id.expandableListViewSearch)
+
+
+
+
+        adapterNBHD = AdapterNBHDItems(requireActivity(),nbhdList,object :AdapterNBHDItems.ChildItemClick{
+            override fun onChildClick(slug: ArrayList<String>) {
+                bottomSheetDialog.dismiss()
+                Log.d("SlugList",slug.toString())
+            }
+
+        },true)
+
+        expandableListView.setAdapter(adapterNBHD)
         recyclerView.layoutManager = LinearLayoutManager(requireActivity())
         adapterCity = HomeSelectCityAdapter(requireActivity(),cityList, object:HomeSelectCityAdapter.CityClickInterface{
             override fun onCityClick(cityModel: HomeCity) {
@@ -1226,7 +1288,10 @@ class MenuFragment : BaseFragment(), openDetailPage, AdapterFeatureAds.openFeatu
         etSearch.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
-                adapterCity.filter(s.toString())
+                requireActivity().dismissKeyboard(etSearch)
+                adapterNBHD.filter.filter(etSearch.text.toString())
+
+             //   adapterCity.filter(s.toString())
             }
 
             override fun afterTextChanged(s: Editable) {}

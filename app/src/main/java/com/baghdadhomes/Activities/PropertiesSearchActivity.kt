@@ -172,8 +172,9 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
     fun getFilterApi(){
         if (isNetworkAvailable()){
             page = page + 1
-            if(intent.getStringExtra("filterData")!=null){
-                filterModel = Gson().fromJson(intent.getStringExtra("filterData"),FilterIntentModel::class.java)
+            if(Constants.filterModel !=null){
+                filterModel = Constants.filterModel!!
+              //  filterModel = Gson().fromJson(intent.getStringExtra("filterData"),FilterIntentModel::class.java)
                 val slug : ArrayList<String> = filterModel.area
                 val pagemap:HashMap<String,String> = HashMap()
                 pagemap.put("status[]", filterModel.status)
@@ -195,18 +196,6 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
                 pagemap.put("keybaord", keybaord)
 
                 hitPostApiFilter(Constants.FILTER,true, Constants.FILTER_API, pagemap,slug)
-            }else if(intent.getStringArrayListExtra("slug")!=null){
-                val slug:ArrayList<String>  = intent.getStringArrayListExtra("slug")!!
-                val pagemap:HashMap<String,String> = HashMap()
-                //pagemap.put("area[]", slug)
-                pagemap.put("page", page.toString())
-                pagemap.put("per_page", "10")
-                pagemap.put("keybaord", keybaord)
-                rv_properties.scrollToPosition(0)
-                if(PreferencesService.instance.userLoginStatus == true){
-                    pagemap.put("user_id",PreferencesService.instance.getUserData!!.ID.toString())
-                }
-                hitPostApiFilter(Constants.FILTER,true, Constants.FILTER_API, pagemap,slug)
             } else if (!intent.getStringExtra("search_text").isNullOrEmpty()) {
                 val pagemap:HashMap<String,String> = HashMap()
                 pagemap.put("page", page.toString())
@@ -217,6 +206,18 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
                     pagemap.put("user_id",PreferencesService.instance.getUserData!!.ID.toString())
                 }
                 hitPostApi(Constants.FILTER,true, Constants.AISEARCHAPI, pagemap)
+            }else if(Constants.slug!=null){
+                val slug:ArrayList<String>  = Constants.slug
+                val pagemap:HashMap<String,String> = HashMap()
+                //pagemap.put("area[]", slug)
+                pagemap.put("page", page.toString())
+                pagemap.put("per_page", "10")
+                pagemap.put("keybaord", keybaord)
+                rv_properties.scrollToPosition(0)
+                if(PreferencesService.instance.userLoginStatus == true){
+                    pagemap.put("user_id",PreferencesService.instance.getUserData!!.ID.toString())
+                }
+                hitPostApiFilter(Constants.FILTER,true, Constants.FILTER_API, pagemap,slug)
             }
         } else{
             loading  = true
@@ -287,7 +288,7 @@ class PropertiesSearchActivity : BaseActivity(), AdapterDetailAds.openDetailPage
         intent.putExtra("propertyId",model!!.iD)
         intent.putExtra("view_count",model!!.totalViews)
         startActivityForResult(intent, 1)
-        overridePendingTransition(0, 0)
+      //  overridePendingTransition(0, 0)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

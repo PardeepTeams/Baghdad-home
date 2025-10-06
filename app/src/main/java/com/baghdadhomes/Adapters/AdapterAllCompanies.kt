@@ -56,7 +56,7 @@ class AdapterAllCompanies(var context: Context, var list : ArrayList<AgenciesDat
 
         holder.itemView.setOnClickListener {
             val intent = Intent(context, CompanyAdsActivity::class.java)
-            intent.putExtra("agencyData", Gson().toJson(list[position]))
+            intent.putExtra("agentId", list[position].ID)
             context.startActivity(intent)
         }
     }

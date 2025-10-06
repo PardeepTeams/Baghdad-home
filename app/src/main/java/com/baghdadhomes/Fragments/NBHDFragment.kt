@@ -121,7 +121,7 @@ class NBHDFragment : BaseFragment(), AdapterNBHDItems.ChildItemClick {
                             })
                     }
                 }*/
-                adapter = AdapterNBHDItems(requireActivity(),nbhdList,this)
+                adapter = AdapterNBHDItems(requireActivity(),nbhdList,this,false)
                 expandableListView.setAdapter(adapter)
                 //expandableListView.expandGroup(0)
 
@@ -213,8 +213,9 @@ class NBHDFragment : BaseFragment(), AdapterNBHDItems.ChildItemClick {
     }
 
     override fun onChildClick(slug: ArrayList<String>) {
+        Constants.slug = slug
         val intent = Intent(requireActivity(), PropertiesSearchActivity::class.java)
-        intent.putStringArrayListExtra("slug",slug)
+       // intent.putStringArrayListExtra("slug",slug)
         startActivity(intent)
     }
 }

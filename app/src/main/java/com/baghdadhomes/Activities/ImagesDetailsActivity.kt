@@ -23,6 +23,7 @@ import com.baghdadhomes.Models.AdsDataChat
 import com.baghdadhomes.Models.AdsDetailModel
 import com.baghdadhomes.PreferencesService
 import com.baghdadhomes.R
+import com.baghdadhomes.Utils.Constants
 import com.baghdadhomes.Utils.Utility
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -87,8 +88,10 @@ class ImagesDetailsActivity : BaseActivity(), OnMapReadyCallback {
                         price = adsDetailModel!!.result?.price
                     )
                     val intent = Intent(this, MessagingActivity::class.java)
-                    intent.putExtra("receiverModel", Gson().toJson(adsDetailModel!!.result?.agent_agency_info))
-                    intent.putExtra("postData", Gson().toJson(postData))
+                    Constants.postDetails = postData
+                    Constants.agencyModel = adsDetailModel!!.result?.agent_agency_info
+                   // intent.putExtra("receiverModel", Gson().toJson(adsDetailModel!!.result?.agent_agency_info))
+                  //  intent.putExtra("postData", Gson().toJson(postData))
                     startActivity(intent)
                 }
             } else{
@@ -102,6 +105,9 @@ class ImagesDetailsActivity : BaseActivity(), OnMapReadyCallback {
 
         if(intent.getStringExtra("model")!=null){
             adsDetailModel = Gson().fromJson(intent.getStringExtra("model"),AdsDetailModel::class.java)
+        }
+        if(Constants.adsDetailModel !=null){
+            adsDetailModel = Constants.adsDetailModel
         }
         if(intent.getStringExtra("type")!=null){
             type = intent.getStringExtra("type")!!

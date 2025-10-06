@@ -3,6 +3,7 @@ package com.baghdadhomes.Activities
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -155,8 +156,9 @@ class MyAdsActivity : BaseActivity(), AdapterMyAds.perfomActions {
     }
 
     override fun editAd(model: ResultFeatured?) {
+        Constants.resultFeautred = model;
         val intent = Intent(this,PostAdActivity::class.java)
-        intent.putExtra("model",Gson().toJson(model))
+    //    intent.putExtra("model",Gson().toJson(model))
         intent.putExtra("isUpdate",true)
         startActivity(intent)
         overridePendingTransition(0, 0)

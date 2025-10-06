@@ -395,10 +395,8 @@ class CompanyAdsActivity : BaseActivity(), AdapterDetailAds.openDetailPage, OnMa
 
     override fun openNextActivity(model: Result?, position: Int) {
         val intent = Intent(this,AdsDetailsActivity::class.java)
-        //intent.putExtra("type",type)
         intent.putExtra("propertyId",model!!.iD)
         intent.putExtra("view_count",model!!.totalViews)
-      //  intent.putExtra("model", Gson().toJson(model))
         startActivity(intent)
         //overridePendingTransition(0, 0)
     }
